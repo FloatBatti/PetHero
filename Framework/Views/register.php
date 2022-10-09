@@ -1,7 +1,7 @@
 
 <style>
 .contenedor-registro{
-        
+        background-image:url("/salchipeludo.jpeg");
         width: 50%;
         color: black;
         font-size:30px;
@@ -21,6 +21,8 @@
         
 }
 button{
+        width: 10vw;
+        border: 1px solid black;
         font-size: 30px;
         border-radius: 15%;
         margin: 5px;
@@ -30,12 +32,18 @@ button{
 input{
         width:15vw;
         height:5vh;
-        
+}
+.botones{
+        margin: 10px;
+        padding: 10px;
+        display:flex;
+        flex-direction: row-reverse;
 
 }
 
 </style>
 <div class="contenedor-registro">
+        <h2>Registro</h2>
 <form action="" method="post">
     <div class="datoregistro">
     <label for="usuario">Usuario</label>
@@ -65,8 +73,9 @@ input{
         <label for="re-pass">Repetir Contraseña</label>
         <input type="password" name="re-pass" class="" required><br>
 </div>
-    <div class="datoregistro">
-    <button type="submit" name="button" class="btn btn-dark ml-auto d-block">Registrarme</button>
+    <div class="botones">
+    <button type="submit" name="button" class="">Dueño</button>
+    <button type="submit" name="button" class="">Guardian</button>
 </div>  
         
 </form>
