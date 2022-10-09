@@ -5,12 +5,14 @@ use Model\Usuario as Usuario;
 
  abstract class Usuario {
     private $id;
-    private $username
-    private $dni
-    private $nombre
-    private $apellido
-    private $correoelectronico
-    private $password
+    private $username;
+    private $dni;
+    private $nombre;
+    private $apellido;
+    private $correoelectronico;
+    private $password;
+    private $telefono;
+    private $direccion;
         
     
     public function get_username(){
@@ -49,10 +51,26 @@ use Model\Usuario as Usuario;
     public function set_password($pass){
         $this->password=$pass;
     }
-    
-    
-    
+     
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+ 
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
 
-    
+    }
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+    }
 }
 ?>
