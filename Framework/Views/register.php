@@ -18,6 +18,20 @@
 .datoregistro{
         margin: 5px;
         padding: 2px;
+        
+}
+button{
+        font-size: 30px;
+        border-radius: 15%;
+        margin: 5px;
+        padding: 4px;
+        background-color: red;
+}
+input{
+        width:15vw;
+        height:5vh;
+        
+
 }
 
 </style>
