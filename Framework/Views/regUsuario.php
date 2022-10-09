@@ -63,7 +63,7 @@ input{
 <body>
 <div class="contenedor-registro">
         <h2>Registro</h2>
-<form action="" method="post">
+<form action="../Controllers/UserController" method="post">
     <div class="datoregistro">
     <label for="usuario"></label>
         <input type="text" placeholder="Usuario" name="usuario" class="" required><br>
@@ -82,7 +82,7 @@ input{
 </div>
         <div class="datoregistro">
             <label for="mail"></label>
-        <input type="text" placeholder="Correo Electronico" name="mail" class="" required><br>
+        <input type="email" placeholder="Correo Electronico" name="mail" class="" required><br>
 </div>
         <div class="datoregistro">    
         <label for="telefono"></label>
@@ -100,9 +100,16 @@ input{
         <label for="re-pass"></label>
         <input type="password" placeholder="Repetir Contraseña" name="re-pass" class="" required><br>
 </div>
+        <div>
+        <label for="eleccion"></label>
+            <select name="eleccion">
+                <option value="Guardian">Guardian</option>
+                <option value="Dueño" selected>Dueño</option>
+            </select>
+        </div>
     <div class="botones">
-    <button type="submit" name="Dueño" class="">Dueño</button>
-    <button type="submit" name="Guardian" class="">Guardian</button>
+    <button type="submit" name="" class="">Guardar</button>
+    
 </div>  
         
 </form>
