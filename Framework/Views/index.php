@@ -54,7 +54,7 @@
                           </div>
                           
         
-                          <a href="#" id="register">Don't have an accout?</a>
+                          <a href="register.php" id="register">Don't have an accout?</a>
         
                         </form>
         
