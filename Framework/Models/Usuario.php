@@ -1,9 +1,7 @@
 <?php
 namespace Models;
 
-use Model\Usuario as Usuario;
-
- abstract class Usuario {
+abstract class Usuario {
     private $id;
     private $username;
     private $dni;
