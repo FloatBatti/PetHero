@@ -1,4 +1,10 @@
-<div class="">
+<style>
+.contenedorMascota{
+    background-image: url("salchipeludo.jpeg");
+
+}
+</style>
+<div class="contenedorMascota">
 <form action="" method="post">
     <div class="datoregistro">
         <label for="nombre">Nombre</label>
@@ -7,28 +13,23 @@
     <div class="datoregistro">
         <label for="raza">Raza</label>
             <select name="raza">
-                <option value="value1">Caniche</option>
-                <option value="value2" selected>Pequines</option>
-                <option value="value3">Labrador retriever</option>
-                <option value="value3">Bulldog francés</option>
-                <option value="value3">Golden retriever</option>
-                <option value="value3">Pastor alemán</option>
-                <option value="value3">Bulldog</option>
-                <option value="value3">Beagle</option>
-                <option value="value3">Rottweiler</option>
-                <option value="value3">Braco alemán de pelo corto</option>
-                <option value="value3">Dachshund(mini Salchicha)</option>
+                <option value="Caniche">Caniche</option>
+                <option value="Pequines" selected>Pequines</option>
+                <option value="Labrador retriever">Labrador retriever</option>
+                <option value="Bulldog francés">Bulldog francés</option>
+                <option value="Golden retriever">Golden retriever</option>
+                <option value="Pastor alemán">Pastor alemán</option>
+                <option value="Bulldog">Bulldog</option>
+                <option value="Beagle">Beagle</option>
+                <option value="Rottweiler">Rottweiler</option>
+                <option value="Braco alemán de pelo corto">Braco alemán de pelo corto</option>
+                <option value="Dachshund(mini Salchicha)">Dachshund(mini Salchicha)</option>
+                <option value="Sin raza">Sin raza</option>
             </select>
     </div>
     <div class="datoregistro">
-        <label for="raza">Peso en kgs</label>
-            <select name="peso">
-                <option value="value1">0-5</option>
-                <option value="value2" selected>5-10</option>
-                <option value="value3">10-15</option>
-                <option value="value3">15-20</option>
-                <option value="value3">Mayor a 20</option>
-            </select>
+        <label for="peso">Peso en kgs</label>
+            <input type="number" name="peso"><br>
     </div>
         <div class="datoregistro">    
         <label for="dni">Foto URL</label>

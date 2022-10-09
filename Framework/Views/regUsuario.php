@@ -1,19 +1,29 @@
 
 <style>
+body{
+        background-image:url("../styles/salchipeludo.jpeg");
+        background-repeat:no-repeat;
+        
+}
 .contenedor-registro{
-        background-image:url("/salchipeludo.jpeg");
+        
         width: 50%;
         color: black;
         font-size:30px;
         border-radius: 10%;
         border : 1px;
-        opacity: 20%;
-        background-color: pink;
+        opacity: 70%;
+        background-color: green;
         display: flex;
         flex-direction: column;
         justify-content:center;
         align-items: center;
-        margin: 10vh 10vw;
+        margin: ;
+        position: absolute;
+        left: 50%;
+        top: 20%;
+    
+    
 }
 .datoregistro{
         margin: 5px;
@@ -42,6 +52,15 @@ input{
 }
 
 </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+<body>
 <div class="contenedor-registro">
         <h2>Registro</h2>
 <form action="" method="post">
@@ -65,6 +84,15 @@ input{
             <label for="mail">Correo Electronico</label>
         <input type="text" name="mail" class="" required><br>
 </div>
+
+        <div class="datoregistro">    
+        <label for="telefono">Telefono celular(sin guiones)</label>
+            <input type="text" name="telefono" class="" required><br>
+</div>
+        <div class="datoregistro">
+            <label for="direccion">Direccion</label>
+        <input type="text" name="direccion" class="" required><br>
+</div>
         <div class="datoregistro">
         <label for="pass">Contraseña</label>
         <input type="password" name="pass" class="" required><br>
@@ -79,5 +107,8 @@ input{
 </div>  
         
 </form>
-</div>
+</div> 
+</body>
+</html>
+
 
