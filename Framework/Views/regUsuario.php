@@ -65,45 +65,44 @@ input{
         <h2>Registro</h2>
 <form action="" method="post">
     <div class="datoregistro">
-    <label for="usuario">Usuario</label>
-        <input type="text" name="usuario" class="" required><br>
+    <label for="usuario"></label>
+        <input type="text" placeholder="Usuario" name="usuario" class="" required><br>
 </div>
         <div class="datoregistro">
-    <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" class="" required><br>
+        <label for="nombre"></label>
+        <input type="text" placeholder="Nombre" name="nombre" class="" required><br>
 </div>
         <div class="datoregistro">
-        <label for="apellido">Apellido</label>
-            <input type="text" name="apellido" class="" required><br>
+        <label for="apellido"></label>
+            <input type="text" placeholder="Apellido" name="apellido" class="" required><br>
 </div>
         <div class="datoregistro">    
-        <label for="dni">DNI</label>
-            <input type="text" name="dni" class="" required><br>
+        <label for="dni"></label>
+            <input type="text" placeholder="DNI" name="dni" class="" required><br>
 </div>
         <div class="datoregistro">
-            <label for="mail">Correo Electronico</label>
-        <input type="text" name="mail" class="" required><br>
+            <label for="mail"></label>
+        <input type="text" placeholder="Correo Electronico" name="mail" class="" required><br>
 </div>
-
         <div class="datoregistro">    
-        <label for="telefono">Telefono celular(sin guiones)</label>
-            <input type="text" name="telefono" class="" required><br>
+        <label for="telefono"></label>
+            <input type="text" placeholder="Telefono celular(sin guiones)" name="telefono" class="" required><br>
 </div>
         <div class="datoregistro">
-            <label for="direccion">Direccion</label>
-        <input type="text" name="direccion" class="" required><br>
+            <label for="direccion"></label>
+        <input type="text" placeholder="Direccion" name="direccion" class="" required><br>
 </div>
         <div class="datoregistro">
-        <label for="pass">Contraseña</label>
-        <input type="password" name="pass" class="" required><br>
+        <label for="pass"></label>
+        <input type="password" placeholder="Contraseña" name="pass" class="" required><br>
 </div>
         <div class="datoregistro">
-        <label for="re-pass">Repetir Contraseña</label>
-        <input type="password" name="re-pass" class="" required><br>
+        <label for="re-pass"></label>
+        <input type="password" placeholder="Repetir Contraseña" name="re-pass" class="" required><br>
 </div>
     <div class="botones">
-    <button type="submit" name="button" class="">Dueño</button>
-    <button type="submit" name="button" class="">Guardian</button>
+    <button type="submit" name="Dueño" class="">Dueño</button>
+    <button type="submit" name="Guardian" class="">Guardian</button>
 </div>  
         
 </form>
