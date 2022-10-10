@@ -1,0 +1,62 @@
+    //Methods
+    public function Add(Bill $newBill){
+        
+        $this->RetrieveData();
+        
+        array_push($this->billList, $newBill);
+
+        $this->SaveData();
+    }
+
+    public function AddItem(Bill $bill, Item $item){
+        $this->RetrieveData();
+        
+        foreach($this->billList as $billValue){
+            if(($billValue->getBillNumber() == $bill->getBillNumber()) && ($billValue->getBillType() == $bill->getBillType())){
+                $billValue->pushItem($item);
+                $bill = $billValue;
+            }
+        }
+
+        $this->SaveData();
+
+        return $bill;
+    }
+
+    public function Remove($billType, $billNumber){
+
+        $this->RetrieveData();
+
+        foreach($this->billList as $billValue){
+
+            if($billValue->getBillNumber() == $billNumber && $billValue->getBillType() == trim($billType)){
+                $key = array_search($billValue, $this->billList);
+                unset($this->billList[$key]);
+            }
+        }
+
+        $this->SaveData();
+    }
+
+    public function GetAll()
+    {
+        $this->RetrieveData();
+
+        return $this->billList;
+    }
+
+
+    public function GetBill($billType, $billNumber)
+    {
+        $this->RetrieveData();
+        $billExists = null;
+
+        foreach($this->billList as $bill){
+            if(($bill->getBillNumber() == $billNumber) && ($bill->getBillType() == $billType)){
+                $billExists = $bill;
+            }
+        }
+        
+        return $billExists;
+    }
+

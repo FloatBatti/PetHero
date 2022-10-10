@@ -1,0 +1,74 @@
+<?php 
+
+namespace jsonDAO;
+require_once("../Config/Autoload.php");
+
+use Config\Autoload;
+use InterfaceDAO;
+use Models\Mascota;
+
+Autoload::Start();
+class MascotasDAO implements InterfaceDAO{
+
+    private $listMascotas = array();
+
+    public function GetAll(){
+        
+    }
+    public function Add(){
+
+    }
+    public function SaveData(){
+
+        $arrayToEncode = array();
+
+        foreach($this->listMascotas as $mascota)
+        {
+            
+            $valuesArray["id"] = $mascota->getId();
+            $valuesArray["nombre"] = $mascota->getNombre();
+            $valuesArray["raza"] = $mascota->getRaza();
+            $valuesArray["peso"] = $mascota->getPeso();
+            $valuesArray["fotoURL"] = $mascota->getFotoURL();
+            $valuesArray["planVacURL"] = $mascota->getPlanVacURL();
+            $valuesArray["videoURL"] = $mascota->getVideoURL();
+
+
+            array_push($arrayToEncode, $valuesArray);
+        }
+
+        $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
+
+        file_put_contents("../Data/mascotas.json", $jsonContent);
+    }
+    public function RetriveData(){
+
+        $this->listMascotas = array();
+
+        $jsonContent = file_get_contents("../Data/mascotas.json");
+
+        $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, True) : array();
+
+        foreach ($arrayToDecode as $valuesArray){
+
+            $mascota = new Mascota();
+
+            $mascota->setId($valuesArray["id"]);
+            $mascota->setNombre($valuesArray["nombre"]);
+            $mascota->setRaza($valuesArray["raza"]);
+            $mascota->setPeso($valuesArray["peso"]);
+            $mascota->setFotoURL($valuesArray["fotoURL"]);
+            $mascota->setPlanVacURL($valuesArray["planVacURL"]);
+            $mascota->setVideoURL($valuesArray["videoURL"]);
+
+            array_push($this->listMascotas, $mascota);
+
+        }
+
+
+    }
+
+}
+
+
+?>
