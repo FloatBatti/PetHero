@@ -54,7 +54,7 @@
                           </div>
                           
         
-                          <a href="register.php" id="register">Don't have an accout?</a>
+                          <a href="regUsuario.php" id="register">No tienes cuenta? Registrate</a>
         
                         </form>
         
