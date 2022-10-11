@@ -1,4 +1,13 @@
 <?php
+namespace Controllers;
+
+use jsonDAO\DueñosDAO as DueñosDAO;
+use jsonDAO\GuardianesDAO as GuardianesDAO;
+
+class UserController{
+
+}
+
 if($_POST){
 
     $usuario=$_POST['usuario'];
