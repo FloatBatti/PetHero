@@ -5,6 +5,7 @@ namespace Models;
 class Mascota{
 
     private $id;
+    private $idDueño;
     private $nombre;
     private $raza;
     private $peso;
@@ -88,9 +89,19 @@ class Mascota{
 
     public function setVideoURL($videoURL)
     {
-        $this->videoURL = $videoURL;
+        $this->videoURL = $videoURL;    
+    }
 
-        
+    public function getIdDueño()
+    {
+        return $this->idDueño;
+    }
+
+    public function setIdDueño($idDueño)
+    {
+        $this->idDueño = $idDueño;
+
+        return $this;
     }
 }
 
