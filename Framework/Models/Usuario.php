@@ -77,7 +77,6 @@ abstract class Usuario {
 
     }
 
-
     public function getId()
     {
         return $this->id;

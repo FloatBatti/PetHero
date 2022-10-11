@@ -2,9 +2,12 @@
 namespace Models;
 
 class Review{
+
     private $id;
+    private $user; //Quien recibe
+    private $autor;//Quien realiza
     private $fecha;
-    private $calificacion;
+    private $calificacion; // 1-5
     private $comentario;
 
     
@@ -43,6 +46,30 @@ class Review{
     public function setComentario($comentario)
     {
         $this->comentario = $comentario;
+    }
+ 
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+
+        return $this;
     }
 }
 ?>
