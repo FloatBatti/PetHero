@@ -1,3 +1,33 @@
+<?php
+require_once("../Config/Autoload.php");
+require_once("../Config/Config.php");
+
+use Config\Autoload as Autoload;
+use Config\Config as Config;
+//use Config\Request as Request;
+//use Config\Router as Router;
+
+Autoload::start();
+
+//Router::Route(new Request());
+
+use jsonDAO\MascotasDAO as MascotasDAO;
+$mascotas= new MascotasDAO();
+$lista=$mascotas->getAll();
+use jsonDAO\DueñosDAO as DueñosDAO;
+$dueños= new DueñosDAO();
+$listaDueños=$dueños->getAll();
+//var_dump($listaDueños);
+use jsonDAO\GuardianesDAO as GuardianesDAO;
+$guardianes=new GuardianesDAO();
+$listaGuardianes=$guardianes->getAll();
+//var_dump($listaGuardianes);
+use jsonDAO\ReviewsDAO as ReviewsDAO;
+$reviews=new ReviewsDAO();
+$listaReviews=$reviews->getAll();
+//var_dump($listaReviews);
+
+?>
 <!doctype html>
 <html lang="en">
   <head>

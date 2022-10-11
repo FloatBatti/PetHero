@@ -13,9 +13,18 @@ class MascotasDAO implements InterfaceDAO{
     private $listMascotas = array();
 
     public function GetAll(){
+
+        $this->RetrieveData();
+        return $this->listMascotas;
         
     }
     public function Add($mascota){
+
+        $this->RetrieveData();
+            
+            array_push($this->listMascotas, $mascota);
+
+            $this->SaveData();
 
     }
     public function SaveData(){
@@ -26,6 +35,7 @@ class MascotasDAO implements InterfaceDAO{
         {
             
             $valuesArray["id"] = $mascota->getId();
+            $valuesArray["idDueño"] = $mascota->getIdDueño();
             $valuesArray["nombre"] = $mascota->getNombre();
             $valuesArray["raza"] = $mascota->getRaza();
             $valuesArray["peso"] = $mascota->getPeso();
@@ -54,6 +64,7 @@ class MascotasDAO implements InterfaceDAO{
             $mascota = new Mascota();
 
             $mascota->setId($valuesArray["id"]);
+            $mascota->setIdDueño($valuesArray["idDueño"]);
             $mascota->setNombre($valuesArray["nombre"]);
             $mascota->setRaza($valuesArray["raza"]);
             $mascota->setPeso($valuesArray["peso"]);
