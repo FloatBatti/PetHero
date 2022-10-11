@@ -65,7 +65,7 @@ $listaReviews=$reviews->getAll();
 
                     <div class="col-auto login-box">
                       
-                        <form action="" class="form-log">
+                        <form action="../Controllers/UsuarioController.php" method="POST" class="form-log">
         
                           <h1 id="title-log">Login</h1>
                     

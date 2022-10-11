@@ -63,7 +63,7 @@ input{
 <body>
 <div class="contenedor-registro">
         <h2>Registro</h2>
-<form action="../Controllers/DueñosControllers.php" method="post">
+<form action="../Controllers/DueñosController.php" method="post">
     <div class="datoregistro">
     <label for="usuario"></label>
         <input type="text" placeholder="Usuario" name="usuario" class="" required><br>
