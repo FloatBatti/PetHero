@@ -1,25 +1,14 @@
 <?php
 namespace Controllers;
 
-use jsonDAO\DueñosDAO as DueñosDAO;
-use jsonDAO\GuardianesDAO as GuardianesDAO;
-
 class UserController{
 
 }
-
+/*
 if($_POST){
-
-    $usuario=$_POST['usuario'];
-    $nombre=$_POST['nombre'];
-    $apellido=$_POST['apellido'];
-    $dni=$_POST['dni'];
-    $mail=$_POST['mail'];
-    $telefono=$_POST['telefono'];
-    $direccion=$_POST['direccion'];
-    $eleccion=$_POST['eleccion'];
-    $pass=$_POST['pass'];
-    $re_pass=$_POST['re-pass'];
+    $usuario=$_POST['usuario']
+    $contraseña=$_POST['password']
+    
     
     if($pass != $re_pass){
         header("location: ../Views/regUsuario.php");
@@ -30,11 +19,18 @@ if($_POST){
             header("location:../Views/regMascota.php");   
         }
     }
-
-
+$usuario=$_POST['usuario'];
+    $nombre=$_POST['nombre'];
+    $apellido=$_POST['apellido'];
+    $dni=$_POST['dni'];
+    $mail=$_POST['mail'];
+    $telefono=$_POST['telefono'];
+    $direccion=$_POST['direccion'];
+    $eleccion=$_POST['eleccion'];
+    $pass=$_POST['pass'];
+    $re_pass=$_POST['re-pass'];*/
     
-
-
-
-}
 ?>
+
+
+

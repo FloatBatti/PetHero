@@ -45,15 +45,26 @@
         {
             $this->listaGuardianes = array();
 
-            if(file_exists('Data/Guardianes.json'))
+            if(file_exists('../Data/Guardianes.json'))
             {
-                $jsonContent = file_get_contents('Data/Guardianes.json');
+                $jsonContent = file_get_contents('../Data/Guardianes.json');
 
                 $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
                 foreach($arrayToDecode as $valuesArray)
                 {
                     $guardian = new Guardian();
+                    $guardian->setId($valuesArray["id"]);
+                    $guardian->set_username($valuesArray["username"]);
+                    $guardian->set_dni($valuesArray["dni"]);
+                    $guardian->set_nombre($valuesArray["nombre"]);
+                    $guardian->set_apellido($valuesArray["apellido"]);
+                    $guardian->set_correoelectronico($valuesArray["correoelectronico"]);
+                    $guardian->set_password($valuesArray["password"]);
+                    $guardian->setTelefono($valuesArray["telefono"]);
+                    $guardian->setDireccion($valuesArray["direccion"]);
+                    
+                    
                     $guardian->setDisponibilidad($valuesArray["disponibilidad"]);
                     $guardian->setTipoMascota($valuesArray["tipoMascota"]);
                     $guardian->setFotoEspacioURL($valuesArray["fotoEspacioURL"]);

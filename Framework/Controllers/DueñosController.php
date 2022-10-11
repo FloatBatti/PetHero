@@ -13,7 +13,7 @@ class DueñosController{
 
         $this->dueñosDao = new DueñosDAO();
     }
-
+    
     public function add($username, $dni, $nombre,$apellido, $correoelectronico, $password, $telefono,$direccion)
         {
             $dueño = new Dueño();

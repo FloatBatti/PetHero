@@ -4,9 +4,9 @@ namespace Models;
 class Review{
 
     private $id;
-    private $user; //Quien recibe
-    private $autor;//Quien realiza
     private $fecha;
+    private $autorID;//Quien realiza
+    private $userID; //Quien recibe
     private $calificacion; // 1-5
     private $comentario;
 
@@ -48,28 +48,27 @@ class Review{
         $this->comentario = $comentario;
     }
  
-    public function getUser()
+    public function getUserID()
     {
-        return $this->user;
+        return $this->userID;
     }
 
-    public function setUser($user)
+    public function setUserID($user)
     {
-        $this->user = $user;
+        $this->userID = $user;
 
         return $this;
     }
 
-    public function getAutor()
+    public function getAutorID()
     {
-        return $this->autor;
+        return $this->autorID;
     }
 
-    public function setAutor($autor)
+    public function setAutorID($autor)
     {
-        $this->autor = $autor;
+        $this->autorID = $autor;
 
-        return $this;
     }
 }
 ?>

@@ -15,7 +15,7 @@ class DueñosDAO implements InterfaceDAO{
         
         $this->RetrieveData();
 
-            return $this->listaDueños;
+        return $this->listaDueños;
     }
 
     public function RetrieveData(){
