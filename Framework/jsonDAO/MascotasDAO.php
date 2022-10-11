@@ -4,8 +4,8 @@ namespace jsonDAO;
 require_once("../Config/Autoload.php");
 
 use Config\Autoload;
-use InterfaceDAO;
 use Models\Mascota;
+use jsonDAO\InterfaceDAO;
 
 Autoload::Start();
 class MascotasDAO implements InterfaceDAO{
