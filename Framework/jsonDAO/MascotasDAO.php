@@ -4,8 +4,8 @@ namespace jsonDAO;
 require_once("../Config/Autoload.php");
 
 use Config\Autoload;
-use InterfaceDAO;
 use Models\Mascota;
+use jsonDAO\InterfaceDAO;
 
 Autoload::Start();
 class MascotasDAO implements InterfaceDAO{
@@ -15,7 +15,7 @@ class MascotasDAO implements InterfaceDAO{
     public function GetAll(){
         
     }
-    public function Add(){
+    public function Add($mascota){
 
     }
     public function SaveData(){
@@ -41,7 +41,7 @@ class MascotasDAO implements InterfaceDAO{
 
         file_put_contents("../Data/mascotas.json", $jsonContent);
     }
-    public function RetriveData(){
+    public function RetrieveData(){
 
         $this->listMascotas = array();
 

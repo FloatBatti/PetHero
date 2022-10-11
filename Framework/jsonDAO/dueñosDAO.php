@@ -1,12 +1,14 @@
 <?php
 namespace jsonDAO;
 
+include("../Views/header.php");
+
 use Models\Dueño as Dueño;
-use Models\Usuario as Usuario;
+use jsonDAO\InterfaceDAO as InterfaceDAO; 
 
 class DueñosDAO implements InterfaceDAO{
     
-    private $listaDueños= array();;
+    private $listaDueños= array();
 
 
     public function GetAll(){
@@ -15,7 +17,8 @@ class DueñosDAO implements InterfaceDAO{
 
             return $this->listaDueños;
     }
-    public function RetriveData(){
+
+    public function RetrieveData(){
 
         $this->listaDueños = array();
 
@@ -27,6 +30,7 @@ class DueñosDAO implements InterfaceDAO{
 
                 foreach($arrayToDecode as $valuesArray)
                 {
+                    //Dueño
                     $dueño = new Dueño();
                     $dueño->setId($valuesArray["id"]);
                     $dueño->set_username($valuesArray["username"]);
@@ -37,9 +41,20 @@ class DueñosDAO implements InterfaceDAO{
                     $dueño->set_password($valuesArray["password"]);
                     $dueño->setTelefono($valuesArray["telefono"]);
                     $dueño->setDireccion($valuesArray["direccion"]);
-                    $dueño->setReviews($valuesArray["reviews"]);
-                    $dueño->setGuardianesFav($valuesArray["guardianesFav"]);
-                    $dueño->setMascotas($valuesArray["mascotas"]);
+                    
+                    //Guardianes Favoritos
+                    foreach($valuesArray["guardianesFav"] as $guardianId){
+                     
+                        $dueño->agregarGuardFav($guardianId);
+
+                    }
+
+                    //Mascotas
+                    foreach($valuesArray["mascotas"] as $mascotaId){
+                     
+                        $dueño->agregarMascota($mascotaId);
+
+                    }
 
                     
                     array_push($this->listaDueños, $dueño);
@@ -48,6 +63,7 @@ class DueñosDAO implements InterfaceDAO{
 
 
     }
+
     public function Add($dueño){
 
         $this->RetrieveData();
@@ -57,6 +73,7 @@ class DueñosDAO implements InterfaceDAO{
             $this->SaveData();
 
     }
+
     public function SaveData(){
         
         $arrayToEncode = array();
@@ -73,15 +90,31 @@ class DueñosDAO implements InterfaceDAO{
                 $valuesArray["telefono"] = $dueño->getTelefono();
                 $valuesArray["direccion"] = $dueño->getDireccion();
                 $valuesArray["reviews"] = $dueño->getReviews();
-                $valuesArray["guardianesFav"] = $dueño->getGuardianesFav();
-                $valuesArray["mascotas"]=$dueño->getMascotas();
+
+                //Guardianes Favoritos
+                $valuesArray["guardianesFav"] = array();
+
+                foreach($dueño->getGuardianesFav() as $guardianId){
+
+                    $valuesArray["guardianesFav"][] = $guardianId;
+            
+                }
+
+                //Mascotas
+                $valuesArray["mascotas"]= array();
+
+                foreach($dueño->getMascotas() as $mascotaId){
+
+                    $valuesArray["mascotas"][] = $mascotaId;
+            
+                }
 
                 array_push($arrayToEncode, $valuesArray);
             }
 
             $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
             
-            file_put_contents('Data/Dueños.json', $jsonContent);
+            file_put_contents('../Data/Dueños.json', $jsonContent);
 
 
     }

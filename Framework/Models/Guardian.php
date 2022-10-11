@@ -10,8 +10,6 @@ class Guardian extends Usuario{
     private $tipoMascota;
     private $fotoEspacioURL;
     private $descripcion;    
-    private $reviews;
-
     
     public function getDisponibilidad()
     {
@@ -61,17 +59,7 @@ class Guardian extends Usuario{
         return $this;
     }
 
-    public function getReviews()
-    {
-        return $this->reviews;
-    }
 
-    public function setReviews($reviews)
-    {
-        $this->reviews = $reviews;
-
-        return $this;
-    }
 }
 
 

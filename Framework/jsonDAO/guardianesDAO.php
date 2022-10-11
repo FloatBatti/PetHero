@@ -8,11 +8,11 @@
 
         private $listaGuardianes=array();
 
-        public function Add(Guardian $nuevo)
+        public function Add($guardian)
         {
             $this->RetrieveData();
             
-            array_push($this->listaGuardianes, $nuevo);
+            array_push($this->listaGuardianes, $guardian);
 
             $this->SaveData();
         }
@@ -22,7 +22,8 @@
 
             return $this->listaGuardianes;
         }
-        private function SaveData()
+
+        public function SaveData()
         {
             $arrayToEncode = array();
 
@@ -32,7 +33,6 @@
                 $valuesArray["tipoMascota"] = $guardian->getTipoMascota();
                 $valuesArray["fotoEspacioURL"] = $guardian->getFotoEspacioURL();
                 $valuesArray["descripcion"] = $guardian->getDescripcion();
-                $valuesArray["reviews"] = $guardian->getReviews();
 
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -41,7 +41,7 @@
             
             file_put_contents('Data/Guardianes.json', $jsonContent);
         }
-        private function RetrieveData()
+        public function RetrieveData()
         {
             $this->listaGuardianes = array();
 
@@ -58,7 +58,6 @@
                     $guardian->setTipoMascota($valuesArray["tipoMascota"]);
                     $guardian->setFotoEspacioURL($valuesArray["fotoEspacioURL"]);
                     $guardian->setDescripcion($valuesArray["descripcion"]);
-                    $guardian->setReviews($valuesArray["reviews"]);
 
                     array_push($this->listaGuardianes, $guardian);
                 }

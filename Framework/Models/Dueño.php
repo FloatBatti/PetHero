@@ -5,18 +5,18 @@ use Models\Usuario;
 
 class Dueño extends Usuario{
 
-    private $mascotas;
-    private $guardianesFav;
-    private $reviews;
+    private $mascotas = array();
+    private $guardianesFav = array();
 
-    
-    public function getReviews()
-    {
-        return $this->reviews;
+    public function agregarMascota($mascota){
+
+        array_push($this->mascotas, $mascota);
     }
-    public function setReviews($reviews)
-    {
-        $this->reviews = $reviews;
+
+    public function agregarGuardFav($guardian){
+        
+        array_push($this->guardianesFav, $guardian);
+
     }
     public function getGuardianesFav()
     {
