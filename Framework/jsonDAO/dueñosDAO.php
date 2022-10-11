@@ -1,12 +1,15 @@
 <?php
 namespace jsonDAO;
 
+include("../Views/header.php");
+
 use Models\Dueño as Dueño;
 use Models\Usuario as Usuario;
+use jsonDAO\InterfaceDAO as InterfaceDAO; 
 
 class DueñosDAO implements InterfaceDAO{
     
-    private $listaDueños= array();;
+    private $listaDueños= array();
 
 
     public function GetAll(){

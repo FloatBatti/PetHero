@@ -2,9 +2,9 @@
     namespace jsonDAO;
 
     use jsonDAO\InterfaceDAO as InterfaceDAO;
-    use jsonDAO\Reservas as Reservas;
+    use Models\Reservas as Reservas;
 
-    class ReservasDAO implements IStudentDAO
+    class ReservasDAO implements InterfaceDAO
     {
         private $listaReservas = array();
 
@@ -46,6 +46,8 @@
             
             file_put_contents('Data/reservas.json', $jsonContent);
         }
+
+        
 
 
 

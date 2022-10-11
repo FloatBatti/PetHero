@@ -1,5 +1,6 @@
 <?php 
 
+namespace jsonDAO;
 interface InterfaceDAO{
 
     public function GetAll();
