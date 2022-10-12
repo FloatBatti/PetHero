@@ -28,6 +28,6 @@ class DueñosController{
 
             $this->dueñosDao->Add($dueño);
 
-            $this->ShowAddView();
+            header("../".VIEWS_PATH."index");
         }
 }

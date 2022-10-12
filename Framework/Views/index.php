@@ -3,13 +3,12 @@ require_once("../Config/Autoload.php");
 require_once("../Config/Config.php");
 
 use Config\Autoload as Autoload;
-use Config\Config as Config;
-//use Config\Request as Request;
-//use Config\Router as Router;
+use Config\Request as Request;
+use Config\Router as Router;
 
 Autoload::start();
 
-//Router::Route(new Request());
+Router::Route(new Request());
 
 use jsonDAO\MascotasDAO as MascotasDAO;
 $mascotas= new MascotasDAO();
@@ -65,7 +64,7 @@ $listaReviews=$reviews->getAll();
 
                     <div class="col-auto login-box">
                       
-                        <form action="../Controllers/UsuarioController.php" method="POST" class="form-log">
+                        <form action="" method="POST" class="form-log">
         
                           <h1 id="title-log">Login</h1>
                     

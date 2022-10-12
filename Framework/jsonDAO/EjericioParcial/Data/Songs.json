@@ -1,0 +1,30 @@
+[
+  {
+    "songId": 1,
+    "artistId": 1,
+    "name": "Bohemian Rhapsody",
+    "year": 2021
+  },
+
+  {
+    "songId": 1,
+    "artistId": 2,
+    "name": "Torero",
+    "year": 2004
+  },
+
+  {
+    "songId": 1,
+    "artistId": 4,
+    "name": "Me gusta el pedazo",
+    "year": 2022
+  },
+
+  {
+    "songId": 1,
+    "artistId": 3,
+    "name": "Intro de evangelion",
+    "year": 1996
+  }
+]
+
