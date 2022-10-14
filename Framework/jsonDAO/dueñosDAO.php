@@ -118,5 +118,29 @@ class DueñosDAO implements InterfaceDAO{
 
 
     }
+    public function existeID($buscado){
+        $lista=$this->listaDueños;
+
+        foreach($lista as $dueño){
+            if($id == $dueño->getId()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+    public function encontrarDueño($buscado){
+        $lista=$this->listaDueños;
+        
+        foreach($lista as $dueño){
+            if($id == $dueño->getId()){
+                return $dueño;
+            }
+            else{
+                return null;
+            }
+        }
+    }
 
 }

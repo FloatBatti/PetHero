@@ -7,8 +7,8 @@ class Reserva{
     private $fechaInicio;
     private $fechaFin;
     private $mascota;
-    private $guardian;
-    private $dueño;
+    private $guardianID;
+    private $dueñoID;
     private $costo;
     private $estado;//pendiente de aprobacion/aceptada/rechazada
 
@@ -54,21 +54,21 @@ class Reserva{
     {
         $this->mascota = $mascota;
     }
-    public function getGuardian()
+    public function getGuardianID()
     {
-        return $this->guardian;
+        return $this->guardianID;
     }
-    public function setGuardian($guardian)
+    public function setGuardianID($guardian)
     {
-        $this->guardian = $guardian;
+        $this->guardianID = $guardian;
     }
-    public function getDueño()
+    public function getDueñoID()
     {
-        return $this->dueño;
+        return $this->dueñoID;
     }
-    public function setDueño($dueño)
+    public function setDueñoID($dueño)
     {
-        $this->dueño = $dueño;
+        $this->dueñoID = $dueño;
     }
     public function getCosto()
     {

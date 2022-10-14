@@ -74,6 +74,42 @@
                 }
             }
         }
+        public function existeID($buscado){
+            $lista=$this->listaGuardianes;
+    
+            foreach($lista as $guardian){
+                if($id == $guardian->getId()){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        public function encontrarGuardian($buscado){
+            $lista=$this->listaGuardianes;
+            
+            foreach($lista as $guardian){
+                if($id == $guardian->getId()){
+                    return $guardian;
+                }
+                else{
+                    return null;
+                }
+            }
+        }
+        public function encontrarGuardianUser($buscado){
+            $lista=$this->listaGuardianes;
+            
+            foreach($lista as $guardian){
+                if($id == $guardian->get_username()){
+                    return $guardian;
+                }
+                else{
+                    return null;
+                }
+            }
+        }
 
 
 

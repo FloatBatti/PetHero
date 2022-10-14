@@ -52,18 +52,13 @@ input{
 }
 
 </style>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-</head>
-<body>
+
+<?php
+var_dump(FRONT_ROOT);
+?>
 <div class="contenedor-registro">
         <h2>Registro</h2>
-<form action="../Controllers/DueñosControllers.php" method="post">
+<form action="<?php echo FRONT_ROOT ?>Dueños/add" method="post">
     <div class="datoregistro">
     <label for="usuario"></label>
         <input type="text" placeholder="Usuario" name="usuario" class="" required><br>
@@ -100,14 +95,7 @@ input{
         <label for="re-pass"></label>
         <input type="password" placeholder="Repetir Contraseña" name="re-pass" class="" required><br>
 </div>
-        <div>
-        <label for="eleccion"></label>
-            <select name="eleccion">
-                <option value="Guardian">Guardian</option>
-                <option value="Dueño" selected>Dueño</option>
-            </select>
-        </div>
-    <div class="botones">
+        
     <button type="submit" name="" class="">Guardar</button>
     
 </div>  

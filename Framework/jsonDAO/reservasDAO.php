@@ -46,8 +46,8 @@ class ReservasDAO implements InterfaceDAO
                 $reservas->setFechaInicio($valuesArray["fechaInicio"]);
                 $reservas->setFechaFin($valuesArray["fechaFin"]);
                 $reservas->setMascota($valuesArray["mascota"]);
-                $reservas->setGuardian($valuesArray["guardian"]);
-                $reservas->setDueño($valuesArray["dueño"]);
+                $reservas->setGuardianID($valuesArray["guardianID"]);
+                $reservas->setDueñoID($valuesArray["dueñoID"]);
                 $reservas->setCosto($valuesArray["costo"]);
                 $reservas->setEstado($valuesArray["estado"]);
 
@@ -66,8 +66,8 @@ class ReservasDAO implements InterfaceDAO
             $valuesArray["fechaInicio"] = $reserva->getFechaInicio();
             $valuesArray["fechaFin"] = $reserva->getFechaFin();
             $valuesArray["mascota"] = $reserva->getMascota();
-            $valuesArray["guardian"] = $reserva->getGuardian();
-            $valuesArray["dueño"] = $reserva->getDueño();
+            $valuesArray["guardianID"] = $reserva->getGuardianID();
+            $valuesArray["dueñoID"] = $reserva->getDueñoID();
             $valuesArray["costo"] = $reserva->getCosto();
             $valuesArray["estado"] = $reserva->getEstado();
 
