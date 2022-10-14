@@ -38,8 +38,8 @@ include(VIEWS_PATH."header.php");
                         <input type="submit" class="btn btn-outline-danger btn-md" value="Enter">
                       </div>
                       
-    
-                      <a href="" id="register">No tienes cuenta? Registrate</a>
+                      <!--aca debemos diseñar una vista q sirva de filtro para Dueño y guardian (ubicado en una controladora-->
+                      <a href="<?php echo FRONT_ROOT . "Usuario/Eleccion"?>" id="register">No tienes cuenta? Registrate</a>
     
                     </form>
     
