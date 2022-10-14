@@ -95,14 +95,7 @@ var_dump(FRONT_ROOT);
         <label for="re-pass"></label>
         <input type="password" placeholder="Repetir Contraseña" name="re-pass" class="" required><br>
 </div>
-        <div>
-        <label for="eleccion"></label>
-            <select name="eleccion">
-                <option value="Guardian">Guardian</option>
-                <option value="Dueño" selected>Dueño</option>
-            </select>
-        </div>
-    <div class="botones">
+        
     <button type="submit" name="" class="">Guardar</button>
     
 </div>  

@@ -33,7 +33,6 @@
     </div>
     <div class="datoregistro">
         <button type="submit" name="button" class="">Cargar Datos</button>
-    </div>  
-        
+    </div>          
 </form>
 </div>
