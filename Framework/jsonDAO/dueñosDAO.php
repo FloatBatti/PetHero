@@ -15,7 +15,7 @@ class DueñosDAO implements InterfaceDAO{
         
         $this->RetrieveData();
 
-            return $this->listaDueños;
+        return $this->listaDueños;
     }
 
     public function RetrieveData(){
@@ -117,6 +117,30 @@ class DueñosDAO implements InterfaceDAO{
             file_put_contents('../Data/Dueños.json', $jsonContent);
 
 
+    }
+    public function existeID($buscado){
+        $lista=$this->listaDueños;
+
+        foreach($lista as $dueño){
+            if($id == $dueño->getId()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+    public function encontrarDueño($buscado){
+        $lista=$this->listaDueños;
+        
+        foreach($lista as $dueño){
+            if($id == $dueño->getId()){
+                return $dueño;
+            }
+            else{
+                return null;
+            }
+        }
     }
 
 }
