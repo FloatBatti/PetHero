@@ -11,7 +11,8 @@ use Config\Autoload as Autoload;
 use Config\Router 	as Router;
 use Config\Request 	as Request;
 
-    
+session_start();
+
 Autoload::start();
 
 require_once(VIEWS_PATH."header.php");

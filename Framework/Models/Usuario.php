@@ -1,7 +1,8 @@
 <?php
 namespace Models;
 
-abstract class Usuario {
+class Usuario {
+
     private $id;
     private $username;
     private $dni;
@@ -13,40 +14,40 @@ abstract class Usuario {
     private $direccion;
         
     
-    public function get_username(){
+    public function getUsername(){
         return $this->username;
     }
-    public function get_dni(){
+    public function getDni(){
         return $this->password;
     }
-    public function get_nombre(){
+    public function getNombre(){
         return $this->username;
     }
-    public function get_apellido(){
+    public function getApellido(){
         return $this->password;
     }
-    public function get_correoelectronico(){
+    public function getCorreoelectronico(){
         return $this->username;
     }
-    public function get_password(){
+    public function getPassword(){
         return $this->password;
     }
-    public function set_username($username){
+    public function setUsername($username){
         $this->username=$username;
     }
-    public function set_dni($dni){
+    public function setDni($dni){
         $this->dni=$dni;
     }
-    public function set_nombre($nombre){
+    public function setNombre($nombre){
         $this->nombre=$nombre;
     }
-    public function set_apellido($apellido){
+    public function setApellido($apellido){
         $this->apellido=$apellido;
     }
-    public function set_correoelectronico($email){
+    public function setCorreoelectronico($email){
         $this->correoelectronico=$email;
     }
-    public function set_password($pass){
+    public function setPassword($pass){
         $this->password=$pass;
     }
      

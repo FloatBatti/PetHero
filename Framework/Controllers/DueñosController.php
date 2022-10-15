@@ -13,16 +13,21 @@ class DueñosController{
 
         $this->dueñosDao = new DueñosDAO();
     }
+
+    public function RegisterView(){
+
+        include("../". VIEWS_PATH . "regDueño.php");
+    }
     
-    public function add($username, $dni, $nombre,$apellido, $correoelectronico, $password, $telefono,$direccion)
+    public function Add($username, $dni, $nombre,$apellido, $correoelectronico, $password, $telefono,$direccion)
         {
             $dueño = new Dueño();
-            $dueño->set_username($username);
-            $dueño->set_dni($dni);
-            $dueño->set_nombre($nombre);
-            $dueño->set_apellido($apellido);
-            $dueño->set_correoelectronico($correoelectronico);
-            $dueño->set_password($password);
+            $dueño->setUsername($username);
+            $dueño->setDni($dni);
+            $dueño->setNombre($nombre);
+            $dueño->setApellido($apellido);
+            $dueño->setCorreoelectronico($correoelectronico);
+            $dueño->setPassword($password);
             $dueño->setTelefono($telefono);
             $dueño->setDireccion($direccion);
 
