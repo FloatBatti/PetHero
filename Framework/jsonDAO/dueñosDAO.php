@@ -1,8 +1,6 @@
 <?php
 namespace jsonDAO;
 
-include("../Views/header.php");
-
 use Models\Dueño as Dueño;
 use jsonDAO\InterfaceDAO as InterfaceDAO; 
 
@@ -33,12 +31,12 @@ class DueñosDAO implements InterfaceDAO{
                     //Dueño
                     $dueño = new Dueño();
                     $dueño->setId($valuesArray["id"]);
-                    $dueño->set_username($valuesArray["username"]);
-                    $dueño->set_dni($valuesArray["dni"]);
-                    $dueño->set_nombre($valuesArray["nombre"]);
-                    $dueño->set_apellido($valuesArray["apellido"]);
-                    $dueño->set_correoelectronico($valuesArray["correoelectronico"]);
-                    $dueño->set_password($valuesArray["password"]);
+                    $dueño->setUsername($valuesArray["username"]);
+                    $dueño->setDni($valuesArray["dni"]);
+                    $dueño->setNombre($valuesArray["nombre"]);
+                    $dueño->setApellido($valuesArray["apellido"]);
+                    $dueño->setCorreoelectronico($valuesArray["correoelectronico"]);
+                    $dueño->setPassword($valuesArray["password"]);
                     $dueño->setTelefono($valuesArray["telefono"]);
                     $dueño->setDireccion($valuesArray["direccion"]);
                     
@@ -118,7 +116,9 @@ class DueñosDAO implements InterfaceDAO{
 
 
     }
-    public function existeID($buscado){
+
+    public function existeID($id){
+
         $lista=$this->listaDueños;
 
         foreach($lista as $dueño){
@@ -130,7 +130,8 @@ class DueñosDAO implements InterfaceDAO{
             }
         }
     }
-    public function encontrarDueño($buscado){
+    public function encontrarDueño($id){
+
         $lista=$this->listaDueños;
         
         foreach($lista as $dueño){
