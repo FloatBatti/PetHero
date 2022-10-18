@@ -1,30 +1,34 @@
+<?php 
+
+?>
+
 <div class="">
-<form action="" method="post">
+<form action="<?php echo FRONT_ROOT ?> Guardianes/Add" method="post">
         <div class="datoregistro">
         <label for="disponibilidad">Disponibilidad</label><br>
-            <input type="checkbox" name="Lunes" class="">Lunes<br>
-            <input type="checkbox" name="Martes" class="">Martes<br>
-            <input type="checkbox" name="Miercoles" class="">Miércoles<br>
-            <input type="checkbox" name="Jueves" class="">Jueves<br>
-            <input type="checkbox" name="Viernes" class="">Viernes<br>
-            <input type="checkbox" name="Sabado" class="">Sábado<br>
-            <input type="checkbox" name="Domingo" class="">Domingo<br>
+            <input type="checkbox" name="dias[]" value= "Lunes" class="">Lunes<br>
+            <input type="checkbox" name="dias[]" value= "Martes" class="">Martes<br>
+            <input type="checkbox" name="dias[]" value= "Miércoles" class="">Miércoles<br>
+            <input type="checkbox" name="dias[]" value= "Jueves" class="">Jueves<br>
+            <input type="checkbox" name="dias[]" value= "Viernes" class="">Viernes<br>
+            <input type="checkbox" name="dias[]" value= "Sábado" class="">Sábado<br>
+            <input type="checkbox" name="dias[]" value= "Domingo" class="">Domingo<br>
     </div>
     <div class="datoregistro">
         <label for="horario">Horario Inicio</label><br>
-            <input type="time" name="" class=""><br>
+            <input type="time" name="horarioInicio" class=""><br>
         <label for="horario">Horario Fin</label><br>
-            <input type="time" name="" class=""><br>
+            <input type="time" name="horarioFin" class=""><br>
     </div>
     <div class="datoregistro">
-        <label for="raza">Tamaño de mascotas aceptado</label><br>
-            <input type="checkbox" name="Pequeños" class="">Pequeños (hasta 12 kg)<br>
-            <input type="checkbox" name="Medianos" class="">Medianos (hasta 21 kg)<br>
-            <input type="checkbox" name="Grandes" class="">Grandes (Mayor a 21 kg)<br>
+        <label for="tamaño">Tamaño de mascotas aceptado</label><br>
+            <input type="checkbox" name="sizes[]" value= "Pequeño" class="">Pequeños (hasta 12 kg)<br>
+            <input type="checkbox" name="sizes[]" value= "Mediano" class="">Medianos (hasta 21 kg)<br>
+            <input type="checkbox" name="sizes[]" value= "Grande" class="">Grandes (Mayor a 21 kg)<br>
             
     </div>
         <div class="datoregistro">    
-        <label for="fotoEspacio">Foto del espacio(URL).</label>
+        <label for="fotoEspacio">Foto del espacio(URL)</label>
             <input type="text" name="fotoUrl" class="" required><br>
     </div>
         <div class="datoregistro">
@@ -32,7 +36,7 @@
         <input type="text-area" name="descripcion" class="" required><br>
     </div>
     <div class="datoregistro">
-        <button type="submit" name="button" class="">Cargar Datos</button>
+        <button type="submit" class="">Completar Registro</button>
     </div>          
 </form>
 </div>

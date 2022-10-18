@@ -39,7 +39,7 @@ include(VIEWS_PATH."header.php");
                       </div>
                       
                       <!--aca debemos diseñar una vista q sirva de filtro para Dueño y guardian (ubicado en una controladora-->
-                      <a href="<?php echo FRONT_ROOT . "Usuario/Eleccion"?>" id="register">No tienes cuenta? Registrate</a>
+                      <a href="<?php echo FRONT_ROOT . "Home/Eleccion"?>" id="register">No tienes cuenta? Registrate</a>
     
                     </form>
     

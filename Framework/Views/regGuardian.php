@@ -1,5 +1,7 @@
 
+
 <style>
+
 body{
         background-image:url("../styles/salchipeludo.jpeg");
         background-repeat:no-repeat;
@@ -18,7 +20,6 @@ body{
         flex-direction: column;
         justify-content:center;
         align-items: center;
-        margin: ;
         position: absolute;
         left: 50%;
         top: 20%;
@@ -54,14 +55,14 @@ input{
 </style>
 
 <?php
-var_dump(FRONT_ROOT);
+
 ?>
 <div class="contenedor-registro">
         <h2>Registro</h2>
-<form action="<?php echo FRONT_ROOT ?>Dueños/add" method="post">
+<form action="<?php echo FRONT_ROOT ?>Guardianes/RegisterUser" method="post">
     <div class="datoregistro">
     <label for="usuario"></label>
-        <input type="text" placeholder="Usuario" name="usuario" class="" required><br>
+        <input type="text" placeholder="Nombre Usuario" name="username" class="" required><br>
 </div>
         <div class="datoregistro">
         <label for="nombre"></label>
@@ -89,14 +90,14 @@ var_dump(FRONT_ROOT);
 </div>
         <div class="datoregistro">
         <label for="pass"></label>
-        <input type="password" placeholder="Contraseña" name="pass" class="" required><br>
+        <input type="password" placeholder="Contraseña" name="password" class="" required><br>
 </div>
         <div class="datoregistro">
         <label for="re-pass"></label>
-        <input type="password" placeholder="Repetir Contraseña" name="re-pass" class="" required><br>
+        <input type="password" placeholder="Repetir Contraseña" name="rePassword" class="" required><br>
 </div>
         
-    <button type="submit" name="" class="">Guardar</button>
+    <button type="submit" class="">Siguiente</button>
     
 </div>  
         
