@@ -17,8 +17,32 @@
             "Peque\u00f1o",
             "Grande"
         ],
-        "horarioInicio": "14:29",
-        "horarioFin": "10:29",
+        "horarioInicio": null,
+        "horarioFin": null,
+        "fotoEspacioURL": "dasd",
+        "descripcion": "Entregar examen"
+    },
+    {
+        "id": 2,
+        "username": "agusbatti",
+        "dni": "1",
+        "nombre": "agusbatti",
+        "apellido": "1",
+        "correoelectronico": "agusbatti",
+        "password": "1",
+        "telefono": "2236064588",
+        "direccion": "Entregar examen",
+        "disponibilidad": [
+            "Lunes",
+            "Mi\u00e9rcoles",
+            "Viernes",
+            "Domingo"
+        ],
+        "tipoMascota": [
+            "Peque\u00f1o"
+        ],
+        "horarioInicio": "13:33",
+        "horarioFin": "15:33",
         "fotoEspacioURL": "dasd",
         "descripcion": "Entregar examen"
     }
