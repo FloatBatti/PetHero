@@ -1,48 +1,81 @@
 body{
-    background-image: url(../img/hobbytron.jpeg);
+    background-image: url(../img/patio\ mujer\ hijo\ perro.jpeg);
     background-repeat:no-repeat;
     background-size: 100%;
+    color:white;
+
 }
-.logo{
-    height: 20vh;
-}
-.contenedora-registro-filtro{
-    
-    display:flex;
+.cabecera{
+    height:15vh;
+    display: flex;
     flex-flow: row wrap;
-    width: 80%;
+}
+
+.contenedora-gral{
+    padding-top: 2%;
+    display: flex;
+    flex-flow: row wrap;
+    height: 70vh;
+    width: 80vw;    
     justify-content:space-around;
     margin:0 auto;
-    
 
 }
 
 .contenedora-eleccion{
-    border: 4px solid orange;
+    height: 80%;
     color: black;
-    font-family: sans-serif;
-    font-weight: bold;
-    text-align: center;
-    width: 35%;
-    
+    font-size: larger;
     border-radius: 3%;
+    background-color: lightgray;
+    width: 30%;
+    max-width: 30%;
+    opacity: 90%;
+    box-shadow: 20px 20px 10px black;
     
+}
+
+.contenedora-titulo{
+    padding-top:60px;
+    position: relative;
+    height: 20%;
+    max-height: 30%;
+    place-items: center;
+    display:flex;
+    justify-content: center;
+   
+}
+
+.contenedora-texto{
     
+    height: 60%;
+    max-height:60%;
+    place-items: center;
+    display:flex;
+    justify-content: center;
+     
 }
-.titulo{
-    margin-bottom: 0 auto;
+
+.texto{
+    text-align: center;
+    margin:10px;
+    position:relative;
+    font-family: sans-serif;
 }
-.dueño{
-    display:block;
-    background-color: rgb(117, 146, 74);   
+.contenedora-boton{
+    height: 15%;
+    place-items: center;
+    display:flex;
+    justify-content: center;
 }
-.guardian{
-    display:block;
-    background-color: aquamarine;
+
+
+
+.top-footer{
+    height:10vh;
 }
-.interno{
-    margin:100px;
-}
-.contorno{
-    border: 5px solid yellow;
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
