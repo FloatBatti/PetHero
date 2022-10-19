@@ -3,7 +3,7 @@
 ?>
 <div class="contenedor-registro">
         <h2>Registro</h2>
-        <form action="<?php echo FRONT_ROOT ?>Guardianes/RegisterUser" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Duenos/RegisterUser" method="post">
                 <div class="datoregistro">
                         <label for="usuario"></label>
                         <input type="text" placeholder="Nombre Usuario" name="username" class="" required><br>
@@ -44,8 +44,7 @@
                 <div>
                         <button type="submit" class="">Siguiente</button>   
                 </div>
-        
+      
         </form>
 
 </div>
-

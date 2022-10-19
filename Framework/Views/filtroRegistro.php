@@ -10,6 +10,17 @@
    
   </head>
   <body>
+
+    <div class="logo contorno">PET HERO</div>
+    <div class="contenedora-registro-filtro contorno">
+        <div class="contenedora-eleccion dueño">
+            <div class="interno contorno">
+                <div class="titulo contorno"><h2>Dueño</h2></div>
+                <div class="contorno"><p>Deberas brindar datos personales y de contacto. Podras registrar las mascotas que desees. Una vez hecho ya podras usar los servicios de la web.</p></div>
+                <div class="contorno">DIBUJO IMG</div>
+                <div class="contorno"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterView"?>">Registrarme</a></div>
+            </div>
+
     <div class="cabecera"><!--contenedora para el logo en el top + faqs, etc -->  
       <img src="../img/PetHeroLogo.png">
     </div>

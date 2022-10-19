@@ -1,7 +1,6 @@
 <?php 
 
 namespace jsonDAO;
-require_once("../Config/Autoload.php");
 
 use Config\Autoload;
 use Models\Mascota;
@@ -49,13 +48,13 @@ class MascotasDAO implements InterfaceDAO{
 
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
 
-        file_put_contents("../Data/mascotas.json", $jsonContent);
+        file_put_contents("Data/Mascotas.json", $jsonContent);
     }
     public function RetrieveData(){
 
         $this->listMascotas = array();
 
-        $jsonContent = file_get_contents("../Data/mascotas.json");
+        $jsonContent = file_get_contents("Data/Mascotas.json");
 
         $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, True) : array();
 
@@ -77,6 +76,22 @@ class MascotasDAO implements InterfaceDAO{
         }
 
 
+    }
+
+    public function returnIdPlus()
+    {
+        $id = 0;
+
+        
+        foreach ($this->GetAll() as $mascota) {
+
+            if ($mascota->getId() > $id) {
+
+                $id = $mascota->getId();
+            }
+        }
+
+        return $id + 1;
     }
 
 }
