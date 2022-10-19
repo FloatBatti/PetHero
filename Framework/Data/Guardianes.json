@@ -1,46 +1,25 @@
 [
     {
         "id": 1,
-        "username": "Pabin",
-        "dni": "456",
-        "nombre": "Pabin",
-        "apellido": "456",
-        "correoelectronico": "Pabin",
-        "password": "456",
-        "telefono": "2237896521",
-        "direccion": "asdasd",
+        "username": "agusbatti",
+        "dni": "1",
+        "nombre": "agusbatti",
+        "apellido": "1",
+        "correoelectronico": "agusbatti",
+        "password": "1",
+        "telefono": "2236064588",
+        "direccion": "Entregar examen",
         "disponibilidad": [
-            "Jueves"
-        ],
-        "tipoMascota": [
-            "Grande"
-        ],
-        "horarioInicio": null,
-        "horarioFin": null,
-        "fotoEspacioURL": "url",
-        "descripcion": "asdasd"
-    },
-    {
-        "id": 2,
-        "username": "Agus",
-        "dni": "123",
-        "nombre": "Agus",
-        "apellido": "123",
-        "correoelectronico": "Agus",
-        "password": "123",
-        "telefono": "ASD",
-        "direccion": "asdasd",
-        "disponibilidad": [
-            "Jueves",
-            "Viernes"
+            "Mi\u00e9rcoles",
+            "S\u00e1bado"
         ],
         "tipoMascota": [
             "Peque\u00f1o",
             "Grande"
         ],
-        "horarioInicio": "22:32",
-        "horarioFin": "00:32",
-        "fotoEspacioURL": "url",
-        "descripcion": "asdasd"
+        "horarioInicio": "14:29",
+        "horarioFin": "10:29",
+        "fotoEspacioURL": "dasd",
+        "descripcion": "Entregar examen"
     }
 ]

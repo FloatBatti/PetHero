@@ -20,9 +20,9 @@ class DueñosDAO implements InterfaceDAO{
 
         $this->listaDueños = array();
 
-            if(file_exists('../Data/Dueños.json'))
+            if(file_exists('Data/Dueños.json'))
             {
-                $jsonContent = file_get_contents('../Data/Dueños.json');
+                $jsonContent = file_get_contents('Data/Dueños.json');
 
                 $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
@@ -66,9 +66,9 @@ class DueñosDAO implements InterfaceDAO{
 
         $this->RetrieveData();
             
-            array_push($this->listaDueños, $dueño);
+        array_push($this->listaDueños, $dueño);
 
-            $this->SaveData();
+        $this->SaveData();
 
     }
 
@@ -79,15 +79,14 @@ class DueñosDAO implements InterfaceDAO{
             foreach($this->listaDueños as $dueño)
             {
                 $valuesArray["id"] = $dueño->getId();
-                $valuesArray["username"] = $dueño->get_username();
-                $valuesArray["dni"] = $dueño->get_dni();
-                $valuesArray["nombre"] = $dueño->get_nombre();
-                $valuesArray["apellido"] = $dueño->get_apellido();
-                $valuesArray["correoelectronico"] = $dueño->get_correoelectronico();
-                $valuesArray["password"] = $dueño->get_password();
+                $valuesArray["username"] = $dueño->getUsername();
+                $valuesArray["dni"] = $dueño->getDni();
+                $valuesArray["nombre"] = $dueño->getNombre();
+                $valuesArray["apellido"] = $dueño->getApellido();
+                $valuesArray["correoelectronico"] = $dueño->getCorreoelectronico();
+                $valuesArray["password"] = $dueño->getPassword();
                 $valuesArray["telefono"] = $dueño->getTelefono();
                 $valuesArray["direccion"] = $dueño->getDireccion();
-                $valuesArray["reviews"] = $dueño->getReviews();
 
                 //Guardianes Favoritos
                 $valuesArray["guardianesFav"] = array();
@@ -112,9 +111,25 @@ class DueñosDAO implements InterfaceDAO{
 
             $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
             
-            file_put_contents('../Data/Dueños.json', $jsonContent);
+            file_put_contents('Data/Dueños.json', $jsonContent);
 
 
+    }
+
+    public function returnIdPlus()
+    {
+        $id = 0;
+
+        
+        foreach ($this->GetAll() as $dueño) {
+
+            if ($dueño->getId() > $id) {
+
+                $id = $dueño->getId();
+            }
+        }
+
+        return $id + 1;
     }
 
     public function existeID($id){

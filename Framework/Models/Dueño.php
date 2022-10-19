@@ -22,17 +22,17 @@ class Dueño extends Usuario{
     {
         return $this->guardianesFav;
     }
-    public function setGuardianesFav($guardianesFav)
+    public function pushGuardianesFav($guardianesFavId)
     {
-        $this->guardianesFav = $guardianesFav;
+        array_push($this->guardianesFav, $guardianesFavId);
     }
     public function getMascotas()
     {
         return $this->mascotas;
     }
-    public function setMascotas($mascotas)
+    public function pushMascotaId($mascotaId)
     {
-        $this->mascotas = $mascotas;
+        array_push($this->mascotas, $mascotaId);
     }
 }
     

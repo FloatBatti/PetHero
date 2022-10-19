@@ -4,8 +4,9 @@
 
 }
 </style>
+
 <div class="contenedorMascota">
-<form action="" method="post">
+<form action="<?php echo FRONT_ROOT ?>Duenos/Add" method="post">
     <div class="datoregistro">
         <label for="nombre">Nombre</label>
             <input type="text" name="nombre" class="" required><br>
@@ -39,11 +40,23 @@
             <label for="vacunacion">Foto Plan de Vacunacion</label>
         <input type="text" name="urlvacunacion" class="" required><br>
     </div>
+
+    </div>
+        <div class="datoregistro">
+            <label for="video">Video (opcional)</label>
+        <input type="text" name="urlVideo" class=""><br>
+    </div>
     <div class="datoregistro">
-        <button type="submit" name="button" class="">Cargar Mascota</button>
-    </div>  
+        <button type="submit" class="">Cargar Mascota</button>
+    </div>
+    </form>
+
+    <div class="datoregistro">
+    <form action="<?php echo FRONT_ROOT ?>Duenos/Add" method="post">
+        <button type="submit" class="">Prefiero hacerlo Luego</button>
+    </form>
+    </div>   
         
-</form>
 </div>
 
 

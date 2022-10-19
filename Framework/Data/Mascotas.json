@@ -1,52 +1,12 @@
 [
-	{	
-		"id":"1",
-		"idDueño":"1",
-            "nombre":"Lula",
-            "raza":"Dashchund",
-            "peso":"5",
-            "fotoURL":"http://algunsitio.com",
-            "planVacURL":"http://algunsitio.com",
-            "videoURL":"la re puta madre"
-	},
-	{	
-		"id":"2",
-		"idDueño":"3",
-            "nombre":"Boby",
-            "raza":"Golden retriever",
-            "peso":"20",
-            "fotoURL":"http://algunsitio.com",
-            "planVacURL":"http://algunsitio.com",
-            "videoURL":""
-	},
-	{	
-		"id":"3",
-		"idDueño":"2",
-            "nombre":"Mora",
-            "raza":"Pequines",
-            "peso":"8",
-            "fotoURL":"http://algunsitio.com",
-            "planVacURL":"http://algunsitio.com",
-            "videoURL":"www.youtube.com/tuvieja"
-	},
-	{	
-		"id":"4",
-		"idDueño":"1",
-            "nombre":"Pili",
-            "raza":"Sin raza",
-            "peso":"15",
-            "fotoURL":"http://algunsitio.com",
-            "planVacURL":"http://algunsitio.com",
-            "videoURL":""
-	},
-	{	
-		"id":"5",
-		"idDueño":"4",
-            "nombre":"Coco",
-            "raza":"Sin raza",
-            "peso":"12",
-            "fotoURL":"http://algunsitio.com",
-            "planVacURL":"http://algunsitio.com",
-            "videoURL":"el perro tuerto"
-	}
+    {
+        "id": 1,
+        "idDue\u00f1o": 1,
+        "nombre": "Agustin",
+        "raza": "Pequines",
+        "peso": "1111111111",
+        "fotoURL": "111111111",
+        "planVacURL": "1111111111",
+        "videoURL": "11111111111"
+    }
 ]

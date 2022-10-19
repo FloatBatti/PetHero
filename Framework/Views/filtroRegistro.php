@@ -17,7 +17,7 @@
                 <div class="titulo contorno"><h2>Dueño</h2></div>
                 <div class="contorno"><p>Deberas brindar datos personales y de contacto. Podras registrar las mascotas que desees. Una vez hecho ya podras usar los servicios de la web.</p></div>
                 <div class="contorno">DIBUJO IMG</div>
-                <div class="contorno"><a href="">Registrarme</a></div>
+                <div class="contorno"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterView"?>">Registrarme</a></div>
             </div>
         </div>
 
