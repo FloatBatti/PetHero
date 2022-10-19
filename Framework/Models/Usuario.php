@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-class Usuario {
+abstract class Usuario {
 
     private $id;
     private $username;
