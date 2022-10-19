@@ -8,5 +8,15 @@
         "fotoURL": "111111111",
         "planVacURL": "1111111111",
         "videoURL": "11111111111"
+    },
+    {
+        "id": 2,
+        "idDue\u00f1o": 2,
+        "nombre": "Agustin",
+        "raza": "Pequines",
+        "peso": "2222",
+        "fotoURL": "222222",
+        "planVacURL": "22222",
+        "videoURL": "2222"
     }
 ]

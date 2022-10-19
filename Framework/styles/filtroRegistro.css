@@ -53,22 +53,25 @@ body{
     place-items: center;
     display:flex;
     justify-content: center;
+    
      
 }
 
 .texto{
+
+    word-wrap:break-word;
     text-align: center;
     margin:10px;
-    position:relative;
+    font-size: 15px;
     font-family: sans-serif;
 }
+
 .contenedora-boton{
     height: 15%;
     place-items: center;
     display:flex;
     justify-content: center;
 }
-
 
 
 .top-footer{

@@ -13,5 +13,20 @@
         "mascotas": [
             1
         ]
+    },
+    {
+        "id": 2,
+        "username": "agusbatti",
+        "dni": "1",
+        "nombre": "agusbatti",
+        "apellido": "1",
+        "correoelectronico": "agusbatti",
+        "password": "1",
+        "telefono": "2236064588",
+        "direccion": "gascon 2011",
+        "guardianesFav": [],
+        "mascotas": [
+            2
+        ]
     }
 ]
