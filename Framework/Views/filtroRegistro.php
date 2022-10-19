@@ -7,22 +7,11 @@
     
     <link href="../styles/filtroRegistro.css" rel="stylesheet" >
 
-   
   </head>
   <body>
 
-    <div class="logo contorno">PET HERO</div>
-    <div class="contenedora-registro-filtro contorno">
-        <div class="contenedora-eleccion dueño">
-            <div class="interno contorno">
-                <div class="titulo contorno"><h2>Dueño</h2></div>
-                <div class="contorno"><p>Deberas brindar datos personales y de contacto. Podras registrar las mascotas que desees. Una vez hecho ya podras usar los servicios de la web.</p></div>
-                <div class="contorno">DIBUJO IMG</div>
-                <div class="contorno"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterView"?>">Registrarme</a></div>
-            </div>
-
     <div class="cabecera"><!--contenedora para el logo en el top + faqs, etc -->  
-      <img src="../img/PetHeroLogo.png">
+      <img src="../img/PetHeroLogo.png" height="120">
     </div>
 
     <div class="contenedora-gral"><!--aca esta el contenedor q contiene las 2 opciones -->
@@ -30,7 +19,7 @@
       <div class="contenedora-eleccion dueño"><!--contenedora para eleccion de dueño -->
        
         <div class="contenedora-titulo">
-          <img src="../img/icono-Dueño.png" height="400" widht="450">
+          <img src="../img/icono-Dueño.png" height="400">
         </div>
         
         <div class="contenedora-texto">
@@ -44,7 +33,7 @@
         </div>
         
         <div class="contenedora-boton">
-        <a href="<?php echo FRONT_ROOT . "Duenos/RegisterView"?>"><img src="../img/RegistrarmeResized.png" height="70"></a>
+        <a href="<?php echo FRONT_ROOT . "Duenos/RegisterView"?>"><img src="../img/RegistrarmeResized.png" height="50"></a>
         </div>
 
       </div>
@@ -60,7 +49,7 @@
         </div>
 
         <div class="contenedora-boton">
-        <a href="<?php echo FRONT_ROOT . "Guardianes/FirstRegisterView"?>"><img src="../img/RegistrarmeResized.png" height="70"></a>
+        <a href="<?php echo FRONT_ROOT . "Guardianes/FirstRegisterView"?>"><img src="../img/RegistrarmeResized.png" height="50"></a>
       </div>
 
       </div>
