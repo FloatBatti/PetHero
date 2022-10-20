@@ -74,19 +74,31 @@ class DuenosController{
             $dueño->setTelefono($telefono);
             $dueño->setDireccion($direccion);
 
-            if($password == $rePassword){
+            if(!$this->DueñosDAO->checkDueño($dni, $mail)){
 
-                $dueño->setPassword($password);
+                if($password == $rePassword){
 
-                $_SESSION["DuenoTemp"] = serialize($dueño);
-                $this->RegMascotasView();
+                    $dueño->setPassword($password);
+    
+                    $_SESSION["DuenoTemp"] = serialize($dueño);
+                    $this->RegMascotasView();
+                }
+                else{
+    
+                    echo "<script> if(confirm('La contraseña ya existe')); </script>";
+    
+                    $this->RegisterView();
+                }
+
+
             }
             else{
-
-                echo "<script> if(confirm('La cancion ya existe')); </script>";
+    
+                echo "<script> if(confirm('El usuario ya existe')); </script>";
 
                 $this->RegisterView();
             }
+
             
         }
 }

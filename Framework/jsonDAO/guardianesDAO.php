@@ -110,19 +110,23 @@ class GuardianesDAO implements InterfaceDAO
         }
     }
 
-    public function existeID($id)
-    {
-        $lista = $this->listaGuardianes;
+    public function checkGuardian($dni, $mail){
 
-        foreach ($lista as $guardian) {
-            if ($id == $guardian->getId()) {
-                return true;
-            } else {
-                return false;
+        $flag = false;
+
+        $lista=$this->listaGuardianes;
+
+        foreach($lista as $guardian){
+            
+            if($dni == $guardian->getDni() or $mail == $guardian->getCorreoelectronico()){
+
+                $flag = true;
             }
-        }
-    }
 
+        }
+
+        return $flag;
+    }
     public function returnIdPlus()
     {
 
