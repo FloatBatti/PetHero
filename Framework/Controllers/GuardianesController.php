@@ -13,7 +13,6 @@ class GuardianesController
 
     public function __construct()
     {
-
         $this->GuardianesDAO = new GuardianesDAO();
     }
 
@@ -66,17 +65,33 @@ class GuardianesController
         $guardian->setTelefono($telefono);
         $guardian->setDireccion($direccion);
 
-        if ($password == $rePassword) {
+        
+        if(!$this->GuardianesDAO->checkGuardian($dni, $mail)){
 
-            $guardian->setPassword($password);
+             
+            if ($password == $rePassword) {
 
-            $_SESSION["GuardTemp"] = serialize($guardian);
-            $this->SecondRegisterView();
-        } else {
+                $guardian->setPassword($password);
 
-            echo "<script> if(confirm('La contraseña ya existe')); </script>";
+                $_SESSION["GuardTemp"] = serialize($guardian);
+
+                $this->SecondRegisterView();
+                
+            } else {
+
+                echo "<script> if(confirm('La contraseña ya existe')); </script>";
+
+                $this->FirstRegisterView();
+            }
+
+        }else {
+
+            echo "<script> if(confirm('El usuario ya existe')); </script>";
 
             $this->FirstRegisterView();
         }
+        
+        
+       
     }
 }

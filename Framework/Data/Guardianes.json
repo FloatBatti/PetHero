@@ -1,12 +1,12 @@
 [
     {
         "id": 1,
-        "username": "agusbatti",
+        "username": "agus",
         "dni": "1",
         "nombre": "agusbatti",
         "apellido": "1",
         "correoelectronico": "agusbatti",
-        "password": "1",
+        "password": "2",
         "telefono": "2236064588",
         "direccion": "Entregar examen",
         "disponibilidad": [

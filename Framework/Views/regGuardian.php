@@ -1,6 +1,3 @@
-<?php
-
-?>
 <div class="contenedor-registro">
         <h2>Registro</h2>
         <form action="<?php echo FRONT_ROOT ?>Guardianes/RegisterUser" method="post">
