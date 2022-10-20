@@ -1,0 +1,82 @@
+body{
+    background-image: url(../img/jazmin.jpeg);
+    background-repeat:no-repeat;
+    background-size: 100%;
+}
+.cabecera{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10vh;
+}
+.contenedora-general{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.contenedora-section{
+    height: 70vh;
+    width: 70vw;
+    float:right;
+    border-radius: 3%;
+    background-color: rgb(90, 135, 103);
+    opacity: 90%;
+    
+
+}
+.logo{
+    
+    
+}
+.opcion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    color:brown;
+    
+}
+.icono{
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    
+    
+}
+.mascota{
+    background-image: url(../img/collar.png);
+    background-repeat: no-repeat;
+    background-position: center;
+
+
+}
+
+.contenedora-aside{
+    
+    border-radius: 3%;
+    height: 70vh;
+    width:25vw;
+    font-size: larger;
+    color: black;
+    background-color: lightgray;
+    opacity: 90%;
+    box-shadow: 20px 20px 30px black;
+    display:grid;
+    grid-template-columns: 20% auto;
+    
+}
+
+.footer-separador{
+    height: 10vh;
+    
+}
+
+footer{
+    color: aliceblue;
+    font-weight: bold;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
