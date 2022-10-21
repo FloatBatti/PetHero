@@ -1,15 +1,16 @@
 [
     {
         "id": 1,
-        "username": "agus",
-        "dni": "1",
-        "nombre": "agusbatti",
-        "apellido": "1",
-        "correoelectronico": "agusbatti",
+        "username": "Cuyo",
+        "dni": "2501212121",
+        "nombre": "Pablo",
+        "apellido": "Cuyo",
+        "correoelectronico": "asdasd@gmail.com",
         "password": "2",
-        "telefono": "2236064588",
-        "direccion": "Entregar examen",
+        "telefono": "123123213",
+        "direccion": "213",
         "disponibilidad": [
+            "Lunes",
             "Mi\u00e9rcoles",
             "S\u00e1bado"
         ],
@@ -19,31 +20,31 @@
         ],
         "horarioInicio": null,
         "horarioFin": null,
-        "fotoEspacioURL": "dasd",
-        "descripcion": "Entregar examen"
+        "fotoEspacioURL": "123",
+        "descripcion": "213"
     },
     {
         "id": 2,
-        "username": "agusbatti",
-        "dni": "1",
-        "nombre": "agusbatti",
-        "apellido": "1",
-        "correoelectronico": "agusbatti",
-        "password": "1",
+        "username": "Barbi",
+        "dni": "43011212",
+        "nombre": "Barbi",
+        "apellido": "Basualdo",
+        "correoelectronico": "barbi21@gmail.com",
+        "password": "2",
         "telefono": "2236064588",
         "direccion": "Entregar examen",
         "disponibilidad": [
             "Lunes",
             "Mi\u00e9rcoles",
-            "Viernes",
-            "Domingo"
+            "Viernes"
         ],
         "tipoMascota": [
-            "Peque\u00f1o"
+            "Peque\u00f1o",
+            "Grande"
         ],
-        "horarioInicio": "13:33",
-        "horarioFin": "15:33",
+        "horarioInicio": "04:01",
+        "horarioFin": "05:01",
         "fotoEspacioURL": "dasd",
-        "descripcion": "Entregar examen"
+        "descripcion": "Mono ambiente"
     }
 ]

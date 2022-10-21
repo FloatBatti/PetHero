@@ -64,10 +64,8 @@ class DueñosDAO implements InterfaceDAO{
 
     public function Add($dueño){
 
-        $this->RetrieveData();
-            
+        $this->RetrieveData(); 
         array_push($this->listaDueños, $dueño);
-
         $this->SaveData();
 
     }
@@ -136,9 +134,7 @@ class DueñosDAO implements InterfaceDAO{
 
         $flag = false;
 
-        $lista=$this->listaDueños;
-
-        foreach($lista as $dueño){
+        foreach($this->GetAll() as $dueño){
             
             if($dni == $dueño->getDni() or $mail == $dueño->getCorreoelectronico()){
 
@@ -148,6 +144,21 @@ class DueñosDAO implements InterfaceDAO{
         }
 
         return $flag;
+    }
+
+    public function agregarMascotaById($id, $mascotaId){
+
+        foreach ($this->GetAll() as $dueño){
+
+            if ($dueño->getId() == $id){
+
+                $dueño->pushMascotaId($mascotaId);
+            }
+
+        }
+
+        $this->SaveData();
+
     }
 
     public function encontrarDueño($id){
