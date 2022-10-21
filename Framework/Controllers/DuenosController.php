@@ -126,7 +126,7 @@ class DuenosController{
     
                 $this->DueñosDAO->agregarMascotaById($idUser,$mascota->getId());
     
-                echo "<script> if(confirm('Mascota agregada con exito')); </script>";
+                //echo "<script> if(confirm('Mascota agregada con exito')); </script>";
     
                 $this->ListMascotasView();
     

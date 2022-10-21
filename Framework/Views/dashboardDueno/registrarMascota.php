@@ -45,7 +45,7 @@
                             </div>
                             <div class="dato-registro">
                                 <label for="peso">Peso en kgs</label>
-                                    <input type="number" name="peso"><br>
+                                    <input type="number" name="peso" required><br>
                             </div>
                                 <div class="dato-registro">    
                                 <label for="dni">Foto URL</label>
@@ -76,7 +76,7 @@
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascota</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascotas</a></div>
                 <div class="icono guardian"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Ver Guardianes</a></div>
                 <div class="icono favoritos"></div>
