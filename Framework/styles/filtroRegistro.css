@@ -37,7 +37,7 @@ body{
 }
 
 .contenedora-titulo{
-    padding-top:60px;
+    padding-top:20px;
     position: relative;
     height: 20%;
     max-height: 30%;
@@ -59,7 +59,6 @@ body{
 }
 
 .texto{
-    
     text-align: center;
     text-align:left;
     margin:10px;

@@ -21,7 +21,7 @@ class HomeController{
 
     public function DashDuenoView(){
 
-        require_once(VIEWS_PATH."dashDueño.php");
+        require_once(VIEWS_PATH."dashboardDueno/dashboardDueno.html");
     }
 
     public function DashGuardianView(){
