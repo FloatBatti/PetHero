@@ -2,31 +2,21 @@
     {
         "id": 1,
         "idDue\u00f1o": 1,
-        "nombre": "Agustin",
-        "raza": "Pequines",
-        "peso": "1111111111",
-        "fotoURL": "111111111",
-        "planVacURL": "1111111111",
-        "videoURL": "11111111111"
+        "nombre": "Lula",
+        "raza": "Dachshund(mini Salchicha)",
+        "peso": "12",
+        "fotoURL": "dasd",
+        "planVacURL": "asdasd",
+        "videoURL": "asdasasd"
     },
     {
         "id": 2,
-        "idDue\u00f1o": 2,
-        "nombre": "Agustin",
-        "raza": "Pequines",
-        "peso": "2222",
-        "fotoURL": "222222",
-        "planVacURL": "22222",
-        "videoURL": "2222"
-    },
-    {
-        "id": 3,
-        "idDue\u00f1o": 3,
-        "nombre": "lula",
-        "raza": "Dachshund(mini Salchicha)",
-        "peso": "5",
-        "fotoURL": "http",
-        "planVacURL": "asdasd",
-        "videoURL": ""
+        "idDue\u00f1o": 1,
+        "nombre": "Ricardo",
+        "raza": "Golden retriever",
+        "peso": "1",
+        "fotoURL": "21",
+        "planVacURL": "asd",
+        "videoURL": "asd"
     }
 ]

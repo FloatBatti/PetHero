@@ -2,19 +2,18 @@
 namespace Controllers;
 
 use jsonDAO\DueñosDAO as DueñosDAO;
-use jsonDAO\MascotasDAO;
+use jsonDAO\MascotasDAO as MascotasDAO;
+use jsonDAO\GuardianesDAO as GuardianesDAO;
 use Models\Dueño as Dueño;
 use Models\Mascota as Mascota;
 
 class DuenosController{
     
     private $DueñosDAO;
-    private $MascotasDAO;
 
     public function __construct(){
 
         $this->DueñosDAO = new DueñosDAO();
-        $this->MascotasDAO = new MascotasDAO();
     }
 
     public function RegisterView(){
@@ -22,83 +21,122 @@ class DuenosController{
         require_once(VIEWS_PATH . "regDueño.php");
     }
 
-    public function RegMascotasView(){
+    public function RegisterMascotaView(){
 
-        require_once(VIEWS_PATH . "regMascota.php");
+        require_once(VIEWS_PATH . "dashboardDueno/registrarMascota.php");
     }
 
-    public function Add($nombre=null, $raza=null, $peso=null, $fotoUrl=null, $urlvacunacion=null, $urlVideo=null){
+    public function ListMascotasView(){
 
-        $dueño =  unserialize($_SESSION["DuenoTemp"]);
+        if(isset($_SESSION["DuenoId"])){
 
-        unset($_SESSION["DuenoTemp"]);
+            $MascotasDAO = new MascotasDAO();
+            $listaMascotas = $MascotasDAO->GetAll();
+
+            require_once(VIEWS_PATH."dashboardDueno/verMascotas.php");
+
+        }
+    }
+
+    public function ListGuardianesView(){
+
+        if(isset($_SESSION["DuenoId"])){
+
+            $GuardianesDAO = new GuardianesDAO();
+            $listaGuardianes = $GuardianesDAO->GetAll();
+
+            require_once(VIEWS_PATH."dashboardDueno/verGuardianes.php");
+
+        }
+
+
+    }
+
+    public function finishRegister(){
+
+        require_once(VIEWS_PATH . "header.php");
+        require_once(VIEWS_PATH . "index.php");
+
+    }
+
+    public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion,$password, $rePassword)
+    {
+
+            if($_POST){
+
+                $dueño = new Dueño();
+                $dueño->setId($this->DueñosDAO->returnIdPlus());
+                $dueño->setUsername($username);
+                $dueño->setDni($dni);
+                $dueño->setNombre($nombre);
+                $dueño->setApellido($apellido);
+                $dueño->setCorreoelectronico($mail);
+                $dueño->setTelefono($telefono);
+                $dueño->setDireccion($direccion);
+    
+                if(!$this->DueñosDAO->checkDueño($dni, $mail)){
+    
+                    if($password == $rePassword){
+    
+                        $dueño->setPassword($password);
+                        $this->DueñosDAO->Add($dueño); 
+                        echo "<script> if(confirm('Perfil creado con exito')); </script>";
+                        $this->finishRegister();
+                    }
+                    else{
+
+                        echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
         
-        if($_POST){
-
-            $mascota = new Mascota();
-            $mascota->setId($this->MascotasDAO->returnIdPlus());
-            $mascota->setIdDueño($dueño->getId());
-            $mascota->setNombre($nombre);
-            $mascota->setRaza($raza);
-            $mascota->setPeso($peso);
-            $mascota->setFotoURL($fotoUrl);
-            $mascota->setPlanVacURL($urlvacunacion);
-            $mascota->setVideoURL($urlVideo);
-
-            $this->MascotasDAO->Add($mascota);
-
-            $dueño->pushMascotaId($mascota->getId());
-
-            var_dump($dueño);
-
-            $this->DueñosDAO->Add($dueño);
-
-        }
-        else{
-
-            $this->DueñosDAO->Add($dueño);  
-        }
-
-
-    }
+                        $this->RegisterView();
+                    }
     
-    public function RegisterUser($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion,$password, $rePassword)
-        {
-            $dueño = new Dueño();
-            $dueño->setId($this->DueñosDAO->returnIdPlus());
-            $dueño->setUsername($username);
-            $dueño->setDni($dni);
-            $dueño->setNombre($nombre);
-            $dueño->setApellido($apellido);
-            $dueño->setCorreoelectronico($mail);
-            $dueño->setTelefono($telefono);
-            $dueño->setDireccion($direccion);
-
-            if(!$this->DueñosDAO->checkDueño($dni, $mail)){
-
-                if($password == $rePassword){
-
-                    $dueño->setPassword($password);
-    
-                    $_SESSION["DuenoTemp"] = serialize($dueño);
-                    $this->RegMascotasView();
                 }
                 else{
-                    var_dump($password);
-                    echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
+        
+                    echo "<script> if(confirm('El usuario ya existe')); </script>";
     
                     $this->RegisterView();
                 }
+    
+                
+            }
 
+        }
 
+        
+    public function AddMascota($nombre, $raza, $peso, $fotoUrl, $urlvacunacion, $urlVideo=null){
+
+  
+            if($_POST){
+    
+                $MascotasDAO = new MascotasDAO();
+
+                $idUser = $_SESSION["DuenoId"];
+                $mascota = new Mascota();
+                $mascota->setId($MascotasDAO->returnIdPlus());
+                $mascota->setIdDueño($idUser);
+                $mascota->setNombre($nombre);
+                $mascota->setRaza($raza);
+                $mascota->setPeso($peso);
+                $mascota->setFotoURL($fotoUrl);
+                $mascota->setPlanVacURL($urlvacunacion);
+                $mascota->setVideoURL($urlVideo);
+    
+                $MascotasDAO->Add($mascota);
+    
+                $this->DueñosDAO->agregarMascotaById($idUser,$mascota->getId());
+    
+                echo "<script> if(confirm('Mascota agregada con exito')); </script>";
+    
+                $this->ListMascotasView();
+    
             }
             else{
     
-                echo "<script> if(confirm('El usuario ya existe')); </script>";
-
-                $this->RegisterView();
+                 
             }
-
-            
+    
+    
         }
+           
 }

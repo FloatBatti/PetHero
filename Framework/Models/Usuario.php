@@ -18,16 +18,16 @@ abstract class Usuario {
         return $this->username;
     }
     public function getDni(){
-        return $this->password;
+        return $this->dni;
     }
     public function getNombre(){
-        return $this->username;
+        return $this->nombre;
     }
     public function getApellido(){
-        return $this->password;
+        return $this->apellido;
     }
     public function getCorreoelectronico(){
-        return $this->username;
+        return $this->correoelectronico;
     }
     public function getPassword(){
         return $this->password;
