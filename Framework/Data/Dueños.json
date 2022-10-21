@@ -28,5 +28,20 @@
         "mascotas": [
             2
         ]
+    },
+    {
+        "id": 3,
+        "username": "cuyo",
+        "dni": "1",
+        "nombre": "cuyo",
+        "apellido": "1",
+        "correoelectronico": "cuyo",
+        "password": "1",
+        "telefono": "123123",
+        "direccion": "asda",
+        "guardianesFav": [],
+        "mascotas": [
+            3
+        ]
     }
 ]

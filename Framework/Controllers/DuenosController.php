@@ -62,7 +62,7 @@ class DuenosController{
 
     }
     
-    public function RegisterUser($username, $dni, $nombre, $apellido, $mail, $password, $rePassword, $telefono, $direccion)
+    public function RegisterUser($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion,$password, $rePassword)
         {
             $dueño = new Dueño();
             $dueño->setId($this->DueñosDAO->returnIdPlus());
@@ -84,8 +84,8 @@ class DuenosController{
                     $this->RegMascotasView();
                 }
                 else{
-    
-                    echo "<script> if(confirm('La contraseña ya existe')); </script>";
+                    var_dump($password);
+                    echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
     
                     $this->RegisterView();
                 }
