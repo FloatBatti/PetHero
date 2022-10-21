@@ -8,6 +8,10 @@
 
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/verGuardianes.css" rel="stylesheet">
+
+    <!-- BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -23,41 +27,42 @@
         <div class="contenedora-section">
             <div class="conteiner-list">
                 <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="imagen">img</th>
-                                <th class="nombre">Nombre</th>
-                                <th class="tipo">Tipo mascota admitido</th>
-                                <th class="descripcion">Descripcion espacio</th>
-                                <th class="calificacion">Calificacion</th>
-                                <th class="Perfil">Ver Perfil</th>
-                                <th class="Favoritos">Agregar a Favoritos</th>
-                            </tr>
 
-                            <?php foreach ($listaGuardianes as $guardian) { ?>
+                    <div class="row encabezado-row">
+                        <div class="col ">Foto Perfil</div>
+                        <div class="col ">Nombre</div>
+                        <div class="col ">Tipo mascota admitido</div>
+                        <div class="col ">Descripcion espacio</div>
+                        <div class="col ">Calificacion</div>
+                        <div class="col ">Ver Perfil</div>
+                        <div class="col ">Agregar Favorito</div>
 
-                                <tr>
-                                    <td>***</td>
-                                    <td><?php echo $guardian->getNombre() ?></td>
-                                    <td><?php
+                    </div>
 
-                                        foreach ($guardian->getTipoMascota() as $tipo) {
+                    <?php foreach ($listaGuardianes as $guardian) { ?>
 
-                                            echo $tipo . " ";
-                                        }
+                        <div class="row guardian-row">
+                            <div class="col contendor-img">
+                                <div class="img-ex">img</div>
+                            </div>
+                            <div class="col nombre-ex"><?php echo $guardian->getNombre() ?></div>
+                            <div class="col tipo-ex"><?php
 
-                                        ?>
-                                    </td>
-                                    <td><?php echo $guardian->getDescripcion() ?></td>
-                                    <td>***_ _</td>
-                                    <td>enlace a perfil</td>
-                                    <td>agregar</td>
-                                </tr>
+                                                        foreach ($guardian->getTipoMascota() as $tipo) {
 
-                            <?php } ?>
-                        </thead>
-                    </table>
+                                                            echo $tipo . " ";
+                                                        }
+
+                                                        ?></div>
+                            <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
+                            <div class="col calificacion-ex">***__</div>
+                            <div class="col perfil-ex"><a href=""><img src="../img/ojo_perfil.png" height="50"></a></div>
+                            <div class="col favoritos-ex"><a href=""><img src="../img/estrella_fav.png" height="50"></a></div>
+                        </div>
+
+                    <?php } ?>
+
+
                 </div>
             </div>
 
@@ -69,7 +74,7 @@
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascota</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascotas</a></div>
                 <div class="icono guardian"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Ver Guardianes</a></div>
                 <div class="icono favoritos"></div>

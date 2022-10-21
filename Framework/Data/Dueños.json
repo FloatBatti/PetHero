@@ -12,7 +12,39 @@
         "guardianesFav": [],
         "mascotas": [
             1,
-            2
+            2,
+            3,
+            6,
+            7,
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
+    },
+    {
+        "id": 2,
+        "username": "Mauro11",
+        "dni": "87654321",
+        "nombre": "Mauro",
+        "apellido": "Triaca",
+        "correoelectronico": "mauri21@gmail.com",
+        "password": "1",
+        "telefono": "2236064588",
+        "direccion": "gascon 2011",
+        "guardianesFav": [],
+        "mascotas": [
+            4,
+            5,
+            6,
+            7,
+            4,
+            5,
+            6,
+            7,
+            4,
+            5
         ]
     }
 ]
