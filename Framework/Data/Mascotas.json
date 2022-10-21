@@ -18,5 +18,15 @@
         "fotoURL": "222222",
         "planVacURL": "22222",
         "videoURL": "2222"
+    },
+    {
+        "id": 3,
+        "idDue\u00f1o": 3,
+        "nombre": "lula",
+        "raza": "Dachshund(mini Salchicha)",
+        "peso": "5",
+        "fotoURL": "http",
+        "planVacURL": "asdasd",
+        "videoURL": ""
     }
 ]

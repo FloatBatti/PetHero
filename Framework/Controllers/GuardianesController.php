@@ -53,7 +53,7 @@ class GuardianesController
 
     }
 
-    public function RegisterUser($username, $dni, $nombre, $apellido, $mail, $password, $rePassword, $telefono, $direccion)
+    public function RegisterUser($username,  $nombre, $apellido,$dni, $mail, $telefono, $direccion, $password, $rePassword)
     {
         $guardian = new Guardian();
         $guardian->setId($this->GuardianesDAO->returnIdPlus());

@@ -1,6 +1,20 @@
-<div class="contenedor-registro">
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registrar Guardian</title>
+    <link href="../styles/regGuardian.css" rel="stylesheet" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    </head>
+  <body>
+        <div class="contenedora-registro">
         <h2>Registro</h2>
+        
         <form action="<?php echo FRONT_ROOT ?>Guardianes/RegisterUser" method="post">
+                <div class="contenedora-form">
                 <div class="datoregistro">
                         <label for="usuario"></label>
                         <input type="text" placeholder="Nombre Usuario" name="username" class="" required><br>
@@ -41,8 +55,11 @@
                 <div>
                         <button type="submit" class="">Siguiente</button>   
                 </div>
-        
+                </div>
         </form>
 
-</div>
 
+</div>
+        
+</body>
+</html>
