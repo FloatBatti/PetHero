@@ -15,18 +15,29 @@ class HomeController{
     
     public function Index(){
 
+        require_once(VIEWS_PATH . "header.php");
         require_once(VIEWS_PATH."index.php");
 
     }
 
     public function DashDuenoView(){
 
-        require_once(VIEWS_PATH."dashboardDueno/dashboardDueno.html");
+        if(isset($_SESSION["DuenoId"])){
+
+            require_once(VIEWS_PATH."dashboardDueno/dashboardDueno.php");
+
+        }
+        
+        
     }
 
     public function DashGuardianView(){
 
-        require_once(VIEWS_PATH."dashGuardian.php");
+        if(isset($_SESSION["GuardianId"])){
+
+            require_once(VIEWS_PATH."dashboardGuardian/dashGuardian.php");
+
+        }
     }
 
     public function Login($username, $password){

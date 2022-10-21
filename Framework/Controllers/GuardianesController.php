@@ -16,6 +16,17 @@ class GuardianesController
         $this->GuardianesDAO = new GuardianesDAO();
     }
 
+    public function ListToDuenoView(){
+
+        if(isset($_SESSION["DuenoId"])){
+
+            $listaGuardianes = $this->GuardianesDAO->GetAll();
+
+            require_once(VIEWS_PATH."dashboardDueno/verGuardianes.php");
+
+        }
+    }
+
     public function FirstRegisterView()
     {
 
@@ -28,70 +39,82 @@ class GuardianesController
         require_once(VIEWS_PATH . "regDisponibilidad.php");
     }
 
-    public function Add($dias, $horarioInicio, $sizes, $horarioFin, $fotoUrl, $descripcion)
-    {
+    public function finishRegister(){
 
-        $guardian =  unserialize($_SESSION["GuardTemp"]);
-
-        unset($_SESSION["GuardTemp"]);
-
-        foreach ($dias as $dia) {
-            $guardian->pushDisponibilidad($dia);
-        }
-
-        $guardian->setHorarioIncio($horarioInicio);
-        $guardian->setHorarioFin($horarioFin);
-
-        foreach ($sizes as $size) {
-            $guardian->pushTipoMascota($size);
-        }
-
-        $guardian->setFotoEspacioURL($fotoUrl);
-        $guardian->setDescripcion($descripcion);
-
-        $this->GuardianesDAO->Add($guardian);
+        require_once(VIEWS_PATH . "header.php");
+        require_once(VIEWS_PATH . "index.php");
 
     }
 
-    public function RegisterUser($username,  $nombre, $apellido,$dni, $mail, $telefono, $direccion, $password, $rePassword)
+    public function Add($dias, $horarioInicio, $sizes, $horarioFin, $fotoUrl, $descripcion)
     {
-        $guardian = new Guardian();
-        $guardian->setId($this->GuardianesDAO->returnIdPlus());
-        $guardian->setUsername($username);
-        $guardian->setDni($dni);
-        $guardian->setNombre($nombre);
-        $guardian->setApellido($apellido);
-        $guardian->setCorreoelectronico($mail);
-        $guardian->setTelefono($telefono);
-        $guardian->setDireccion($direccion);
 
-        
-        if(!$this->GuardianesDAO->checkGuardian($dni, $mail)){
+        if ($_POST) {
 
-             
-            if ($password == $rePassword) {
+            $guardian =  unserialize($_SESSION["GuardTemp"]);
 
-                $guardian->setPassword($password);
+            unset($_SESSION["GuardTemp"]);
 
-                $_SESSION["GuardTemp"] = serialize($guardian);
+            foreach ($dias as $dia) {
+                $guardian->pushDisponibilidad($dia);
+            }
 
-                $this->SecondRegisterView();
-                
+            $guardian->setHorarioIncio($horarioInicio);
+            $guardian->setHorarioFin($horarioFin);
+
+            foreach ($sizes as $size) {
+                $guardian->pushTipoMascota($size);
+            }
+
+            $guardian->setFotoEspacioURL($fotoUrl);
+            $guardian->setDescripcion($descripcion);
+
+            $this->GuardianesDAO->Add($guardian);
+
+            echo "<script> if(confirm('Perfil creado con exito')); </script>";
+
+            $this->finishRegister();
+        }
+    }
+
+    public function RegisterUser($username,  $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword)
+    {
+
+        if ($_POST) {
+
+            $guardian = new Guardian();
+            $guardian->setId($this->GuardianesDAO->returnIdPlus());
+            $guardian->setUsername($username);
+            $guardian->setDni($dni);
+            $guardian->setNombre($nombre);
+            $guardian->setApellido($apellido);
+            $guardian->setCorreoelectronico($mail);
+            $guardian->setTelefono($telefono);
+            $guardian->setDireccion($direccion);
+
+
+            if (!$this->GuardianesDAO->checkGuardian($dni, $mail)) {
+
+
+                if ($password == $rePassword) {
+
+                    $guardian->setPassword($password);
+
+                    $_SESSION["GuardTemp"] = serialize($guardian);
+
+                    $this->SecondRegisterView();
+                } else {
+
+                    echo "<script> if(confirm('La contraseña ya existe')); </script>";
+
+                    $this->FirstRegisterView();
+                }
             } else {
 
-                echo "<script> if(confirm('La contraseña ya existe')); </script>";
+                echo "<script> if(confirm('El usuario ya existe')); </script>";
 
                 $this->FirstRegisterView();
             }
-
-        }else {
-
-            echo "<script> if(confirm('El usuario ya existe')); </script>";
-
-            $this->FirstRegisterView();
         }
-        
-        
-       
     }
 }

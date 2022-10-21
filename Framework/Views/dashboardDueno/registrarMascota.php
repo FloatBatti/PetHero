@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrar Mascota</title>
     
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet" >
-    <link href="../../styles/registroMascota.css" rel="stylesheet" >
+    <link href="../styles/dashboardDueño.css" rel="stylesheet" >
+    <link href="../styles/registroMascota.css" rel="stylesheet" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
     </head>
   <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
         <div>Faqs</div>
     </div>
         <div class="contenedora-general">
             <div class="contenedora-section">
                 <div class="contenedora-mascota">
-                    <form action="<?php echo FRONT_ROOT ?>Duenos/Add" method="post">
+                    <form action="<?php echo FRONT_ROOT ?>Duenos/AddMascota" method="post">
                         <div class="contenedora-inputs">
                             <div class="dato-registro">
                                 <label for="nombre">Nombre</label>
@@ -61,7 +61,7 @@
                                 <input type="text" name="urlVideo" class=""><br>
                             </div>
                             <div class="boton">
-                                <button type="submit" class="submit"><a href=""><img src="../../img/dogbone.png"></a></button>
+                                <button type="submit" class="submit"><a href=""><img src="../img/dogbone.png"></a></button>
                             </div>
                         </div>
                         
@@ -71,12 +71,17 @@
             </div>
         <aside>
             <div class="contenedora-aside">
-            <div class="icono perfil"></div><div class="opcion">Ver Perfil</div>
-            <div class="icono mascota"></div><div class="opcion">Registrar Mascota</div>
-            <div class="icono vermascotas"></div><div class="opcion" >Ver Mascota</div>
-            <div class="icono guardian"></div><div class="opcion">Ver Guardianes</div>
-            <div class="icono favoritos"></div><div class="opcion">Ver Guardianes Favoritos</div>
-        </div>
+            <div class="icono perfil"></div>
+                <div class="opcion">Ver Perfil</div>
+                <div class="icono mascota"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
+                <div class="icono vermascotas"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascota</a></div>
+                <div class="icono guardian"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Ver Guardianes</a></div>
+                <div class="icono favoritos"></div>
+                <div class="opcion">Ver Guardianes Favoritos</div>
+            </div>
         </aside>
     </div>
 
