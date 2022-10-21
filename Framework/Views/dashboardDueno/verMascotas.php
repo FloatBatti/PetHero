@@ -31,17 +31,24 @@
 
                 <div class="conteiner-list">
 
-                    <?php foreach ($listaMascotas as $mascota) { ?>
+                    <?php foreach ($listaMascotas as $mascota) {
 
-                        <div class="row mascotita">
-                            <div class="col contendor-img">
-                                <div class="img-Mascota"></div>
+                        if ($mascota->getIdDueño() == $_SESSION["DuenoId"]) {
+
+
+                    ?>
+
+                            <div class="row mascotita">
+                                <div class="col contendor-img">
+                                    <div class="img-Mascota"></div>
+                                </div>
+                                <div class="col nombre"><?php
+                                                        echo $mascota->getNombre() ?></div>
+                                <div class="col editar"><a href=""><img src="../img/edit.png"></a></div>
+                                <div class="col borrar"><a href=""><img src="../img/remove.png"></a></div>
                             </div>
-                            <div class="col nombre"><?php echo $mascota->getNombre() ?></div>
-                            <div class="col editar"><a href=""><img src="../img/edit.png"></a></div>
-                            <div class="col borrar"><a href=""><img src="../img/remove.png"></a></div>
-                        </div>
 
+                        <?php } ?>
                     <?php } ?>
 
                 </div>
@@ -53,12 +60,12 @@
         </div>
         <aside>
             <div class="contenedora-aside">
-            <div class="icono perfil"></div>
+                <div class="icono perfil"></div>
                 <div class="opcion">Ver Perfil</div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascota</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascotas</a></div>
                 <div class="icono guardian"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Ver Guardianes</a></div>
                 <div class="icono favoritos"></div>

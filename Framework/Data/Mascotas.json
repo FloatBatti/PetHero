@@ -2,21 +2,51 @@
     {
         "id": 1,
         "idDue\u00f1o": 1,
-        "nombre": "Lula",
-        "raza": "Dachshund(mini Salchicha)",
+        "nombre": "Agustin",
+        "raza": "Pequines",
         "peso": "12",
-        "fotoURL": "dasd",
-        "planVacURL": "asdasd",
-        "videoURL": "asdasasd"
+        "fotoURL": "123",
+        "planVacURL": "12",
+        "videoURL": ""
     },
     {
         "id": 2,
         "idDue\u00f1o": 1,
-        "nombre": "Ricardo",
-        "raza": "Golden retriever",
-        "peso": "1",
-        "fotoURL": "21",
-        "planVacURL": "asd",
-        "videoURL": "asd"
+        "nombre": "Agustin",
+        "raza": "Pequines",
+        "peso": "12",
+        "fotoURL": "123",
+        "planVacURL": "12",
+        "videoURL": ""
+    },
+    {
+        "id": 3,
+        "idDue\u00f1o": 1,
+        "nombre": "Agustin",
+        "raza": "Pequines",
+        "peso": "12",
+        "fotoURL": "123",
+        "planVacURL": "12",
+        "videoURL": ""
+    },
+    {
+        "id": 4,
+        "idDue\u00f1o": 1,
+        "nombre": "Agustin",
+        "raza": "Labrador retriever",
+        "peso": "123",
+        "fotoURL": "123",
+        "planVacURL": "123",
+        "videoURL": "123"
+    },
+    {
+        "id": 5,
+        "idDue\u00f1o": 1,
+        "nombre": "Agustin",
+        "raza": "Labrador retriever",
+        "peso": "123",
+        "fotoURL": "123",
+        "planVacURL": "123",
+        "videoURL": "123"
     }
 ]
