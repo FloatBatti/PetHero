@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mis Mascotas</title>
 
-    <link href="../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../styles/verMascota.css" rel="stylesheet">
+    
 
     <!-- BOOTSTRAP CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/verMascota.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -69,7 +69,7 @@
                 <div class="icono guardian"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Ver Guardianes</a></div>
                 <div class="icono favoritos"></div>
-                <div class="opcion">Ver Guardianes Favoritos</div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListFavoritosView" ?>">Ver Favoritos</a></div>
             </div>
         </aside>
     </div>

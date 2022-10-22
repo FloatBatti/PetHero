@@ -11,7 +11,7 @@
   <body>
 
     <div class="cabecera"><!--contenedora para el logo en el top + faqs, etc -->  
-      <a href=''><img src="../img/PetHeroLogo.png" height="120"></a>
+      <a href='../index.php'><img src="../img/PetHeroLogo.png" height="120"></a>
     </div>
 
     <div class="contenedora-gral"><!--aca esta el contenedor q contiene las 2 opciones -->

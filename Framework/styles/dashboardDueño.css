@@ -33,6 +33,7 @@ body{
     font-family: 'Open Sans', sans-serif;
     color:brown;
     border-radius: 3%;
+
     
 }
 .icono{
@@ -41,9 +42,7 @@ body{
     align-items: center;
     background-repeat: no-repeat;
     background-position: center;
-   
-    
-    
+      
 }
 .mascota{
     background-image: url(../img/collar.png);
@@ -60,10 +59,13 @@ body{
 .guardian{
     background-image: url(../img/guardian.png);
 }
-
+a{
+    text-decoration: none;
+    color:brown;   
+}
 
 .contenedora-aside{
-    font-size: 25px;
+    font-size: 20px;
     border-radius: 3%;
     height: 70vh;
     width:25vw;
@@ -73,11 +75,13 @@ body{
     box-shadow: 20px 20px 30px black;
     display:grid;
     grid-template-columns: 40% auto;
+    text-decoration: none;
     
 }
 
 .footer-separador{
-    height: 10vh;   
+    height: 10vh;
+    
 }
 
 footer{

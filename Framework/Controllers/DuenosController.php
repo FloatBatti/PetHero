@@ -51,6 +51,20 @@ class DuenosController{
 
 
     }
+    public function ListFavoritosView(){
+
+        if(isset($_SESSION["DuenoId"])){
+
+            $GuardianesDAO = new GuardianesDAO();
+            $listaGuardianes = $GuardianesDAO->GetAll();
+            //desarrollar logica para q el arreglo q se pasa sea filtrado
+            //$listaFavoritos =
+            require_once(VIEWS_PATH."dashboardDueno/verFavoritos.php");
+
+        }
+
+
+    }
 
     public function finishRegister(){
 
@@ -129,6 +143,7 @@ class DuenosController{
                 //echo "<script> if(confirm('Mascota agregada con exito')); </script>";
     
                 $this->ListMascotasView();
+                
     
             }
             else{

@@ -30,7 +30,7 @@
                                 <label for="raza">Raza</label>
                                     <select name="raza">
                                         <option value="Caniche">Caniche</option>
-                                        <option value="Pequines" selected>Pequines</option>
+                                        <option value="Pequines" >Pequines</option>
                                         <option value="Labrador retriever">Labrador retriever</option>
                                         <option value="Bulldog francés">Bulldog francés</option>
                                         <option value="Golden retriever">Golden retriever</option>
@@ -40,7 +40,7 @@
                                         <option value="Rottweiler">Rottweiler</option>
                                         <option value="Braco alemán de pelo corto">Braco alemán de pelo corto</option>
                                         <option value="Dachshund(mini Salchicha)">Dachshund(mini Salchicha)</option>
-                                        <option value="Sin raza">Sin raza</option>
+                                        <option value="Sin raza"selected>Sin raza</option>
                                     </select>
                             </div>
                             <div class="dato-registro">
@@ -80,7 +80,7 @@
                 <div class="icono guardian"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Ver Guardianes</a></div>
                 <div class="icono favoritos"></div>
-                <div class="opcion">Ver Guardianes Favoritos</div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListFavoritosView" ?>">Ver Favoritos</a></div>
             </div>
         </aside>
     </div>
