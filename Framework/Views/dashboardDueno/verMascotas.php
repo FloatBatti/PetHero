@@ -61,15 +61,17 @@
         <aside>
             <div class="contenedora-aside">
                 <div class="icono perfil"></div>
-                <div class="opcion">Ver Perfil</div>
+                <div class="opcion">Editar Perfil</div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascotas</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Mis Mascotas</a></div>
                 <div class="icono guardian"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Ver Guardianes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Guardianes</a></div>
                 <div class="icono favoritos"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListFavoritosView" ?>">Ver Favoritos</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListFavoritosView" ?>">Favoritos</a></div>
+                <div class="icono reservas"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
             </div>
         </aside>
     </div>

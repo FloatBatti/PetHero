@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
 
-    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../../styles/verPerfilGuardian.css" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -14,18 +16,28 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../../img/PetHeroLogo.png" height="100"></a>
         </div>
         <div>Faqs</div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
-            <div></div>
+            <div class="plantilla-guardian">
+                <div class="cont imagen">
+                    <div class=" cont img-perfil"></div>
+                    <div class=" cont nombre-perfil">Nombre Usuario Guardian</div>
+                </div>
+                <div class="cont calificacion">Estrellas</div>
+                <div class="cont foto-espacio">Un rectangulo con foto</div>
+                <div class="cont descripcion">"Un breve texto q describe el epacio a la izq</div>
+                <div class="cont solicitud">Boton de enviar solicitud</div>
+                <div class="cont ver-reviews">Boton para ver reviews</div>
+            </div>
         </div>
         <aside>
             <div class="contenedora-aside">
-                <div class="icono perfil"></div>
-                <div class="opcion"><a href="">Editar Perfil</a></div>
+            <div class="icono perfil"></div>
+            <div class="opcion">Editar Perfil</div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>

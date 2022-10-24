@@ -10,8 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
     </head>
   <body>
+  <div class="cabecera">
+        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a></div>
+        <div class="guardiantitulo"></div>
+        <div>FAQS</div>
+        </div>
         <div class="contenedora-registro">
-        <h2>Registro</h2>
         
         <form action="<?php echo FRONT_ROOT ?>Guardianes/RegisterUser" method="post">
                 <div class="contenedora-form">
@@ -52,14 +56,20 @@
                         <input type="password" placeholder="Repetir Contraseña" name="rePassword" class="" required><br>
                 </div>
 
-                <div>
-                        <button type="submit" class="">Siguiente</button>   
-                </div>
+                        <div class="boton">
+                                <button type="submit" class="submit"><a href=""><img src="../img/choque.png"></a></button>
+                         </div>
                 </div>
         </form>
 
 
 </div>
+<div class="footer-separador"></div>
+    <footer>
+        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
+        <div><a href="">Terminos y Condiciones</a></div>
+        <div><a href="">Aviso de privacidad</a></div>
+    </footer>
         
 </body>
 </html>

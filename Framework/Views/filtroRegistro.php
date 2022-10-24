@@ -21,14 +21,14 @@
         <div class="contenedora-titulo">
           <img src="../img/icono-Dueño.png" height="400">
         </div>
-        
+        <div class="superheroicon"><img src="../img/petsuperhero-removebg-preview.png"> </div>
         <div class="contenedora-texto">
-          <div class="texto">
-              <ul>
-                <li>Deberás brindar datos personales y de contacto.</li>
-                <li>Podrás registrar las mascotas que desees.</li>
-                <li>Una vez hecho ya podras usar los servicios de la web..</li>
-            </ul>
+          <div class="texto"> 
+              <p>
+                Deberás brindar datos personales y de contacto.<br>
+                Podrás registrar las mascotas que desees.<br>
+                Una vez hecho ya podras usar los servicios de la web. <br>
+              </p>
           </div>
         </div>
         
@@ -39,13 +39,14 @@
       </div>
 
       <div class="contenedora-eleccion guardian"><!--acontenedora para eleccion de guardian -->
-      
+    
         <div class="contenedora-titulo">
         <img src="../img/My Project-1.png" >
         </div>
+        <div class="superheroicon"><img src="../img/petsuperhero-removebg-preview.png"> </div>
 
         <div class="contenedora-texto">
-          <div class="texto">Deberas brindar datos personales y de contacto.<br> Será necesario agregar informacion acerca del espacio brindado<br> para el cuidado de las mascotas como asi mismo <br>una descripcion del servicio ofrecido <br>y registrar la disponibilidad con la que lo haras</div>
+          <div class="texto">Deberas brindar datos personales y de contacto.<br> Será necesario agregar información acerca <br>del espacio brindado para el cuidado de las mascotas como asi mísmo <br>una descripción del servicio ofrecído <br>y registrar la disponibilidad con la que lo harás.</div>
         </div>
 
         <div class="contenedora-boton">

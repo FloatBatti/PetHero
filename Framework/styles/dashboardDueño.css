@@ -48,7 +48,7 @@ body{
     background-image: url(../img/collar.png);
 }
 .perfil{
-    background-image: url(../img/perfil.png);
+    background-image: url(../img/editarPerfil.png);
 }
 .vermascotas{
     background-image: url(../img/mascotascolor.png);
@@ -59,10 +59,14 @@ body{
 .guardian{
     background-image: url(../img/guardian.png);
 }
+.reservas{
+    background-image: url(../img/reservas.png);
+}
 a{
     text-decoration: none;
     color:brown;   
 }
+
 
 .contenedora-aside{
     font-size: 20px;
@@ -70,8 +74,7 @@ a{
     height: 70vh;
     width:25vw;
     color: rgb(12, 3, 37);
-    background-color: lightgray;
-    opacity: 80%;
+    background-color:rgba(211, 211, 211, 0.8); 
     box-shadow: 20px 20px 30px black;
     display:grid;
     grid-template-columns: 40% auto;

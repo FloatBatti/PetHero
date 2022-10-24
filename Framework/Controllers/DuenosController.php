@@ -20,6 +20,9 @@ class DuenosController{
 
         require_once(VIEWS_PATH . "regDueño.php");
     }
+    public function EditarPerfil(){
+        
+    }
 
     public function RegisterMascotaView(){
 
