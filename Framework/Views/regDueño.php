@@ -17,7 +17,7 @@
         </div>
         <div class="contenedora-registro">
         
-        <form action="<?php echo FRONT_ROOT ?>Guardianes/RegisterUser" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Duenos/Add" method="post">
                 <div class="contenedora-form">
                 <div class="datoregistro">
                         <label for="usuario"></label>

@@ -1,52 +1,12 @@
 [
     {
         "id": 1,
-        "idDue\u00f1o": 1,
-        "nombre": "Agustin",
-        "raza": "Pequines",
-        "peso": "12",
-        "fotoURL": "123",
-        "planVacURL": "12",
-        "videoURL": ""
-    },
-    {
-        "id": 2,
-        "idDue\u00f1o": 1,
-        "nombre": "piqui",
-        "raza": "Sin raza",
-        "peso": "80",
+        "idDue\u00f1o": 5,
+        "nombre": "Lula",
+        "raza": "Dachshund(mini Salchicha)",
+        "peso": "5",
         "fotoURL": "http:\/\/hotdog.com\/",
         "planVacURL": "http:\/\/hotdog.com\/",
-        "videoURL": ""
-    },
-    {
-        "id": 3,
-        "idDue\u00f1o": 4,
-        "nombre": "agusbati",
-        "raza": "Caniche",
-        "peso": "60",
-        "fotoURL": "http:\/\/hotdog.com\/",
-        "planVacURL": "http:\/\/hotdog.com\/",
-        "videoURL": ""
-    },
-    {
-        "id": 4,
-        "idDue\u00f1o": 4,
-        "nombre": "agusbati",
-        "raza": "Caniche",
-        "peso": "60",
-        "fotoURL": "http:\/\/hotdog.com\/",
-        "planVacURL": "http:\/\/hotdog.com\/",
-        "videoURL": ""
-    },
-    {
-        "id": 5,
-        "idDue\u00f1o": 1,
-        "nombre": "agus",
-        "raza": "Braco alem\u00e1n de pelo corto",
-        "peso": "123",
-        "fotoURL": "111",
-        "planVacURL": "123123",
         "videoURL": ""
     }
 ]

@@ -29,26 +29,35 @@
                         <form>
                             <div>
                                 <label for="Guardian">Guardian</label>
+                            </div>
+                            <div>
                                 <input type="text" name="fechaIn" placeholder="guardian q se eligio" disabled>
                             </div>
                             <div>
                                 <label for="fechaIn">Fecha Inicio</label>
+                            </div>
+                            <div>
                                 <input type="date" name="fechaIn" placeholder="fecha inicio" disabled>
                             </div>
                             <div>
                                 <label for="fechaIn">Fecha Fin</label>
+                            </div>
+                            <div>
                                 <input type="date" name="fechaOut" placeholder="fecha de fin" disabled>
                             </div>
                             <div>
                                 <label for="costo">Costo($)</label>
-                                <input type="number" name="costo" placeholder="1" disabled>
+                            </div>
+                            <div><input type="number" name="costo" placeholder="1" disabled>
                             </div>
                             <div>
-                                <label for="pet">Mascota</label>
+                                <label for="pet">Mascota</label>    
+                            </div>
+                            <div>
                                 <input type="text" name="pet" placeholder="Lula" disabled>
                             </div>
                             <div class="boton">
-                                <button type="submit" class="submit"><a href=""><img src="../../img/dogbone.png"></a></button>
+                                <button type="submit" class="submit"><a href=""><img src="../../img/dogboneEnviar.png"></a></button>
                             </div>
                         </form>
                     </div>
@@ -59,7 +68,7 @@
         <aside>
             <div class="contenedora-aside">
             <div class="icono perfil"></div>
-            <div class="opcion">Editar Perfil</div>
+            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>

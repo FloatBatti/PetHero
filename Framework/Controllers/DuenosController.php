@@ -21,7 +21,8 @@ class DuenosController{
         require_once(VIEWS_PATH . "regDueño.php");
     }
     public function EditarPerfil(){
-        
+
+        require_once(VIEWS_PATH ."dashboardDueno/editarPerfil.php");
     }
 
     public function RegisterMascotaView(){

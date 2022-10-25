@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <title>Solicitud</title>
 
     <link href="../../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../../styles/verPerfilGuardian.css" rel="stylesheet">
+    <link href="../../styles/solicitud.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,17 +22,40 @@
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
-            <div class="plantilla-guardian">
-                <div class="cont imagen">
-                    <div class=" cont img-perfil"></div>
-                    <div class=" cont nombre-perfil">Nombre Usuario Guardian</div>
+            <div class="contenedora-solicitud">
+                <div class="contenedora-cabecera">
+                    <div class="img-perfil"></div>
+                    <div class="nombre-perfil">Nombre Guardian</div>
                 </div>
-                <div class="cont calificacion">Estrellas</div>
-                <div class="cont foto-espacio">Un rectangulo con foto</div>
-                <div class="cont descripcion">"Un breve texto q describe el epacio a la izq</div>
-                <div class="cont solicitud">Boton de enviar solicitud</div>
-                <div class="cont ver-reviews">Boton para ver reviews</div>
+                <div class="contenedora-fechas">
+                        <form>
+                            <div class="contenedora-inputs">
+                                <div class="cont">
+                                    <div><label for="fechaIn">Fecha Inicio</label></div>
+                                    <div></div><input type="date" name="fechaIn">
+                                </div>
+                                <div class="cont">
+                                    <div><label for="fechaIn">Fecha Fin</label></div>
+                                    <div><input type="date" name="fechaOut"></div>  
+                                </div>
+                                <div class="cont">
+                                    <div><label for="fechaIn">Mascota</label></div>
+                                    <div><select name="Mascota">
+                                        <option value="Caniche">Caniche</option><!--aca van las macota del dueño-->
+                                    </select>
+                                    </div>
+   
+                                </div>
+                                <div class="cont">
+                                <div class="boton">
+                                    <button type="submit" class="submit"><a href=""><img src="../../img/choque.png"></a></button>
+                                </div>
+                                </div>
+                        </div>
+                        </form>
+                </div>
             </div>
+            
         </div>
         <aside>
             <div class="contenedora-aside">

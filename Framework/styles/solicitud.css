@@ -3,10 +3,11 @@
     width:80%;
     display:flex;
     flex-direction: column;
-    border:1px solid black;
     border-radius: 3%;
-    background-color: rgb(211,211,211);
+    background-color: lightgray;
     box-shadow: 20px 20px 30px black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
 }
 
 .contenedora-cabecera{
@@ -18,26 +19,67 @@
 
 }
 .contenedora-fechas{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
     height:70%;
-    border:1px solid black;
+    text-align: center;
     
 }
 .img-perfil{
     width: 18%;
     height:100%;
-    border:4px solid rgb(110, 30, 30);
+    border: 6px solid rgb(253, 178, 17);
     border-radius: 50%;
     margin-left: 50px;
+    margin-top: 10px;
     
 }
 .nombre-perfil{
     width: 50%;
     height:100%;
-    background-color: aqua;
+    padding-top: 60px;
+   /* border:1px solid black; no pude centrar verticalmente el txt*/
     
 }
 .submit{
     border:none;
     background-color: rgb(211,211,211);
 
+}
+.contenedora-inputs{
+    margin:40px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+input{
+    text-align: center;
+    margin:5px;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+    width: 300px;
+    height: 30px;
+    font-size: 20px;
+    color: black;
+}
+select{
+    margin:5px;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+    width: 300px;
+    height: 30px;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+
+}
+.boton{
+    margin-top: 20px;
+    grid-column: 1/3;
 }

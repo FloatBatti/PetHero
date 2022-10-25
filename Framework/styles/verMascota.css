@@ -26,6 +26,8 @@
     align-items: center;
     justify-content: center;
     margin-left: 10%;
+    overflow-y: scroll;
+    height: 75%;
 }
 
 .mascotita{

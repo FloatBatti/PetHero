@@ -117,4 +117,8 @@ class GuardianesController
             }
         }
     }
+    public function retornarGuardian($id){
+        $usuario=$this->guardianesDAO->encontrarGuardian($id);
+        require_once(VIEWS_PATH . "dashboardDueno/verPerfilGuardian.php")
+    }
 }

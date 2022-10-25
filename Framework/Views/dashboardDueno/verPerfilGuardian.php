@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Solicitud</title>
+    <title>Dashboard</title>
 
     <link href="../../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../../styles/solicitud.css" rel="stylesheet">
+    <link href="../../styles/verPerfilGuardian.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,41 +22,22 @@
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
-            <div class="contenedora-solicitud">
-                <div class="contenedora-cabecera">
-                    <div class="img-perfil"></div>
-                    <div class="nombre-perfil"></div>
+            <div class="plantilla-guardian">
+                <div class="cont imagen">
+                    <div class=" cont img-perfil"></div>
+                    <div class=" cont nombre-perfil"><?php echo $usuario->getUsername();?></div>
                 </div>
-                <div class="contenedora-fechas">
-                    <div>
-                        <form>
-                            <div>
-                                <label for="fechaIn">Fecha Inicio</label>
-                                <input type="date" name="fechaIn">
-                            </div>
-                            <div>
-                                <label for="fechaIn">Fecha Fin</label>
-                                <input type="date" name="fechaOut">
-                            </div>
-                            <div>
-                                <label for="fechaIn">Mascota</label>
-                                <select name="Mascota">
-                                    <option value="Caniche">Caniche</option><!--aca van las macota del dueño-->
-                                </select>
-                            </div>
-                            <div class="boton">
-                                <button type="submit" class="submit"><a href=""><img src="../../img/dogbone.png"></a></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <div class="cont calificacion"><div class="cont solicitud calificacion">Calificacion</div><div class="cont stars"><a href=""><img src="../../img/3_stars.png"></a></div></div>
+                <div class="cont foto-espacio"><div class="cont foto"></div></div>
+                <div class="cont descripcion"><div class="cont texto">aca va la descripcion</div></div>
+                <div class="cont solicitud"><div class="cont"><a href=""><img src="../../img/perro-mail.png"></a></div><div class="cont">Enviar solicitud</div></div>
+                <div class="cont solicitud"><div class="cont"><a href=""><img src="../../img/reviews.png"></a></div><div class="cont"></div>Reviews</div>
             </div>
-            
         </div>
         <aside>
             <div class="contenedora-aside">
             <div class="icono perfil"></div>
-            <div class="opcion">Editar Perfil</div>
+            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
