@@ -12,11 +12,11 @@
     margin-left: 4%;
     margin-right: 4%;
     text-align: center;
-    height: 100%;
+    overflow-y: scroll;
+    height: 80% ;
+    
 
 }
-
-
 
 .encabezado-row{
 
@@ -45,32 +45,5 @@
 }
 .scrolleable{
     overflow-y: scroll;
-    height:60%;
-    
-}
-.filtro-fecha{
-    padding: 7px;
-    width: 100%;
-    margin-bottom: 10px;
-    margin-right: 5px;
-    text-align: center;
-    align-items: center;   
-    border-radius: 5px;
-    background-color: rgb(236, 157, 10);
-    box-shadow: 10px 4px 20px rgb(14, 12, 9);
-    display:flex;
-    flex-direction: row;
-    font-family: 'Open Sans', sans-serif;
-    justify-content: space-around;
-}
-input{
-    width: 200px;
-    border:none;
-    background-color: gainsboro;
-
-}
-#ojito{
-
-    width: 100px;
-   
+    height:80%;
 }

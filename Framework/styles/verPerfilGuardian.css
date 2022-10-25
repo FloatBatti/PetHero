@@ -1,0 +1,71 @@
+.plantilla-guardian{
+    height:90%;
+    width:80%;
+    margin:10px auto;
+    border-radius: 2%;
+    background-color: rgba(211,211,211, 0.9);
+    box-shadow: 20px 20px 30px black;
+    display:grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto 50% 20%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+.cont{
+    /*border: 1px solid black;*/
+    align-items: center;
+    justify-content: center;
+
+}
+.imagen{
+    display: flex;
+    flex-direction: row;
+    
+}
+.img-perfil{
+    border: 6px solid rgb(253, 178, 17);
+    width: 30%;
+    height:90%;
+    border-radius: 50%;
+    background-image: url(../img/perroFino2.jpg);       
+}
+
+.nombre-perfil{
+    width: 50%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+.calificacion{
+    padding-top: 20px;    
+}
+.stars{
+    display:flex;
+    justify-content: space-around;
+}
+.foto-espacio{
+    display: flex;
+    justify-content: space-around;
+}
+.foto{
+    border: 3px solid rgb(206, 27, 27);
+    height: 80%;
+    width: 80%;
+    border-radius: 3%;
+}
+.descripcion{
+    height: 80%;
+    width: 80%;
+    margin: 20px auto;
+}
+.texto{
+    font-size: 15px;
+}
+.solicitud{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+}

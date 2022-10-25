@@ -15,7 +15,7 @@
     <div class="cabecera">
         <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div>Faqs</div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
         <div class="contenedora-general">
             <div class="contenedora-section">
@@ -30,7 +30,7 @@
                                 <label for="raza">Raza</label>
                                     <select name="raza">
                                         <option value="Caniche">Caniche</option>
-                                        <option value="Pequines" selected>Pequines</option>
+                                        <option value="Pequines" >Pequines</option>
                                         <option value="Labrador retriever">Labrador retriever</option>
                                         <option value="Bulldog francés">Bulldog francés</option>
                                         <option value="Golden retriever">Golden retriever</option>
@@ -40,7 +40,7 @@
                                         <option value="Rottweiler">Rottweiler</option>
                                         <option value="Braco alemán de pelo corto">Braco alemán de pelo corto</option>
                                         <option value="Dachshund(mini Salchicha)">Dachshund(mini Salchicha)</option>
-                                        <option value="Sin raza">Sin raza</option>
+                                        <option value="Sin raza"selected>Sin raza</option>
                                     </select>
                             </div>
                             <div class="dato-registro">
@@ -71,16 +71,18 @@
             </div>
         <aside>
             <div class="contenedora-aside">
-            <div class="icono perfil"></div>
-                <div class="opcion">Ver Perfil</div>
+                <div class="icono perfil"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Ver Mascotas</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Mis Mascotas</a></div>
                 <div class="icono guardian"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Ver Guardianes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Guardianes</a></div>
                 <div class="icono favoritos"></div>
-                <div class="opcion">Ver Guardianes Favoritos</div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListFavoritosView" ?>">Favoritos</a></div>
+                <div class="icono reservas"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
             </div>
         </aside>
     </div>

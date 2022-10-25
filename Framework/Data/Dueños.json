@@ -11,16 +11,7 @@
         "direccion": "gascon 2011",
         "guardianesFav": [],
         "mascotas": [
-            1,
-            2,
-            3,
-            6,
-            7,
-            1,
-            2,
-            3,
-            4,
-            5
+            2
         ]
     },
     {
@@ -34,17 +25,49 @@
         "telefono": "2236064588",
         "direccion": "gascon 2011",
         "guardianesFav": [],
+        "mascotas": []
+    },
+    {
+        "id": 3,
+        "username": "isa",
+        "dni": "123123123",
+        "nombre": "isabella",
+        "apellido": "cugini",
+        "correoelectronico": "isa@isa.com",
+        "password": "111",
+        "telefono": "2323",
+        "direccion": "a;lkd;aslk",
+        "guardianesFav": [],
         "mascotas": [
-            4,
-            5,
-            6,
-            7,
-            4,
-            5,
-            6,
-            7,
-            4,
-            5
+            3
+        ]
+    },
+    {
+        "id": 4,
+        "username": "GodOfProgramming",
+        "dni": "40012032",
+        "nombre": "Lucas",
+        "apellido": "Gaitan",
+        "correoelectronico": "lucasGod@codigo.com",
+        "password": "123",
+        "telefono": "22300000",
+        "direccion": "manhattan",
+        "guardianesFav": [],
+        "mascotas": []
+    },
+    {
+        "id": 5,
+        "username": "pablocu",
+        "dni": "1111111",
+        "nombre": "Pablo",
+        "apellido": "Cugini",
+        "correoelectronico": "srcuyo@gmail.com",
+        "password": "1",
+        "telefono": "02236339539",
+        "direccion": "9 de Julio 5650",
+        "guardianesFav": [],
+        "mascotas": [
+            1
         ]
     }
 ]
