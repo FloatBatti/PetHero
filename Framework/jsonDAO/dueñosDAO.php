@@ -163,16 +163,15 @@ class DueñosDAO implements InterfaceDAO{
 
     public function encontrarDueño($id){
 
-        $lista=$this->listaDueños;
-        
+        $lista=$this->getAll();
+        $retorno=new Dueño();
         foreach($lista as $dueño){
             if($id == $dueño->getId()){
-                return $dueño;
-            }
-            else{
-                return null;
+                $retorno= $dueño;
+            
             }
         }
+        return $retorno;
     }
 
 }

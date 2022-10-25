@@ -117,4 +117,12 @@ class GuardianesController
             }
         }
     }
+    public function verPerfilGuardian($id){
+        if(isset($_SESSION["DuenoId"])){
+            $idInt = (int) $id;
+            $guardian=$this->GuardianesDAO->encontrarGuardian($idInt);
+            require_once(VIEWS_PATH . "dashboardDueno/verPerfilGuardian.php");
+        }
+    }
+
 }

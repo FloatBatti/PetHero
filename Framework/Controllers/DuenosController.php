@@ -20,6 +20,18 @@ class DuenosController{
 
         require_once(VIEWS_PATH . "regDueño.php");
     }
+    public function EditarPerfil(){
+
+        //agregar logica aca
+        if(isset($_SESSION["DuenoId"])){
+            $usuario=$this->DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
+            require_once(VIEWS_PATH ."dashboardDueno/editarPerfil.php");  
+        } 
+    }
+    public function enviarSolicitud($id){
+        
+    }
+
 
     public function RegisterMascotaView(){
 
@@ -46,6 +58,20 @@ class DuenosController{
             $listaGuardianes = $GuardianesDAO->GetAll();
 
             require_once(VIEWS_PATH."dashboardDueno/verGuardianes.php");
+
+        }
+
+
+    }
+    public function ListFavoritosView(){
+
+        if(isset($_SESSION["DuenoId"])){
+
+            $GuardianesDAO = new GuardianesDAO();
+            $listaGuardianes = $GuardianesDAO->GetAll();
+            //desarrollar logica para q el arreglo q se pasa sea filtrado
+            //$listaFavoritos =
+            require_once(VIEWS_PATH."dashboardDueno/verFavoritos.php");
 
         }
 
@@ -129,14 +155,10 @@ class DuenosController{
                 //echo "<script> if(confirm('Mascota agregada con exito')); </script>";
     
                 $this->ListMascotasView();
-    
             }
-            else{
-    
-                 
+            else{       
             }
-    
-    
         }
+        
            
 }

@@ -63,6 +63,7 @@ class HomeController{
                 }
     
             }
+            
 
             if($flag == false){
 
@@ -94,6 +95,10 @@ class HomeController{
         }
         
 
+    }
+    public function LogOut(){
+        session_destroy();
+        $this->Index();
     }
 
     public function Eleccion(){
