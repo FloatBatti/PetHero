@@ -28,15 +28,15 @@
                     <div class="nombre-perfil">Nombre Guardian</div>
                 </div>
                 <div class="contenedora-fechas">
-                    <form action="<?php echo FRONT_ROOT ?> Rerservas/Confirmar" method="POST">
+                    <form action="<?php echo FRONT_ROOT ?> Reservas/Confirmar" method="POST">
                         <div class="contenedora-inputs">
                             <div class="cont">
-                                <div><label for="fechaIn">Fecha Inicio</label></div>
-                                <div></div><input type="date" name="fechaIn">
+                                <div><label for="fechaIn" >Fecha Inicio</label></div>
+                                <div></div><input type="date" name="fechaIn" min="<?php echo date("Y-m-d");?>">
                             </div>
                             <div class="cont">
                                 <div><label for="fechaOut">Fecha Fin</label></div>
-                                <div><input type="date" name="fechaOut"></div>
+                                <div><input type="date" name="fechaOut" min="<?php echo date("Y-m-d");?>"></div>
                             </div>
                             <div class="cont">
 

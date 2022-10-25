@@ -65,7 +65,7 @@ class ReservasDAO implements InterfaceDAO
             $valuesArray["fecha"] = $reserva->getFecha();
             $valuesArray["fechaInicio"] = $reserva->getFechaInicio();
             $valuesArray["fechaFin"] = $reserva->getFechaFin();
-            $valuesArray["mascotaID"] = $reserva->getMascotaIDv();
+            $valuesArray["mascotaID"] = $reserva->getMascotaID();
             $valuesArray["guardianID"] = $reserva->getGuardianID();
             $valuesArray["dueñoID"] = $reserva->getDueñoID();
             $valuesArray["costo"] = $reserva->getCosto();

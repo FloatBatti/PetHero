@@ -24,8 +24,7 @@
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
-    <?php
-    var_dump($usuario->getMascotas())?>
+    
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="drop-Mascota">
