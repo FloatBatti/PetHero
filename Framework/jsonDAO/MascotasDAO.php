@@ -34,10 +34,10 @@ class MascotasDAO implements InterfaceDAO{
         {
             
             $valuesArray["id"] = $mascota->getId();
-            $valuesArray["idDueño"] = $mascota->getIdDueño();
             $valuesArray["nombre"] = $mascota->getNombre();
             $valuesArray["raza"] = $mascota->getRaza();
             $valuesArray["peso"] = $mascota->getPeso();
+            $valuesArray["tamaño"] = $mascota->getTamaño();
             $valuesArray["fotoURL"] = $mascota->getFotoURL();
             $valuesArray["planVacURL"] = $mascota->getPlanVacURL();
             $valuesArray["videoURL"] = $mascota->getVideoURL();
@@ -63,7 +63,6 @@ class MascotasDAO implements InterfaceDAO{
             $mascota = new Mascota();
 
             $mascota->setId($valuesArray["id"]);
-            $mascota->setIdDueño($valuesArray["idDueño"]);
             $mascota->setNombre($valuesArray["nombre"]);
             $mascota->setRaza($valuesArray["raza"]);
             $mascota->setPeso($valuesArray["peso"]);

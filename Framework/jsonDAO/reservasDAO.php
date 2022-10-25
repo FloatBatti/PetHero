@@ -45,7 +45,7 @@ class ReservasDAO implements InterfaceDAO
                 $reservas->setFecha($valuesArray["fecha"]);
                 $reservas->setFechaInicio($valuesArray["fechaInicio"]);
                 $reservas->setFechaFin($valuesArray["fechaFin"]);
-                $reservas->setMascota($valuesArray["mascota"]);
+                $reservas->setMascotaID($valuesArray["mascotaID"]);
                 $reservas->setGuardianID($valuesArray["guardianID"]);
                 $reservas->setDueñoID($valuesArray["dueñoID"]);
                 $reservas->setCosto($valuesArray["costo"]);
@@ -65,7 +65,7 @@ class ReservasDAO implements InterfaceDAO
             $valuesArray["fecha"] = $reserva->getFecha();
             $valuesArray["fechaInicio"] = $reserva->getFechaInicio();
             $valuesArray["fechaFin"] = $reserva->getFechaFin();
-            $valuesArray["mascota"] = $reserva->getMascota();
+            $valuesArray["mascotaID"] = $reserva->getMascotaIDv();
             $valuesArray["guardianID"] = $reserva->getGuardianID();
             $valuesArray["dueñoID"] = $reserva->getDueñoID();
             $valuesArray["costo"] = $reserva->getCosto();
@@ -77,5 +77,20 @@ class ReservasDAO implements InterfaceDAO
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
 
         file_put_contents('Data/reservas.json', $jsonContent);
+    }
+
+    public function returnIdPlus()
+    {
+        $id = 0;
+
+        foreach ($this->GetAll() as $reserva) {
+
+            if ($reserva->getId() > $id) {
+
+                $id = $reserva->getId();
+            }
+        }
+
+        return $id + 1;
     }
 }

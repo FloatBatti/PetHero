@@ -21,7 +21,8 @@
         "horarioInicio": "13:00",
         "horarioFin": "23:00",
         "fotoEspacioURL": "123",
-        "descripcion": "Patio amplio con pasto"
+        "descripcion": "Patio amplio con pasto",
+        "costo": "200"
     },
     {
         "id": 2,
@@ -45,7 +46,8 @@
         "horarioInicio": "13:00",
         "horarioFin": "20:00",
         "fotoEspacioURL": "http://",
-        "descripcion": "Mono ambiente"
+        "descripcion": "Mono ambiente",
+        "costo": "200"
     },
     {
         "id": 3,
@@ -70,7 +72,8 @@
         "horarioInicio": "13:04",
         "horarioFin": "16:04",
         "fotoEspacioURL": "http://",
-        "descripcion": "home sweet home"
+        "descripcion": "home sweet home",
+        "costo": "200"
     },
     {
         "id": 4,
@@ -95,7 +98,8 @@
         "horarioInicio": "13:04",
         "horarioFin": "16:04",
         "fotoEspacioURL": "http://",
-        "descripcion": "hacerse el piqui es la ley"
+        "descripcion": "hacerse el piqui es la ley",
+        "costo": "200"
     },
     {
         "id": 5,
@@ -117,7 +121,8 @@
         "horarioInicio": "00:00",
         "horarioFin": "23:59",
         "fotoEspacioURL": "http://",
-        "descripcion": "Orcos for everyone"
+        "descripcion": "Orcos for everyone",
+        "costo": "200"
     },
     {
         "id": 6,
@@ -139,7 +144,8 @@
         "horarioInicio": "00:00",
         "horarioFin": "23:59",
         "fotoEspacioURL": "http://",
-        "descripcion": "Flechas for everyone"
+        "descripcion": "Flechas for everyone",
+        "costo": "200000"
     },
     {
         "id": 7,
@@ -164,6 +170,7 @@
         "horarioInicio": "00:00",
         "horarioFin": "23:59",
         "fotoEspacioURL": "http://",
-        "descripcion": "Espada rota cuchillo de palo"
+        "descripcion": "Espada rota cuchillo de palo",
+        "costo": "200"
     }
 ]

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Solicitud</title>
 
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../../styles/solicitud.css" rel="stylesheet">
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/solicitud.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +16,9 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
@@ -28,39 +28,51 @@
                     <div class="nombre-perfil">Nombre Guardian</div>
                 </div>
                 <div class="contenedora-fechas">
-                        <form>
-                            <div class="contenedora-inputs">
-                                <div class="cont">
-                                    <div><label for="fechaIn">Fecha Inicio</label></div>
-                                    <div></div><input type="date" name="fechaIn">
-                                </div>
-                                <div class="cont">
-                                    <div><label for="fechaIn">Fecha Fin</label></div>
-                                    <div><input type="date" name="fechaOut"></div>  
-                                </div>
-                                <div class="cont">
-                                    <div><label for="fechaIn">Mascota</label></div>
-                                    <div><select name="Mascota">
-                                        <option value="Caniche">Caniche</option><!--aca van las macota del dueño-->
+                    <form action="<?php echo FRONT_ROOT ?> Rerservas/Confirmar" method="POST">
+                        <div class="contenedora-inputs">
+                            <div class="cont">
+                                <div><label for="fechaIn">Fecha Inicio</label></div>
+                                <div></div><input type="date" name="fechaIn">
+                            </div>
+                            <div class="cont">
+                                <div><label for="fechaOut">Fecha Fin</label></div>
+                                <div><input type="date" name="fechaOut"></div>
+                            </div>
+                            <div class="cont">
+
+                                <div><label for="Mascota">Mascota</label></div>
+
+                                <div><select name="idMascota">
+
+                                        <?php foreach ($listaMascotas as $mascota) { 
+                                            
+                                            foreach($dueño->getMascotas() as $mascotaId){
+                                                
+                                                if ($mascota->getId() == $mascotaId) {?>
+
+                                            <option value="<?php echo $mascota->getId() ?>"><?php echo $mascota->getNombre() ?></option>
+
+                                        <?php } ?>
+                                        <?php } ?>
+                                        <?php } ?>
                                     </select>
-                                    </div>
-   
                                 </div>
-                                <div class="cont">
+                            </div>
+                            <div class="cont">
                                 <div class="boton">
-                                    <button type="submit" class="submit"><a href=""><img src="../../img/choque.png"></a></button>
+                                    <button type="submit" class="submit"><a href=""><img src="../img/choque.png"></a></button>
                                 </div>
-                                </div>
+                            </div>
                         </div>
-                        </form>
+                    </form>
                 </div>
             </div>
-            
+
         </div>
         <aside>
             <div class="contenedora-aside">
-            <div class="icono perfil"></div>
-            <div class="opcion">Editar Perfil</div>
+                <div class="icono perfil"></div>
+                <div class="opcion">Editar Perfil</div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
@@ -70,7 +82,7 @@
                 <div class="icono favoritos"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListFavoritosView" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>
             </div>
         </aside>
     </div>

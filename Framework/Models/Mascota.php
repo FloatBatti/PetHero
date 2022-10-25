@@ -5,10 +5,10 @@ namespace Models;
 class Mascota{
 
     private $id;
-    private $idDueño;
     private $nombre;
     private $raza;
     private $peso;
+    private $tamaño;
     private $fotoURL;
     private $planVacURL;
     private $videoURL;
@@ -33,9 +33,7 @@ class Mascota{
 
     public function setNombre($nombre)
     {
-        $this->nombre = $nombre;
-
-        
+        $this->nombre = $nombre;  
     }
 
     public function getRaza()
@@ -55,7 +53,25 @@ class Mascota{
 
     public function setPeso($peso)
     {
-        $this->peso = $peso;  
+        $this->peso = $peso;
+        
+        if($peso <= 12){
+            $this->tamaño = "Pequeño";
+        }
+        else if($peso <= 21 and $peso > 12){
+
+            $this->tamaño = "Mediano";
+        }
+        else if($peso > 21){
+
+            $this->tamaño = "Grande";
+        }
+
+    }
+
+    public function getTamaño(){
+
+        return $this->tamaño;
     }
 
     public function getFotoURL()
@@ -86,23 +102,11 @@ class Mascota{
         return $this->videoURL;
     }
 
-
     public function setVideoURL($videoURL)
     {
         $this->videoURL = $videoURL;    
     }
 
-    public function getIdDueño()
-    {
-        return $this->idDueño;
-    }
-
-    public function setIdDueño($idDueño)
-    {
-        $this->idDueño = $idDueño;
-
-        return $this;
-    }
 }
 
 ?>

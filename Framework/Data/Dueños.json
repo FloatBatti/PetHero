@@ -11,6 +11,7 @@
         "direccion": "gascon 2011",
         "guardianesFav": [],
         "mascotas": [
+            1,
             2
         ]
     },
@@ -38,9 +39,7 @@
         "telefono": "2323",
         "direccion": "a;lkd;aslk",
         "guardianesFav": [],
-        "mascotas": [
-            3
-        ]
+        "mascotas": []
     },
     {
         "id": 4,
@@ -66,8 +65,6 @@
         "telefono": "02236339539",
         "direccion": "9 de Julio 5650",
         "guardianesFav": [],
-        "mascotas": [
-            1
-        ]
+        "mascotas": []
     }
 ]

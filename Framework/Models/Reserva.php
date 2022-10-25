@@ -6,7 +6,7 @@ class Reserva{
     private $fecha;
     private $fechaInicio;
     private $fechaFin;
-    private $mascota;
+    private $mascotaID;
     private $guardianID;
     private $dueñoID;
     private $costo;
@@ -46,13 +46,13 @@ class Reserva{
     {
         $this->fechaFin = $fechaFin;
     }
-    public function getMascota()
+    public function getMascotaID()
     {
-        return $this->mascota;
+        return $this->mascotaID;
     }
-    public function setMascota($mascota)
+    public function setMascotaID($idMascota)
     {
-        $this->mascota = $mascota;
+        $this->mascotaID = $idMascota;
     }
     public function getGuardianID()
     {
