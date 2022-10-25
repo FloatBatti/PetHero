@@ -65,6 +65,9 @@
         "telefono": "02236339539",
         "direccion": "9 de Julio 5650",
         "guardianesFav": [],
-        "mascotas": []
+        "mascotas": [
+            3,
+            4
+        ]
     }
 ]

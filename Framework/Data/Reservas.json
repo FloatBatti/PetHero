@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "fecha": "2022-10-25 22:21:41",
+        "fechaInicio": "2022-11-04",
+        "fechaFin": "2022-12-24",
+        "mascotaID": 4,
+        "guardianID": 5,
+        "due\u00f1oID": 5,
+        "costo": 10000,
+        "estado": "Pendiente."
+    }
+]
