@@ -22,8 +22,16 @@ class DuenosController{
     }
     public function EditarPerfil(){
 
-        require_once(VIEWS_PATH ."dashboardDueno/editarPerfil.php");
+        //agregar logica aca
+        if(isset($_SESSION["DuenoId"])){
+            $usuario=$this->DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
+            require_once(VIEWS_PATH ."dashboardDueno/editarPerfil.php");  
+        } 
     }
+    public function enviarSolicitud($id){
+        
+    }
+
 
     public function RegisterMascotaView(){
 
@@ -147,15 +155,10 @@ class DuenosController{
                 //echo "<script> if(confirm('Mascota agregada con exito')); </script>";
     
                 $this->ListMascotasView();
-                
-    
             }
-            else{
-    
-                 
+            else{       
             }
-    
-    
         }
+        
            
 }

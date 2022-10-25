@@ -10,7 +10,9 @@
         "telefono": "2236064588",
         "direccion": "gascon 2011",
         "guardianesFav": [],
-        "mascotas": []
+        "mascotas": [
+            2
+        ]
     },
     {
         "id": 2,
@@ -36,7 +38,9 @@
         "telefono": "2323",
         "direccion": "a;lkd;aslk",
         "guardianesFav": [],
-        "mascotas": []
+        "mascotas": [
+            3
+        ]
     },
     {
         "id": 4,

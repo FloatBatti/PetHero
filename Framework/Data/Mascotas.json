@@ -8,5 +8,25 @@
         "fotoURL": "http:\/\/hotdog.com\/",
         "planVacURL": "http:\/\/hotdog.com\/",
         "videoURL": ""
+    },
+    {
+        "id": 2,
+        "idDue\u00f1o": 1,
+        "nombre": "El piqui",
+        "raza": "Beagle",
+        "peso": "10",
+        "fotoURL": "http:\/\/hotdog.com\/",
+        "planVacURL": "http:\/\/hotdog.com\/",
+        "videoURL": ""
+    },
+    {
+        "id": 3,
+        "idDue\u00f1o": 3,
+        "nombre": "Lula",
+        "raza": "Dachshund(mini Salchicha)",
+        "peso": "5",
+        "fotoURL": "http:\/\/hotdog.com\/",
+        "planVacURL": "http:\/\/hotdog.com\/",
+        "videoURL": ""
     }
 ]

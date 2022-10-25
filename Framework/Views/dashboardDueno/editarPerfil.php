@@ -16,7 +16,7 @@
     <div class="cabecera">
         <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div>Faqs</div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
         <div class="contenedora-general">
             <div class="contenedora-section">
@@ -55,12 +55,12 @@
                         </div>
                         <div class="datoregistro">
                                 <label for="pass">Contraseña</label>
-                                <input type="password" placeholder="******" name="password" class="" required><br>
+                                <input type="password" placeholder="<?php echo $usuario->getPassword();?>" name="password" class="" required><br>
                         </div>
                         <div></div>
                         <div class="datoregistro">
                                 <label for="re-pass">Repetir Contraseña</label>
-                                <input type="password" placeholder="******" name="rePassword" class="" required><br>
+                                <input type="password" placeholder="<?php echo $usuario->getPassword();?>" name="rePassword" class="" required><br>
                         </div>
                         
                         <div class="boton">

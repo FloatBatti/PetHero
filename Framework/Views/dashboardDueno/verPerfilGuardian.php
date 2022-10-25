@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
 
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../../styles/verPerfilGuardian.css" rel="stylesheet">
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/verPerfilGuardian.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,22 +16,27 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div>Faqs</div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="plantilla-guardian">
                 <div class="cont imagen">
                     <div class=" cont img-perfil"></div>
-                    <div class=" cont nombre-perfil"><?php echo $usuario->getUsername();?></div>
+                    <div class=" cont nombre-perfil"><?php echo $guardian->getUsername();?></div>
                 </div>
-                <div class="cont calificacion"><div class="cont solicitud calificacion">Calificacion</div><div class="cont stars"><a href=""><img src="../../img/3_stars.png"></a></div></div>
+                <div class="cont calificacion"><div class="cont solicitud calificacion"></div><div class="cont stars"><a href=""><img src="../img/3_stars.png"></a></div></div>
                 <div class="cont foto-espacio"><div class="cont foto"></div></div>
-                <div class="cont descripcion"><div class="cont texto">aca va la descripcion</div></div>
-                <div class="cont solicitud"><div class="cont"><a href=""><img src="../../img/perro-mail.png"></a></div><div class="cont">Enviar solicitud</div></div>
-                <div class="cont solicitud"><div class="cont"><a href=""><img src="../../img/reviews.png"></a></div><div class="cont"></div>Reviews</div>
+                <div class="cont descripcion">
+                    <div class="cont dias">Dias de atencion:<br><?php foreach($guardian->getDisponibilidad() as $dia){echo $dia." ";}?><br></div>
+                    <div class="cont mascotas">Tipos de mascota permitidos:<br><?php foreach($guardian->getTipoMascota() as $mascota){echo $mascota." ";}?><br></div>
+                    <div class="cont horarios">Horarios:<br>De <?php echo $guardian->getHorarioIncio();?> a <?php echo $guardian->getHorarioFin();?> </div>
+                    <div class="cont texto"><?php echo $guardian->getDescripcion();?></div>
+                </div>
+                <div class="cont solicitud"><div class="cont"><a href="<?php echo FRONT_ROOT?>Dueno/enviarSolicitud?id=<?php echo $guardian->getId();"><img src="../img/perro-mail.png"></a></div><div class="cont">Enviar solicitud</div></div>
+                <div class="cont solicitud"><div class="cont"><a href=""><img src="../img/reviews.png"></a></div><div class="cont"></div>Reviews</div>
             </div>
         </div>
         <aside>

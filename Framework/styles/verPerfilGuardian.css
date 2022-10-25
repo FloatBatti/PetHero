@@ -26,7 +26,8 @@
     border: 6px solid rgb(253, 178, 17);
     width: 30%;
     height:90%;
-    border-radius: 50%;        
+    border-radius: 50%;
+    background-image: url(../img/perroFino2.jpg);       
 }
 
 .nombre-perfil{

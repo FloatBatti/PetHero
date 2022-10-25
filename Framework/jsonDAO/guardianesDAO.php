@@ -89,6 +89,9 @@ class GuardianesDAO implements InterfaceDAO
                 $guardian->setPassword($valuesArray["password"]);
                 $guardian->setTelefono($valuesArray["telefono"]);
                 $guardian->setDireccion($valuesArray["direccion"]);
+                $guardian->setHorarioIncio($valuesArray["horarioInicio"]);
+                $guardian->setHorarioFin($valuesArray["horarioFin"]);
+                
 
                 //Disponbilidad
                 foreach ($valuesArray["disponibilidad"] as $dia) {
@@ -144,15 +147,15 @@ class GuardianesDAO implements InterfaceDAO
     }
     public function encontrarGuardian($id)
     {
-        $lista = $this->listaGuardianes;
-
-        foreach ($lista as $guardian) {
-            if ($id == $guardian->getId()) {
-                return $guardian;
-            } else {
-                return null;
+        $lista=$this->getAll();
+        $retorno=new Guardian();
+        foreach($lista as $guardian){
+            if($id == $guardian->getId()){
+                $retorno= $guardian;
+            
             }
         }
+        return $retorno;
     }
     
 }

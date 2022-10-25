@@ -65,5 +65,12 @@
 }
 input{
     width: 200px;
+    border:none;
+    background-color: gainsboro;
 
+}
+#ojito{
+
+    width: 100px;
+   
 }

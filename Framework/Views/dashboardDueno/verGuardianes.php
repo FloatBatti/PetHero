@@ -21,7 +21,7 @@
     <div class="cabecera">
         <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div>Faqs</div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
@@ -67,7 +67,8 @@
                                                         ?></div>
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
                             <div class="col calificacion-ex">***__</div>
-                            <div class="col perfil-ex"><a href="Guardianes"><img src="../img/ojo_perfil.png" height="50"></a></div>
+                        <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../img/ojo_perfil.png" height="50"></a></div>
+                        
                             <div class="col favoritos-ex"><a href=""><img src="../img/estrella_fav.png" height="50"></a></div>
                         </div>
 
