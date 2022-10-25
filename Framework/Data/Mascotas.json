@@ -18,5 +18,25 @@
         "fotoURL": "asdas",
         "planVacURL": "asd",
         "videoURL": "asd"
+    },
+    {
+        "id": 3,
+        "nombre": "Agustinito",
+        "raza": "Sin raza",
+        "peso": "11",
+        "tama\u00f1o": "Peque\u00f1o",
+        "fotoURL": "http:\/\/hotdog.com\/1",
+        "planVacURL": "http:\/\/hotdog.com\/piqui",
+        "videoURL": ""
+    },
+    {
+        "id": 4,
+        "nombre": "batidogui",
+        "raza": "Sin raza",
+        "peso": "10",
+        "tama\u00f1o": "Peque\u00f1o",
+        "fotoURL": "http:\/\/hotdog.com\/",
+        "planVacURL": "http:\/\/hotdog.com\/",
+        "videoURL": ""
     }
 ]

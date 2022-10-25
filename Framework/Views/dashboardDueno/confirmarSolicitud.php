@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Solicitud</title>
 
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../../styles/solicitud.css" rel="stylesheet">
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/solicitud.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,51 +16,40 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
-    <?php var_dump($_SESSION["DuenoId"])?>
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="contenedora-solicitud">
                 
                 <div class="contenedora-fechas">
-                    <div>
-                        <form>
+                    <div class="contendora-confirmacion">
                             <div>
-                                <label for="Guardian">Guardian</label>
-                            </div>
-                            <div>
-                                <input type="text" name="fechaIn" placeholder="guardian q se eligio" disabled>
+                                Guardian
+                                <?php echo $guardian->getUsername();?>
                             </div>
                             <div>
-                                <label for="fechaIn">Fecha Inicio</label>
+                                Fecha inicio
+                                <?php echo $reserva->getFechaInicio(); ?>
                             </div>
                             <div>
-                                <input type="date" name="fechaIn" placeholder="fecha inicio" disabled>
+                                Fecha Fin
+                                <?php echo $reserva->getFechaFin(); ?>
                             </div>
                             <div>
-                                <label for="fechaIn">Fecha Fin</label>
+                                Mascota
+                                <?php echo $reserva->getMascotaID(); ?>
                             </div>
                             <div>
-                                <input type="date" name="fechaOut" placeholder="fecha de fin" disabled>
+                                <?php echo $reserva->getCosto(); ?>  costo
                             </div>
-                            <div>
-                                <label for="costo">Costo($)</label>
-                            </div>
-                            <div><input type="number" name="costo" placeholder="1" disabled>
-                            </div>
-                            <div>
-                                <label for="pet">Mascota</label>    
-                            </div>
-                            <div>
-                                <input type="text" name="pet" placeholder="Lula" disabled>
-                            </div>
+                            
                             <div class="boton">
-                                <button type="submit" class="submit"><a href=""><img src="../../img/dogboneEnviar.png"></a></button>
+                                <button type="submit" class="submit"><a href="<?php echo FRONT_ROOT?>Reservas/Add"><img src="../img/dogboneEnviar.png"></a></button>
                             </div>
-                        </form>
+                        
                     </div>
                 </div>
             </div>
