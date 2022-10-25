@@ -46,7 +46,7 @@ class GuardianesController
 
     }
 
-    public function Add($dias, $horarioInicio, $sizes, $horarioFin, $fotoUrl, $descripcion)
+    public function Add($dias, $horarioInicio, $sizes, $costo, $horarioFin, $fotoUrl, $descripcion)
     {
 
         if ($_POST) {
@@ -66,6 +66,7 @@ class GuardianesController
                 $guardian->pushTipoMascota($size);
             }
 
+            $guardian->setCosto($costo);
             $guardian->setFotoEspacioURL($fotoUrl);
             $guardian->setDescripcion($descripcion);
 

@@ -60,6 +60,7 @@ class GuardianesDAO implements InterfaceDAO
             $valuesArray["horarioFin"] = $guardian->getHorarioFin();
             $valuesArray["fotoEspacioURL"] = $guardian->getFotoEspacioURL();
             $valuesArray["descripcion"] = $guardian->getDescripcion();
+            $valuesArray["costo"] = $guardian->getCosto();
 
             array_push($arrayToEncode, $valuesArray);
         }
@@ -107,6 +108,7 @@ class GuardianesDAO implements InterfaceDAO
                 $guardian->getHorarioFin($valuesArray["horarioFin"]);
                 $guardian->setFotoEspacioURL($valuesArray["fotoEspacioURL"]);
                 $guardian->setDescripcion($valuesArray["descripcion"]);
+                $guardian->setCosto($valuesArray["costo"]);
 
                 array_push($this->listaGuardianes, $guardian);
             }

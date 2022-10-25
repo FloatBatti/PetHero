@@ -33,9 +33,12 @@
                     <div class="cont dias">Dias de atencion:<br><?php foreach($guardian->getDisponibilidad() as $dia){echo $dia." ";}?><br></div>
                     <div class="cont mascotas">Tipos de mascota permitidos:<br><?php foreach($guardian->getTipoMascota() as $mascota){echo $mascota." ";}?><br></div>
                     <div class="cont horarios">Horarios:<br>De <?php echo $guardian->getHorarioIncio();?> a <?php echo $guardian->getHorarioFin();?> </div>
+                    <div class="cont costo">Precio por dia: $<?php echo $guardian->getCosto();?></div>
                     <div class="cont texto"><?php echo $guardian->getDescripcion();?></div>
                 </div>
-                <div class="cont solicitud"><div class="cont"><a href="<?php echo FRONT_ROOT?>Dueno/enviarSolicitud?id=<?php echo $guardian->getId();"><img src="../img/perro-mail.png"></a></div><div class="cont">Enviar solicitud</div></div>
+                <div class="cont solicitud">
+                    <div class="cont"><a href="../Reservas/Iniciar?id=<?php echo $guardian->getId();?>"><img src="../img/perro-mail.png"></a></div>     
+                <div class="cont">Enviar solicitud</div></div>
                 <div class="cont solicitud"><div class="cont"><a href=""><img src="../img/reviews.png"></a></div><div class="cont"></div>Reviews</div>
             </div>
         </div>

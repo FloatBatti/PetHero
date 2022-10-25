@@ -20,6 +20,7 @@ class DuenosController{
 
         require_once(VIEWS_PATH . "regDueño.php");
     }
+
     public function EditarPerfil(){
 
         //agregar logica aca
@@ -28,10 +29,6 @@ class DuenosController{
             require_once(VIEWS_PATH ."dashboardDueno/editarPerfil.php");  
         } 
     }
-    public function enviarSolicitud($id){
-        
-    }
-
 
     public function RegisterMascotaView(){
 
@@ -44,6 +41,7 @@ class DuenosController{
 
             $MascotasDAO = new MascotasDAO();
             $listaMascotas = $MascotasDAO->GetAll();
+            $usuario=$this->DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
 
             require_once(VIEWS_PATH."dashboardDueno/verMascotas.php");
 
@@ -140,7 +138,6 @@ class DuenosController{
                 $idUser = $_SESSION["DuenoId"];
                 $mascota = new Mascota();
                 $mascota->setId($MascotasDAO->returnIdPlus());
-                $mascota->setIdDueño($idUser);
                 $mascota->setNombre($nombre);
                 $mascota->setRaza($raza);
                 $mascota->setPeso($peso);

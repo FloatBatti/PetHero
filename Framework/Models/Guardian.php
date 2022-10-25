@@ -11,7 +11,8 @@ class Guardian extends Usuario{
     private $horarioFin;
     private $tipoMascota = array();
     private $fotoEspacioURL;
-    private $descripcion;    
+    private $descripcion;
+    private $costo;    
     
     public function getDisponibilidad()
     {
@@ -78,6 +79,16 @@ class Guardian extends Usuario{
     {
         $this->horarioFin = $horarioFin;
 
+    }
+
+    public function getCosto()
+    {
+        return $this->costo;
+    }
+
+    public function setCosto($costo)
+    {
+        $this->costo = $costo;
     }
 }
 
