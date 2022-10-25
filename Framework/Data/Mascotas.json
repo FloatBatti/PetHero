@@ -1,32 +1,22 @@
 [
     {
         "id": 1,
-        "idDue\u00f1o": 5,
-        "nombre": "Lula",
-        "raza": "Dachshund(mini Salchicha)",
-        "peso": "5",
-        "fotoURL": "http:\/\/hotdog.com\/",
-        "planVacURL": "http:\/\/hotdog.com\/",
-        "videoURL": ""
+        "nombre": "Cuyito",
+        "raza": "Bulldog franc\u00e9s",
+        "peso": "20",
+        "tama\u00f1o": "Mediano",
+        "fotoURL": "asdas",
+        "planVacURL": "asd",
+        "videoURL": "asd"
     },
     {
         "id": 2,
-        "idDue\u00f1o": 1,
-        "nombre": "El piqui",
-        "raza": "Beagle",
-        "peso": "10",
-        "fotoURL": "http:\/\/hotdog.com\/",
-        "planVacURL": "http:\/\/hotdog.com\/",
-        "videoURL": ""
-    },
-    {
-        "id": 3,
-        "idDue\u00f1o": 3,
-        "nombre": "Lula",
-        "raza": "Dachshund(mini Salchicha)",
-        "peso": "5",
-        "fotoURL": "http:\/\/hotdog.com\/",
-        "planVacURL": "http:\/\/hotdog.com\/",
-        "videoURL": ""
+        "nombre": "Carlos",
+        "raza": "Bulldog franc\u00e9s",
+        "peso": "20",
+        "tama\u00f1o": "Mediano",
+        "fotoURL": "asdas",
+        "planVacURL": "asd",
+        "videoURL": "asd"
     }
 ]
