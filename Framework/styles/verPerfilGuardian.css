@@ -3,7 +3,7 @@
     width:80%;
     margin:10px auto;
     border-radius: 2%;
-    background-color: rgba(211,211,211, 0.9);
+    background-color: rgba(211,211,211);
     box-shadow: 20px 20px 30px black;
     display:grid;
     grid-template-columns: auto auto;
@@ -68,4 +68,21 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 10px;
+}
+.boton{
+
+    width: 95px;
+    height: 95px;
+   
+}
+.submit{
+    border: none;
+    width: 95px;
+    height: 95px;
+    background-image: url(../img/perro-mail.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    cursor: pointer;
+    color: transparent;
+    background-color: rgba(211,211,211);
 }

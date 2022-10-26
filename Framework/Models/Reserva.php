@@ -10,10 +10,9 @@ class Reserva{
     private $guardianID;
     private $dueñoID;
     private $costo;
-    private $estado;//pendiente de aprobacion/aceptada/rechazada
+    private $estado;//Pendiente o Aprobada. Depende de la aceptacion del guardian y pago del cupon
 
 
- 
     public function getId()
     {
         return $this->id;

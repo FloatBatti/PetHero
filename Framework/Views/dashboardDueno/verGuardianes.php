@@ -54,7 +54,7 @@
                             <div class="col contendor-img">
                                 <div class="img-ex">img</div>
                             </div>
-                            <div class="col nombre-ex"><?php echo $guardian->getNombre() ?></div>
+                            <div class="col nombre-ex"><?php echo $guardian->getUsername() ?></div>
                             <div class="col tipo-ex"><?php
 
                                                         foreach ($guardian->getTipoMascota() as $tipo) {
