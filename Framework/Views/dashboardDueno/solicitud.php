@@ -28,7 +28,7 @@
                     <div class="nombre-perfil">Nombre Guardian</div>
                 </div>
                 <div class="contenedora-fechas">
-                    <form action="<?php echo FRONT_ROOT ?> Reservas/Confirmar" method="POST">
+                    <form action="<?php echo FRONT_ROOT ?>Reservas/Confirmar" method="POST">
                         <div class="contenedora-inputs">
                             <div class="cont">
                                 <div><label for="fechaIn" >Fecha Inicio</label></div>

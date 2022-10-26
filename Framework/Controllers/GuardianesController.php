@@ -46,7 +46,7 @@ class GuardianesController
 
     }
 
-    public function Add($dias, $horarioInicio, $sizes, $costo, $horarioFin, $fotoUrl, $descripcion)
+    public function Add($dias, $horarioInicio,$horarioFin, $sizes, $costo,  $fotoUrl, $descripcion)
     {
 
         if ($_POST) {

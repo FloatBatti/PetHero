@@ -35,7 +35,7 @@ class HomeController{
 
         if(isset($_SESSION["GuardianId"])){
 
-            require_once(VIEWS_PATH."dashboardGuardian/dashGuardian.php");
+            require_once(VIEWS_PATH."dashboardGuardian/********");
 
         }
     }

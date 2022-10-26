@@ -37,7 +37,16 @@
                     <div class="cont texto"><?php echo $guardian->getDescripcion();?></div>
                 </div>
                 <div class="cont solicitud">
-                    <div class="cont"><a href="../Reservas/Iniciar?id=<?php echo $guardian->getId();?>"><img src="../img/perro-mail.png"></a></div>     
+
+                    <div class="boton">
+                        <form action="../Reservas/Iniciar" method="POST">
+                            <input type="submit" class="submit" name="idGuardian" value="<?php echo $guardian->getId();?>">
+                        </form>
+                        <!--- SE CAMBIA POR EL FORM, VER COMO PONER FOTO
+                        <a href="../Reservas/Iniciar?id=<?php //echo $guardian->getId();?>"><img src="../img/perro-mail.png"></a>
+                        ---->
+                    </div>  
+
                 <div class="cont">Enviar solicitud</div></div>
                 <div class="cont solicitud"><div class="cont"><a href=""><img src="../img/reviews.png"></a></div><div class="cont"></div>Reviews</div>
             </div>
@@ -55,7 +64,7 @@
                 <div class="icono favoritos"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListFavoritosView" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Reservas/ListReservasView" ?>">Reservas</a></div>                                       
             </div>
         </aside>
     </div>
