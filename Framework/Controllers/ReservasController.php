@@ -33,17 +33,16 @@ class ReservasController{
 
         $listaMascotas = $this->MascotasDAO->GetAll();
         $listaGuardianes= $this->GuardianesDAO->GetAll();
-
         $listaReservas= $this->ReservasDAO->GetAll();
         
         require_once(VIEWS_PATH. "dashboardDueno/verReservas.php");
     }
     
-    public function Iniciar($id){
+    public function Iniciar($idGuardian){
 
         if(isset($_SESSION["DuenoId"])){
             
-            $_SESSION["GuardianId"] = $id;
+            $_SESSION["GuardianId"] = $idGuardian;
             $DueñosDAO = new DueñosDAO();
             $dueño=new Dueño();
             $dueño=$DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);

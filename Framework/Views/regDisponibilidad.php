@@ -29,9 +29,9 @@
         <div class="domingo" ><input type="checkbox" name="dias[]" value= "Domingo" class="">Domingo</div>
         </div>
     <div class="horarios">
-        <div><label for="horario">Horario Inicio</label><br>
+        <div><label for="horarioInicio">Horario Inicio</label><br>
             <input type="time" name="horarioInicio" class=""><br></div>
-        <div><label for="horario">Horario Fin</label><br>
+        <div><label for="horarioFin">Horario Fin</label><br>
             <input type="time" name="horarioFin" class=""><br></div>   
     </div>
     <div><label for="tamaño">Tamaño de mascotas aceptado</label></div>

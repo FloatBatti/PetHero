@@ -175,49 +175,28 @@
     },
     {
         "id": 8,
-        "username": "ElGrassioso",
-        "dni": "40012032",
-        "nombre": "Manuel",
-        "apellido": "grassi",
-        "correoelectronico": "srcuyo@gmail.com",
+        "username": "Piqui1",
+        "dni": "98765432",
+        "nombre": "Pablin",
+        "apellido": "Finoli",
+        "correoelectronico": "88888@gmail.com",
         "password": "1",
-        "telefono": "0221231239",
-        "direccion": "eeeee eeee eeeehm",
+        "telefono": "4654132",
+        "direccion": "adasd",
         "disponibilidad": [
             "Lunes",
-            "S\u00e1bado"
+            "Viernes",
+            "S\u00e1bado",
+            "Domingo"
         ],
-        "tipoMascota": [],
-        "horarioInicio": "09:00",
-        "horarioFin": "1500",
-        "fotoEspacioURL": "http:\/\/hotdog.com\/",
-        "descripcion": "eeeee eeee eeeehm",
-        "costo": [
-            "Peque\u00f1o"
-        ]
-    },
-    {
-        "id": 9,
-        "username": "pauli",
-        "dni": "29257479",
-        "nombre": "paula",
-        "apellido": "zacconi",
-        "correoelectronico": "pauli@gmail.com",
-        "password": "1",
-        "telefono": "02236339539",
-        "direccion": "tengo una cucha en el living del dpto",
-        "disponibilidad": [
-            "Lunes",
-            "Martes",
-            "Mi\u00e9rcoles"
+        "tipoMascota": [
+            "Mediano",
+            "Grande"
         ],
-        "tipoMascota": [],
-        "horarioInicio": "09:00",
-        "horarioFin": "1500",
-        "fotoEspacioURL": "http:\/\/hotdog.com\/",
-        "descripcion": "tengo una cucha en el living del dpto",
-        "costo": [
-            "Peque\u00f1o"
-        ]
+        "horarioInicio": "13:01",
+        "horarioFin": "14:01",
+        "fotoEspacioURL": "dasd",
+        "descripcion": "adasd",
+        "costo": "300"
     }
 ]
