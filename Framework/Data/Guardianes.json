@@ -45,7 +45,7 @@
         ],
         "horarioInicio": "13:00",
         "horarioFin": "20:00",
-        "fotoEspacioURL": "http://",
+        "fotoEspacioURL": "http:\/\/",
         "descripcion": "Mono ambiente",
         "costo": "200"
     },
@@ -58,7 +58,7 @@
         "correoelectronico": "454554@gmail.com",
         "password": "1",
         "telefono": "2236064588",
-        "direccion": "asd",
+        "direccion": "home sweet home",
         "disponibilidad": [
             "Lunes",
             "Mi\u00e9rcoles",
@@ -71,7 +71,7 @@
         ],
         "horarioInicio": "13:04",
         "horarioFin": "16:04",
-        "fotoEspacioURL": "http://",
+        "fotoEspacioURL": "http:\/\/",
         "descripcion": "home sweet home",
         "costo": "200"
     },
@@ -84,7 +84,7 @@
         "correoelectronico": "finoli@gmail.com",
         "password": "1",
         "telefono": "2236064588",
-        "direccion": "mordor",
+        "direccion": "hacerse el piqui es la ley",
         "disponibilidad": [
             "Lunes",
             "Mi\u00e9rcoles",
@@ -97,7 +97,7 @@
         ],
         "horarioInicio": "13:04",
         "horarioFin": "16:04",
-        "fotoEspacioURL": "http://",
+        "fotoEspacioURL": "http:\/\/",
         "descripcion": "hacerse el piqui es la ley",
         "costo": "200"
     },
@@ -110,7 +110,7 @@
         "correoelectronico": "losanillosdepoder@gmail.com",
         "password": "1",
         "telefono": "10999222",
-        "direccion": "middleearth",
+        "direccion": "Orcos for everyone",
         "disponibilidad": [
             "Lunes"
         ],
@@ -120,7 +120,7 @@
         ],
         "horarioInicio": "00:00",
         "horarioFin": "23:59",
-        "fotoEspacioURL": "http://",
+        "fotoEspacioURL": "http:\/\/",
         "descripcion": "Orcos for everyone",
         "costo": "200"
     },
@@ -133,7 +133,7 @@
         "correoelectronico": "LOTR@gmail.com",
         "password": "1",
         "telefono": "10999222",
-        "direccion": "middleearth",
+        "direccion": "Flechas for everyone",
         "disponibilidad": [
             "Lunes"
         ],
@@ -143,7 +143,7 @@
         ],
         "horarioInicio": "00:00",
         "horarioFin": "23:59",
-        "fotoEspacioURL": "http://",
+        "fotoEspacioURL": "http:\/\/",
         "descripcion": "Flechas for everyone",
         "costo": "200000"
     },
@@ -156,7 +156,7 @@
         "correoelectronico": "aguantenloshumanos@gmail.com",
         "password": "1",
         "telefono": "10999222",
-        "direccion": "middleearth",
+        "direccion": "Espada rota cuchillo de palo",
         "disponibilidad": [
             "Lunes",
             "Mi\u00e9rcoles",
@@ -169,8 +169,55 @@
         ],
         "horarioInicio": "00:00",
         "horarioFin": "23:59",
-        "fotoEspacioURL": "http://",
+        "fotoEspacioURL": "http:\/\/",
         "descripcion": "Espada rota cuchillo de palo",
         "costo": "200"
+    },
+    {
+        "id": 8,
+        "username": "ElGrassioso",
+        "dni": "40012032",
+        "nombre": "Manuel",
+        "apellido": "grassi",
+        "correoelectronico": "srcuyo@gmail.com",
+        "password": "1",
+        "telefono": "0221231239",
+        "direccion": "eeeee eeee eeeehm",
+        "disponibilidad": [
+            "Lunes",
+            "S\u00e1bado"
+        ],
+        "tipoMascota": [],
+        "horarioInicio": "09:00",
+        "horarioFin": "1500",
+        "fotoEspacioURL": "http:\/\/hotdog.com\/",
+        "descripcion": "eeeee eeee eeeehm",
+        "costo": [
+            "Peque\u00f1o"
+        ]
+    },
+    {
+        "id": 9,
+        "username": "pauli",
+        "dni": "29257479",
+        "nombre": "paula",
+        "apellido": "zacconi",
+        "correoelectronico": "pauli@gmail.com",
+        "password": "1",
+        "telefono": "02236339539",
+        "direccion": "tengo una cucha en el living del dpto",
+        "disponibilidad": [
+            "Lunes",
+            "Martes",
+            "Mi\u00e9rcoles"
+        ],
+        "tipoMascota": [],
+        "horarioInicio": "09:00",
+        "horarioFin": "1500",
+        "fotoEspacioURL": "http:\/\/hotdog.com\/",
+        "descripcion": "tengo una cucha en el living del dpto",
+        "costo": [
+            "Peque\u00f1o"
+        ]
     }
 ]
