@@ -12,32 +12,42 @@ use Models\Reserva as Reserva;
 class ReservasController{
     
     private $ReservasDAO;
+    private $GuardianesDAO;
+    private $MascotasDAO;
 
     public function __construct(){
 
         $this->ReservasDAO = new ReservasDAO();
+        $this->GuardianesDAO = new GuardianesDAO();
+        $this->MascotasDAO = new MascotasDAO();
     }
 
     public function Add(){
         $reserva=unserialize($_SESSION["Reserva"]);
         unset($_SESSION["Reserva"]);
         $this->ReservasDAO->Add($reserva);
-        require_once(VIEWS_PATH. "dashboardDueno/dashboardDueno.php");
+        $this->ListReservasView();
+    }
 
-    }
-    public function ListarReservas(){
+    public function ListReservasView(){
+
+        $listaMascotas = $this->MascotasDAO->GetAll();
+        $listaGuardianes= $this->GuardianesDAO->GetAll();
+
+        $listaReservas= $this->ReservasDAO->GetAll();
         
+        require_once(VIEWS_PATH. "dashboardDueno/verReservas.php");
     }
+    
     public function Iniciar($id){
 
         if(isset($_SESSION["DuenoId"])){
             
             $_SESSION["GuardianId"] = $id;
             $DueñosDAO = new DueñosDAO();
-            $MascotasDAO = new MascotasDAO();
             $dueño=new Dueño();
             $dueño=$DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
-            $listaMascotas = $MascotasDAO->GetAll();
+            $listaMascotas = $this->MascotasDAO->GetAll();
             require_once(VIEWS_PATH. "dashboardDueno/solicitud.php");
         } 
     }
@@ -49,8 +59,10 @@ class ReservasController{
 
             if(isset($_SESSION["DuenoId"])){
 
-                $GuardianesDAO = new GuardianesDAO();
-                $guardian = $GuardianesDAO->encontrarGuardian($_SESSION["GuardianId"]);
+
+                $listaMascotas = $this->MascotasDAO->GetAll();
+
+                $guardian = $this->GuardianesDAO->encontrarGuardian($_SESSION["GuardianId"]);
                 unset($_SESSION["GuardianId"]);
                 
                 $reserva = new Reserva();

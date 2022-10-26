@@ -40,10 +40,20 @@
                             </div>
                             <div>
                                 Mascota
-                                <?php echo $reserva->getMascotaID(); ?>
+                                <?php 
+                                    foreach($listaMascotas as $mascota){
+
+                                        if($mascota->getId() == $reserva->getMascotaID()){
+
+                                            echo $mascota->getNombre(); 
+                                        }
+
+                                    }
+                                ?>
                             </div>
                             <div>
-                                <?php echo $reserva->getCosto(); ?>  costo
+                                Costo
+                                <?php echo $reserva->getCosto(); ?>
                             </div>
                             
                             <div class="boton">
