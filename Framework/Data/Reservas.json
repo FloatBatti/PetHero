@@ -1,6 +1,26 @@
 [
     {
         "id": 1,
+
+        "fecha": "2022-10-26 01:10:43",
+        "fechaInicio": "2022-10-28",
+        "fechaFin": "2022-11-05",
+        "mascotaID": 2,
+        "guardianID": 1,
+        "due\u00f1oID": 1,
+        "costo": 1600,
+        "estado": "Pendiente."
+    },
+    {
+        "id": 2,
+        "fecha": "2022-10-26 01:47:36",
+        "fechaInicio": "2022-10-29",
+        "fechaFin": "2022-11-04",
+        "mascotaID": 2,
+        "guardianID": 5,
+        "due\u00f1oID": 1,
+        "costo": 1200,
+
         "fecha": "2022-10-26 01:35:38",
         "fechaInicio": "2022-10-27",
         "fechaFin": "2022-10-30",

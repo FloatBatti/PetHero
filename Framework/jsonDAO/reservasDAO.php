@@ -30,10 +30,10 @@ class ReservasDAO implements InterfaceDAO
 
         $this->listaReservas = array();
 
-        if (file_exists("../Data/Reservas.json")) {
+        if (file_exists("Data/Reservas.json")) {
 
 
-            $jsonContent = file_get_contents("../Data/Reservas.json");
+            $jsonContent = file_get_contents("Data/Reservas.json");
 
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, True) : array();
 
