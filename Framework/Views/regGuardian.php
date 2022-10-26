@@ -13,7 +13,7 @@
   <div class="cabecera">
         <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a></div>
         <div class="guardiantitulo"></div>
-        <div>FAQS</div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
         </div>
         <div class="contenedora-registro">
         
