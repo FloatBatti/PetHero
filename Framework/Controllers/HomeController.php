@@ -24,7 +24,7 @@ class HomeController{
 
         if(isset($_SESSION["DuenoId"])){
 
-            require_once(VIEWS_PATH."dashboardDueno/dashboardDueno.php");
+            require_once(VIEWS_PATH."DashboardDueno/Dashboard.php");
 
         }
         
@@ -103,7 +103,7 @@ class HomeController{
 
     public function Eleccion(){
         
-        require_once(VIEWS_PATH."filtroRegistro.php");
+        require_once(VIEWS_PATH."FiltroRegistro.php");
     }
 }
 ?>

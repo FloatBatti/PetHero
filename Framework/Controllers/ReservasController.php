@@ -35,7 +35,7 @@ class ReservasController{
         $listaGuardianes= $this->GuardianesDAO->GetAll();
         $listaReservas= $this->ReservasDAO->GetAll();
         
-        require_once(VIEWS_PATH. "dashboardDueno/verReservas.php");
+        require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
     }
     
     public function Iniciar($idGuardian){
@@ -47,7 +47,7 @@ class ReservasController{
             $dueño=new Dueño();
             $dueño=$DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
             $listaMascotas = $this->MascotasDAO->GetAll();
-            require_once(VIEWS_PATH. "dashboardDueno/solicitud.php");
+            require_once(VIEWS_PATH. "DashboardDueno/Solicitud.php");
         } 
     }
 
@@ -75,10 +75,10 @@ class ReservasController{
                 
                 $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
                 $reserva->setCosto($costo);
-                $reserva->setEstado("Pendiente.");
+                $reserva->setEstado("Pendiente");
                 
                 $_SESSION["Reserva"] = serialize($reserva);
-                require_once(VIEWS_PATH. "dashboardDueno/confirmarSolicitud.php");
+                require_once(VIEWS_PATH. "DashboardDueno/ConfirmarSolicitud.php");
 
             } 
         }
