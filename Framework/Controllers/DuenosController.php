@@ -18,7 +18,7 @@ class DuenosController{
 
     public function RegisterView(){
 
-        require_once(VIEWS_PATH . "regDueño.php");
+        require_once(VIEWS_PATH . "RegistroDueño.php");
     }
 
     public function EditarPerfil(){
@@ -26,13 +26,13 @@ class DuenosController{
         //agregar logica aca
         if(isset($_SESSION["DuenoId"])){
             $usuario=$this->DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
-            require_once(VIEWS_PATH ."dashboardDueno/editarPerfil.php");  
+            require_once(VIEWS_PATH ."DashboardDueno/EditarPerfil.php");  
         } 
     }
 
     public function RegisterMascotaView(){
 
-        require_once(VIEWS_PATH . "dashboardDueno/registrarMascota.php");
+        require_once(VIEWS_PATH . "DashboardDueno/RegistroMascota.php");
     }
 
     public function ListMascotasView(){
@@ -43,7 +43,7 @@ class DuenosController{
             $listaMascotas = $MascotasDAO->GetAll();
             $usuario=$this->DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
 
-            require_once(VIEWS_PATH."dashboardDueno/verMascotas.php");
+            require_once(VIEWS_PATH."DashboardDueno/Mascotas.php");
 
         }
     }
@@ -55,7 +55,7 @@ class DuenosController{
             $GuardianesDAO = new GuardianesDAO();
             $listaGuardianes = $GuardianesDAO->GetAll();
 
-            require_once(VIEWS_PATH."dashboardDueno/verGuardianes.php");
+            require_once(VIEWS_PATH."DashboardDueno/Guardianes.php");
 
         }
 
@@ -69,7 +69,7 @@ class DuenosController{
             $listaGuardianes = $GuardianesDAO->GetAll();
             //desarrollar logica para q el arreglo q se pasa sea filtrado
             //$listaFavoritos =
-            require_once(VIEWS_PATH."dashboardDueno/verFavoritos.php");
+            require_once(VIEWS_PATH."DashboardDueno/Favoritos.php");
 
         }
 
@@ -149,7 +149,7 @@ class DuenosController{
     
                 $this->DueñosDAO->agregarMascotaById($idUser,$mascota->getId());
     
-                //echo "<script> if(confirm('Mascota agregada con exito')); </script>";
+                echo "<script> if(confirm('Mascota agregada con exito')); </script>";
     
                 $this->ListMascotasView();
             }
