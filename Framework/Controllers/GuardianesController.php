@@ -22,7 +22,7 @@ class GuardianesController
 
             $listaGuardianes = $this->GuardianesDAO->GetAll();
 
-            require_once(VIEWS_PATH."dashboardDueno/verGuardianes.php");
+            require_once(VIEWS_PATH."DashboardDueno/Guardianes.php");
 
         }
     }
@@ -30,13 +30,13 @@ class GuardianesController
     public function FirstRegisterView()
     {
 
-        require_once(VIEWS_PATH . "regGuardian.php");
+        require_once(VIEWS_PATH . "RegistroGuardian.php");
     }
 
     public function SecondRegisterView()
     {
 
-        require_once(VIEWS_PATH . "regDisponibilidad.php");
+        require_once(VIEWS_PATH . "RegistroDisponibilidad.php");
     }
 
     public function finishRegister(){
@@ -122,7 +122,7 @@ class GuardianesController
         if(isset($_SESSION["DuenoId"])){
             $idInt = (int) $id;
             $guardian=$this->GuardianesDAO->encontrarGuardian($idInt);
-            require_once(VIEWS_PATH . "dashboardDueno/verPerfilGuardian.php");
+            require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
         }
     }
 
