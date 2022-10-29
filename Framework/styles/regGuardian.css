@@ -15,28 +15,24 @@ body{
 
 .contenedora-registro{
     align-items: center;
+    justify-content: center;
     width: 80%;
-    height:80%;
-    display: block;
-    justify-content: space-around;
-    flex-direction: column;
+    height: 900px;
     margin: 0 auto;
-    
-    
+      
 }
 form{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
     width: 40%;
-    height: 600px;
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
     background-color: lightgray;
-    opacity: 80%;
     font-size: 20px; 
     box-shadow: 20px 20px 30px black;
 }
-
-
 
 .contenedora-form{
     height:100%;
@@ -81,7 +77,7 @@ input{
     background-color: lightgray;
 }
 .footer-separador{
-    height: 10vh;
+    height: 100px;
     
 }
 footer{

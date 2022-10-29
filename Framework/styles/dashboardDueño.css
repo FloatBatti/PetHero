@@ -20,7 +20,7 @@ body{
     height: 70vh;
     width: 70vw;
     float:right;
-    border-radius: 3%;
+    border-radius: 5px;
     background-color: rgb(90, 135, 103, .9);
     box-shadow: 20px 20px 30px black;
     
@@ -70,11 +70,11 @@ a{
 
 .contenedora-aside{
     font-size: 20px;
-    border-radius: 3%;
+    border-radius: 5px;
     height: 70vh;
     width:25vw;
     color: rgb(12, 3, 37);
-    background-color:rgba(211, 211, 211, 0.8); 
+    background-color: lightgray; 
     box-shadow: 20px 20px 30px black;
     display:grid;
     grid-template-columns: 40% auto;

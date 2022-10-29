@@ -8,16 +8,33 @@
 }
 form{
     width: 60%;
-    height: 80%;
+    height: 90%;
     margin: auto;
     padding: 20px;
-    border-radius: 3%;
+    border-radius: 5px;
     background-color: lightgray;
-    opacity: 80%;
+
     box-shadow: 20px 20px 30px black;
     font-size: 20px;
     
 }
+.TT{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    width: 100%;
+    height: 80  px;
+
+}
+input[type="radio"] {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 1em;
+    outline: none;
+    width: 1em;
+    margin-right: 10px;
+    
+  }
 
 .contenedora-inputs{
     height:100%;
@@ -44,7 +61,11 @@ input{
     *overflow: hidden;
     width: 300px;
     height: 30px;
-    font-size: 20px;
+    font-size: 18px;
+}
+.radio{
+    height: 18px;
+    margin:0 auto;
 }
 
 
