@@ -2,7 +2,7 @@
     height:90%;
     width:80%;
     margin:10px auto;
-    border-radius: 2%;
+    border-radius: 5px;
     background-color: rgba(211,211,211);
     box-shadow: 20px 20px 30px black;
     display:grid;
@@ -12,7 +12,6 @@
     font-size: 20px;
 }
 .cont{
-    /*border: 1px solid black;*/
     align-items: center;
     justify-content: center;
 
@@ -53,7 +52,7 @@
     border: 3px solid rgb(206, 27, 27);
     height: 80%;
     width: 80%;
-    border-radius: 3%;
+    border-radius: 5px;
 }
 .descripcion{
     height: 80%;

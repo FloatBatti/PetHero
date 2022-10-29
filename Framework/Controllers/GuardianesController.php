@@ -27,19 +27,19 @@ class GuardianesController
         }
     }
 
-    public function FirstRegisterView()
+    public function vistaRegistro()
     {
 
         require_once(VIEWS_PATH . "RegistroGuardian.php");
     }
 
-    public function SecondRegisterView()
+    public function RegistrarDisponibilidad()
     {
 
         require_once(VIEWS_PATH . "RegistroDisponibilidad.php");
     }
 
-    public function finishRegister(){
+    public function registroTerminado(){
 
         require_once(VIEWS_PATH . "header.php");
         require_once(VIEWS_PATH . "index.php");
@@ -74,11 +74,11 @@ class GuardianesController
 
             echo "<script> if(confirm('Perfil creado con exito')); </script>";
 
-            $this->finishRegister();
+            $this->registroTerminado();
         }
     }
 
-    public function RegisterUser($username,  $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword)
+    public function Registro($username,  $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword)
     {
 
         if ($_POST) {
@@ -103,18 +103,18 @@ class GuardianesController
 
                     $_SESSION["GuardTemp"] = serialize($guardian);
 
-                    $this->SecondRegisterView();
+                    $this->RegistrarDisponibilidad();
                 } else {
 
                     echo "<script> if(confirm('La contraseña ya existe')); </script>";
 
-                    $this->FirstRegisterView();
+                    $this->vistaRegistro();
                 }
             } else {
 
                 echo "<script> if(confirm('El usuario ya existe')); </script>";
 
-                $this->FirstRegisterView();
+                $this->vistaRegistro();
             }
         }
     }

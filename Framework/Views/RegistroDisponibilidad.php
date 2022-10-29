@@ -17,38 +17,28 @@
 <div class="contenedora">
 
 <form action="<?php echo FRONT_ROOT ?> Guardianes/Add" method="post">
-        
-        <label for="disponibilidad">Disponibilidad</label><br>
-        <div class="disponibilidad">
-        <div><input type="checkbox" name="dias[]" value= "Lunes" class="">Lunes</div>
-        <div><input type="checkbox" name="dias[]" value= "Martes" class="">Martes</div>
-        <div><input type="checkbox" name="dias[]" value= "Miércoles" class="">Miércoles</div>
-        <div><input type="checkbox" name="dias[]" value= "Jueves" class="">Jueves</div>
-        <div><input type="checkbox" name="dias[]" value= "Viernes" class="">Viernes</div>
-        <div><input type="checkbox" name="dias[]" value= "Sábado" class="">Sábado</div>
-        <div class="domingo" ><input type="checkbox" name="dias[]" value= "Domingo" class="">Domingo</div>
+        <div class="ultimos">
+        <label for="disponibilidad"><h4>Disponibilidad</h4></label><br>
+        <div class="ultimos">
+            <div>Desde<input type="date" name="inicio"  class="" min="<?php echo date("Y-m-d");?>"></div>
+            <div>Hasta<input type="date" name="fin"  class="" min="<?php echo date("Y-m-d");?>"></div>
         </div>
-    <div class="horarios">
-        <div><label for="horarioInicio">Horario Inicio</label><br>
-            <input type="time" name="horarioInicio" class=""><br></div>
-        <div><label for="horarioFin">Horario Fin</label><br>
-            <input type="time" name="horarioFin" class=""><br></div>   
-    </div>
-    <div><label for="tamaño">Tamaño de mascotas aceptado</label></div>
-    <div class="tipo">
-          <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="">Pequeños.<br>(hasta 12 kg)</div>
-          <div><input type="checkbox" name="sizes[]" value= "Mediano" class="">Medianos.<br> (hasta 21 kg)</div>
-          <div><input type="checkbox" name="sizes[]" value= "Grande" class="">Grandes.<br> (Mayor a 21 kg)</div>          
-    </div>
+    
+        <div>Tamaño de mascotas aceptado</div>
+        <div class="tipo">
+            <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="">Pequeños.<br>(hasta 12 kg)</div>
+            <div><input type="checkbox" name="sizes[]" value= "Mediano" class="">Medianos.<br> (hasta 21 kg)</div>
+            <div><input type="checkbox" name="sizes[]" value= "Grande" class="">Grandes.<br> (Mayor a 21 kg)</div>          
+        </div>
     <div class="ultimos">
         <div><label for="costo">Precio por dia</label></div>
         <div class="datoregistro">
-            <input type="number" name="costo" class=""><br>
+            <input type="number" name="costo" class="" min="0"><br>
         </div>
         
         <div><label for="fotoEspacio">Foto del espacio(URL)</label></div>
             <div class="datoregistro">    
-                <input type="text" name="fotoUrl" class="" required><br>
+                <input type="url" name="fotoUrl" class="" required><br>
             </div>
             <div><label for="descripcion">Descripcion del espacio ofrecido</label></div>
             <div class="datoregistro">    
@@ -57,7 +47,9 @@
         <div class="boton">
             <button type="submit" class="submit"><a href=""><img src="../img/dogboneEnviar.png"></a></button>
         </div>  
-    </div>        
+    </div> 
+    </div>
+
 </form>
 </div>
 <div class="separador"></div>

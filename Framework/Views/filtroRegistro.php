@@ -50,7 +50,7 @@
         </div>
 
         <div class="contenedora-boton">
-        <a href="<?php echo FRONT_ROOT . "Guardianes/FirstRegisterView"?>"><img src="../img/RegistrarmeResized.png" height="50"></a>
+        <a href="<?php echo FRONT_ROOT . "Guardianes/vistaRegistro"?>"><img src="../img/RegistrarmeResized.png" height="50"></a>
       </div>
 
       </div>

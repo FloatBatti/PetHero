@@ -2,7 +2,6 @@ body{
     background-image: url(../img/patio\ mujer\ hijo\ perro.jpeg);
     background-repeat: no-repeat;
     background-size: 100%;
-    
     align-items: center;
     
 }
@@ -11,13 +10,11 @@ body{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 500px;
+    height: 70%;
     
 }
 .cabecera{
     height: 150px;
-   
-
 }
 .cabecera{
     display:flex;
@@ -28,18 +25,20 @@ body{
 form{
     border-radius: 5px;
     height: 700px;
-    background-color:rgba(211,211,211, .9);
+    background-color: lightgray; 
     padding:50px;
     box-shadow: 20px 20px 30px black;
     display:flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
-    text-align: center;
+    
+    
 }
 .tipo{
-    margin:10px;
+    margin:20px;
     display: flex;
     flex-direction: row;
 }
@@ -70,6 +69,7 @@ input{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 20px;
     
  }
 .domingo{
@@ -86,11 +86,12 @@ input{
 }
 .submit{
     border: none;
-    background-color: rgba(211,211,211, .9);    
+    background-color: lightgray;    
 }
 .separador{
-    height: 20vh;
+    height: 170px;    
 }
+
 
 footer{
     color: aliceblue;

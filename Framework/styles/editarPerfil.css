@@ -11,11 +11,11 @@
 
 }
 form{
-    
+    padding:10px;
     height: 600px;
     background-color: lightgray;
     box-shadow: 20px 20px 30px black;
-    border-radius: 3%;
+    border-radius: 5px;
   
 }   
 .boton{

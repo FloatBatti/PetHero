@@ -26,6 +26,15 @@
                                 <label for="nombre">Nombre</label>
                                     <input type="text" name="nombre" class="" required><br>
                             </div>
+                            <div class="TT">
+                                
+                                <div><label for="perro"><input type="radio" id="perro" class="radio" name="especie">Perro</label></div>
+                                <div><label for="gato"><input type="radio" id="gato" class="radio" name="especie">Gato</label></div>
+                                
+                                
+                                
+                                
+                            </div>
                             <div class="dato-registro">
                                 <label for="raza">Raza</label>
                                     <select name="raza">
@@ -43,9 +52,11 @@
                                         <option value="Sin raza"selected>Sin raza</option>
                                     </select>
                             </div>
-                            <div class="dato-registro">
-                                <label for="peso">Peso en kgs</label>
-                                    <input type="number" name="peso" required><br>
+                            <div class="TT">
+                                <div></div>
+                                    <label for="P"><input type="radio" id="P" name="tamano" class="radio">Pequeño</label>
+                                    <label for="M"><input type="radio" id="M" name="tamano" class="radio">Mediano</label> 
+                                    <label for="G"><input type="radio" id="G" name="tamano" class="radio">Grande</label>
                             </div>
                                 <div class="dato-registro">    
                                 <label for="dni">Foto URL</label>
@@ -61,7 +72,7 @@
                                 <input type="text" name="urlVideo" class=""><br>
                             </div>
                             <div class="boton">
-                                <button type="submit" class="submit"><a href=""><img src="../img/dogbone.png"></a></button>
+                                <button type="submit" class="submit"><a href=""><img src="../img/dogboneEdit.png"></a></button>
                             </div>
                         </div>
                         
@@ -70,19 +81,19 @@
                 
             </div>
         <aside>
-            <div class="contenedora-aside">
+        <div class="contenedora-aside">
                 <div class="icono perfil"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/RegisterMascotaView" ?>">Registrar Mascota</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaRegistroMascota" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListMascotasView" ?>">Mis Mascotas</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaMascotas" ?>">Mis Mascotas</a></div>
                 <div class="icono guardian"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListGuardianesView" ?>">Guardianes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaGuardianes" ?>">Guardianes</a></div>
                 <div class="icono favoritos"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/ListFavoritosView" ?>">Favoritos</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Reservas/ListReservasView" ?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
             </div>
         </aside>
     </div>
@@ -96,4 +107,3 @@
 
   </body>
   </html>
-
