@@ -2,6 +2,7 @@ body{
     background-image: url(../img/jazmin.jpeg);
     background-repeat:no-repeat;
     background-size: 100%;
+    font-family: 'Open Sans', sans-serif;
 }
 .cabecera{
     display:flex;
@@ -83,7 +84,7 @@ a{
 }
 
 .footer-separador{
-    height: 10vh;
+    height: 150px;
     
 }
 
@@ -94,4 +95,5 @@ footer{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    
 }
