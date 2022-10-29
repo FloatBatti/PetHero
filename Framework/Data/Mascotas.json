@@ -48,5 +48,15 @@
         "fotoURL": "dsasd",
         "planVacURL": "asdasd",
         "videoURL": "asdsad"
+    },
+    {
+        "id": 6,
+        "nombre": "Kimura",
+        "raza": "on",
+        "peso": "Sin raza",
+        "tama\u00f1o": "Peque\u00f1o",
+        "fotoURL": "on",
+        "planVacURL": "http:\/\/hotdog.com\/",
+        "videoURL": "http:\/\/hotdog.com\/"
     }
 ]

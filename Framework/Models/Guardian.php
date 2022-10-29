@@ -6,22 +6,29 @@ use Models\Usuario;
 
 class Guardian extends Usuario{
 
-    private $disponibilidad = array();
-    private $horarioIncio;
-    private $horarioFin;
+    
+    private $fechaInicio;
+    private $fechaFin;
     private $tipoMascota = array();
     private $fotoEspacioURL;
     private $descripcion;
     private $costo;    
     
-    public function getDisponibilidad()
-    {
-        return $this->disponibilidad;
-    }
+    public function setInicio($fechaInicio){
 
-    public function pushDisponibilidad($dia)
-    {      
-        array_push( $this->disponibilidad, $dia);
+        $this->fechaInicio=$fechaInicio;
+    }
+    public function getInicio(){
+
+        return $this->fechaInicio;
+    }
+    public function setFin($fechaFin){
+
+        $this->fechaFin=$fechaFin;
+    }
+    public function getFin(){
+
+        $this->fechaFin;
     }
  
     public function getTipoMascota()
@@ -58,28 +65,6 @@ class Guardian extends Usuario{
         return $this;
     }
 
-
-    public function getHorarioIncio()
-    {
-        return $this->horarioIncio;
-    }
-
-    public function setHorarioIncio($horarioIncio)
-    {
-        $this->horarioIncio = $horarioIncio;
-
-    }
-
-    public function getHorarioFin()
-    {
-        return $this->horarioFin;
-    }
-
-    public function setHorarioFin($horarioFin)
-    {
-        $this->horarioFin = $horarioFin;
-
-    }
 
     public function getCosto()
     {

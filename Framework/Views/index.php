@@ -40,12 +40,12 @@
 
               <div class="inputContainer">
                 <input type="text" class="input-log" name="username" placeholder="a">
-                <label for="username" class="label-log">Username</label>
+                <label for="username" class="label-log">Usuario</label>
               </div>
 
               <div class="inputContainer">
                 <input type="password" class="input-log" name="password" placeholder="b">
-                <label for="password" class="label-log">Password</label>
+                <label for="password" class="label-log">Contraseña</label>
               </div>
 
               <div class="d-grid gap-2 col-6 mx-auto">

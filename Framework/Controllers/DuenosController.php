@@ -16,7 +16,7 @@ class DuenosController{
         $this->DueñosDAO = new DueñosDAO();
     }
 
-    public function RegisterView(){
+    public function vistaRegistro(){
 
         require_once(VIEWS_PATH . "RegistroDueño.php");
     }
@@ -30,12 +30,12 @@ class DuenosController{
         } 
     }
 
-    public function RegisterMascotaView(){
+    public function vistaRegistroMascota(){
 
         require_once(VIEWS_PATH . "DashboardDueno/RegistroMascota.php");
     }
 
-    public function ListMascotasView(){
+    public function vistaMascotas(){
 
         if(isset($_SESSION["DuenoId"])){
 
@@ -48,7 +48,7 @@ class DuenosController{
         }
     }
 
-    public function ListGuardianesView(){
+    public function vistaGuardianes(){
 
         if(isset($_SESSION["DuenoId"])){
 
@@ -61,7 +61,7 @@ class DuenosController{
 
 
     }
-    public function ListFavoritosView(){
+    public function vistaFavoritos(){
 
         if(isset($_SESSION["DuenoId"])){
 
@@ -76,7 +76,7 @@ class DuenosController{
 
     }
 
-    public function finishRegister(){
+    public function registroTerminado(){
 
         require_once(VIEWS_PATH . "header.php");
         require_once(VIEWS_PATH . "index.php");
@@ -105,13 +105,13 @@ class DuenosController{
                         $dueño->setPassword($password);
                         $this->DueñosDAO->Add($dueño); 
                         echo "<script> if(confirm('Perfil creado con exito')); </script>";
-                        $this->finishRegister();
+                        $this->registroTerminado();
                     }
                     else{
 
                         echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
         
-                        $this->RegisterView();
+                        $this->vistaRegistro();
                     }
     
                 }
@@ -119,7 +119,7 @@ class DuenosController{
         
                     echo "<script> if(confirm('El usuario ya existe')); </script>";
     
-                    $this->RegisterView();
+                    $this->vistaRegistro();
                 }
     
                 
@@ -151,7 +151,7 @@ class DuenosController{
     
                 echo "<script> if(confirm('Mascota agregada con exito')); </script>";
     
-                $this->ListMascotasView();
+                $this->vistaMascotas();
             }
             else{       
             }
