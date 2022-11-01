@@ -23,7 +23,7 @@ body{
     float:right;
     border-radius: 5px;
     background-color: rgb(90, 135, 103, .9);
-    box-shadow: 20px 20px 30px black;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.76);
     
 }
 
@@ -34,9 +34,13 @@ body{
     font-family: 'Open Sans', sans-serif;
     color:brown;
     border-radius: 3%;
-
-    
+    transition:  .5s ease;
+    overflow: hidden;    
 }
+.opcion:hover{
+    box-shadow: 10px 10px 40px black;
+}
+
 .icono{
     display: flex;
     justify-content:right;
@@ -76,7 +80,7 @@ a{
     width:25vw;
     color: rgb(12, 3, 37);
     background-color: lightgray; 
-    box-shadow: 20px 20px 30px black;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.507);
     display:grid;
     grid-template-columns: 40% auto;
     text-decoration: none;
