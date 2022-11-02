@@ -32,7 +32,7 @@ class HomeController{
 
         if(isset($_SESSION["UserId"])){
 
-            //require_once(VIEWS_PATH."dashboardGuardian/");
+            require_once(VIEWS_PATH."dashboardGuardian/Dashboard.php");
 
         }
     }

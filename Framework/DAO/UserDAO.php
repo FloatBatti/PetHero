@@ -42,7 +42,6 @@ class UserDAO implements IUserDAO{
                 array_push($homeSet, $resultSet[0]["id_usuario"]);
 
                 return $homeSet;
-
             }
 
             return $homeSet;
