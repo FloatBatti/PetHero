@@ -2,18 +2,21 @@
 
 namespace Controllers;
 
-use jsonDAO\GuardianesDAO as GuardianesDAO;
+use DAO\GuardianDAO as GuardianDAO;
 use Models\Guardian as Guardian;
-use Models\Usuario as Usuario;
+use DAO\UserDAO as UserDAO;
 
 class GuardianesController
 {
 
-    private $GuardianesDAO;
+    private $GuardianDAO;
+    private $UserDAO;
+    
 
     public function __construct()
     {
-        $this->GuardianesDAO = new GuardianesDAO();
+        $this->GuardianDAO = new GuardianDAO();
+        $this->UserDAO = new UserDAO();
     }
 
     public function ListToDuenoView(){
@@ -27,9 +30,8 @@ class GuardianesController
         }
     }
 
-    public function vistaRegistro()
+    public function VistaRegistro()
     {
-
         require_once(VIEWS_PATH . "RegistroGuardian.php");
     }
 
@@ -39,14 +41,14 @@ class GuardianesController
         require_once(VIEWS_PATH . "RegistroDisponibilidad.php");
     }
 
-    public function registroTerminado(){
+    public function RegistroTerminado(){
 
         require_once(VIEWS_PATH . "header.php");
         require_once(VIEWS_PATH . "index.php");
 
     }
 
-    public function Add($dias, $horarioInicio,$horarioFin, $sizes, $costo,  $fotoUrl, $descripcion)
+    public function Add($inicio, $fin, $sizes, $costo,  $fotoUrl, $descripcion)
     {
 
         if ($_POST) {
@@ -55,12 +57,8 @@ class GuardianesController
 
             unset($_SESSION["GuardTemp"]);
 
-            foreach ($dias as $dia) {
-                $guardian->pushDisponibilidad($dia);
-            }
-
-            $guardian->setHorarioIncio($horarioInicio);
-            $guardian->setHorarioFin($horarioFin);
+            $guardian->setFechaInicio($inicio);
+            $guardian->setFechaFin($fin);
 
             foreach ($sizes as $size) {
                 $guardian->pushTipoMascota($size);
@@ -70,7 +68,8 @@ class GuardianesController
             $guardian->setFotoEspacioURL($fotoUrl);
             $guardian->setDescripcion($descripcion);
 
-            $this->GuardianesDAO->Add($guardian);
+            $this->UserDAO->Add($guardian, "G");
+            $this->GuardianDAO->Add($guardian);
 
             echo "<script> if(confirm('Perfil creado con exito')); </script>";
 
@@ -78,13 +77,12 @@ class GuardianesController
         }
     }
 
-    public function Registro($username,  $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword)
+    public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword)
     {
 
         if ($_POST) {
 
             $guardian = new Guardian();
-            $guardian->setId($this->GuardianesDAO->returnIdPlus());
             $guardian->setUsername($username);
             $guardian->setDni($dni);
             $guardian->setNombre($nombre);
@@ -94,8 +92,7 @@ class GuardianesController
             $guardian->setDireccion($direccion);
 
 
-            if (!$this->GuardianesDAO->checkGuardian($dni, $mail)) {
-
+            if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
 
                 if ($password == $rePassword) {
 
@@ -104,12 +101,14 @@ class GuardianesController
                     $_SESSION["GuardTemp"] = serialize($guardian);
 
                     $this->RegistrarDisponibilidad();
+
                 } else {
 
                     echo "<script> if(confirm('La contraseña ya existe')); </script>";
 
                     $this->vistaRegistro();
                 }
+
             } else {
 
                 echo "<script> if(confirm('El usuario ya existe')); </script>";
@@ -118,7 +117,8 @@ class GuardianesController
             }
         }
     }
-    public function verPerfilGuardian($id){
+    
+    public function VerPerfilGuardian($id){
         if(isset($_SESSION["DuenoId"])){
             $idInt = (int) $id;
             $guardian=$this->GuardianesDAO->encontrarGuardian($idInt);

@@ -38,7 +38,7 @@
         
         <div><label for="fotoEspacio">Foto del espacio(URL)</label></div>
             <div class="datoregistro">    
-                <input type="url" name="fotoUrl" class="" required><br>
+                <input type="text" name="fotoUrl" class="" required><br>
             </div>
             <div><label for="descripcion">Descripcion del espacio ofrecido</label></div>
             <div class="datoregistro">    

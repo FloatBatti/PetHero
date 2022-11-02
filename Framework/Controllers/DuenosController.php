@@ -1,59 +1,46 @@
 <?php
 namespace Controllers;
 
-use jsonDAO\DueñosDAO as DueñosDAO;
-use jsonDAO\MascotasDAO as MascotasDAO;
-use jsonDAO\GuardianesDAO as GuardianesDAO;
+use DAO\DueñoDAO as DueñoDAO;
 use Models\Dueño as Dueño;
-use Models\Mascota as Mascota;
+use DAO\UserDAO as UserDAO;
+
 
 class DuenosController{
     
-    private $DueñosDAO;
+    private $DueñoDAO;
+    private $UserDAO;
 
     public function __construct(){
 
-        $this->DueñosDAO = new DueñosDAO();
+        $this->DueñoDAO = new DueñoDAO();
+        $this->UserDAO = new UserDAO();
     }
 
-    public function vistaRegistro(){
+    public function VistaRegistro(){
 
         require_once(VIEWS_PATH . "RegistroDueño.php");
     }
 
     public function EditarPerfil(){
 
-        //agregar logica aca
-        if(isset($_SESSION["DuenoId"])){
-            $usuario=$this->DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
-            require_once(VIEWS_PATH ."DashboardDueno/EditarPerfil.php");  
-        } 
+       
     }
 
-    public function vistaRegistroMascota(){
+    public function VistaRegistroMascota(){
 
         require_once(VIEWS_PATH . "DashboardDueno/RegistroMascota.php");
     }
 
-    public function vistaMascotas(){
+    public function VistaMascotas(){
 
-        if(isset($_SESSION["DuenoId"])){
-
-            $MascotasDAO = new MascotasDAO();
-            $listaMascotas = $MascotasDAO->GetAll();
-            $usuario=$this->DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
-
-            require_once(VIEWS_PATH."DashboardDueno/Mascotas.php");
-
-        }
+       
     }
 
-    public function vistaGuardianes(){
+    public function VistaGuardianes(){
 
         if(isset($_SESSION["DuenoId"])){
 
-            $GuardianesDAO = new GuardianesDAO();
-            $listaGuardianes = $GuardianesDAO->GetAll();
 
             require_once(VIEWS_PATH."DashboardDueno/Guardianes.php");
 
@@ -61,14 +48,11 @@ class DuenosController{
 
 
     }
-    public function vistaFavoritos(){
+    public function VistaFavoritos(){
 
         if(isset($_SESSION["DuenoId"])){
 
-            $GuardianesDAO = new GuardianesDAO();
-            $listaGuardianes = $GuardianesDAO->GetAll();
-            //desarrollar logica para q el arreglo q se pasa sea filtrado
-            //$listaFavoritos =
+           
             require_once(VIEWS_PATH."DashboardDueno/Favoritos.php");
 
         }
@@ -76,7 +60,7 @@ class DuenosController{
 
     }
 
-    public function registroTerminado(){
+    public function RegistroTerminado(){
 
         require_once(VIEWS_PATH . "header.php");
         require_once(VIEWS_PATH . "index.php");
@@ -89,7 +73,6 @@ class DuenosController{
             if($_POST){
 
                 $dueño = new Dueño();
-                $dueño->setId($this->DueñosDAO->returnIdPlus());
                 $dueño->setUsername($username);
                 $dueño->setDni($dni);
                 $dueño->setNombre($nombre);
@@ -98,13 +81,17 @@ class DuenosController{
                 $dueño->setTelefono($telefono);
                 $dueño->setDireccion($direccion);
     
-                if(!$this->DueñosDAO->checkDueño($dni, $mail)){
+                if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){
     
                     if($password == $rePassword){
     
                         $dueño->setPassword($password);
-                        $this->DueñosDAO->Add($dueño); 
+
+                        $this->UserDAO->Add($dueño, "D");
+                        $this->DueñoDAO->Add($dueño);
+
                         echo "<script> if(confirm('Perfil creado con exito')); </script>";
+
                         $this->registroTerminado();
                     }
                     else{
@@ -130,7 +117,7 @@ class DuenosController{
         
     public function AddMascota($nombre, $raza, $peso, $fotoUrl, $urlvacunacion, $urlVideo=null){
 
-  
+  /*
             if($_POST){
     
                 $MascotasDAO = new MascotasDAO();
@@ -147,7 +134,7 @@ class DuenosController{
     
                 $MascotasDAO->Add($mascota);
     
-                $this->DueñosDAO->agregarMascotaById($idUser,$mascota->getId());
+                $this->DueñoDAO->agregarMascotaById($idUser,$mascota->getId());
     
                 echo "<script> if(confirm('Mascota agregada con exito')); </script>";
     
@@ -155,7 +142,10 @@ class DuenosController{
             }
             else{       
             }
-        }
+
+            */
+    }
+        
         
            
 }
