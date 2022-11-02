@@ -1,16 +1,14 @@
 <?php
 namespace Controllers;
-use jsonDAO\GuardianesDAO;
-use jsonDAO\DueñosDAO;
+use DAO\UserDAO as UserDAO;
+use \Exception as Exception;
 class HomeController{
     
-    private $DueñosDAO;
-    private $GuardianesDAO;
+    private $UserDAO;
     
     public function __construct()
     {
-        $this->GuardianesDAO = new GuardianesDAO();
-        $this->DueñosDAO = new DueñosDAO();
+        $this->UserDAO = new UserDAO();
     }
     
     public function Index(){
@@ -22,80 +20,55 @@ class HomeController{
 
     public function DashDuenoView(){
 
-        if(isset($_SESSION["DuenoId"])){
+        if(isset($_SESSION["UserId"])){
 
             require_once(VIEWS_PATH."DashboardDueno/Dashboard.php");
 
         }
         
-        
     }
 
     public function DashGuardianView(){
 
-        if(isset($_SESSION["GuardianId"])){
+        if(isset($_SESSION["UserId"])){
 
-            require_once(VIEWS_PATH."dashboardGuardian/********");
+            require_once(VIEWS_PATH."dashboardGuardian/Dashboard.php");
 
         }
     }
 
     public function Login($username, $password){
 
-        $flag = false;
 
         if($_POST){
 
-            if($flag == false){
+            $homeSet= $this->UserDAO->returnLogedUser($username,$password);
 
-                foreach($this->DueñosDAO->GetAll() as $dueño){
+            if($homeSet){
 
-                    if($dueño->getUsername() == $username and $dueño->getPassword() == $password){
-    
-                        $_SESSION["DuenoId"] = $dueño->getId();
+                if($homeSet[0] == "G"){
 
-                        $flag = true;
-    
-                        $this->DashDuenoView();
-    
-                    }
-    
+                    $_SESSION["UserId"] = $homeSet[1];
+                    $this->DashGuardianView();
+                    
                 }
-    
-            }
-            
-
-            if($flag == false){
-
-                foreach($this->GuardianesDAO->GetAll() as $guardian){
-
-                    if($guardian->getUsername() == $username and $guardian->getPassword() == $password){
-    
-                        $_SESSION["GuardianId"] = $guardian->getId();
-
-                        $flag = true;
-    
-                        $this->DashGuardianView();
-    
-                    }
-    
+                else if($homeSet[0] == "D"){
+                
+                    $_SESSION["UserId"] = $homeSet[1];
+                    $this->DashDuenoView();
                 }
 
             }
-
-            if($flag == false){
+            else{
 
                 echo "<script> if(confirm('Usuario no encontrado')); </script>";
-
                 $this->Index();
             }
 
-
-
-        }
-        
+        }  
 
     }
+
     public function LogOut(){
         session_destroy();
         $this->Index();
