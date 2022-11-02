@@ -14,21 +14,21 @@ class Guardian extends Usuario{
     private $descripcion;
     private $costo;    
     
-    public function setInicio($fechaInicio){
+    public function setFechaInicio($fechaInicio){
 
         $this->fechaInicio=$fechaInicio;
     }
-    public function getInicio(){
+    public function getFechaInicio(){
 
         return $this->fechaInicio;
     }
-    public function setFin($fechaFin){
+    public function setFechaFin($fechaFin){
 
-        $this->fechaFin=$fechaFin;
+        $this->fechaFin= $fechaFin;
     }
-    public function getFin(){
+    public function getFechaFin(){
 
-        $this->fechaFin;
+        return $this->fechaFin;
     }
  
     public function getTipoMascota()
