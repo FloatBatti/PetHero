@@ -17,7 +17,7 @@
         </div>
         <div class="contenedora-registro">
         
-        <form action="<?php echo FRONT_ROOT ?>Duenos/Add" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Duenos/Add" method="post" enctype="multipart/form-data">
                 <div class="contenedora-form">
                 <div class="datoregistro">
                         <label for="usuario"></label>
@@ -54,6 +54,10 @@
                 <div class="datoregistro">
                         <label for="re-pass"></label>
                         <input type="password" placeholder="Repetir Contraseña" name="rePassword" class="" required><br>
+                </div>
+                <div class="datoregistro">
+                        <label for="fotoPerfil">Foto Perfil</label>
+                        <input type="file" placeholder="Direccion" name="fotoPerfil" class="" required><br>
                 </div>
 
                         <div class="boton">

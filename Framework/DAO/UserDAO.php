@@ -87,8 +87,8 @@ class UserDAO implements IUserDAO{
 
         try {
             $query = "INSERT INTO 
-                usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, tipo_usuario) 
-                VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :tipo_usuario);";
+                usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, foto_perfil, tipo_usuario) 
+                VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :foto_perfil, :tipo_usuario);";
 
             $parameters["username"] = $user->getUsername();
             $parameters["dni"] = $user->getDni();
@@ -98,6 +98,7 @@ class UserDAO implements IUserDAO{
             $parameters["password"] = $user->getPassword();
             $parameters["telefono"] = $user->getTelefono();
             $parameters["direccion"] = $user->getDireccion();
+            $parameters["foto_perfil"] = $user->getFotoPerfil(); 
             $parameters["tipo_usuario"] = $tipoUsuario;
 
             $this->connection = Connection::GetInstance();

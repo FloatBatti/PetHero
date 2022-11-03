@@ -12,6 +12,7 @@ abstract class Usuario {
     private $password;
     private $telefono;
     private $direccion;
+    private $fotoPerfil;
         
     
     public function getUsername(){
@@ -81,6 +82,17 @@ abstract class Usuario {
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getFotoPerfil(){
+
+        return $this->fotoPerfil;
+    }
+
+    
+    public function setFotoPerfil($urlFoto){
+
+        $this->fotoPerfil = $urlFoto;
     }
 }
 ?>
