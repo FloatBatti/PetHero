@@ -74,22 +74,24 @@ class DuenosController{
                 $dueño->setTelefono($telefono);
                 $dueño->setDireccion($direccion);
 
-                $nameImg = $_FILES["fotoPerfil"]["name"];
-                $temp_name = $_FILES["fotoPerfil"]["tmp_name"];
-                $error = $_FILES["fotoPerfil"]["error"];
-                $size = $_FILES["fotoPerfil"]["size"];
-                $type = $_FILES["fotoPerfil"]["type"];
+                
+                $nameImg = $fotoPerfil["name"]. "-". $dueño->getUsername();
+                $temp_name = $fotoPerfil["tmp_name"];
+                $error = $fotoPerfil["error"];
+                $size = $fotoPerfil["size"];
+                $type = $fotoPerfil["type"];
 
+                
                 if(!$error){
 
-                    $rutaImagen = IMG_PATH . $nameImg;
+                    $rutaImagen = VIEWS_PATH. "FotoUsuarios/". $nameImg;
                     move_uploaded_file($temp_name, $rutaImagen);
 
                     $dueño->setFotoPerfil($nameImg);
 
                 }
 
-
+                
     
                 if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){
     

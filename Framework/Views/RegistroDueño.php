@@ -57,7 +57,7 @@
                 </div>
                 <div class="datoregistro">
                         <label for="fotoPerfil">Foto Perfil</label>
-                        <input type="file" placeholder="Direccion" name="fotoPerfil" class="" required><br>
+                        <input type="file" name="fotoPerfil" class=""><br>
                 </div>
 
                         <div class="boton">

@@ -45,12 +45,20 @@
             if($_FILES)
             {
                 unset($this->parameters["button"]);
+
+                foreach($_FILES as $key => $file)
+                {
+                    $this->parameters[$key] = $file;
+                }
                 
+                /*
                 foreach($_FILES as $file)
                 {
                     array_push($this->parameters, $file);
                 }
+                */
             }
+
         }
 
         private static function getMethodRequest()

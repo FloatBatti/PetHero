@@ -77,7 +77,7 @@ class GuardianesController
         }
     }
 
-    public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword)
+    public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
     {
 
         if ($_POST) {
@@ -90,6 +90,24 @@ class GuardianesController
             $guardian->setCorreoelectronico($mail);
             $guardian->setTelefono($telefono);
             $guardian->setDireccion($direccion);
+
+            $nameImg = $fotoPerfil["name"]. "-". $guardian->getUsername();
+            $temp_name = $fotoPerfil["tmp_name"];
+            $error = $fotoPerfil["error"];
+            $size = $fotoPerfil["size"];
+            $type = $fotoPerfil["type"];
+
+
+            
+            if(!$error){
+
+                $rutaImagen = VIEWS_PATH. "FotoUsuarios/". $nameImg;
+                move_uploaded_file($temp_name, $rutaImagen);
+
+                $guardian->setFotoPerfil($nameImg);
+
+            }
+
 
 
             if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
