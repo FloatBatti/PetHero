@@ -30,9 +30,7 @@
                                 
                                 <div><label for="perro"><input type="radio" id="perro" class="radio" name="especie">Perro</label></div>
                                 <div><label for="gato"><input type="radio" id="gato" class="radio" name="especie">Gato</label></div>
-                                
-                                
-                                
+                                         
                                 
                             </div>
                             <div class="dato-registro">
@@ -55,12 +53,12 @@
                             <div class="TT">
                                 <div></div>
                                     <label for="P"><input type="radio" id="P" name="tamano" class="radio">Pequeño</label>
-                                    <label for="M"><input type="radio" id="M" name="tamano" class="radio">Mediano</label> 
+                                    <label for="M"><input type="radio" id="M" name="tamano" class="radio" selected >Mediano</label> 
                                     <label for="G"><input type="radio" id="G" name="tamano" class="radio">Grande</label>
                             </div>
                                 <div class="dato-registro">    
-                                <label for="dni">Foto URL</label>
-                                    <input type="text" name="fotoUrl" class="" required><br>
+                                <label for="fotoUrl">Foto URL</label>
+                                    <input type="file" name="fotoUrl" class="" required><br>
                             </div>
                                 <div class="dato-registro">
                                     <label for="vacunacion">Foto Plan de Vacunacion</label>
