@@ -3,11 +3,10 @@ namespace DAO;
 
 use DAO\Connection;
 
-use DAO\IUserDAO as IUserDAO;
 use Models\Usuario as Usuario;
 use Exception;
 
-class UserDAO implements IUserDAO{
+class UserDAO{
     
     private $connection;
 

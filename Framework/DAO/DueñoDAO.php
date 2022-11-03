@@ -3,11 +3,11 @@ namespace DAO;
 
 use DAO\Connection;
 use Models\Dueño as Dueño;
-use DAO\IDueñoDAO as IDueñoDAO;
+use DAO\InterfaceDAO as InterfaceDAO;
 use DAO\UserDAO as UserDAO;
 use Exception;
 
-class DueñoDAO implements IDueñoDAO{
+class DueñoDAO implements InterfaceDAO{
     
     private $connection;
 
@@ -90,7 +90,7 @@ class DueñoDAO implements IDueñoDAO{
         }
     }
     
-    public function Add(Dueño $dueño){
+    public function Add($dueño){
 
         try {
 

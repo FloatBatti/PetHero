@@ -91,7 +91,7 @@ class GuardianesController
             $guardian->setTelefono($telefono);
             $guardian->setDireccion($direccion);
 
-            $nameImg = $fotoPerfil["name"]. "-". $guardian->getUsername();
+            $nameImg = $guardian->getUsername() ."-". $fotoPerfil["name"];
             $temp_name = $fotoPerfil["tmp_name"];
             $error = $fotoPerfil["error"];
             $size = $fotoPerfil["size"];

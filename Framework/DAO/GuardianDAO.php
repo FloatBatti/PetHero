@@ -5,10 +5,10 @@ namespace DAO;
 use DAO\Connection;
 use Models\Guardian as Guardian;
 use Models\Usuario as Usuario;
-use DAO\IGuardianDAO as IGuardianDAO;
+use DAO\InterfaceDAO as InterfaceDAO;
 use \Exception as Exception;
 
-class GuardianDAO implements IGuardianDAO
+class GuardianDAO implements InterfaceDAO
 {
 
     private $connection;
