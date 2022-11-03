@@ -27,7 +27,7 @@
                 <div class="icono perfil"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaRegistroMascota" ?>">Registrar Mascota</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Mascotas/VistaRegistroMascota" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaMascotas" ?>">Mis Mascotas</a></div>
                 <div class="icono guardian"></div>
