@@ -112,6 +112,7 @@ class GuardianDAO implements InterfaceDAO
         //Recorrio cada columna del resultSet, osea, del registro devuelto
         foreach($resultSet as $reg){
 
+            $guardian->setId($usuarioId);
             $guardian->setUsername($reg["username"]);
             $guardian->setDni($reg["dni"]);
             $guardian->setNombre($reg["nombre"]);

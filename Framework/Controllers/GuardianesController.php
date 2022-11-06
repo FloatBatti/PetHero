@@ -101,7 +101,7 @@ class GuardianesController
         
         if(!$error){
 
-            $rutaImagen = VIEWS_PATH. "FotoUsuarios/". $nameImg;
+            $rutaImagen = FRONT_ROOT. "assets/FotosUsuarios/". $nameImg;
             move_uploaded_file($temp_name, $rutaImagen);
 
             $guardian->setFotoPerfil($nameImg);
