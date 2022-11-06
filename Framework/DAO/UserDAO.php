@@ -23,6 +23,7 @@ class UserDAO{
         try {
 
             $guardianDAO = new GuardianDAO();
+            $dueñoDAO = new DueñoDAO();
 
             $query = "SELECT 
             u.id_usuario, u.tipo_usuario
@@ -45,12 +46,12 @@ class UserDAO{
             //Si el tipo de usuario es G llamamos a la funcion que nos retorna el guardian
             if($resultSet[0]["tipo_usuario"] == "G"){
 
-                $usuario = $guardianDAO->devolverGuardianPorId($resultSet[0]["id_usuario"]);
+                return $usuario = $guardianDAO->devolverGuardianPorId($resultSet[0]["id_usuario"]);
             }
             //Si el tipo de usuario es D llamamos a la funcion que nos retorna el dueño
             else if($resultSet[0]["tipo_usuario"] == "D"){
 
-                //$usuario = $this->devolverDueñoPorId($resultSet[0]["id_usuario"]);
+                return $usuario = $dueñoDAO->devolverDueñoPorId($resultSet[0]["id_usuario"]);
             }
             
             return $usuario; //Retorna null si no existe o devuelve el objeto en caso de existir
@@ -121,7 +122,6 @@ class UserDAO{
             throw $ex;
         }
     }
-
     
     public function AddDueño(Usuario $dueño)
     {

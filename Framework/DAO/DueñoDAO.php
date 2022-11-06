@@ -126,6 +126,7 @@ class DueñoDAO implements InterfaceDAO{
         //Recorrio cada columna del resultSet, osea, del registro devuelto
         foreach($resultSet as $reg){
 
+            $dueño->setId($usuarioId);
             $dueño->setUsername($reg["username"]);
             $dueño->setDni($reg["dni"]);
             $dueño->setNombre($reg["nombre"]);

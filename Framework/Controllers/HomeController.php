@@ -41,20 +41,28 @@ class HomeController{
 
         $usuario = $this->UserDAO->retornarUsuarioLogueado($username,$password);
 
+        if($usuario){
 
-        switch($usuario->getTipoUsuario()){
+            switch($usuario->getTipoUsuario()){
 
-            case "G":$_SESSION["UserId"] = $usuario->getId();
-            $this->DashGuardianView();
-            break;
+                case "G":
+                $_SESSION["UserId"] = $usuario->getId();
+                $this->DashGuardianView();
+                break;
+    
+                case "D":
+                $_SESSION["UserId"] = $usuario->getId();
+                $this->DashDuenoView();
+                break;
+            }
 
-            case "D":$_SESSION["UserId"] = $usuario->getId();
-            $this->DashDuenoView();
-            break;
-
-            default:
-            $this->Index();
         }
+        else{
+            //Agregar la logica de la alterta
+            header("location: ../Home");
+        }
+
+        
         
     }
 

@@ -4,61 +4,52 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mis Mascotas</title>
+    <title>Calificar</title>
 
+    <link href="../../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../../styles/calificacion.css" rel="stylesheet">
     
 
-    <!-- BOOTSTRAP CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../styles/verMascota.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
-    
     <div class="contenedora-general">
         <div class="contenedora-section">
-            <div class="drop-Mascota">
-                <div class="header-Mascotas"><img src="../assets/img/tituloMascotas.png"></div>
-
-                <div class="conteiner-list">
-
-                    <?php foreach ($listaMascotas as $mascota) {
-
-                        foreach($usuario->getMascotas() as $mascotaId){
-
-                            if ($mascota->getId() == $mascotaId) {
-                    ?>
-
-                            <div class="row mascotita">
-                                <div class="col contendor-img">
-                                    <div class="img-Mascota"></div>
-                                </div>
-                                <div class="col nombre"><?php
-                                                        echo $mascota->getNombre() ?></div>
-                                <div class="col editar"><a href=""><img src="../assets/img/edit.png"></a></div>
-                                <div class="col borrar"><a href=""><img src="../assets/img/remove.png"></a></div>
-                            </div>
-
-                        <?php } ?>
-                    <?php } ?>
-                    <?php } ?>
-
+            <div class="contenedora-calificacion">
+                <div class="datos-reserva">
+                    <div class="dato"><div>guardian</div></div><hr>
+                    <div class="fechas"><div >Desde fecha<br>10/10/2022</div><div >Hasta fecha<br>12/10/2022</div></div><hr>
+                    <div class="dato"><div>mascota</div></div>
+                </div>
+                <div class="contenedora-form">
+                    <form action="" method="POST">
+                        Valoracion 
+                        <div class="estrellas">
+                            
+                            <div class=""><input type="number" name="estrellas" min="1" max="5" placeholder="5" required></div>
+                            <div><img src="../../img/allstars.png" height="100"></div>
+                        </div>
+                        <div class="comentario">
+                            <div>Agregue un comentario de su experiencia con el guardian.</div>
+                            <textarea name="comentario" class="caja" maxlength="50" placeholder="max 50 caracteres" size="50" required></textarea> 
+                        </div>
+                        <div class="boton">
+                            <button type="submit" class="submit"><img src="../../img/dogboneEnviar.png">
+                        </div>
+                        
+                    </form>
                 </div>
 
-
-
-
             </div>
+
         </div>
         <aside>
         <div class="contenedora-aside">
@@ -75,7 +66,7 @@
                 <div class="icono reservas"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>
                 <div class="icono mensajes"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                        
             </div>
         </aside>
     </div>

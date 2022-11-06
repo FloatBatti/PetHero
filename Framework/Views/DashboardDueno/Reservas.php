@@ -19,7 +19,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -30,13 +30,7 @@
                 </form>
                 <div class="row encabezado-row">
                     <div class="col ">Guardian</div>
-                    <div class="col ">Fecha inicio</div>
-                    <div class="col ">Fecha Fin</div> 
-                    <div class="col ">Mascota</div>
-                    <div class="col ">Costo</div>
-                    <div class="col ">Estado</div>
-                    <div class="col ">Cancelar</div>
-
+                   
                 </div>
                 <div class="scrolleable">
 
@@ -70,7 +64,7 @@
                             </div>
                             <div class="col"><?php echo $reserva->getCosto(); ?></div>
                             <div class="col"><?php echo $reserva->getEstado(); ?></div>
-                            <div class="col"><a href=""><img src="../img/remove.png" height="45"></a></div>
+                            <div class="col"><a href=""><img src="../assets/img/remove.png" height="45"></a></div>
                         </div>
 
                     <?php } ?>
@@ -91,7 +85,9 @@
                 <div class="icono favoritos"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>
+                <div class="icono mensajes"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                         
             </div>
     </aside>
     </div>
