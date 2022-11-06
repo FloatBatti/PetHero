@@ -36,11 +36,6 @@ class Guardian extends Usuario{
         return $this->tipoMascota;
     }
 
-    public function pushTipoMascota($tipoMascota)
-    {
-        array_push($this->tipoMascota, $tipoMascota);
-    }
-
     public function getFotoEspacioURL()
     {
         return $this->fotoEspacioURL;
@@ -65,7 +60,6 @@ class Guardian extends Usuario{
         return $this;
     }
 
-
     public function getCosto()
     {
         return $this->costo;
@@ -74,6 +68,16 @@ class Guardian extends Usuario{
     public function setCosto($costo)
     {
         $this->costo = $costo;
+    }
+
+    public function setTipoMascota($tipoMascota)
+    {
+        $this->tipoMascota = $tipoMascota;
+    }
+
+    public function pushTipoMascota($tamaño){
+
+        array_push($this->tipoMascota, $tamaño);
     }
 }
 

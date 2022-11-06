@@ -39,38 +39,28 @@ class HomeController{
 
     public function Login($username, $password){
 
+        $usuario = $this->UserDAO->retornarUsuarioLogueado($username,$password);
 
-        if($_POST){
 
-            $homeSet= $this->UserDAO->returnLogedUser($username,$password);
+        switch($usuario->getTipoUsuario()){
 
-            if($homeSet){
+            case "G":$_SESSION["UserId"] = $usuario->getId();
+            $this->DashGuardianView();
+            break;
 
-                if($homeSet[0] == "G"){
+            case "D":$_SESSION["UserId"] = $usuario->getId();
+            $this->DashDuenoView();
+            break;
 
-                    $_SESSION["UserId"] = $homeSet[1];
-                    $this->DashGuardianView();
-                    
-                }
-                else if($homeSet[0] == "D"){
-                
-                    $_SESSION["UserId"] = $homeSet[1];
-                    $this->DashDuenoView();
-                }
-
-            }
-            else{
-
-                echo "<script> if(confirm('Usuario no encontrado')); </script>";
-                $this->Index();
-            }
-
-        }  
-
+            default:
+            $this->Index();
+        }
+        
     }
 
     public function LogOut(){
-        session_destroy();
+        
+        unset($_SESSION["UserId"]);
         $this->Index();
     }
 

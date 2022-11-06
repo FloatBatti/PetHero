@@ -6,7 +6,6 @@ define("FRONT_ROOT","/TP/PetHero/Framework/");
 define("VIEWS_PATH","Views/");
 define("CSS_PATH",FRONT_ROOT.VIEWS_PATH .".css/");
 define("JS_PATH",FRONT_ROOT.VIEWS_PATH . "js/");
-deFine("IMG_PATH", FRONT_ROOT.VIEWS_PATH. "FotoUsuarios/");
 
 define("DB_HOST","localhost");
 define("DB_NAME","PETHERO");
