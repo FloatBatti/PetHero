@@ -52,7 +52,7 @@
                             <input type="text" name="descripcion" class="descripcion" required><br>
                         </div>
                         <div class="boton">
-                            <button type="submit" class="submit"><a href=""><img src="../../img/dogboneEnviar.png"></a></button>
+                            <button type="submit" class="submit"><a href=""><img src="../../img/dogboneEnviar.png" alt="Enviar"></a></button>
                         </div>  
                     </div>        
                 </form>
@@ -63,13 +63,15 @@
         <aside>
             <div class="contenedora-aside">
                 <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "?>">Editar Perfil</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "?>">Establecer disponibilidad</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Establecer disponibilidad</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "?>">Solicitudes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Solicitudes</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Reservas</a></div>
+                <div class="icono mensajes"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Mensajes</a></div>                                         
             </div>
         </aside>
     </div>

@@ -71,7 +71,7 @@ class GuardianesController
 
         if($this->UserDAO->AddGuardian($guardian)){
 
-            header("location: ../Views/index.php");
+            header("location: ../Home");
         }
         
         throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
