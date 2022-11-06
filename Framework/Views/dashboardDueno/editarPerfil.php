@@ -14,7 +14,7 @@
     </head>
   <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -64,7 +64,7 @@
                         </div>
                         
                         <div class="boton">
-                            <button type="submit" class="submit"><a href=""><img src="../img/dogboneEdit.png"></a></button>
+                            <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEdit.png"></a></button>
                         </div>
                   
                     </div>
@@ -85,7 +85,9 @@
                 <div class="icono favoritos"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>
+                <div class="icono mensajes"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                       
             </div>
         </aside>
     </div>

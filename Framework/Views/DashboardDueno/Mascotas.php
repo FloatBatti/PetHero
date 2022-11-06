@@ -20,7 +20,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -28,7 +28,7 @@
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="drop-Mascota">
-                <div class="header-Mascotas"><img src="../img/tituloMascotas.png"></div>
+                <div class="header-Mascotas"><img src="../assets/img/tituloMascotas.png"></div>
 
                 <div class="conteiner-list">
 
@@ -45,8 +45,8 @@
                                 </div>
                                 <div class="col nombre"><?php
                                                         echo $mascota->getNombre() ?></div>
-                                <div class="col editar"><a href=""><img src="../img/edit.png"></a></div>
-                                <div class="col borrar"><a href=""><img src="../img/remove.png"></a></div>
+                                <div class="col editar"><a href=""><img src="../assets/img/edit.png"></a></div>
+                                <div class="col borrar"><a href=""><img src="../assets/img/remove.png"></a></div>
                             </div>
 
                         <?php } ?>
@@ -73,7 +73,9 @@
                 <div class="icono favoritos"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>
+                <div class="icono mensajes"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                       
             </div>
         </aside>
     </div>

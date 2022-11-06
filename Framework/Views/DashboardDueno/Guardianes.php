@@ -19,7 +19,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -32,7 +32,7 @@
                     <div><input type="date"></div>
                     <div>Fecha Fin</div>
                     <div><input type="date"></div>
-                    <div><a href=""><img src="../img/lupa.png"></a></div>
+                    <div><a href=""><img src="../assets/img/lupa.png"></a></div>
                     <div></div>
                 </div>
                 </form>
@@ -65,9 +65,9 @@
                                                         ?></div>
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
                             <div class="col calificacion-ex">***__</div>
-                        <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../img/ojo_perfil.png" height="50"></a></div>
+                        <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/ojo_perfil.png" height="50"></a></div>
                         
-                            <div class="col favoritos-ex"><a href=""><img src="../img/estrella_fav.png" height="50"></a></div>
+                            <div class="col favoritos-ex"><a href=""><img src="../assets/img/estrella_fav.png" height="50"></a></div>
                         </div>
 
                     <?php } ?>
@@ -90,7 +90,9 @@
                 <div class="icono favoritos"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>
+                <div class="icono mensajes"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                       
             </div>
         </aside>
     </div>

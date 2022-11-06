@@ -13,7 +13,7 @@
     </head>
   <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -36,18 +36,8 @@
                             <div class="dato-registro">
                                 <label for="raza">Raza</label>
                                     <select name="raza">
-                                        <option value="Caniche">Caniche</option>
-                                        <option value="Pequines" >Pequines</option>
-                                        <option value="Labrador retriever">Labrador retriever</option>
-                                        <option value="Bulldog francés">Bulldog francés</option>
-                                        <option value="Golden retriever">Golden retriever</option>
-                                        <option value="Pastor alemán">Pastor alemán</option>
-                                        <option value="Bulldog">Bulldog</option>
-                                        <option value="Beagle">Beagle</option>
-                                        <option value="Rottweiler">Rottweiler</option>
-                                        <option value="Braco alemán de pelo corto">Braco alemán de pelo corto</option>
-                                        <option value="Dachshund(mini Salchicha)">Dachshund(mini Salchicha)</option>
-                                        <option value="Sin raza"selected>Sin raza</option>
+                                        <option value="Caniche" selected>Siames</option>
+                                    
                                     </select>
                             </div>
                             <div class="TT">
@@ -70,7 +60,7 @@
                                 <input type="text" name="urlVideo" class=""><br>
                             </div>
                             <div class="boton">
-                                <button type="submit" class="submit"><a href=""><img src="../img/dogboneEdit.png"></a></button>
+                                <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEdit.png"></a></button>
                             </div>
                         </div>
                         
@@ -91,7 +81,9 @@
                 <div class="icono favoritos"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>
+                <div class="icono mensajes"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                        
             </div>
         </aside>
     </div>

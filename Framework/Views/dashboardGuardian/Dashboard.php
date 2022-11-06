@@ -31,7 +31,9 @@
                 <div class="icono vermascotas"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Solicitudes</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Reservas</a></div>                                       
+                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Reservas</a></div>
+                <div class="icono mensajes"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                         
             </div>
         </aside>
     </div>
