@@ -4,6 +4,8 @@ namespace Controllers;
 use DAO\DueñoDAO as DueñoDAO;
 use Models\Dueño as Dueño;
 use DAO\UserDAO as UserDAO;
+use Exception;
+
 
 
 class DuenosController{
@@ -97,13 +99,13 @@ class DuenosController{
                     if($password == $rePassword){
     
                         $dueño->setPassword($password);
-                        
-                        $this->UserDAO->Add($dueño, "D");
-                        $this->DueñoDAO->Add($dueño);
 
-                        echo "<script> if(confirm('Perfil creado con exito')); </script>";
+                        if($this->UserDAO->AddDueño($dueño)){
 
-                        $this->registroTerminado();
+                            header("location: ../Home");
+                        }
+
+                        throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
                     }
                     else{
 

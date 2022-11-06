@@ -29,7 +29,7 @@ body{
 
 .opcion{
     display: flex;
-    justify-content:left;
+    justify-content:center;
     align-items: center;
     font-family: 'Open Sans', sans-serif;
     color:brown;
@@ -39,6 +39,7 @@ body{
 }
 .opcion:hover{
     box-shadow: 10px 10px 40px black;
+    color: blue;
 }
 
 .icono{
@@ -67,6 +68,9 @@ body{
 .reservas{
     background-image: url(../img/reservas.png);
 }
+.mensajes{
+    background-image: url(../img/mensajes.png);
+}   
 a{
     text-decoration: none;
     color:brown;   
