@@ -17,7 +17,7 @@
         </div>
         <div class="contenedora-registro">
         
-        <form action="<?php echo FRONT_ROOT ?>Guardianes/Registro" method="post">
+        <form action="<?php echo FRONT_ROOT ?>Guardianes/Registro" method="post" enctype="multipart/form-data">
                 <div class="contenedora-form">
                 <div class="datoregistro">
                         <label for="usuario">Nombre de Usuario</label>
@@ -55,7 +55,10 @@
                         <label for="re-pass">Repetir Contraseña</label>
                         <input type="password" placeholder="" name="rePassword" class="" required><br>
                 </div>
-
+                <div class="datoregistro">
+                        <label for="fotoPerfil">Foto Perfil</label>
+                        <input type="file" name="fotoPerfil" class=""><br>
+                </div>
                         <div class="boton">
                                 <button type="submit" class="submit"><a href=""><img src="../img/choque.png"></a></button>
                          </div>

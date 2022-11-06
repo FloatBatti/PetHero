@@ -55,9 +55,10 @@ class DuenosController{
 
     public function RegistroTerminado(){
 
-        require_once(VIEWS_PATH . "header.php");
-        require_once(VIEWS_PATH . "index.php");
+        
+        //require_once(VIEWS_PATH . "index.php");
 
+        header("Location: ../Views/index.php");
     }
 
     public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion,$password, $rePassword, $fotoPerfil)
@@ -74,29 +75,29 @@ class DuenosController{
                 $dueño->setTelefono($telefono);
                 $dueño->setDireccion($direccion);
 
-                $nameImg = $_FILES["fotoPerfil"]["name"];
-                $temp_name = $_FILES["fotoPerfil"]["tmp_name"];
-                $error = $_FILES["fotoPerfil"]["error"];
-                $size = $_FILES["fotoPerfil"]["size"];
-                $type = $_FILES["fotoPerfil"]["type"];
+                
+                $nameImg = $dueño->getUsername()."-".$fotoPerfil["name"];
+                $temp_name = $fotoPerfil["tmp_name"];
+                $error = $fotoPerfil["error"];
+                $size = $fotoPerfil["size"];
+                $type = $fotoPerfil["type"];
 
+                
                 if(!$error){
 
-                    $rutaImagen = IMG_PATH . $nameImg;
+                    $rutaImagen = VIEWS_PATH. "FotoUsuarios/". $nameImg;
                     move_uploaded_file($temp_name, $rutaImagen);
 
                     $dueño->setFotoPerfil($nameImg);
 
                 }
 
-
-    
-                if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){
+                if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
     
                     if($password == $rePassword){
     
                         $dueño->setPassword($password);
-
+                        
                         $this->UserDAO->Add($dueño, "D");
                         $this->DueñoDAO->Add($dueño);
 

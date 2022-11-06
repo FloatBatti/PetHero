@@ -3,11 +3,11 @@ namespace DAO;
 
 use DAO\Connection;
 use Models\Dueño as Dueño;
-use DAO\IDueñoDAO as IDueñoDAO;
+use DAO\InterfaceDAO as InterfaceDAO;
 use DAO\UserDAO as UserDAO;
 use Exception;
 
-class DueñoDAO implements IDueñoDAO{
+class DueñoDAO implements InterfaceDAO{
     
     private $connection;
 
@@ -90,7 +90,7 @@ class DueñoDAO implements IDueñoDAO{
         }
     }
     
-    public function Add(Dueño $dueño){
+    public function Add($dueño){
 
         try {
 
@@ -100,13 +100,46 @@ class DueñoDAO implements IDueñoDAO{
 
             $this->connection = Connection::GetInstance();
 
-            $this->connection->ExecuteNonQuery($query);
-
-
+            return $this->connection->ExecuteNonQuery($query);
             
         } catch (Exception $ex) {
             throw $ex;
         }
+
+    }
+
+    public function devolverDueñoPorId($usuarioId){
+
+        $dueño = new Dueño();
+
+        $query = "SELECT 
+        * 
+        FROM usuarios u 
+        inner join dueños d 
+        on u.id_usuario = d.id_usuario
+        where d.id_usuario = " . $usuarioId . ";";
+
+        $this->connection = Connection::GetInstance();
+
+        $resultSet = $this->connection->Execute($query);
+
+        //Recorrio cada columna del resultSet, osea, del registro devuelto
+        foreach($resultSet as $reg){
+
+            $dueño->setUsername($reg["username"]);
+            $dueño->setDni($reg["dni"]);
+            $dueño->setNombre($reg["nombre"]);
+            $dueño->setApellido($reg["apellido"]);
+            $dueño->setCorreoelectronico($reg["correo"]);
+            $dueño->setPassword($reg["password"]);
+            $dueño->setTelefono($reg["telefono"]);
+            $dueño->setDireccion($reg["direccion"]);
+            $dueño->setFotoPerfil($reg["foto_perfil"]);
+            $dueño->setTipoUsuario($reg["tipo_usuario"]);
+              
+        }
+        
+        return $dueño;
 
     }
 
