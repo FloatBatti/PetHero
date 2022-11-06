@@ -1,5 +1,5 @@
 body{
-    background-image: url(../img/jazmin.jpeg);
+    background-image: url(../assets/img/jazmin.jpeg);
     background-repeat:no-repeat;
     background-size: 100%;
     font-family: 'Open Sans', sans-serif;
@@ -51,25 +51,25 @@ body{
       
 }
 .mascota{
-    background-image: url(../img/collar.png);
+    background-image: url(../assets/img/collar.png);
 }
 .perfil{
-    background-image: url(../img/editarPerfil.png);
+    background-image: url(../assets/img/editarPerfil.png);
 }
 .vermascotas{
-    background-image: url(../img/mascotascolor.png);
+    background-image: url(../assets/img/mascotascolor.png);
 }
 .favoritos{
-    background-image: url(../img/favoritos.png);
+    background-image: url(../assets/img/favoritos.png);
 }
 .guardian{
-    background-image: url(../img/guardian.png);
+    background-image: url(../assets/img/guardian.png);
 }
 .reservas{
-    background-image: url(../img/reservas.png);
+    background-image: url(../assets/img/reservas.png);
 }
 .mensajes{
-    background-image: url(../img/mensajes.png);
+    background-image: url(../assets/img/mensajes.png);
 }   
 a{
     text-decoration: none;
