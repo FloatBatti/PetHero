@@ -92,14 +92,12 @@ class DuenosController{
 
                 }
 
-                
-    
-                if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){
+                if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
     
                     if($password == $rePassword){
     
                         $dueño->setPassword($password);
-
+                        
                         $this->UserDAO->Add($dueño, "D");
                         $this->DueñoDAO->Add($dueño);
 

@@ -5,6 +5,7 @@ namespace Controllers;
 use DAO\GuardianDAO as GuardianDAO;
 use Models\Guardian as Guardian;
 use DAO\UserDAO as UserDAO;
+use Exception;
 
 class GuardianesController
 {
@@ -51,89 +52,86 @@ class GuardianesController
     public function Add($inicio, $fin, $sizes, $costo,  $fotoUrl, $descripcion)
     {
 
-        if ($_POST) {
 
-            $guardian =  unserialize($_SESSION["GuardTemp"]);
+        $guardian =  unserialize($_SESSION["GuardTemp"]);
 
-            unset($_SESSION["GuardTemp"]);
+        unset($_SESSION["GuardTemp"]);
 
-            $guardian->setFechaInicio($inicio);
-            $guardian->setFechaFin($fin);
+        $guardian->setFechaInicio($inicio);
+        $guardian->setFechaFin($fin);
 
-            foreach ($sizes as $size) {
-                $guardian->pushTipoMascota($size);
-            }
-
-            $guardian->setCosto($costo);
-            $guardian->setFotoEspacioURL($fotoUrl);
-            $guardian->setDescripcion($descripcion);
-
-            $this->UserDAO->Add($guardian, "G");
-            $this->GuardianDAO->Add($guardian);
-
-            echo "<script> if(confirm('Perfil creado con exito')); </script>";
-
-            $this->registroTerminado();
+        foreach ($sizes as $size) {
+            $guardian->pushTipoMascota($size);
         }
+
+        $guardian->setCosto($costo);
+        $guardian->setFotoEspacioURL($fotoUrl);
+        $guardian->setDescripcion($descripcion);
+
+
+        if($this->UserDAO->AddGuardian($guardian)){
+
+            header("location: ../Views/index.php");
+        }
+        
+        throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
+        
     }
 
     public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
     {
 
-        if ($_POST) {
 
-            $guardian = new Guardian();
-            $guardian->setUsername($username);
-            $guardian->setDni($dni);
-            $guardian->setNombre($nombre);
-            $guardian->setApellido($apellido);
-            $guardian->setCorreoelectronico($mail);
-            $guardian->setTelefono($telefono);
-            $guardian->setDireccion($direccion);
+        $guardian = new Guardian();
+        $guardian->setUsername($username);
+        $guardian->setDni($dni);
+        $guardian->setNombre($nombre);
+        $guardian->setApellido($apellido);
+        $guardian->setCorreoelectronico($mail);
+        $guardian->setTelefono($telefono);
+        $guardian->setDireccion($direccion);
 
-            $nameImg = $guardian->getUsername() ."-". $fotoPerfil["name"];
-            $temp_name = $fotoPerfil["tmp_name"];
-            $error = $fotoPerfil["error"];
-            $size = $fotoPerfil["size"];
-            $type = $fotoPerfil["type"];
-
-
-            
-            if(!$error){
-
-                $rutaImagen = VIEWS_PATH. "FotoUsuarios/". $nameImg;
-                move_uploaded_file($temp_name, $rutaImagen);
-
-                $guardian->setFotoPerfil($nameImg);
-
-            }
+        $nameImg = $guardian->getUsername() ."-". $fotoPerfil["name"];
+        $temp_name = $fotoPerfil["tmp_name"];
+        $error = $fotoPerfil["error"];
+        $size = $fotoPerfil["size"];
+        $type = $fotoPerfil["type"];
 
 
+        
+        if(!$error){
 
-            if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
+            $rutaImagen = VIEWS_PATH. "FotoUsuarios/". $nameImg;
+            move_uploaded_file($temp_name, $rutaImagen);
 
-                if ($password == $rePassword) {
+            $guardian->setFotoPerfil($nameImg);
 
-                    $guardian->setPassword($password);
+        }
 
-                    $_SESSION["GuardTemp"] = serialize($guardian);
+        if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
 
-                    $this->RegistrarDisponibilidad();
+            if ($password == $rePassword) {
 
-                } else {
+                $guardian->setPassword($password);
 
-                    echo "<script> if(confirm('Las contraseñas no coinciden')); </script>";
+                $_SESSION["GuardTemp"] = serialize($guardian);
 
-                    $this->vistaRegistro();
-                }
+                $this->RegistrarDisponibilidad();
 
             } else {
 
-                echo "<script> if(confirm('El usuario ya existe')); </script>";
+                echo "<script> if(confirm('Las contraseñas no coinciden')); </script>";
 
                 $this->vistaRegistro();
             }
+
+        } else {
+
+            echo "<script> if(confirm('El usuario ya existe')); </script>";
+
+            $this->vistaRegistro();
         }
+        
     }
     
     public function VerPerfilGuardian($id){

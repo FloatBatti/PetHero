@@ -55,7 +55,7 @@ class GuardianDAO implements InterfaceDAO
         }
     }
 
-    public function Add(Guardian $guardian)
+    public function Add($guardian)
     {
 
         try {
@@ -75,8 +75,6 @@ class GuardianDAO implements InterfaceDAO
 
             $this->connection->ExecuteNonQuery($query, $parameters);
 
-            
-
             foreach ($guardian->getTipoMascota() as $tamaño) {
 
     
@@ -85,12 +83,85 @@ class GuardianDAO implements InterfaceDAO
                     (select id_guardian from guardianes g inner join usuarios u on u.id_usuario = g.id_usuario where u.username = '" . $guardian->getUsername() . "'));";
 
 
-                $this->connection->ExecuteNonQuery($query);
+                $resultado = $this->connection->ExecuteNonQuery($query);
             }
 
+
+            return $resultado;
             
         } catch (Exception $ex) {
             throw $ex;
         }
+    }
+
+    public function devolverGuardianPorId($usuarioId){
+
+        $guardian = new Guardian();
+
+        $query = "SELECT 
+        * 
+        FROM usuarios u 
+        inner join guardianes g 
+        on u.id_usuario = g.id_usuario
+        where g.id_usuario = " . $usuarioId . ";";
+
+        $this->connection = Connection::GetInstance();
+
+        $resultSet = $this->connection->Execute($query);
+
+        //Recorrio cada columna del resultSet, osea, del registro devuelto
+        foreach($resultSet as $reg){
+
+            $guardian->setUsername($reg["username"]);
+            $guardian->setDni($reg["dni"]);
+            $guardian->setNombre($reg["nombre"]);
+            $guardian->setApellido($reg["apellido"]);
+            $guardian->setCorreoelectronico($reg["correo"]);
+            $guardian->setPassword($reg["password"]);
+            $guardian->setTelefono($reg["telefono"]);
+            $guardian->setDireccion($reg["direccion"]);
+            $guardian->setFotoPerfil($reg["foto_perfil"]);
+            $guardian->setTipoUsuario($reg["tipo_usuario"]);
+            $guardian->setFechaInicio($reg["dia_inicio"]);
+            $guardian->setFechaFin($reg["dia_fin"]);
+            $guardian->setDescripcion($reg["descripcion"]);
+            $guardian->setCosto($reg["costo_diario"]);
+            $guardian->setFotoEspacioURL($reg["foto_espacio"]);
+            $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_guardian"]));
+            
+            
+        }
+        
+        return $guardian;
+
+    }
+
+    public function obtenerTamañosMascotas($idGuardian){
+
+        $listaTamaños = array();
+
+        $query = "SELECT 
+        nombre_tamaño
+        FROM
+        tamaños_x_guardianes txg
+        INNER JOIN
+        guardianes g ON txg.id_guardian = g.id_guardian
+        INNER JOIN
+        tamaños t ON txg.id_tamaño = t.id_tamaño
+        WHERE g.id_guardian = ".$idGuardian.";";
+
+        $this->connection = Connection::GetInstance();
+
+        $resultSet = $this->connection->Execute($query);
+
+        foreach ($resultSet as $reg){
+
+            array_push($listaTamaños, $reg["nombre_tamaño"]);
+
+        }
+
+        return $listaTamaños;
+
+
     }
 }

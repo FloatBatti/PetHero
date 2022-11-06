@@ -5,19 +5,24 @@ use DAO\Connection;
 
 use Models\Usuario as Usuario;
 use Exception;
+use DAO\DueñoDAO as DueñoDAO;
+use DAO\GuardianDAO as GuardianDAO;
 
 class UserDAO{
     
     private $connection;
+
 
     public function GetAll(){
 
         
     }
 
-    public function returnLogedUser($username, $password){
+    public function retornarUsuarioLogueado($username, $password){
 
         try {
+
+            $guardianDAO = new GuardianDAO();
 
             $query = "SELECT 
             u.id_usuario, u.tipo_usuario
@@ -33,24 +38,30 @@ class UserDAO{
 
             $resultSet = $this->connection->Execute($query, $parameters);
 
-            $homeSet = array();
+            //Hasta aca es todo Base de datos
 
-            if($resultSet){
-
-                array_push($homeSet, $resultSet[0]["tipo_usuario"]);
-                array_push($homeSet, $resultSet[0]["id_usuario"]);
-
-                return $homeSet;
-            }
-
-            return $homeSet;
+            $usuario = null;
             
+            //Si el tipo de usuario es G llamamos a la funcion que nos retorna el guardian
+            if($resultSet[0]["tipo_usuario"] == "G"){
+
+                $usuario = $guardianDAO->devolverGuardianPorId($resultSet[0]["id_usuario"]);
+            }
+            //Si el tipo de usuario es D llamamos a la funcion que nos retorna el dueño
+            else if($resultSet[0]["tipo_usuario"] == "D"){
+
+                //$usuario = $this->devolverDueñoPorId($resultSet[0]["id_usuario"]);
+            }
+            
+            return $usuario; //Retorna null si no existe o devuelve el objeto en caso de existir
+               
         } catch (Exception $ex) {
 
             throw $ex;
         }
 
     }
+
 
     public function checkUsuario($username, $dni, $correo)
     {
@@ -70,9 +81,7 @@ class UserDAO{
 
             $this->connection = Connection::GetInstance();
 
-            $resultSet = $this->connection->Execute($query, $parameters);
-
-            return $resultSet;
+            return $this->connection->Execute($query, $parameters);
             
         } catch (Exception $ex) {
 
@@ -80,29 +89,66 @@ class UserDAO{
         }
     }
 
-    public function Add(Usuario $user, $tipoUsuario)
+    public function AddGuardian(Usuario $guardian)
     {
 
+        $guardianDAO = new GuardianDAO();
 
         try {
+
             $query = "INSERT INTO 
                 usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, foto_perfil, tipo_usuario) 
                 VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :foto_perfil, :tipo_usuario);";
 
-            $parameters["username"] = $user->getUsername();
-            $parameters["dni"] = $user->getDni();
-            $parameters["nombre"] = $user->getNombre();
-            $parameters["apellido"] = $user->getApellido();
-            $parameters["correo"] = $user->getCorreoelectronico();
-            $parameters["password"] = $user->getPassword();
-            $parameters["telefono"] = $user->getTelefono();
-            $parameters["direccion"] = $user->getDireccion();
-            $parameters["foto_perfil"] = $user->getFotoPerfil(); 
-            $parameters["tipo_usuario"] = $tipoUsuario;
+            $parameters["username"] = $guardian->getUsername();
+            $parameters["dni"] = $guardian->getDni();
+            $parameters["nombre"] = $guardian->getNombre();
+            $parameters["apellido"] = $guardian->getApellido();
+            $parameters["correo"] = $guardian->getCorreoelectronico();
+            $parameters["password"] = $guardian->getPassword();
+            $parameters["telefono"] = $guardian->getTelefono();
+            $parameters["direccion"] = $guardian->getDireccion();
+            $parameters["foto_perfil"] = $guardian->getFotoPerfil(); 
+            $parameters["tipo_usuario"] = "G";
 
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
+
+            return $guardianDAO->Add($guardian);
+            
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    
+    public function AddDueño(Usuario $dueño)
+    {
+        $dueñoDAO = new DueñoDAO();
+
+        try {
+
+            $query = "INSERT INTO 
+                usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, foto_perfil, tipo_usuario) 
+                VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :foto_perfil, :tipo_usuario);";
+
+            $parameters["username"] = $dueño->getUsername();
+            $parameters["dni"] = $dueño->getDni();
+            $parameters["nombre"] = $dueño->getNombre();
+            $parameters["apellido"] = $dueño->getApellido();
+            $parameters["correo"] = $dueño->getCorreoelectronico();
+            $parameters["password"] = $dueño->getPassword();
+            $parameters["telefono"] = $dueño->getTelefono();
+            $parameters["direccion"] = $dueño->getDireccion();
+            $parameters["foto_perfil"] = $dueño->getFotoPerfil(); 
+            $parameters["tipo_usuario"] = "D";
+
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->ExecuteNonQuery($query, $parameters);
+
+            return $dueñoDAO->Add($dueño);
 
         } catch (Exception $ex) {
             throw $ex;

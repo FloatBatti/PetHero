@@ -13,6 +13,7 @@ abstract class Usuario {
     private $telefono;
     private $direccion;
     private $fotoPerfil;
+    private $tipoUsuario;
         
     
     public function getUsername(){
@@ -88,11 +89,21 @@ abstract class Usuario {
 
         return $this->fotoPerfil;
     }
-
-    
+   
     public function setFotoPerfil($urlFoto){
 
         $this->fotoPerfil = $urlFoto;
     }
+
+    public function getTipoUsuario(){
+
+        return $this->tipoUsuario;
+    }
+
+    public function setTipoUsuario($tipoUsuario){
+
+        $this->tipoUsuario = $tipoUsuario;
+    }
 }
+
 ?>
