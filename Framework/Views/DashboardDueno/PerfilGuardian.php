@@ -30,9 +30,9 @@
                 <div class="cont calificacion"><div class="cont solicitud calificacion"></div><div class="cont stars"><a href=""><img src="../assets/img/3_stars.png"></a></div></div>
                 <div class="cont foto-espacio"><div class="cont foto"></div></div>
                 <div class="cont descripcion">
-                    <div class="cont dias">Dias de atencion:<br><?php foreach($guardian->getDisponibilidad() as $dia){echo $dia." ";}?><br></div>
-                    <div class="cont mascotas">Tipos de mascota permitidos:<br><?php foreach($guardian->getTipoMascota() as $mascota){echo $mascota." ";}?><br></div>
-                    <div class="cont horarios">Horarios:<br>De <?php echo $guardian->getHorarioIncio();?> a <?php echo $guardian->getHorarioFin();?> </div>
+                    <div class="cont dias">Dias de atencion:<br>Desde<?php echo $guardian->getFechaInicio()?> hasta <?php echo $guardian->getFechaFin();?><br></div>
+                    <div class="cont mascotas">Tipos de mascota permitidos:<br><?php foreach($tamaños as $tipo){echo $tipo." ";}?><br></div>
+                
                     <div class="cont costo">Precio por dia: $<?php echo $guardian->getCosto();?></div>
                     <div class="cont texto"><?php echo $guardian->getDescripcion();?></div>
                 </div>

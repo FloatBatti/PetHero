@@ -32,8 +32,9 @@
                     <div><input type="date"></div>
                     <div>Fecha Fin</div>
                     <div><input type="date"></div>
+                    <div><input type="text" placeholder="guardian"></div>
                     <div><a href=""><img src="../assets/img/lupa.png"></a></div>
-                    <div></div>
+                    
                 </div>
                 </form>
                     <div class="row encabezado-row">
@@ -56,8 +57,9 @@
                             </div>
                             <div class="col nombre-ex"><?php echo $guardian->getUsername() ?></div>
                             <div class="col tipo-ex"><?php
-
-                                                        foreach ($guardian->getTipoMascota() as $tipo) {
+                                                        $lista=$DAOGuardianes->obtenerTamañosMascotas($guardian->getId());
+                                                    
+                                                        foreach ($lista as $tipo) {
 
                                                             echo $tipo . " ";
                                                         }
@@ -67,7 +69,7 @@
                             <div class="col calificacion-ex">***__</div>
                         <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/ojo_perfil.png" height="50"></a></div>
                         
-                            <div class="col favoritos-ex"><a href=""><img src="../assets/img/estrella_fav.png" height="50"></a></div>
+                            <div class="col favoritos-ex"><a href="../Duenos/agregarFavorito?id=<?php echo $guardian->getId();?>"><img src="../assets/img/estrella_fav.png" height="50"></a></div>
                         </div>
 
                     <?php } ?>

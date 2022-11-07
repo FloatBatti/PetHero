@@ -40,6 +40,7 @@ body{
 .opcion:hover{
     box-shadow: 10px 10px 40px black;
     color: blue;
+    
 }
 
 .icono{
@@ -89,6 +90,9 @@ a{
     grid-template-columns: 40% auto;
     text-decoration: none;
     
+}
+.submit{
+    cursor:pointer;
 }
 
 .footer-separador{

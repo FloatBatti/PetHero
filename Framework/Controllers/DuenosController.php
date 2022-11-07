@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use DAO\DueñoDAO as DueñoDAO;
+use DAO\GuardianDAO;
 use Models\Dueño as Dueño;
 use DAO\UserDAO as UserDAO;
 use Exception;
@@ -26,34 +27,48 @@ class DuenosController{
 
     public function EditarPerfil(){
 
+        $usuario=$this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
+        require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
        
     }
+    
 
 
 
 
-    public function VistaGuardianes(){
-
-        if(isset($_SESSION["DuenoId"])){
-
-
+    public function vistaGuardianes(){
+        
+        if(isset($_SESSION["UserId"])){
+            
+            $DAOGuardianes=new GuardianDAO();
+            $listaGuardianes=$DAOGuardianes->GetAll();
             require_once(VIEWS_PATH."DashboardDueno/Guardianes.php");
 
         }
 
-
     }
-    public function VistaFavoritos(){
-
-        if(isset($_SESSION["DuenoId"])){
-
-           
+    public function vistaFavoritos(){
+        
+        if(isset($_SESSION["UserId"])){
+            
+            $DAOGuardianes=new GuardianDAO();
+            $listaGuardianes=$DAOGuardianes->GetFavoritos();
             require_once(VIEWS_PATH."DashboardDueno/Favoritos.php");
 
         }
+    }
+    public function agregarFavorito($id){
 
+        $DAOusuarios=new UserDAO();
+        $usuarios=$DAOusuarios->AddFavorito($id);
 
     }
+   public function borrarFavorito($idGuardian){
+        $DAOusuarios=new UserDAO();
+        $usuarios=$DAOusuarios->deleteFavorito($idGuardian);
+   }
+    
+    
 
     public function RegistroTerminado(){
 
