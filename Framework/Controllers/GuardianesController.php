@@ -144,5 +144,16 @@ class GuardianesController
             require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
         }
     }
+    public function editarDisponibilidad(){
+        $usuario=$this->GuardianDAO->devolverGuardianPorId($_SESSION["UserId"]);
+        require_once(VIEWS_PATH . "/DashboardGuardian/editarDisponibilidad.php");
+    }
+    public function actualizarDisponibilidad($fechaInicio,$fechaFin,$tamaño,$costo,$fotoUrl,$descripcion){
+        if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$costo)){
+            header("location: ../Duenos/vistaDashboard");
+        }
+        
+
+    }
 
 }

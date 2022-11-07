@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use DAO\UserDAO;
+use Exception;
 
 class UsuarioController{
 
@@ -21,6 +22,9 @@ class UsuarioController{
         
             header("location: ../Duenos/vistaDashboard");
 
+        }
+        else{
+            throw new Exception;
         }
         
 
