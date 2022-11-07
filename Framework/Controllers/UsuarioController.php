@@ -3,7 +3,7 @@ namespace Controllers;
 
 use DAO\UserDAO;
 
-class UsuarioControllers{
+class UsuarioController{
 
     private $userDAO;
 
@@ -13,12 +13,16 @@ class UsuarioControllers{
     }
 
 
-    public function ActualizarDatos($telefono,$direccion,$password){
+    public function ActualizarDatos($telefono,$direccion,$password,$rePassword){
         
+        if($password==$rePassword){
+            
+            $this->userDAO->grabarDatosActualizados($telefono,$direccion,$password);
+        
+            header("location: ../Duenos/vistaDashboard");
 
-        $this->userDAO->grabarDatosActualizados($telefono,$direccion,$password);
+        }
         
-        header("location: ../Home/Index");
 
     }
 

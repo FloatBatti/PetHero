@@ -22,7 +22,7 @@
             <div class="contenedora-section">
                 <div class="contenedora-edit">
                 
-                    <form action="" method="post">
+                    <form action="<?php echo FRONT_ROOT . "Usuario/ActualizarDatos"?>" method="post">
                     
                         <div class="contenedora-inputs">
                         <div class="titulo">Editar Perfil</div>
