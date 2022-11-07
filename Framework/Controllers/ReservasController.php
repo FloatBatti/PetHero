@@ -2,11 +2,11 @@
 namespace Controllers;
 
 use Models\Dueño as Dueño;
-use jsonDAO\DueñosDAO as DueñosDAO;
+use DAO\DueñosDAO as DueñosDAO;
 use Models\Guardian as Guardian;
-use jsonDAO\GuardianesDAO as GuardianesDAO;
-use jsonDAO\MascotasDAO as MascotasDAO;
-use jsonDAO\ReservasDAO as ReservasDAO;
+use DAO\GuardianesDAO as GuardianesDAO;
+use DAO\MascotasDAO as MascotasDAO;
+use DAO\ReservasDAO as ReservasDAO;
 use Models\Reserva as Reserva;
 
 class ReservasController{

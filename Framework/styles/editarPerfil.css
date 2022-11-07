@@ -68,3 +68,6 @@ input{
     height: 20px;
     font-size: 15px;
 }
+.protegido{
+    cursor:not-allowed;
+}

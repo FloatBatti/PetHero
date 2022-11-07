@@ -16,7 +16,7 @@ class MascotasController{
     }
 
     public function VistaMascotas(){
-
+        
        
     }
 

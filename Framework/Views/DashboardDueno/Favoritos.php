@@ -47,8 +47,8 @@
                                                         ?></div>
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
                             <div class="col calificacion-ex">***__</div>
-                            <div class="col perfil-ex"><a href=""><img src="../assets/img/ojo_perfil.png" height="50"></a></div>
-                            <div class="col favoritos-ex"><a href=""><img src="../assets/img/estrella_fav.png" height="50"></a></div>
+                            <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/ojo_perfil.png" height="50"></a></div>
+                            <div class="col favoritos-ex"><a href="../Duenos/borrarFavorito?idGuardian=<?php echo $guardian->getId();?> "><img src="../assets/img/delete.png" height="50"></a></div>
                         </div>
 
                     <?php } ?>
