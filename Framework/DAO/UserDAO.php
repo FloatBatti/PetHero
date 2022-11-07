@@ -7,6 +7,7 @@ use Models\Usuario as Usuario;
 use Exception;
 use DAO\DueñoDAO as DueñoDAO;
 use DAO\GuardianDAO as GuardianDAO;
+use Models\Dueño;
 
 class UserDAO{
     
@@ -153,6 +154,57 @@ class UserDAO{
         } catch (Exception $ex) {
             throw $ex;
         }
+    }
+    public function AddFavorito($id){
+            
+            
+        try{
+            $query = "CALL agregar_favorito(" . $_SESSION["UserId"] .",". $id . ");";
+            
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query);
+            header("location: ../Duenos/vistaFavoritos");   
+        }
+        catch(Exception $ex){
+            throw $ex;
+            }
+    }
+    public function deleteFavorito($idGuardian){
+        
+        try{
+            $query = "CALL borrar_favorito(" . $_SESSION["UserId"] .",". $idGuardian . ");";
+            
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query);
+            header("location: ../Duenos/vistaFavoritos");   
+        }
+        catch(Exception $ex){
+            throw $ex;
+            }
+
+    }
+    
+    public function grabarDatosActualizados($telefono,$direccion,$password){
+       
+        try{
+            $query = "UPDATE usuarios u
+                set u.telefono = :telefono, u.direccion=:direccion, u.password=:password WHERE u.id_usuario=:buscado";
+
+               $parameters["telefono"] = $telefono;
+               $parameters["direccion"] = $direccion;
+               $parameters["password"] = $password;
+               $parameters["buscado"] = ($_SESSION["UserId"]);
+               
+               $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+
+        }
+        catch (Exception $ex) {
+            throw $ex;
+        }
+
     }
     
 

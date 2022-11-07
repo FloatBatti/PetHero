@@ -221,3 +221,22 @@ insert into razas(nombre_raza, id_especie) values ("Maine Coon", 2);
 insert into razas(nombre_raza, id_especie) values ("Bengalí", 2);
 
 
+DELIMITER //
+create procedure agregar_favorito(in p_id_dueño bigint, p_id_guardian bigint)
+begin 
+declare id_dueño bigint;
+declare id_guardian bigint;
+set id_dueño=(select d.id_dueño from dueños d inner join usuarios u on d.id_usuario=u.id_usuario where u.id_usuario = p_id_dueño);
+set id_guardian=(select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario=u.id_usuario where u.id_usuario = p_id_guardian);
+insert into favoritos(id_dueño,id_guardianFav)values(id_dueño,id_guardian);
+end//
+
+DELIMITER //
+create procedure borrar_favorito(in p_id_dueño bigint, p_id_guardian bigint)
+begin 
+declare id_dueño_borrar bigint;
+declare id_guardian_borrar bigint;
+set id_dueño_borrar=(select d.id_dueño from dueños d inner join usuarios u on d.id_usuario=u.id_usuario where u.id_usuario = p_id_dueño);
+set id_guardian_borrar=(select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario=u.id_usuario where u.id_usuario = p_id_guardian);
+delete from favoritos  where id_dueño=id_dueño_borrar and id_guardianFav=id_guardian_borrar;
+end//

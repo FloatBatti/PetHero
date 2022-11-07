@@ -23,48 +23,49 @@
                 <div class="contenedora-edit">
                 
                     <form action="" method="post">
+                    
                         <div class="contenedora-inputs">
                         <div class="titulo">Editar Perfil</div>
                         <div class="datoregistro">
                                 <label for="usuario">Usuario</label>
-                                <input type="text"  placeholder="<?php echo $usuario->getUsername();  ?>" name="username" class="" disabled><br>
+                                <input type="text"  placeholder="" name="username" class="protegido" value="<?php echo $usuario->getUsername();  ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" placeholder="<?php echo $usuario->getNombre(); ?>" name="nombre" class="" disabled><br>
+                                <input type="text" placeholder="" name="nombre" class="protegido" value="<?php echo $usuario->getNombre(); ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="apellido">Apellido</label>
-                                <input type="text" placeholder="<?php echo $usuario->getApellido(); ?>" name="apellido" class="" disabled><br>
+                                <input type="text" placeholder="" name="apellido" class="protegido" value="<?php echo $usuario->getApellido(); ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="dni">DNI</label>
-                                <input type="text" placeholder="<?php echo $usuario->getDni(); ?>" name="dni" class="" disabled><br>
+                                <input type="text" placeholder="" name="dni" class="protegido" value="<?php echo $usuario->getDni(); ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="mail">E-Mail</label>
-                                <input type="email" placeholder="<?php echo $usuario->getCorreoelectronico(); ?>" name="mail" class="" disabled><br>
+                                <input type="email" placeholder="" name="mail" class="protegido" value="<?php echo $usuario->getCorreoelectronico(); ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="telefono">Telefono</label>
-                                <input type="tel" placeholder="<?php echo $usuario->getTelefono(); ?>" name="telefono" class="" required><br>
+                                <input type="tel" placeholder="" name="telefono" class="" value="<?php echo $usuario->getTelefono(); ?>" required><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="direccion">Direccion</label>
-                                <input type="text" placeholder="<?php echo $usuario->getDireccion(); ?>" name="direccion" class="" required><br>
+                                <input type="text" placeholder="" name="direccion" class=""  value="<?php echo $usuario->getDireccion(); ?>" required><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="pass">Contraseña</label>
-                                <input type="password" placeholder="<?php echo $usuario->getPassword();?>" name="password" class="" required><br>
+                                <input type="password" placeholder="" name="password" class=""  value="<?php echo $usuario->getPassword();?>" required><br>
                         </div>
                         <div></div>
                         <div class="datoregistro">
                                 <label for="re-pass">Repetir Contraseña</label>
-                                <input type="password" placeholder="<?php echo $usuario->getPassword();?>" name="rePassword" class="" required><br>
+                                <input type="password" placeholder="" name="rePassword" class="" value="<?php echo $usuario->getPassword();?>" required><br>
                         </div>
                         
                         <div class="boton">
-                            <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEdit.png"></a></button>
+                            <button type="submit" class="submit"><img src="../assets/img/dogboneEdit.png"></button>
                         </div>
                   
                     </div>

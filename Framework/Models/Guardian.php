@@ -12,7 +12,8 @@ class Guardian extends Usuario{
     private $tipoMascota = array();
     private $fotoEspacioURL;
     private $descripcion;
-    private $costo;    
+    private $costo;
+    
     
     public function setFechaInicio($fechaInicio){
 
@@ -79,6 +80,7 @@ class Guardian extends Usuario{
 
         array_push($this->tipoMascota, $tamaño);
     }
+   
 }
 
 ?>

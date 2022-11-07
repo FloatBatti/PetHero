@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use DAO\GuardianDAO as GuardianDAO;
+use DAO\MascotaDAO;
 use Models\Guardian as Guardian;
 use DAO\UserDAO as UserDAO;
 use Exception;
@@ -134,10 +135,12 @@ class GuardianesController
         
     }
     
-    public function VerPerfilGuardian($id){
-        if(isset($_SESSION["DuenoId"])){
-            $idInt = (int) $id;
-            $guardian=$this->GuardianesDAO->encontrarGuardian($idInt);
+    public function VerPerfilGuardian($idGuardian){
+        if(isset($_SESSION["UserId"])){
+            
+            $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);
+            $tamaños=$this->GuardianDAO->obtenerTamañosMascotas($guardian->getId());
+            
             require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
         }
     }

@@ -21,13 +21,11 @@ class GuardianDAO implements InterfaceDAO
             $guardianesList = array();
 
             $query = "SELECT 
-            g.id_guardian,
+            g.id_usuario,
             u.username,
-            u.dni,
             u.nombre,
             u.apellido,
             u.correo,
-            u.contraseña,
             u.telefono,
             u.foto_perfil,
             g.dia_inicio,
@@ -45,10 +43,82 @@ class GuardianDAO implements InterfaceDAO
 
             $resultSet = $this->connection->Execute($query);
 
-            //Falta el foreach
+            foreach($resultSet as $reg){
+                $guardian=new Guardian();
+                $guardian->setId($reg["id_usuario"]);
+                $guardian->setUsername($reg["username"]);
+                $guardian->setNombre($reg["nombre"]);
+                $guardian->setApellido($reg["apellido"]);
+                $guardian->setCorreoelectronico($reg["correo"]);
+                $guardian->setTelefono($reg["telefono"]);
+                $guardian->setFotoPerfil($reg["foto_perfil"]);
+                $guardian->setFechaInicio($reg["dia_inicio"]);
+                $guardian->setDescripcion($reg["descripcion"]);
+                $guardian->setFechaFin($reg["dia_fin"]);
+                $guardian->setCosto($reg["costo_diario"]);
+                $guardian->setFotoEspacioURL($reg["foto_espacio"]);
+                $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
 
+                array_push($guardianesList,$guardian);
 
+            }
             return $guardianesList;
+        } catch (Exception $ex) {
+
+            throw $ex;
+        }
+    }
+    public function GetFavoritos()
+    {
+
+        try {
+
+            $listaFavoritos = array();
+
+            $query = "SELECT
+            g.id_guardian, 
+            g.id_usuario,
+            u.username,
+            u.nombre,
+            u.apellido,
+            u.correo,
+            u.telefono,
+            u.foto_perfil,
+            g.dia_inicio,
+            g.dia_fin,
+            g.descripcion,
+            g.costo_diario,
+            g.foto_espacio
+            from favoritos f
+            inner join guardianes g on f.id_guardianFav=g.id_guardian
+            inner join usuarios u on g.id_usuario=u.id_usuario
+            inner join dueños d on f.id_dueño=d.id_dueño";
+
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach($resultSet as $reg){
+                $guardian=new Guardian();
+                $guardian->setId($reg["id_usuario"]);
+                $guardian->setUsername($reg["username"]);
+                $guardian->setNombre($reg["nombre"]);
+                $guardian->setApellido($reg["apellido"]);
+                $guardian->setCorreoelectronico($reg["correo"]);
+                $guardian->setTelefono($reg["telefono"]);
+                $guardian->setFotoPerfil($reg["foto_perfil"]);
+                $guardian->setFechaInicio($reg["dia_inicio"]);
+                $guardian->setDescripcion($reg["descripcion"]);
+                $guardian->setFechaFin($reg["dia_fin"]);
+                $guardian->setCosto($reg["costo_diario"]);
+                $guardian->setFotoEspacioURL($reg["foto_espacio"]);
+                $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_guardian"]));
+
+                array_push($listaFavoritos,$guardian);
+
+            }
+            return $listaFavoritos;
         } catch (Exception $ex) {
 
             throw $ex;
@@ -94,25 +164,25 @@ class GuardianDAO implements InterfaceDAO
         }
     }
 
-    public function devolverGuardianPorId($usuarioId){
-
+    public function devolverGuardianPorId($idGuardian){
+        var_dump($idGuardian);
         $guardian = new Guardian();
-
-        $query = "SELECT 
+        try{
+            $query = "SELECT 
         * 
         FROM usuarios u 
         inner join guardianes g 
         on u.id_usuario = g.id_usuario
-        where g.id_usuario = " . $usuarioId . ";";
+        where g.id_usuario = " . $idGuardian . ";";
 
         $this->connection = Connection::GetInstance();
 
         $resultSet = $this->connection->Execute($query);
 
-        //Recorrio cada columna del resultSet, osea, del registro devuelto
+        
         foreach($resultSet as $reg){
 
-            $guardian->setId($usuarioId);
+            $guardian->setId($reg["id_usuario"]);
             $guardian->setUsername($reg["username"]);
             $guardian->setDni($reg["dni"]);
             $guardian->setNombre($reg["nombre"]);
@@ -130,10 +200,15 @@ class GuardianDAO implements InterfaceDAO
             $guardian->setFotoEspacioURL($reg["foto_espacio"]);
             $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_guardian"]));
             
-            
+            return $guardian;
         }
+        }catch (Exception $ex) {
+            throw $ex;
+        }
+            
+                
         
-        return $guardian;
+
 
     }
 
@@ -142,14 +217,17 @@ class GuardianDAO implements InterfaceDAO
         $listaTamaños = array();
 
         $query = "SELECT 
-        nombre_tamaño
+        t.nombre_tamaño
         FROM
-        tamaños_x_guardianes txg
+        tamaños t
+        INNER JOIN
+        tamaños_x_guardianes txg ON txg.id_tamaño = t.id_tamaño
         INNER JOIN
         guardianes g ON txg.id_guardian = g.id_guardian
         INNER JOIN
-        tamaños t ON txg.id_tamaño = t.id_tamaño
-        WHERE g.id_guardian = ".$idGuardian.";";
+        usuarios u on u.id_usuario = g.id_usuario
+        WHERE g.id_usuario=".$idGuardian.";";
+          
 
         $this->connection = Connection::GetInstance();
 
