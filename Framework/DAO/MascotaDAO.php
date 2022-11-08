@@ -20,11 +20,12 @@ class MascotaDAO{
 
         try {
 
-            $query = "CALL agregar_mascota(:nombre, :raza, :tamaño, :idUsuario, :planVacunacion, :foto, :video);";
+
+            $query = "CALL agregar_mascota(:nombre, :raza, :tamano, :idUsuario, :planVacunacion, :foto, :video)";
 
             $parameters["nombre"] = $mascota->getNombre();
             $parameters["raza"] = $mascota->getRaza();
-            $parameters["tamaño"] = $mascota->getTamaño();
+            $parameters["tamano"] = $mascota->getTamaño();
             $parameters["idUsuario"] = $_SESSION["UserId"];
             $parameters["planVacunacion"] = $mascota->getPlanVacURL();
             $parameters["foto"] = $mascota->getFotoURL();

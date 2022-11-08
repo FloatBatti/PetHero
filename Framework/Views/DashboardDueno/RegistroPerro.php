@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrar Mascota</title>
 
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/registroMascota.css" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
 
-    <link href="../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../styles/registroMascota.css" rel="stylesheet">
-
+    
 </head>
 
 <body>
@@ -24,7 +25,7 @@
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="contenedora-mascota">
-                <form action="<?php echo FRONT_ROOT ?>Mascotas/AddPerro" method="post" enctype="multipart/form-data>">
+                <form action="<?php echo FRONT_ROOT ?>Mascotas/AddPerro" method="post" enctype="multipart/form-data">
                     <div class="contenedora-inputs">
                         <div class="dato-registro">
                             <label for="nombre">Nombre</label>
@@ -50,16 +51,16 @@
                             <label for="G"><input type="radio" id="G" name="tamano" value="Mediano" class="radio">Grande</label>
                         </div>
                         <div class="dato-registro">
-                            <label for="planVacunacion">Foto Plan de Vacunacion</label>
-                            <input type="text" name="planVacunacion" class="" required><br>
+                            <label for="fotoPerro">Foto de la Mascota</label>
+                            <input type="file" name="fotoPerro" class="" required><br>
+                        </div>
+                        <div class="dato-registro">
+                            <label for="fotoPlan">Foto del Plan de Vacunacion</label>
+                            <input type="file" name="fotoPlan" class="" required><br>
                         </div>
                         <div class="dato-registro">
                             <label for="video">Video opcional (YouTube)</label>
                             <input type="url" name="videoUrl" class=""><br>
-                        </div>
-                        <div class="dato-registro">
-                            <label for="fotoPerfil">Foto URL</label>
-                            <input type="file" name="fotoPerfil" class="" required><br>
                         </div>
                         <div class="boton">
                             <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEdit.png"></a></button>
