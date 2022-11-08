@@ -8,6 +8,7 @@ use Models\Guardian as Guardian;
 use DAO\UserDAO as UserDAO;
 use Models\Alert as Alert;
 use Exception;
+use Models\Archivos;
 
 class GuardianesController
 {
@@ -51,9 +52,8 @@ class GuardianesController
 
     }
 
-    public function Add($inicio, $fin, $sizes, $costo,  $fotoUrl, $descripcion)
+    public function Add($inicio, $fin, $sizes, $costo,  $fotoEspacio, $descripcion)
     {
-
 
         $guardian =  unserialize($_SESSION["GuardTemp"]);
 
@@ -67,12 +67,13 @@ class GuardianesController
         }
 
         $guardian->setCosto($costo);
-        $guardian->setFotoEspacioURL($fotoUrl);
+        $guardian->setFotoEspacioURL($fotoEspacio);
         $guardian->setDescripcion($descripcion);
 
 
         if($this->UserDAO->AddGuardian($guardian)){
 
+            Archivos::subirArch("fotoEspacio", $fotoEspacio, "EspaciosGuardianes/", $guardian->getUsername());
             header("location: ../Home");
         }
         
@@ -94,24 +95,16 @@ class GuardianesController
         $guardian->setDireccion($direccion);
 
         $nameImg = $guardian->getUsername() ."-". $fotoPerfil["name"];
-        $temp_name = $fotoPerfil["tmp_name"];
-        $error = $fotoPerfil["error"];
-        $size = $fotoPerfil["size"];
-        $type = $fotoPerfil["type"];
 
+        $guardian->setFotoPerfil($nameImg);
+
+        Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
 
         if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
 
             if ($password == $rePassword) {
 
-                if(!$error){
-
-                    $rutaImagen = $rutaImagen = UPLOAD_FILE. "FotosUsuarios\\" . $nameImg;
-                    move_uploaded_file($temp_name, $rutaImagen);
-        
-                    $guardian->setFotoPerfil($nameImg);
-        
-                }
+                Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
 
                 $guardian->setPassword($password);
 
