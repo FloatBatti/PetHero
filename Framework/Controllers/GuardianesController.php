@@ -6,6 +6,7 @@ use DAO\GuardianDAO as GuardianDAO;
 use DAO\MascotaDAO;
 use Models\Guardian as Guardian;
 use DAO\UserDAO as UserDAO;
+use Models\Alert as Alert;
 use Exception;
 
 class GuardianesController
@@ -144,15 +145,42 @@ class GuardianesController
         }
     }
     public function editarDisponibilidad(){
-        $usuario=$this->GuardianDAO->devolverGuardianPorId($_SESSION["UserId"]);
-        require_once(VIEWS_PATH . "/DashboardGuardian/editarDisponibilidad.php");
+        try{
+            $guardian=$this->GuardianDAO->devolverGuardianPorId($_SESSION["UserId"]);
+            if($guardian){
+            require_once(VIEWS_PATH . "/DashboardGuardian/EditarDisponibilidad.php");
+            }throw new Exception("Error al cargar usuario");
+        
+        }catch(Exception $ex){
+            $alert=new Alert($ex->getMessage(),"error");
+            $this->vistaDashboard();
+        }
     }
-    public function actualizarDisponibilidad($fechaInicio,$fechaFin,$tamaño,$costo,$fotoUrl,$descripcion){
-        if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$costo)){
+    public function actualizarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){
+        if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion)){
             header("location: ../Duenos/vistaDashboard");
         }
         
-
     }
-
+    public function EditarPerfil(){
+        
+        try{
+            $usuario = $this->GuardianDAO->devolverGuardianPorId($_SESSION["UserId"]);
+            if($usuario){
+                require_once(VIEWS_PATH . "DashboardGuardian/EditarPerfil.php");
+            }
+            throw new Exception("error");
+        }catch(Exception $ex){
+            $alert=new Alert($ex->getMessage(),"error");
+            $this->vistaDashboard();
+        }   
+    }
+    public function vistaDashboard(){
+        require_once(VIEWS_PATH . "DashboardGuardian/Dashboard.php");
+    }
+    public function vistaSolicitudes(){
+        require_once(VIEWS_PATH. "DashboardGuardian/Solicitudes.php");
+    }
+    
 }
+

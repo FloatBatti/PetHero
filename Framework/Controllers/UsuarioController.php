@@ -20,7 +20,7 @@ class UsuarioController{
             
             $this->userDAO->grabarDatosActualizados($telefono,$direccion,$password);
         
-            header("location: ../Duenos/vistaDashboard");
+            header("location: ../Home");
 
         }
         else{

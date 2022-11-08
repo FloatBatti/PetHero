@@ -7,8 +7,7 @@ use DAO\GuardianDAO;
 use Models\Dueño as Dueño;
 use DAO\UserDAO as UserDAO;
 use Exception;
-
-
+use Models\Alert;
 
 class DuenosController
 {
@@ -31,9 +30,15 @@ class DuenosController
 
     public function EditarPerfil()
     {
-
-        $usuario = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
-        require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
+        try{
+            if($usuario = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"])){
+                require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
+            }
+            throw new Exception("error");
+        }catch(Exception $ex){
+            $alert=new Alert($ex->getMessage(),"error");
+            $this->vistaDashboard();
+        }   
     }
     public function vistaDashboard()
     {
@@ -63,20 +68,34 @@ class DuenosController
             require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
         }
     }
-    public function agregarFavorito($id)
-    {
 
-        $DAOusuarios = new UserDAO();
-        $usuarios = $DAOusuarios->AddFavorito($id);
-    }
     public function borrarFavorito($idGuardian)
     {
-        $DAOusuarios = new UserDAO();
-        $usuarios = $DAOusuarios->deleteFavorito($idGuardian);
+        try{
+            $DAOusuarios = new UserDAO();
+            if($DAOusuarios->deleteFavorito($idGuardian)){
+                header("location: ../Duenos/vistaFavoritos");
+            }throw new Exception("Error al eliminar el guardian...");
+        }catch (Exception $ex){
+                $aler=new Alert($ex->getMessage(),"error");        
+                $this->vistaFavoritos();
+            }
     }
+        
+    
 
-
-
+    public function agregarFavorito($id){
+        try{
+            $DAOusuarios=new UserDAO();
+            if($DAOusuarios->AddFavorito($id)){
+                header("location: ../Duenos/vistaFavoritos");
+            }throw new Exception("El guardian ya esta en favoritos");
+        }catch(Exception $ex){
+            $aler=new Alert($ex->getMessage(),"error");        
+            $this->vistaFavoritos();
+        }
+    }    
+ 
     public function RegistroTerminado()
     {
 

@@ -23,7 +23,7 @@
         <div class="contenedora-general">
             <div class="contenedora-section">
                 <div class="setDispo">
-                    <form action="<?php echo FRONT_ROOT ?> Guardianes/actualizarDisponibilidad" method="post">
+                    <form action="<?php echo FRONT_ROOT ?> Guardianes/actualizarDisponibilidad" method="post" >
         
                         <h3>Establecer disponiblidad</h3>
                         <div class="disponibilidad">
@@ -31,25 +31,25 @@
                         <div>Fecha Fin<input type="date" name="fechaFin" min="<?php echo date("Y-m-d");?>"></div>
                         </div>
                     
-                    <div><label for="tamaño">Tamaño de mascotas aceptado</label></div>
+                    <div><label for="tamano">Tamaño de mascotas aceptado</label></div>
                     <div class="tipo">
-                          <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="">Pequeños.(hasta 12 kg)</div>
+                          <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="" selected>Pequeños.(hasta 12 kg)</div>
                           <div><input type="checkbox" name="sizes[]" value= "Mediano" class="">Medianos. (hasta 21 kg)</div>
                           <div><input type="checkbox" name="sizes[]" value= "Grande" class="">Grandes.(Mayor a 21 kg)</div>          
                     </div>
                     <div class="ultimos">
                         <div><label for="costo">Precio por dia</label></div>
                         <div class="datoregistro">
-                            <input type="number" name="costo" class="" value="">
+                            <input type="number" name="costo" class="" value="<?php echo $guardian->getCosto();?>">
                         </div>
                         
                         <div><label for="fotoEspacio">Foto del espacio.<br>(Colocar direccion URL de la imagen)</label></div>
                             <div class="datoregistro">    
-                                <input type="text" name="fotoUrl" class="" required><br>
+                                <input type="text" name="fotoUrl" class="" value="<?php echo $guardian->getFotoEspacioURL();?>" required><br>
                             </div>
                             <div><label for="descripcion">Descripcion del espacio ofrecido</label></div>
                             <div class="datoregistro">    
-                            <input type="text" name="descripcion" class="descripcion" required><br>
+                            <input type="text" name="descripcion" class="descripcion" value="<?php echo $guardian->getDescripcion();?>" required><br>
                         </div>
                         <div class="boton">
                             <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEnviar.png" alt="Enviar"></a></button>
@@ -62,16 +62,16 @@
             </div>
         <aside>
             <div class="contenedora-aside">
-                <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Editar Perfil</a></div>
+            <div class="icono perfil"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Establecer disponibilidad</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT. "Guardianes/editarDisponibilidad"?>">Establecer disponibilidad</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Solicitudes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/vistaSolicitudes"?>">Solicitudes</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Reservas</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Reservas</a></div>
                 <div class="icono mensajes"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Mensajes</a></div>                                         
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                          
             </div>
         </aside>
     </div>
