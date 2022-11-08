@@ -39,7 +39,7 @@
                 <div class="cont solicitud">
 
                     <div class="boton">
-                        <a href="../Reservas/Iniciar?id=<?php echo $guardian->getId();?>"><img src="../img/perro-mail.png"></a>
+                        <a href="../Reservas/Iniciar?id=<?php echo $guardian->getId();?>"><img src="../assets/img/perro-mail.png"></a>
                     </div>  
 
                 <div class="cont">Enviar solicitud</div></div>

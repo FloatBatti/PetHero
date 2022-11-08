@@ -111,8 +111,8 @@ class DueñoDAO implements InterfaceDAO{
     public function devolverDueñoPorId($usuarioId){
 
         $dueño = new Dueño();
-
-        $query = "SELECT 
+        try{
+            $query = "SELECT 
         * 
         FROM usuarios u 
         inner join dueños d 
@@ -137,10 +137,12 @@ class DueñoDAO implements InterfaceDAO{
             $dueño->setDireccion($reg["direccion"]);
             $dueño->setFotoPerfil($reg["foto_perfil"]);
             $dueño->setTipoUsuario($reg["tipo_usuario"]);
-              
+            return $dueño; 
+        }
+        }catch (Exception $ex) {
+            throw $ex;
         }
         
-        return $dueño;
 
     }
 

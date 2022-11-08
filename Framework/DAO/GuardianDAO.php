@@ -205,11 +205,6 @@ class GuardianDAO implements InterfaceDAO
         }catch (Exception $ex) {
             throw $ex;
         }
-            
-                
-        
-
-
     }
 
     public function obtenerTamañosMascotas($idGuardian){
@@ -243,22 +238,39 @@ class GuardianDAO implements InterfaceDAO
 
 
     }
-    public function grabarDisponibilidad($fechaInicio,$fechaFin,$costo){
+    public function grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){
+            $resultado=null;
         try{
-            $query = "UPDATE guardian g
-                set g.dia_inicio = :fechaInicio, g.dia_fin=:fechaFin, g.costo_diario=:costo WHERE g.id_usuario=:buscado";
+            $query = "UPDATE guardianes g
+                set g.dia_inicio = :fechaInicio, g.dia_fin=:fechaFin, g.costo_diario=:costo,g.foto_espacio=:fotoUrl, g.descripcion=:descripcion WHERE g.id_usuario=:buscado";
 
                $parameters["fechaInicio"] = $fechaInicio;
                $parameters["fechaFin"] = $fechaFin;
                $parameters["costo"] = $costo;
+               $parameters["fotoUrl"] = $fotoUrl;
+               $parameters["descripcion"] = $descripcion;
                $parameters["buscado"] = ($_SESSION["UserId"]);
-               
+
+
                $this->connection = Connection::GetInstance();
+               $this->connection->ExecuteNonQuery($query, $parameters);
 
-                $this->connection->ExecuteNonQuery($query, $parameters);
+                $query = "DELETE from tamaños_x_guardianes
+                where id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on u.id_usuario = g.id_usuario where g.id_usuario= " . $_SESSION["UserId"] . ");";
+                                   
+                $this->connection->ExecuteNonQuery($query);
 
 
-        }
+               foreach ($sizes as $tamano) {
+        
+                $query = "INSERT INTO tamaños_x_guardianes(id_tamaño, id_guardian) 
+                    VALUES ((select id_tamaño from tamaños where nombre_tamaño = '" . $tamano . "'), 
+                    (select id_guardian from guardianes g inner join usuarios u on u.id_usuario = g.id_usuario where g.id_usuario= " . $_SESSION["UserId"] . "));";
+
+                $resultado=$this->connection->ExecuteNonQuery($query);
+                }
+                return $resultado;
+    }
         catch (Exception $ex) {
             throw $ex;
         }
