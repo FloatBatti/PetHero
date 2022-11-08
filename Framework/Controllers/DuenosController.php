@@ -99,8 +99,11 @@ class DuenosController
         $dueño->setTelefono($telefono);
         $dueño->setDireccion($direccion);
 
+        echo "<pre>";
+        var_dump($fotoPerfil); 
+        echo"</pre>";
 
-        $nameImg = $fotoPerfil["name"];
+        $nameImg = $dueño->getUsername() ."-". $fotoPerfil["name"];
 
         $dueño->setFotoPerfil($nameImg);
 
@@ -120,7 +123,7 @@ class DuenosController
 
                     if(!$error){
 
-                        $rutaImagen = "../assets/FotosUsuarios/". $nameImg;
+                        $rutaImagen = UPLOAD_FILE. "FotosUsuarios\\" . $nameImg;
                         move_uploaded_file($temp_name, $rutaImagen);
                     }
 
@@ -144,7 +147,9 @@ class DuenosController
             $this->vistaRegistro();
         }
     
-                
+               
             
     }
+
+    
 }

@@ -54,12 +54,12 @@
                             <input type="text" name="planVacunacion" class="" required><br>
                         </div>
                         <div class="dato-registro">
-                            <label for="fotoPerfil">Foto URL</label>
-                            <input type="file" name="fotoPerfil" class="" required><br>
-                        </div>
-                        <div class="dato-registro">
                             <label for="video">Video opcional (YouTube)</label>
                             <input type="url" name="videoUrl" class=""><br>
+                        </div>
+                        <div class="dato-registro">
+                            <label for="fotoPerfil">Foto URL</label>
+                            <input type="file" name="fotoPerfil" class="" required><br>
                         </div>
                         <div class="boton">
                             <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEdit.png"></a></button>
@@ -71,7 +71,7 @@
 
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
+            <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>
         </aside>
     </div>
 
