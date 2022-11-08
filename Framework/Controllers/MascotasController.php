@@ -34,13 +34,12 @@ class MascotasController{
 
     public function AddGato(){}
 
-    public function AddPerro($nombre, $raza, $tamano, $planVacunacion, $fotoPerfil, $videoUrl){
+    public function AddPerro($nombre, $raza, $tamano, $planVacunacion, $videoUrl, $fotoPerfil){
 
         
-        $fotoPerfil["tmp_name"];
+        var_dump($_FILES);
 
 
-        
         
         /*
         $MascotasDAO = new MascotaDAO();

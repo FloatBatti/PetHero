@@ -99,19 +99,18 @@ class GuardianesController
         $type = $fotoPerfil["type"];
 
 
-        
-        if(!$error){
-
-            $rutaImagen = FRONT_ROOT. "assets/FotosUsuarios/". $nameImg;
-            move_uploaded_file($temp_name, $rutaImagen);
-
-            $guardian->setFotoPerfil($nameImg);
-
-        }
-
         if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
 
             if ($password == $rePassword) {
+
+                if(!$error){
+
+                    $rutaImagen = $rutaImagen = UPLOAD_FILE. "FotosUsuarios\\" . $nameImg;
+                    move_uploaded_file($temp_name, $rutaImagen);
+        
+                    $guardian->setFotoPerfil($nameImg);
+        
+                }
 
                 $guardian->setPassword($password);
 
