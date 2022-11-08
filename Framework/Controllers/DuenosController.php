@@ -7,7 +7,9 @@ use DAO\GuardianDAO;
 use Models\Dueño as Dueño;
 use DAO\UserDAO as UserDAO;
 use Exception;
-use Models\Alert;
+use Models\Archivos;
+
+
 
 class DuenosController
 {
@@ -118,19 +120,9 @@ class DuenosController
         $dueño->setTelefono($telefono);
         $dueño->setDireccion($direccion);
 
-        echo "<pre>";
-        var_dump($fotoPerfil); 
-        echo"</pre>";
-
         $nameImg = $dueño->getUsername() ."-". $fotoPerfil["name"];
 
-        $dueño->setFotoPerfil($nameImg);
-
-        $temp_name = $fotoPerfil["tmp_name"];
-        $error = $fotoPerfil["error"];
-        $size = $fotoPerfil["size"];
-        $type = $fotoPerfil["type"];
-
+        
 
         if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
 
@@ -140,12 +132,8 @@ class DuenosController
 
                 if($this->UserDAO->AddDueño($dueño)){
 
-                    if(!$error){
-
-                        $rutaImagen = UPLOAD_FILE. "FotosUsuarios\\" . $nameImg;
-                        move_uploaded_file($temp_name, $rutaImagen);
-                    }
-
+                    Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $dueño->getUsername());
+                    
                     header("location: ../Home");
                 }
 
@@ -166,7 +154,7 @@ class DuenosController
             $this->vistaRegistro();
         }
     
-               
+          
             
     }
 

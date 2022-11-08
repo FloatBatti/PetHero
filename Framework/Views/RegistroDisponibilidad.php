@@ -16,7 +16,7 @@
     </div>
 <div class="contenedora">
 
-<form action="<?php echo FRONT_ROOT ?> Guardianes/Add" method="post">
+<form action="<?php echo FRONT_ROOT ?> Guardianes/Add" method="post" enctype="multipart/form-data">
         <div class="ultimos">
         <label for="disponibilidad"><h4>Disponibilidad</h4></label><br>
         <div class="ultimos">
@@ -36,16 +36,16 @@
             <input type="number" name="costo" class="" min="0"><br>
         </div>
         
-        <div><label for="fotoEspacio">Foto del espacio(URL)</label></div>
+        <div><label for="fotoEspacio">Foto del espacio</label></div>
             <div class="datoregistro">    
-                <input type="text" name="fotoUrl" class="" required><br>
+                <input type="file" name="fotoEspacio" class="" required><br>
             </div>
             <div><label for="descripcion">Descripcion del espacio ofrecido</label></div>
             <div class="datoregistro">    
             <input type="text" name="descripcion" class="descripcion" required><br>
         </div>
         <div class="boton">
-            <button type="submit" class="submit"><a href=""><img src="../img/dogboneEnviar.png"></a></button>
+            <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEnviar.png"></a></button>
         </div>  
     </div> 
     </div>
