@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Editar disponibilidad</title>
     
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet" >
-    <link href="../../styles/editarPerfil.css" rel="stylesheet" >
-    <link href="../../styles/editarDisponibilidad.css" rel="stylesheet" >
+    <link href="../styles/dashboardDueño.css" rel="stylesheet" >
+    <link href="../styles/editarPerfil.css" rel="stylesheet" >
+    <link href="../styles/editarDisponibilidad.css" rel="stylesheet" >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,14 +16,14 @@
     </head>
   <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../../img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
         <div class="contenedora-general">
             <div class="contenedora-section">
                 <div class="setDispo">
-                    <form action="<?php echo FRONT_ROOT ?> Guardianes/Add" method="post">
+                    <form action="<?php echo FRONT_ROOT ?> Guardianes/actualizarDisponibilidad" method="post">
         
                         <h3>Establecer disponiblidad</h3>
                         <div class="disponibilidad">
@@ -40,7 +40,7 @@
                     <div class="ultimos">
                         <div><label for="costo">Precio por dia</label></div>
                         <div class="datoregistro">
-                            <input type="number" name="costo" class=""><br>
+                            <input type="number" name="costo" class="" value="">
                         </div>
                         
                         <div><label for="fotoEspacio">Foto del espacio.<br>(Colocar direccion URL de la imagen)</label></div>
@@ -52,7 +52,7 @@
                             <input type="text" name="descripcion" class="descripcion" required><br>
                         </div>
                         <div class="boton">
-                            <button type="submit" class="submit"><a href=""><img src="../../img/dogboneEnviar.png" alt="Enviar"></a></button>
+                            <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEnviar.png" alt="Enviar"></a></button>
                         </div>  
                     </div>        
                 </form>

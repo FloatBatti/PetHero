@@ -7,7 +7,7 @@ class Mascota{
     private $id;
     private $nombre;
     private $raza;
-    private $peso;
+    private $especie;
     private $tamaño;
     private $fotoURL;
     private $planVacURL;
@@ -46,28 +46,6 @@ class Mascota{
         $this->raza = $raza;
     }
 
-    public function getPeso()
-    {
-        return $this->peso;
-    }
-
-    public function setPeso($peso)
-    {
-        $this->peso = $peso;
-        
-        if($peso <= 12){
-            $this->tamaño = "Pequeño";
-        }
-        else if($peso <= 21 and $peso > 12){
-
-            $this->tamaño = "Mediano";
-        }
-        else if($peso > 21){
-
-            $this->tamaño = "Grande";
-        }
-
-    }
 
     public function getTamaño(){
 
@@ -107,6 +85,23 @@ class Mascota{
         $this->videoURL = $videoURL;    
     }
 
+    public function getEspecie()
+    {
+        return $this->especie;
+    }
+
+    public function setEspecie($especie)
+    {
+        $this->especie = $especie;
+    }
+
+
+    public function setTamaño($tamaño)
+    {
+        $this->tamaño = $tamaño;
+
+        return $this;
+    }
 }
 
 ?>

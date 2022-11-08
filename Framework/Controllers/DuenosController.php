@@ -31,7 +31,9 @@ class DuenosController{
         require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
        
     }
-    
+    public function vistaDashboard(){
+        require_once(VIEWS_PATH."DashboardDueno/Dashboard.php");
+    }
 
 
 
@@ -81,66 +83,74 @@ class DuenosController{
     public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion,$password, $rePassword, $fotoPerfil)
     {
 
-            if($_POST){
 
-                $dueño = new Dueño();
-                $dueño->setUsername($username);
-                $dueño->setDni($dni);
-                $dueño->setNombre($nombre);
-                $dueño->setApellido($apellido);
-                $dueño->setCorreoelectronico($mail);
-                $dueño->setTelefono($telefono);
-                $dueño->setDireccion($direccion);
+        $dueño = new Dueño();
+        $dueño->setUsername($username);
+        $dueño->setDni($dni);
+        $dueño->setNombre($nombre);
+        $dueño->setApellido($apellido);
+        $dueño->setCorreoelectronico($mail);
+        $dueño->setTelefono($telefono);
+        $dueño->setDireccion($direccion);
 
-                
-                $nameImg = $dueño->getUsername()."-".$fotoPerfil["name"];
-                $temp_name = $fotoPerfil["tmp_name"];
-                $error = $fotoPerfil["error"];
-                $size = $fotoPerfil["size"];
-                $type = $fotoPerfil["type"];
-
-                
-                if(!$error){
-
-                    $rutaImagen = FRONT_ROOT. "assets/FotosUsuarios/". $nameImg;
-                    move_uploaded_file($temp_name, $rutaImagen);
-
-                    $dueño->setFotoPerfil($nameImg);
-
-                }
-
-                if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
-    
-                    if($password == $rePassword){
-    
-                        $dueño->setPassword($password);
-
-                        if($this->UserDAO->AddDueño($dueño)){
-
-                            header("location: ../Home");
-                        }
-
-                        throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
-                    }
-                    else{
-
-                        echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
         
-                        $this->vistaRegistro();
+        $nameImg = $fotoPerfil["name"];
+
+        $dueño->setFotoPerfil($nameImg);
+
+        $temp_name = $fotoPerfil["tmp_name"];
+        $error = $fotoPerfil["error"];
+        $size = $fotoPerfil["size"];
+        $type = $fotoPerfil["type"];
+
+        echo "<pre>"; 
+        var_dump($_FILES);
+        echo "</pre>";
+
+        $rutaImagen = FRONT_ROOT. "assets/FotosUsuarios/". $nameImg;
+        move_uploaded_file($temp_name, $rutaImagen);
+
+        /*
+
+
+        if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
+
+            if($password == $rePassword){
+
+                $dueño->setPassword($password);
+
+                if($this->UserDAO->AddDueño($dueño)){
+
+                    if(!$error){
+
+                        $rutaImagen = "../assets/FotosUsuarios/". $nameImg;
+                        move_uploaded_file($temp_name, $rutaImagen);
                     }
-    
+
+                    header("location: ../Home");
                 }
-                else{
-        
-                    echo "<script> if(confirm('El usuario ya existe')); </script>";
-    
-                    $this->vistaRegistro();
-                }
-    
-                
+
+                throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
+            }
+            else{
+
+                echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
+
+                $this->vistaRegistro();
             }
 
         }
+        else{
+
+            echo "<script> if(confirm('El usuario ya existe')); </script>";
+
+            $this->vistaRegistro();
+        }
+    
+                
+            */
+
+    }
 
          
         
