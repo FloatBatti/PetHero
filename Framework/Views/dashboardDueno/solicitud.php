@@ -25,7 +25,7 @@
             <div class="contenedora-solicitud">
                 <div class="contenedora-cabecera">
                     <div class="img-perfil"></div>
-                    <div class="nombre-perfil">Nombre Guardian</div>
+                    <div class="nombre-perfil"><?php echo $guardian->getUsername()?></div>
                 </div>
                 <div class="contenedora-fechas">
                     <form action="<?php echo FRONT_ROOT ?>Reservas/Confirmar" method="POST">
@@ -44,16 +44,10 @@
 
                                 <div><select name="idMascota">
 
-                                        <?php foreach ($listaMascotas as $mascota) { 
-                                            
-                                            foreach($dueño->getMascotas() as $mascotaId){
-                                                
-                                                if ($mascota->getId() == $mascotaId) {?>
+                                        <?php foreach ($listaMascotas as $mascota) { ?>
 
-                                            <option value="<?php echo $mascota->getId() ?>"><?php echo $mascota->getNombre() ?></option>
+                                            <option value="<?php echo $mascota ?>"><?php echo $mascota ?></option>
 
-                                        <?php } ?>
-                                        <?php } ?>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -70,7 +64,7 @@
 
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH. "menuDash.php");?>
+        <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
         </aside>
     </div>
 

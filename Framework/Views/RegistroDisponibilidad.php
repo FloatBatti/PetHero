@@ -26,9 +26,9 @@
     
         <div>Tamaño de mascotas aceptado</div>
         <div class="tipo">
-            <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="">Pequeños.<br>(hasta 12 kg)</div>
-            <div><input type="checkbox" name="sizes[]" value= "Mediano" class="">Medianos.<br> (hasta 21 kg)</div>
-            <div><input type="checkbox" name="sizes[]" value= "Grande" class="">Grandes.<br> (Mayor a 21 kg)</div>          
+            <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="">Pequeños.</div>
+            <div><input type="checkbox" name="sizes[]" value= "Mediano" class="">Medianos.</div>
+            <div><input type="checkbox" name="sizes[]" value= "Grande" class="">Grandes.</div>          
         </div>
     <div class="ultimos">
         <div><label for="costo">Precio por dia</label></div>
