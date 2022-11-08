@@ -1,4 +1,5 @@
 <?php
+
 namespace Controllers;
 
 use DAO\DueñoDAO as DueñoDAO;
@@ -9,81 +10,86 @@ use Exception;
 
 
 
-class DuenosController{
-    
+class DuenosController
+{
+
     private $DueñoDAO;
     private $UserDAO;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->DueñoDAO = new DueñoDAO();
         $this->UserDAO = new UserDAO();
     }
 
-    public function VistaRegistro(){
+    public function VistaRegistro()
+    {
 
         require_once(VIEWS_PATH . "RegistroDueño.php");
     }
 
-    public function EditarPerfil(){
+    public function EditarPerfil()
+    {
 
-        $usuario=$this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
+        $usuario = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
         require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
-       
     }
-    public function vistaDashboard(){
-        require_once(VIEWS_PATH."DashboardDueno/Dashboard.php");
+    public function vistaDashboard()
+    {
+        require_once(VIEWS_PATH . "DashboardDueno/Dashboard.php");
     }
 
 
 
 
-    public function vistaGuardianes(){
-        
-        if(isset($_SESSION["UserId"])){
-            
-            $DAOGuardianes=new GuardianDAO();
-            $listaGuardianes=$DAOGuardianes->GetAll();
-            require_once(VIEWS_PATH."DashboardDueno/Guardianes.php");
+    public function vistaGuardianes()
+    {
 
-        }
+        if (isset($_SESSION["UserId"])) {
 
-    }
-    public function vistaFavoritos(){
-        
-        if(isset($_SESSION["UserId"])){
-            
-            $DAOGuardianes=new GuardianDAO();
-            $listaGuardianes=$DAOGuardianes->GetFavoritos();
-            require_once(VIEWS_PATH."DashboardDueno/Favoritos.php");
-
+            $DAOGuardianes = new GuardianDAO();
+            $listaGuardianes = $DAOGuardianes->GetAll();
+            require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
         }
     }
-    public function agregarFavorito($id){
+    public function vistaFavoritos()
+    {
 
-        $DAOusuarios=new UserDAO();
-        $usuarios=$DAOusuarios->AddFavorito($id);
+        if (isset($_SESSION["UserId"])) {
 
+            $DAOGuardianes = new GuardianDAO();
+            $listaGuardianes = $DAOGuardianes->GetFavoritos();
+            require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
+        }
     }
-   public function borrarFavorito($idGuardian){
-        $DAOusuarios=new UserDAO();
-        $usuarios=$DAOusuarios->deleteFavorito($idGuardian);
-   }
-    
-    
+    public function agregarFavorito($id)
+    {
 
-    public function RegistroTerminado(){
+        $DAOusuarios = new UserDAO();
+        $usuarios = $DAOusuarios->AddFavorito($id);
+    }
+    public function borrarFavorito($idGuardian)
+    {
+        $DAOusuarios = new UserDAO();
+        $usuarios = $DAOusuarios->deleteFavorito($idGuardian);
+    }
 
-        
+
+
+    public function RegistroTerminado()
+    {
+
+
         //require_once(VIEWS_PATH . "index.php");
 
         header("Location: ../Views/index.php");
     }
 
-    public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion,$password, $rePassword, $fotoPerfil)
+    public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
     {
 
-
+        
         $dueño = new Dueño();
         $dueño->setUsername($username);
         $dueño->setDni($dni);
@@ -93,7 +99,7 @@ class DuenosController{
         $dueño->setTelefono($telefono);
         $dueño->setDireccion($direccion);
 
-        
+
         $nameImg = $fotoPerfil["name"];
 
         $dueño->setFotoPerfil($nameImg);
@@ -102,15 +108,6 @@ class DuenosController{
         $error = $fotoPerfil["error"];
         $size = $fotoPerfil["size"];
         $type = $fotoPerfil["type"];
-
-        echo "<pre>"; 
-        var_dump($_FILES);
-        echo "</pre>";
-
-        $rutaImagen = FRONT_ROOT. "assets/FotosUsuarios/". $nameImg;
-        move_uploaded_file($temp_name, $rutaImagen);
-
-        /*
 
 
         if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
@@ -148,11 +145,6 @@ class DuenosController{
         }
     
                 
-            */
-
+            
     }
-
-         
-        
-           
 }
