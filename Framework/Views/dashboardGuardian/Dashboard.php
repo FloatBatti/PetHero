@@ -14,7 +14,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" alt="Logo" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" alt="Logo" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -25,11 +25,11 @@
         <aside>
             <div class="contenedora-aside">
                 <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Editar Perfil</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT. "Guardianes/editarDisponibilidad"?>">Establecer disponibilidad</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Solicitudes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT ."Guardianes/vistaSolicitudes"?>">Solicitudes</a></div>
                 <div class="icono reservas"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Reservas</a></div>
                 <div class="icono mensajes"></div>

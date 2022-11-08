@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Editar Perfil</title>
     
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet" >
-    <link href="../../styles/editarPerfil.css" rel="stylesheet" >
+    <link href="../styles/dashboardDueño.css" rel="stylesheet" >
+    <link href="../styles/editarPerfil.css" rel="stylesheet" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -14,7 +14,7 @@
     </head>
   <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -22,49 +22,49 @@
             <div class="contenedora-section">
                 <div class="contenedora-edit">
                 
-                    <form action="" method="post">
+                    <form action="<?php echo FRONT_ROOT . "Usuario/ActualizarDatos"?>" method="post">
                         <div class="contenedora-inputs">
                         <div class="titulo">Editar Perfil</div>
                         <div class="datoregistro">
                                 <label for="usuario">Usuario</label>
-                                <input type="text"  placeholder="<?php echo $usuario->getUsername();  ?>" name="username" class="" disabled><br>
+                                <input type="text"  placeholder="" name="username" class="" value="<?php echo $usuario->getUsername();  ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" placeholder="<?php echo $usuario->getNombre(); ?>" name="nombre" class="" disabled><br>
+                                <input type="text" placeholder="" name="nombre" class="" value="<?php echo $usuario->getNombre(); ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="apellido">Apellido</label>
-                                <input type="text" placeholder="<?php echo $usuario->getApellido(); ?>" name="apellido" class="" disabled><br>
+                                <input type="text" placeholder="" name="apellido" class="" value="<?php echo $usuario->getApellido(); ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="dni">DNI</label>
-                                <input type="text" placeholder="<?php echo $usuario->getDni(); ?>" name="dni" class="" disabled><br>
+                                <input type="text" placeholder="" name="dni" class="" value="<?php echo $usuario->getDni(); ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="mail">E-Mail</label>
-                                <input type="email" placeholder="<?php echo $usuario->getCorreoelectronico(); ?>" name="mail" class="" disabled><br>
+                                <input type="email" placeholder="" name="mail" class="" value="<?php echo $usuario->getCorreoelectronico(); ?>" disabled><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="telefono">Telefono</label>
-                                <input type="tel" placeholder="<?php echo $usuario->getTelefono(); ?>" name="telefono" class="" required><br>
+                                <input type="tel" placeholder="" name="telefono" class="" value="<?php echo $usuario->getTelefono(); ?>" required><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="direccion">Direccion</label>
-                                <input type="text" placeholder="<?php echo $usuario->getDireccion(); ?>" name="direccion" class="" required><br>
+                                <input type="text" placeholder="" name="direccion" class="" value="<?php echo $usuario->getDireccion(); ?>" required><br>
                         </div>
                         <div class="datoregistro">
                                 <label for="pass">Contraseña</label>
-                                <input type="password" placeholder="<?php echo $usuario->getPassword();?>" name="password" class="" required><br>
+                                <input type="password" placeholder="" name="password" class="" value="<?php echo $usuario->getPassword();?>" required><br>
                         </div>
                         <div></div>
                         <div class="datoregistro">
                                 <label for="re-pass">Repetir Contraseña</label>
-                                <input type="password" placeholder="<?php echo $usuario->getPassword();?>" name="rePassword" class="" required><br>
+                                <input type="password" placeholder="" name="rePassword" class="" value="<?php echo $usuario->getPassword();?>" required><br>
                         </div>
                         
                         <div class="boton">
-                            <button type="submit" class="submit"><a href=""><img src="../../img/dogboneEnviar.png" alt="Enviar"></a></button>
+                            <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEnviar.png" alt="Enviar"></a></button>
                         </div>
                   
                     </div>
@@ -74,16 +74,16 @@
             </div>
         <aside>
             <div class="contenedora-aside">
-                <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Editar Perfil</a></div>
+            <div class="icono perfil"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Establecer disponibilidad</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT. "Guardianes/editarDisponibilidad"?>">Establecer disponibilidad</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Solicitudes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/vistaSolicitudes"?>">Solicitudes</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Reservas</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Reservas</a></div>
                 <div class="icono mensajes"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Mensajes</a></div>                                         
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                        
             </div>
         </aside>
     </div>

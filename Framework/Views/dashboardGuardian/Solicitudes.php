@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
 
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../../styles/listaSolicitudes.css" rel="stylesheet">
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/listaSolicitudes.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../../img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -40,8 +40,8 @@
                     <div class="campo fecha">20-11-2022</div>
                     <div class="campo fecha">22-11-2022</div>
                     <div class="campo costo">$1200</div>
-                    <div class="campo aceptar"><a href=""><img src="../../img/ok.png" alt="Aceptar"></a></div>
-                    <div class="campo rechazar"><a href=""><img src="../../img/rechaza.png" alt="Rechazar"></a></div>
+                    <div class="campo aceptar"><a href=""><img src="../assets/img/ok.png" alt="Aceptar"></a></div>
+                    <div class="campo rechazar"><a href=""><img src="../assets/img/rechaza.png" alt="Rechazar"></a></div>
                 </div>
                 
             </div>
@@ -51,16 +51,16 @@
         
         <aside>
             <div class="contenedora-aside">
-                <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Editar Perfil</a></div>
+            <div class="icono perfil"></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/EditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Establecer disponibilidad</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT. "Guardianes/editarDisponibilidad"?>">Establecer disponibilidad</a></div>
                 <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Solicitudes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/vistaSolicitudes"?>">Solicitudes</a></div>
                 <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Reservas</a></div> 
+                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Reservas</a></div>
                 <div class="icono mensajes"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ?>">Mensajes</a></div>                                      
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                      
             </div>
         </aside>
     </div>

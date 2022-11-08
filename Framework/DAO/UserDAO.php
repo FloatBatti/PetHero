@@ -162,8 +162,8 @@ class UserDAO{
             $query = "CALL agregar_favorito(" . $_SESSION["UserId"] .",". $id . ");";
             
             $this->connection = Connection::GetInstance();
-            $this->connection->ExecuteNonQuery($query);
-            header("location: ../Duenos/vistaFavoritos");   
+            return $this->connection->ExecuteNonQuery($query);
+         
         }
         catch(Exception $ex){
             throw $ex;
@@ -176,7 +176,7 @@ class UserDAO{
             
             $this->connection = Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query);
-            header("location: ../Duenos/vistaFavoritos");   
+              
         }
         catch(Exception $ex){
             throw $ex;
