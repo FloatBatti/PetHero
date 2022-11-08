@@ -31,7 +31,9 @@ class DuenosController{
         require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
        
     }
-    
+    public function vistaDashboard(){
+        require_once(VIEWS_PATH."DashboardDueno/Dashboard.php");
+    }
 
 
 

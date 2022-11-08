@@ -39,12 +39,7 @@
                 <div class="cont solicitud">
 
                     <div class="boton">
-                        <form action="../Reservas/Iniciar" method="POST">
-                            <input type="submit" class="submit" name="idGuardian" value="<?php echo $guardian->getId();?>">
-                        </form>
-                        <!--- SE CAMBIA POR EL FORM, VER COMO PONER FOTO
-                        <a href="../Reservas/Iniciar?id=<?php //echo $guardian->getId();?>"><img src="../img/perro-mail.png"></a>
-                        ---->
+                        <a href="../Reservas/Iniciar?id=<?php echo $guardian->getId();?>"><img src="../img/perro-mail.png"></a>
                     </div>  
 
                 <div class="cont">Enviar solicitud</div></div>

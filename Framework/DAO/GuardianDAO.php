@@ -165,7 +165,7 @@ class GuardianDAO implements InterfaceDAO
     }
 
     public function devolverGuardianPorId($idGuardian){
-        var_dump($idGuardian);
+        
         $guardian = new Guardian();
         try{
             $query = "SELECT 
@@ -241,6 +241,27 @@ class GuardianDAO implements InterfaceDAO
 
         return $listaTamaños;
 
+
+    }
+    public function grabarDisponibilidad($fechaInicio,$fechaFin,$costo){
+        try{
+            $query = "UPDATE guardian g
+                set g.dia_inicio = :fechaInicio, g.dia_fin=:fechaFin, g.costo_diario=:costo WHERE g.id_usuario=:buscado";
+
+               $parameters["fechaInicio"] = $fechaInicio;
+               $parameters["fechaFin"] = $fechaFin;
+               $parameters["costo"] = $costo;
+               $parameters["buscado"] = ($_SESSION["UserId"]);
+               
+               $this->connection = Connection::GetInstance();
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+
+        }
+        catch (Exception $ex) {
+            throw $ex;
+        }
 
     }
 }

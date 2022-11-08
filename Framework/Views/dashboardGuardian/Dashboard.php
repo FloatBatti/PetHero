@@ -27,7 +27,7 @@
                 <div class="icono perfil"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Establecer disponibilidad</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT. "Guardianes/editarDisponibilidad"?>">Establecer disponibilidad</a></div>
                 <div class="icono vermascotas"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Solicitudes</a></div>
                 <div class="icono reservas"></div>
