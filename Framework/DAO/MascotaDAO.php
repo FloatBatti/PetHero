@@ -2,7 +2,7 @@
 namespace DAO;
 
 use DAO\Connection;
-use Models\Dueño as Dueño;
+use Models\Mascota;
 use DAO\IDueñoDAO as IDueñoDAO;
 use DAO\UserDAO as UserDAO;
 use Exception;
@@ -13,23 +13,26 @@ class MascotaDAO{
 
     public function GetAll(){
 
-
         
     }
-
-
     
-    public function Add(Dueño $dueño){
+    public function Add(Mascota $mascota){
 
         try {
 
-            $query = "INSERT INTO 
-                dueños (id_usuario) 
-                values ((select id_usuario from usuarios where username = '" . $dueño->getUsername() . "'));";
+            $query = "CALL agregar_mascota(:nombre, :raza, :tamaño, :idUsuario, :planVacunacion, :foto, :video);";
+
+            $parameters["nombre"] = $mascota->getNombre();
+            $parameters["raza"] = $mascota->getRaza();
+            $parameters["tamaño"] = $mascota->getTamaño();
+            $parameters["idUsuario"] = $_SESSION["UserId"];
+            $parameters["planVacunacion"] = $mascota->getPlanVacURL();
+            $parameters["foto"] = $mascota->getFotoURL();
+            $parameters["video"] = $mascota->getVideoURL();
 
             $this->connection = Connection::GetInstance();
 
-            $this->connection->ExecuteNonQuery($query);
+            return $this->connection->ExecuteNonQuery($query, $parameters);
 
 
             
@@ -38,5 +41,38 @@ class MascotaDAO{
         }
 
     }
+
+    public function listarRazas($especie){
+
+        try{
+
+            $listaRazas = array();
+
+            $query = "SELECT 
+            r.nombre_raza
+            FROM
+            razas r
+            INNER JOIN
+            especies e ON r.id_especie = e.id_especie
+            where e.nombre_especie = '".$especie."';";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+            
+            foreach($resultSet as $reg){
+
+                array_push($listaRazas, $reg["nombre_raza"]);
+
+            }
+
+            return $listaRazas;
+
+        }
+        catch(Exception $ex){
+
+        }
+    }
+
 
 }

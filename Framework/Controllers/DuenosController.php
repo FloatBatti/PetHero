@@ -1,4 +1,5 @@
 <?php
+
 namespace Controllers;
 
 use DAO\DueñoDAO as DueñoDAO;
@@ -9,142 +10,141 @@ use Exception;
 
 
 
-class DuenosController{
-    
+class DuenosController
+{
+
     private $DueñoDAO;
     private $UserDAO;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->DueñoDAO = new DueñoDAO();
         $this->UserDAO = new UserDAO();
     }
 
-    public function VistaRegistro(){
+    public function VistaRegistro()
+    {
 
         require_once(VIEWS_PATH . "RegistroDueño.php");
     }
 
-    public function EditarPerfil(){
+    public function EditarPerfil()
+    {
 
-        $usuario=$this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
+        $usuario = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
         require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
-       
     }
-    public function vistaDashboard(){
-        require_once(VIEWS_PATH."DashboardDueno/Dashboard.php");
+    public function vistaDashboard()
+    {
+        require_once(VIEWS_PATH . "DashboardDueno/Dashboard.php");
     }
 
 
 
 
-    public function vistaGuardianes(){
-        
-        if(isset($_SESSION["UserId"])){
-            
-            $DAOGuardianes=new GuardianDAO();
-            $listaGuardianes=$DAOGuardianes->GetAll();
-            require_once(VIEWS_PATH."DashboardDueno/Guardianes.php");
+    public function vistaGuardianes()
+    {
 
-        }
+        if (isset($_SESSION["UserId"])) {
 
-    }
-    public function vistaFavoritos(){
-        
-        if(isset($_SESSION["UserId"])){
-            
-            $DAOGuardianes=new GuardianDAO();
-            $listaGuardianes=$DAOGuardianes->GetFavoritos();
-            require_once(VIEWS_PATH."DashboardDueno/Favoritos.php");
-
+            $DAOGuardianes = new GuardianDAO();
+            $listaGuardianes = $DAOGuardianes->GetAll();
+            require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
         }
     }
-    public function agregarFavorito($id){
+    public function vistaFavoritos()
+    {
 
-        $DAOusuarios=new UserDAO();
-        $usuarios=$DAOusuarios->AddFavorito($id);
+        if (isset($_SESSION["UserId"])) {
 
+            $DAOGuardianes = new GuardianDAO();
+            $listaGuardianes = $DAOGuardianes->GetFavoritos();
+            require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
+        }
     }
-   public function borrarFavorito($idGuardian){
-        $DAOusuarios=new UserDAO();
-        $usuarios=$DAOusuarios->deleteFavorito($idGuardian);
-   }
-    
-    
+    public function agregarFavorito($id)
+    {
 
-    public function RegistroTerminado(){
+        $DAOusuarios = new UserDAO();
+        $usuarios = $DAOusuarios->AddFavorito($id);
+    }
+    public function borrarFavorito($idGuardian)
+    {
+        $DAOusuarios = new UserDAO();
+        $usuarios = $DAOusuarios->deleteFavorito($idGuardian);
+    }
 
-        
+
+
+    public function RegistroTerminado()
+    {
+
+
         //require_once(VIEWS_PATH . "index.php");
 
         header("Location: ../Views/index.php");
     }
 
-    public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion,$password, $rePassword, $fotoPerfil)
+    public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
     {
 
-            if($_POST){
-
-                $dueño = new Dueño();
-                $dueño->setUsername($username);
-                $dueño->setDni($dni);
-                $dueño->setNombre($nombre);
-                $dueño->setApellido($apellido);
-                $dueño->setCorreoelectronico($mail);
-                $dueño->setTelefono($telefono);
-                $dueño->setDireccion($direccion);
-
-                
-                $nameImg = $dueño->getUsername()."-".$fotoPerfil["name"];
-                $temp_name = $fotoPerfil["tmp_name"];
-                $error = $fotoPerfil["error"];
-                $size = $fotoPerfil["size"];
-                $type = $fotoPerfil["type"];
-
-                
-                if(!$error){
-
-                    $rutaImagen = FRONT_ROOT. "assets/FotosUsuarios/". $nameImg;
-                    move_uploaded_file($temp_name, $rutaImagen);
-
-                    $dueño->setFotoPerfil($nameImg);
-
-                }
-
-                if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
-    
-                    if($password == $rePassword){
-    
-                        $dueño->setPassword($password);
-
-                        if($this->UserDAO->AddDueño($dueño)){
-
-                            header("location: ../Home");
-                        }
-
-                        throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
-                    }
-                    else{
-
-                        echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
         
-                        $this->vistaRegistro();
+        $dueño = new Dueño();
+        $dueño->setUsername($username);
+        $dueño->setDni($dni);
+        $dueño->setNombre($nombre);
+        $dueño->setApellido($apellido);
+        $dueño->setCorreoelectronico($mail);
+        $dueño->setTelefono($telefono);
+        $dueño->setDireccion($direccion);
+
+
+        $nameImg = $fotoPerfil["name"];
+
+        $dueño->setFotoPerfil($nameImg);
+
+        $temp_name = $fotoPerfil["tmp_name"];
+        $error = $fotoPerfil["error"];
+        $size = $fotoPerfil["size"];
+        $type = $fotoPerfil["type"];
+
+
+        if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
+
+            if($password == $rePassword){
+
+                $dueño->setPassword($password);
+
+                if($this->UserDAO->AddDueño($dueño)){
+
+                    if(!$error){
+
+                        $rutaImagen = "../assets/FotosUsuarios/". $nameImg;
+                        move_uploaded_file($temp_name, $rutaImagen);
                     }
-    
+
+                    header("location: ../Home");
                 }
-                else{
-        
-                    echo "<script> if(confirm('El usuario ya existe')); </script>";
-    
-                    $this->vistaRegistro();
-                }
-    
-                
+
+                throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
+            }
+            else{
+
+                echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
+
+                $this->vistaRegistro();
             }
 
         }
+        else{
 
-         
-        
-           
+            echo "<script> if(confirm('El usuario ya existe')); </script>";
+
+            $this->vistaRegistro();
+        }
+    
+                
+            
+    }
 }

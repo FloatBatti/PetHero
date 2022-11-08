@@ -240,3 +240,17 @@ set id_dueño_borrar=(select d.id_dueño from dueños d inner join usuarios u on
 set id_guardian_borrar=(select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario=u.id_usuario where u.id_usuario = p_id_guardian);
 delete from favoritos  where id_dueño=id_dueño_borrar and id_guardianFav=id_guardian_borrar;
 end//
+
+delimiter //
+create procedure agregar_mascota(in p_nombre varchar(50), in p_raza varchar(50), in p_tamaño varchar(50), in p_id_usuario bigint, in p_plan_vacunacion varchar(100), in p_foto_mascota varchar(100), in p_video varchar(100))
+BEGIN
+declare id_raza bigint;
+declare id_tamaño bigint;
+declare id_dueño bigint;
+set id_raza = (select r.id_raza from razas r where r.nombre_raza = p_raza);
+set id_tamaño = (select t.id_tamaño from tamaños t where t.nombre_tamaño = p_tamaño);
+set id_dueño = (select d.id_dueño from dueños d inner join usuarios u on u.id_usuario = d.id_usuario where u.id_usuario = p_id_usuario);
+
+insert into mascotas (nombre, id_raza, id_tamaño, id_dueño, plan_vacunacion, foto_mascota, video) values (p_nombre, id_raza, id_tamaño, id_dueño, p_plan_vacunacion, p_foto_mascota, p_video);
+
+END//
