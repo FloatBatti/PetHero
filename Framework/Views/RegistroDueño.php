@@ -11,7 +11,7 @@
     </head>
   <body>
   <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a></div>
+        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a></div>
         <div class="guardiantitulo"></div>
         <div>FAQS</div>
         </div>
@@ -61,7 +61,7 @@
                 </div>
 
                         <div class="boton">
-                                <button type="submit" class="submit"><a href=""><img src="../img/choque.png"></a></button>
+                                <button type="submit" class="submit"><a href=""><img src="../assets/img/choque.png"></a></button>
                          </div>
                 </div>
         </form>

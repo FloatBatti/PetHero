@@ -11,7 +11,7 @@
   <body>
 
     <div class="cabecera"><!--contenedora para el logo en el top + faqs, etc -->  
-      <a href='../index.php'><img src="../img/PetHeroLogo.png" height="120"></a>
+      <a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="120"></a>
     </div>
 
     <div class="contenedora-gral"><!--aca esta el contenedor q contiene las 2 opciones -->
@@ -19,9 +19,9 @@
       <div class="contenedora-eleccion dueño"><!--contenedora para eleccion de dueño -->
        
         <div class="contenedora-titulo">
-          <img src="../img/icono-Dueño.png" height="400">
+          <img src="../assets/img/icono-Dueño.png" height="400">
         </div>
-        <div class="superheroicon"><img src="../img/petsuperhero-removebg-preview.png"> </div>
+        <div class="superheroicon"><img src="../assets/img/petsuperhero-removebg-preview.png"> </div>
         <div class="contenedora-texto">
           <div class="texto"> 
               <p>
@@ -33,7 +33,7 @@
         </div>
         
         <div class="contenedora-boton">
-        <a href="<?php echo FRONT_ROOT . "Duenos/VistaRegistro"?>"><img src="../img/RegistrarmeResized.png" height="50"></a>
+        <a href="<?php echo FRONT_ROOT . "Duenos/VistaRegistro"?>"><img src="../assets/img/RegistrarmeResized.png" height="50"></a>
         </div>
 
       </div>
@@ -41,16 +41,16 @@
       <div class="contenedora-eleccion guardian"><!--acontenedora para eleccion de guardian -->
     
         <div class="contenedora-titulo">
-        <img src="../img/My Project-1.png" >
+        <img src="../assets/img/My Project-1.png" >
         </div>
-        <div class="superheroicon"><img src="../img/petsuperhero-removebg-preview.png"> </div>
+        <div class="superheroicon"><img src="../assets/img/petsuperhero-removebg-preview.png"> </div>
 
         <div class="contenedora-texto">
           <div class="texto">Deberas brindar datos personales y de contacto.<br> Será necesario agregar información acerca <br>del espacio brindado para el cuidado de las mascotas como asi mísmo <br>una descripción del servicio ofrecído <br>y registrar la disponibilidad con la que lo harás.</div>
         </div>
 
         <div class="contenedora-boton">
-        <a href="<?php echo FRONT_ROOT . "Guardianes/vistaRegistro"?>"><img src="../img/RegistrarmeResized.png" height="50"></a>
+        <a href="<?php echo FRONT_ROOT . "Guardianes/vistaRegistro"?>"><img src="../assets/img/RegistrarmeResized.png" height="50"></a>
       </div>
 
       </div>
