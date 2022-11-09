@@ -32,51 +32,25 @@
 
                 <div class="conteiner-list">
 
-                    <?php foreach ($listaMascotas as $mascota) {
-
-                        foreach($usuario->getMascotas() as $mascotaId){
-
-                            if ($mascota->getId() == $mascotaId) {
-                    ?>
+                    <?php foreach ($listaMascotas as $mascota) {?>
 
                             <div class="row mascotita">
                                 <div class="col contendor-img">
-                                    <div class="img-Mascota"></div>
+                                    <div class="img-Mascota"><a href=""><img src="../assets/Mascotas/FotosMascotas/<?php echo $mascota->getFotoURL()?>" height="50"></a></div>
                                 </div>
                                 <div class="col nombre"><?php
                                                         echo $mascota->getNombre() ?></div>
                                 <div class="col editar"><a href=""><img src="../assets/img/edit.png"></a></div>
                                 <div class="col borrar"><a href=""><img src="../assets/img/remove.png"></a></div>
-                            </div>
-
-                        <?php } ?>
-                    <?php } ?>
+                            </div>         
                     <?php } ?>
 
                 </div>
 
-
-
-
             </div>
         </div>
         <aside>
-        <div class="contenedora-aside">
-                <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/EditarPerfil"?>">Editar Perfil</a></div>
-                <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaRegistroMascota" ?>">Registrar Mascota</a></div>
-                <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaMascotas" ?>">Mis Mascotas</a></div>
-                <div class="icono guardian"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaGuardianes" ?>">Guardianes</a></div>
-                <div class="icono favoritos"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
-                <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Reservas</a></div>
-                <div class="icono mensajes"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                       
-            </div>
+        <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>
         </aside>
     </div>
 

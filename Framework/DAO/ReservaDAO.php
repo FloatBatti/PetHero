@@ -1,11 +1,27 @@
 <?php 
 namespace DAO;
 
+use Exception;
+
 class ReservaDAO{
 
-    private $reservas;
+    private $connection;
 
-    public function __construct(){
-        
+    public function crearReserva($idUserDueño){
+
+        try{
+
+            $query = "se esta haciendo";
+
+        }
+        catch(Exception $ex){
+
+
+
+        }
+
+
+
+
     }
 }

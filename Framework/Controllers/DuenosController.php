@@ -8,7 +8,7 @@ use Models\Dueño as Dueño;
 use DAO\UserDAO as UserDAO;
 use Exception;
 use Models\Archivos;
-use Models\Alert as Alert;
+use Models\Alert;
 
 
 
@@ -34,11 +34,15 @@ class DuenosController
     public function EditarPerfil()
     {
         try{
+
             if($usuario = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"])){
                 require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
             }
+
             throw new Exception("error");
+
         }catch(Exception $ex){
+
             $alert=new Alert($ex->getMessage(),"error");
             $this->vistaDashboard();
         }   
@@ -122,8 +126,7 @@ class DuenosController
         $dueño->setDireccion($direccion);
 
         $nameImg = $dueño->getUsername() ."-". $fotoPerfil["name"];
-
-        
+   
 
         if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
 
@@ -131,14 +134,22 @@ class DuenosController
 
                 $dueño->setPassword($password);
 
-                if($this->UserDAO->AddDueño($dueño)){
+                try{
 
-                    Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $dueño->getUsername());
-                    
-                    header("location: ../Home");
+                    if($this->UserDAO->AddDueño($dueño)){
+
+                        Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $dueño->getUsername());
+                        
+                        header("location: ../Home");
+                    }
+    
+                    throw new Exception("El dueño no pudo registrarse"); //Mensaje que funciona como alert
+                }
+                catch (Exception $ex){
+
+                    $alert=new Alert($ex->getMessage(),"error");
                 }
 
-                throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
             }
             else{
 
