@@ -113,7 +113,7 @@ class GuardianDAO implements InterfaceDAO
                 $guardian->setFechaFin($reg["dia_fin"]);
                 $guardian->setCosto($reg["costo_diario"]);
                 $guardian->setFotoEspacioURL($reg["foto_espacio"]);
-                $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_guardian"]));
+                $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
 
                 array_push($listaFavoritos,$guardian);
 
@@ -164,7 +164,7 @@ class GuardianDAO implements InterfaceDAO
         }
     }
 
-    public function devolverGuardianPorId($idGuardian){
+    public function devolverGuardianPorId($idUsuario){
         
         $guardian = new Guardian();
         try{
@@ -173,7 +173,7 @@ class GuardianDAO implements InterfaceDAO
         FROM usuarios u 
         inner join guardianes g 
         on u.id_usuario = g.id_usuario
-        where g.id_usuario = " . $idGuardian . ";";
+        where g.id_usuario = " . $idUsuario . ";";
 
         $this->connection = Connection::GetInstance();
 
@@ -198,7 +198,7 @@ class GuardianDAO implements InterfaceDAO
             $guardian->setDescripcion($reg["descripcion"]);
             $guardian->setCosto($reg["costo_diario"]);
             $guardian->setFotoEspacioURL($reg["foto_espacio"]);
-            $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_guardian"]));
+            $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
             
             return $guardian;
         }
@@ -207,7 +207,7 @@ class GuardianDAO implements InterfaceDAO
         }
     }
 
-    public function obtenerTamañosMascotas($idGuardian){
+    public function obtenerTamañosMascotas($idUsuario){
 
         $listaTamaños = array();
 
@@ -221,7 +221,7 @@ class GuardianDAO implements InterfaceDAO
         guardianes g ON txg.id_guardian = g.id_guardian
         INNER JOIN
         usuarios u on u.id_usuario = g.id_usuario
-        WHERE g.id_usuario=".$idGuardian.";";
+        WHERE g.id_usuario=".$idUsuario.";";
           
 
         $this->connection = Connection::GetInstance();

@@ -129,6 +129,7 @@ class GuardianesController
     }
     
     public function VerPerfilGuardian($idGuardian){
+        
         if(isset($_SESSION["UserId"])){
             
             $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);

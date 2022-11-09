@@ -24,7 +24,7 @@
         <div class="contenedora-section">
             <div class="plantilla-guardian">
                 <div class="cont imagen">
-                    <div class=" cont img-perfil"></div>
+                    <div class=" cont img-perfil"><img src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>"><?php echo "../assets/FotosUsuarios/". $guardian->getFotoPerfil()?></div>
                     <div class=" cont nombre-perfil"><?php echo $guardian->getUsername();?></div>
                 </div>
                 <div class="cont calificacion"><div class="cont solicitud calificacion"></div><div class="cont stars"><a href=""><img src="../assets/img/3_stars.png"></a></div></div>
