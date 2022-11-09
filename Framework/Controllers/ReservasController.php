@@ -7,7 +7,9 @@ use Models\Guardian as Guardian;
 use DAO\GuardianDAO as GuardianDAO;
 use DAO\MascotaDAO as MascotaDAO;
 use DAO\ReservaDAO as ReservaDAO;
+use Exception;
 use Models\Reserva as Reserva;
+use Models\Alert as Alert;
 
 class ReservasController{
     
@@ -26,22 +28,34 @@ class ReservasController{
     }
 
     public function Add(){
-        $reserva=unserialize($_SESSION["Reserva"]);
-        unset($_SESSION["Reserva"]);
-        $this->ReservasDAO->Add($reserva);
-        $this->ListReservasView();
+
+        try{
+
+            $reserva=unserialize($_SESSION["Reserva"]);
+            unset($_SESSION["Reserva"]);
+
+            if($this->ReservaDAO->crearReserva($reserva)){
+
+                header("location: ../Duenos/VerReservas");   
+            }
+            throw new Exception("No se pudo crear la reserva, intente nuevamente");
+
+        }catch(Exception $ex){
+
+            $alert=new Alert($ex->getMessage(),"error");
+        } 
+
     }
 
     public function VerConfimacion()
     {
+        $reserva=unserialize($_SESSION["Reserva"]);
         require_once(VIEWS_PATH. "DashboardDueno/ConfirmarSolicitud.php");
     }
 
-    public function ListReservasView(){
+    public function VerReservas(){
 
-        $listaMascotas = $this->MascotasDAO->GetAll();
-        $listaGuardianes= $this->GuardianesDAO->GetAll();
-        $listaReservas= $this->ReservasDAO->GetAll();
+        //$listaReservas = $this->ReservaDAO->
         
         require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
     }
@@ -62,38 +76,34 @@ class ReservasController{
     }
 
     public function Confirmar($fechaIn,$fechaOut,$idMascota){
+
+        if(isset($_SESSION["DuenoId"])){
+
+
+            $listaMascotas = $this->MascotaDAO->GetAll();
+            $guardian = $this->GuardianDAO->devolverGuardianPorId($_SESSION["GuardianId"]);
+            unset($_SESSION["GuardianId"]);
+
+            $dueño = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
+            $mascota = $this->MascotaDAO->devolverMasctotaPorId($idMascota);
+            
+            $reserva = new Reserva();
+            $reserva->setFecha(date("Y-m-d H:i:s"));
+            $reserva->setFechaInicio($fechaIn);
+            $reserva->setFechaFin($fechaOut);
+            $reserva->setMascota($mascota);
+            $reserva->setGuardian($guardian);
+            $reserva->setDueño($dueño);
+            $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
+            $reserva->setCosto($costo);
+            $reserva->setEstado("Pendiente");
+
+            // NO TOCAR PORQUE SE ESTA CREANDO EL PROCEDURE
+
+            $_SESSION["Reserva"] = serialize($reserva);
+            
+            $this->VerConfimacion();
         
-        
-        if($_POST){
-
-            if(isset($_SESSION["DuenoId"])){
-
-
-                $listaMascotas = $this->MascotaDAO->GetAll();
-
-                $guardian = $this->GuardianeDAO->devolverGuardianPorId($_SESSION["GuardianId"]);
-                unset($_SESSION["GuardianId"]);
-
-                $dueño = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
-                $mascota = $this->MascotaDAO->devolverMasctotaPorId($idMascota);
-                
-                $reserva = new Reserva();
-                $reserva->setFecha(date("Y-m-d H:i:s"));
-                $reserva->setFechaInicio($fechaIn);
-                $reserva->setFechaFin($fechaOut);
-                $reserva->setMascota($mascota);
-                $reserva->setGuardian($guardian);
-                $reserva->setDueño($dueño);
-                $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
-                $reserva->setCosto($costo);
-                $reserva->setEstado("Pendiente");
-
-                // NO TOCAR PORQUE SE ESTA CREANDO EL PROCEDURE
-                $this->ReservaDAO->crearReserva($reserva);
-                
-                $this->VerConfimacion();
-
-            } 
         }
     }
 
