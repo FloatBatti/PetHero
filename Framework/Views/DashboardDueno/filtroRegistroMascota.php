@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sa /head>
+ 
 
 <body>
     <div class="cabecera">
@@ -32,7 +33,7 @@
                 <div class="contenedora-eleccion gato">
                   <div><h2>Gato</h2></div>
                   <img src="../assets/img/gatofiltro.png">
-                  <div><a href="Mascotas/Add"><h4>Continuar</h4></a></div>
+                  <div><a href="../Mascotas/VerRegistroGato"><h4>Continuar</h4></a></div>
                 </div>
               </div>
         </div>

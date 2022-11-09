@@ -6,9 +6,9 @@ class Reserva{
     private $fecha;
     private $fechaInicio;
     private $fechaFin;
-    private $mascotaID;
-    private $guardianID;
-    private $dueñoID;
+    private $mascota;
+    private $guardian;
+    private $dueño;
     private $costo;
     private $estado;//Pendiente o Aprobada. Depende de la aceptacion del guardian y pago del cupon
 
@@ -45,29 +45,29 @@ class Reserva{
     {
         $this->fechaFin = $fechaFin;
     }
-    public function getMascotaID()
+    public function getMascota()
     {
-        return $this->mascotaID;
+        return $this->mascota;
     }
-    public function setMascotaID($idMascota)
+    public function setMascota($idMascota)
     {
-        $this->mascotaID = $idMascota;
+        $this->mascota = $idMascota;
     }
-    public function getGuardianID()
+    public function getGuardian()
     {
-        return $this->guardianID;
+        return $this->guardian;
     }
-    public function setGuardianID($guardian)
+    public function setGuardian($guardian)
     {
-        $this->guardianID = $guardian;
+        $this->guardian = $guardian;
     }
-    public function getDueñoID()
+    public function getDueño()
     {
-        return $this->dueñoID;
+        return $this->dueño;
     }
-    public function setDueñoID($dueño)
+    public function setDueño($dueño)
     {
-        $this->dueñoID = $dueño;
+        $this->dueñoo= $dueño;
     }
     public function getCosto()
     {

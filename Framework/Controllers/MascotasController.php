@@ -19,7 +19,16 @@ class MascotasController{
 
     public function VistaMascotas(){
 
+        $listaMascotas = $this->MascotasDAO->GetAll();
+        require_once(VIEWS_PATH. "dashboardDueno/Mascotas.php");
        
+    }
+
+    public function VerRegistroGato(){
+
+        $listaRazas = $this->MascotasDAO->listarRazas("Gato");
+        require_once(VIEWS_PATH. "dashboardDueno/RegistroGato.php");
+
     }
 
     public function VerRegistroPerro(){
@@ -34,12 +43,7 @@ class MascotasController{
         require_once(VIEWS_PATH. "dashboardDueno/filtroRegistroMascota.php");
     }
 
-    public function AddGato($nombre, $raza, $tamano, $archivos ,$videoUrl){
-
-        echo "<pre>";
-        var_dump($archivos); 
-        echo"</pre>";
-
+    public function AddGato($nombre, $raza, $tamano ,$fotoGato,$fotoPlan, $videoUrl=null){
 
         $MascotasDAO = new MascotaDAO();
 
@@ -48,53 +52,24 @@ class MascotasController{
         $mascota->setRaza($raza);
         $mascota->setEspecie("Perro");
         $mascota->setTamaño($tamano);
-
         
-        $mascota->setFotoURL($archivos[0]);
-        $mascota->setPlanVacURL($archivos[1]);
+        $nameImgPerro = $mascota->getNombre() ."-". $fotoGato["name"];
+        $nameImgPlan = $mascota->getNombre() ."-". $fotoPlan["name"];
+
+        $mascota->setFotoURL($nameImgPerro);
+        $mascota->setPlanVacURL($nameImgPlan);
         $mascota->setVideoURL($videoUrl);
-
-    
-/*
-        //FOTO MASCOTA
-        $nameImg = $mascota->getNombre()."-User".$_SESSION["UserId"]."-".$foto["name"];
-        $temp_name = $foto["tmp_name"];
-        $error = $foto["error"];
-        $size = $foto["size"];
-        $type = $foto["type"];
-
-        if(!$error){
-
-            $rutaImagen = FRONT_ROOT. "assets/Mascotas/FotosMascotas". $nameImg;
-            move_uploaded_file($temp_name, $rutaImagen);
-        }
-
-        //FOTO VACUNACION
-        $nameImg = $mascota->getNombre()."-Plan"."-User".$_SESSION["UserId"]."-".$fotoVacunacion["name"];
-        $temp_name = $fotoVacunacion["tmp_name"];
-        $error = $fotoVacunacion["error"];
-        $size = $fotoVacunacion["size"];
-        $type = $fotoVacunacion["type"];
-
-        if(!$error){
-
-            $rutaImagen = FRONT_ROOT. "assets/Mascotas/PlanesVacunacion". $nameImg;
-            move_uploaded_file($temp_name, $rutaImagen);
-        }
-        */
-
 
         try{
 
-            $var = $MascotasDAO->Add($mascota);
-            var_dump($var);
-            if($var){
+            if($MascotasDAO->Add($mascota)){
 
+                Archivos::subirArch("fotoGato", $fotoGato, "Mascotas/FotosMascotas/", $mascota->getNombre());
+                Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
                 header("location:../Mascotas/VerFiltroMascotas");
 
             }
             throw new Exception("No se pudo agregar la mascota");
-
 
         }
         catch (Exception $ex){
@@ -107,11 +82,6 @@ class MascotasController{
 
     public function AddPerro($nombre, $raza, $tamano ,$fotoPerro,$fotoPlan, $videoUrl=null){
 
-        
-        echo "<pre>";
-        var_dump($fotoPerro); 
-        echo"</pre>";
-        
         $MascotasDAO = new MascotaDAO();
 
         $mascota = new Mascota();
@@ -119,7 +89,6 @@ class MascotasController{
         $mascota->setRaza($raza);
         $mascota->setEspecie("Perro");
         $mascota->setTamaño($tamano);
-
         
         $nameImgPerro = $mascota->getNombre() ."-". $fotoPerro["name"];
         $nameImgPlan = $mascota->getNombre() ."-". $fotoPlan["name"];
@@ -127,8 +96,6 @@ class MascotasController{
         $mascota->setFotoURL($nameImgPerro);
         $mascota->setPlanVacURL($nameImgPlan);
         $mascota->setVideoURL($videoUrl);
-
-
 
         try{
 
@@ -141,15 +108,13 @@ class MascotasController{
             }
             throw new Exception("No se pudo agregar la mascota");
 
-
         }
         catch (Exception $ex){
 
             $alert = new Alert ($ex->getMessage(),"error");
             $this->VistaMascotas();
         }
-        
-        
+
         
     }
 

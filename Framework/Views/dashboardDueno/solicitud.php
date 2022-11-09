@@ -46,7 +46,7 @@
 
                                         <?php foreach ($listaMascotas as $mascota) { ?>
 
-                                            <option value="<?php echo $mascota ?>"><?php echo $mascota ?></option>
+                                            <option value="<?php echo $mascota->getId() ?>"><?php echo $mascota->getNombre(); ?></option>
 
                                         <?php } ?>
                                     </select>
