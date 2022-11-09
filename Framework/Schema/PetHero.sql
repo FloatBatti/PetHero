@@ -254,3 +254,16 @@ set id_dueño = (select d.id_dueño from dueños d inner join usuarios u on u.id
 insert into mascotas (nombre, id_raza, id_tamaño, id_dueño, plan_vacunacion, foto_mascota, video) values (p_nombre, id_raza, id_tamaño, id_dueño, p_plan_vacunacion, p_foto_mascota, p_video);
 
 END//
+
+alter table reservas add column estado varchar(50)
+
+DELIMITER //
+create procedure crear_reserva (in p_fecha_reserva date, in p_fecha_inicio date, in p_fecha_fin date, in id_user_guardian bigint, in id_user_dueño bigint, in p_id_mascota bigint, in p_costo_total bigint, p_estado varchar(50))
+BEGIN 
+declare id_guardian bigint;
+declare id_dueño bigint;
+set id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario=u.id_usuario where u.id_usuario = id_user_guardian);
+set id_dueño = (select d.id_dueño from dueños d inner join usuarios u on u.id_usuario = d.id_usuario where u.id_usuario = id_user_dueño);
+insert into reservas(fecha_reserva,fecha_inicio,fecha_fin, id_guardian,id_dueño,p_id_mascota, costo_total, estado) values (p_fecha_reserva,p_fecha_inicio,p_fecha_fin, id_guardian, id_dueño, id_mascota,p_costo_total,p_estado);
+END//
+
