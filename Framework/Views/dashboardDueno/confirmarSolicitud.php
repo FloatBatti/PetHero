@@ -28,7 +28,7 @@
                     <div class="contendora-confirmacion">
                             <div>
                                 Guardian
-                                <?php echo $guardian->getUsername();?>
+                                <?php echo $reserva->getGuardian()->getUsername();?>
                             </div>
                             <div>
                                 Fecha inicio
@@ -41,14 +41,7 @@
                             <div>
                                 Mascota
                                 <?php 
-                                    foreach($listaMascotas as $mascota){
-
-                                        if($mascota->getId() == $reserva->getMascotaID()){
-
-                                            echo $mascota->getNombre(); 
-                                        }
-
-                                    }
+                                    echo $reserva->getMascota()->getNombre();
                                 ?>
                             </div>
                             <div>

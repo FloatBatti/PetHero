@@ -173,7 +173,7 @@ class GuardianDAO implements InterfaceDAO
         FROM usuarios u 
         inner join guardianes g 
         on u.id_usuario = g.id_usuario
-        where g.id_usuario = " . $idUsuario . ";";
+        where u.id_usuario = " . $idUsuario . ";";
 
         $this->connection = Connection::GetInstance();
 
@@ -221,7 +221,7 @@ class GuardianDAO implements InterfaceDAO
         guardianes g ON txg.id_guardian = g.id_guardian
         INNER JOIN
         usuarios u on u.id_usuario = g.id_usuario
-        WHERE g.id_usuario=".$idUsuario.";";
+        WHERE u.id_usuario=".$idUsuario.";";
           
 
         $this->connection = Connection::GetInstance();
