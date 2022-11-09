@@ -2,11 +2,11 @@
 namespace Controllers;
 
 use Models\Dueño as Dueño;
-use DAO\DueñosDAO as DueñosDAO;
+use DAO\DueñoDAO as DueñosDAO;
 use Models\Guardian as Guardian;
-use DAO\GuardianesDAO as GuardianesDAO;
-use DAO\MascotasDAO as MascotasDAO;
-use DAO\ReservasDAO as ReservasDAO;
+use DAO\GuardianDAO as GuardianDAO;
+use DAO\MascotaDAO as MascotaDAO;
+use DAO\ReservaDAO as ReservaDAO;
 use Models\Reserva as Reserva;
 
 class ReservasController{
@@ -17,9 +17,9 @@ class ReservasController{
 
     public function __construct(){
 
-        $this->ReservasDAO = new ReservasDAO();
-        $this->GuardianesDAO = new GuardianesDAO();
-        $this->MascotasDAO = new MascotasDAO();
+        $this->ReservaDAO = new ReservaDAO();
+        $this->GuardianDAO = new GuardianDAO();
+        $this->MascotaDAO = new MascotaDAO();
     }
 
     public function Add(){
@@ -40,13 +40,13 @@ class ReservasController{
     
     public function Iniciar($idGuardian){
 
-        if(isset($_SESSION["DuenoId"])){
+        if(isset($_SESSION["UserId"])){
             
-            $_SESSION["GuardianId"] = $idGuardian;
             $DueñosDAO = new DueñosDAO();
-            $dueño=new Dueño();
-            $dueño=$DueñosDAO->encontrarDueño($_SESSION["DuenoId"]);
-            $listaMascotas = $this->MascotasDAO->GetAll();
+            $dueño=$DueñosDAO->devolverDueñoPorId($_SESSION["UserId"]);
+            $listaMascotas = ["ejemplo1","ejemplo2","ejemplo3"];
+            $guardianes=new GuardianDAO();
+            $guardian=$guardianes->devolverGuardianPorId($idGuardian);
             require_once(VIEWS_PATH. "DashboardDueno/Solicitud.php");
         } 
     }

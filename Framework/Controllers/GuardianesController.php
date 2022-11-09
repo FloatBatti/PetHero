@@ -151,7 +151,7 @@ class GuardianesController
     }
     public function actualizarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){
         if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion)){
-            header("location: ../Duenos/vistaDashboard");
+            header("location: ../Guardianes/vistaDashboard");
         }
         
     }

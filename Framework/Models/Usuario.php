@@ -14,7 +14,7 @@ abstract class Usuario {
     private $direccion;
     private $fotoPerfil;
     private $tipoUsuario;
-        
+    
     
     public function getUsername(){
         return $this->username;

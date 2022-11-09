@@ -8,6 +8,7 @@ use Models\Dueño as Dueño;
 use DAO\UserDAO as UserDAO;
 use Exception;
 use Models\Archivos;
+use Models\Alert as Alert;
 
 
 
@@ -157,6 +158,6 @@ class DuenosController
           
             
     }
-
+    
     
 }
