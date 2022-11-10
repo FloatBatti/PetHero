@@ -264,6 +264,27 @@ declare id_guardian bigint;
 declare id_dueño bigint;
 set id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario=u.id_usuario where u.id_usuario = id_user_guardian);
 set id_dueño = (select d.id_dueño from dueños d inner join usuarios u on u.id_usuario = d.id_usuario where u.id_usuario = id_user_dueño);
-insert into reservas(fecha_reserva,fecha_inicio,fecha_fin, id_guardian,id_dueño,p_id_mascota, costo_total, estado) values (p_fecha_reserva,p_fecha_inicio,p_fecha_fin, id_guardian, id_dueño, id_mascota,p_costo_total,p_estado);
+insert into reservas(fecha_reserva,fecha_inicio,fecha_fin, id_guardian,id_dueño,id_mascota, costo_total, estado) values (p_fecha_reserva,p_fecha_inicio,p_fecha_fin, id_guardian, id_dueño, id_mascota,p_costo_total,p_estado);
 END//
+
+
+DELIMITER //
+create procedure listar_solicitud_reservas(in p_estado varchar(50))
+begin
+SELECT
+r.id_reserva,
+r.fecha_reserva,
+r.fecha_inicio,
+r.fecha_fin,
+d.id_usuario as dueño,
+r.id_mascota,
+r.costo_total,
+r.estado 
+from 
+reservas r
+inner join dueños d on r.id_dueño = d.id_dueño
+inner join usuarios u on u.id_usuario = d.id_usuario
+where r.id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario = u.id_usuario where u.id_usuario = 27)
+and r.estado = "Pendiente";
+END //
 
