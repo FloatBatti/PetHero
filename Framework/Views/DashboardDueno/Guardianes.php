@@ -53,7 +53,7 @@
 
                         <div class="row guardian-row">
                             <div class="col contendor-img">
-                                <div class="img-ex">img</div>
+                                <div class="img-ex"><img src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil();?>" height="50"></div>
                             </div>
                             <div class="col nombre-ex"><?php echo $guardian->getUsername() ?></div>
                             <div class="col tipo-ex"><?php

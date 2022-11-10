@@ -24,11 +24,13 @@
         <div class="contenedora-section">
             <div class="plantilla-guardian">
                 <div class="cont imagen">
-                    <div class=" cont img-perfil"><img src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>"></div>
+                    <div class=" cont img-perfil"><img src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>" height="70"></div>
                     <div class=" cont nombre-perfil"><?php echo $guardian->getUsername();?></div>
                 </div>
                 <div class="cont calificacion"><div class="cont solicitud calificacion"></div><div class="cont stars"><a href=""><img src="../assets/img/3_stars.png"></a></div></div>
-                <div class="cont foto-espacio"><div class="cont foto"></div></div>
+
+                <div class="cont foto-espacio"><div class="cont foto"><img src="../assets/EspaciosGuardianes/<?php echo $guardian->getFotoEspacioURL()?>" height="70"></div></div>
+
                 <div class="cont descripcion">
                     <div class="cont dias">Dias de atencion:<br>Desde<?php echo $guardian->getFechaInicio()?> hasta <?php echo $guardian->getFechaFin();?><br></div>
                     <div class="cont mascotas">Tipos de mascota permitidos:<br><?php foreach($tamaños as $tipo){echo $tipo." ";}?><br></div>

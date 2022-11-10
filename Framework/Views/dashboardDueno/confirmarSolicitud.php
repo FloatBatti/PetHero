@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Solicitud</title>
 
-    <link href="../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../styles/solicitud.css" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/solicitud.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -26,25 +27,25 @@
                 
                 <div class="contenedora-fechas">
                     <div class="contendora-confirmacion">
-                            <div>
+                            <div class="dato-confirmacion">
                                 Guardian
                                 <?php echo $reserva->getGuardian()->getUsername();?>
                             </div>
-                            <div>
+                            <div class="dato-confirmacion">
                                 Fecha inicio
                                 <?php echo $reserva->getFechaInicio(); ?>
                             </div>
-                            <div>
+                            <div class="dato-confirmacion">
                                 Fecha Fin
                                 <?php echo $reserva->getFechaFin(); ?>
                             </div>
-                            <div>
+                            <div class="dato-confirmacion">
                                 Mascota
                                 <?php 
                                     echo $reserva->getMascota()->getNombre();
                                 ?>
                             </div>
-                            <div>
+                            <div class="dato-confirmacion"> 
                                 Costo
                                 <?php echo $reserva->getCosto(); ?>
                             </div>
