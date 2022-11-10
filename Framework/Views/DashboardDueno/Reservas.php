@@ -30,6 +30,14 @@
                 </form>
                 <div class="row encabezado-row">
                     <div class="col ">Guardian</div>
+                    <div class="col ">Fecha petición</div>
+                    <div class="col ">Fecha inicio</div>
+                    <div class="col ">Fecha fin</div>
+                    <div class="col ">Mascota</div>
+                    <div class="col ">Costo Total</div>
+                    <div class="col ">Estado</div>
+                    <div class="col ">Cancelar</div>
+
                    
                 </div>
                 <div class="scrolleable">
@@ -38,29 +46,13 @@
 
                         <div class="row reserva-row">
                             <div class="col">
-                                <?php
-                                foreach ($listaGuardianes as $guardian) {
-
-                                    if ($guardian->getId() == $reserva->getGuardianID()) {
-
-                                        echo $guardian->getNombre();
-                                    }
-                                }
-                                ?>
+                                <?php echo $reserva->getGuardian()->getUsername();?>
                             </div>
 
                             <div class="col "><?php echo $reserva->getFechaInicio(); ?></div>
                             <div class="col "><?php echo $reserva->getFechaFin(); ?></div>
                             <div class="col ">
-                                <?php
-                                foreach ($listaMascotas as $mascota) {
-
-                                    if ($mascota->getId() == $reserva->getMascotaID()) {
-
-                                        echo $mascota->getNombre();
-                                    }
-                                }
-                                ?>
+                                <?php echo $reserva->getMascota()->getNombre();?>
                             </div>
                             <div class="col"><?php echo $reserva->getCosto(); ?></div>
                             <div class="col"><?php echo $reserva->getEstado(); ?></div>

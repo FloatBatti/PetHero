@@ -25,7 +25,7 @@
             <div class="listasolicitudes">
                 <div class="titulo"><h2>Solicitudes Pendientes</h2></div>
                 <div class="rotulo">
-                    <div class="campo Nombre">nombre</div>
+                    <div class="campo Nombre">Usuario</div>
                     <div class="campo Mascota">Mascota</div>
                     <div class="campo fecha">fecha inicio</div>
                     <div class="campo fecha">fecha fin</div>
@@ -34,34 +34,26 @@
                     <div class="campo rechazar">Rechazar</div>
                 </div>
                 <div class="scrolleable">
-                <div class="solicitud">
-                    <div class="campo Nombre">Agustin</div>
-                    <div class="campo Mascota"><a href="">Piqui</a></div>
-                    <div class="campo fecha">20-11-2022</div>
-                    <div class="campo fecha">22-11-2022</div>
-                    <div class="campo costo">$1200</div>
-                    <div class="campo aceptar"><a href=""><img src="../assets/img/ok.png" alt="Aceptar"></a></div>
-                    <div class="campo rechazar"><a href=""><img src="../assets/img/rechaza.png" alt="Rechazar"></a></div>
+                <?php foreach ($listaSolicitudes as $solicitud){?>
+                <div class="row solicitud">
+                    <div class="col campo Nombre"><?php echo $solicitud->getDueño()->getUsername()?></div>
+                    <div class="col campo Mascota"><a href=""><?php echo $solicitud->getMascota()->getNombre()?></a></div>
+                    <div class="col campo fecha"><?php echo $solicitud->getFechaInicio()?></div>
+                    <div class="col campo fecha"><?php echo $solicitud->getFechaFin()?></div>
+                    <div class="col campo costo"><?php echo $solicitud->getCosto()?></div>
+
+                    <div class="col campo aceptar"><a href="../Reservas/AceptarSolicitud?idReserva=<?php echo $solicitud->getId()?>"><img src="../assets/img/ok.png" alt="Aceptar"></a></div>
+                    
+                    <div class="col campo rechazar"><a href="../Reservas/RechazarSolicitud?idReserva=<?php echo $solicitud->getId()?>"><img src="../assets/img/rechaza.png" alt="Rechazar"></a></div>
                 </div>
-                
+                <?php }?>
             </div>
             </div>
             
         </div>
         
         <aside>
-            <div class="contenedora-aside">
-            <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/EditarPerfil"?>">Editar Perfil</a></div>
-                <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT. "Guardianes/editarDisponibilidad"?>">Establecer disponibilidad</a></div>
-                <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/vistaSolicitudes"?>">Solicitudes</a></div>
-                <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Reservas</a></div>
-                <div class="icono mensajes"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                      
-            </div>
+        <?php require_once(VIEWS_PATH . "dashboardGuardian/menuDash.php");?>
         </aside>
     </div>
 

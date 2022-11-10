@@ -6,12 +6,13 @@
     display: flex;
     flex-direction: column;
     height: 90%;
-    margin: 0 auto auto 20px;
+    margin: 2% auto auto 10%;
+
        
 }
 .solicitud{
-    width: 90%;
-    height: 100px;
+    width: 93%;
+    height: 85px;
     background-color: rgb(231, 160, 7);
     box-shadow: 20px 20px 30px -5px rgb(58, 29, 1);
     border-radius: 5px;
@@ -25,7 +26,9 @@
     box-shadow: 20px 20px 30px -5px rgb(58, 29, 1);
     border-radius: 5px;
     display:flex;
-    margin: 10px auto;
+    margin-bottom: 1.75%;
+    margin-left: 3.5%;
+    padding-left: 10px;
 
 }
 .campo{
@@ -34,6 +37,7 @@
 }
 .scrolleable{
     overflow-y: scroll;
+    height: 70%;
 }
 .titulo{
     justify-content: center;

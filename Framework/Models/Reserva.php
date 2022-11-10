@@ -67,7 +67,7 @@ class Reserva{
     }
     public function setDueño($dueño)
     {
-        $this->dueñoo= $dueño;
+        $this->dueño= $dueño;
     }
     public function getCosto()
     {
