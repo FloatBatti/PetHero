@@ -10,6 +10,7 @@ use DAO\ReservaDAO as ReservaDAO;
 use Exception;
 use Models\Reserva as Reserva;
 use Models\Alert as Alert;
+use Models\Mail as Mail;
 
 class ReservasController{
     
@@ -36,7 +37,7 @@ class ReservasController{
 
             if($this->ReservaDAO->crearReserva($reserva)){
 
-                header("location: ../Duenos/VerReservas");   
+                header("location: ../Reservas/VerReservasDueno");   
             }
             throw new Exception("No se pudo crear la reserva, intente nuevamente");
 
@@ -53,13 +54,68 @@ class ReservasController{
         require_once(VIEWS_PATH. "DashboardDueno/ConfirmarSolicitud.php");
     }
 
-    public function VerReservas(){
+    public function VerReservasDueno(){
 
-        //$listaReservas = $this->ReservaDAO->
-        
+        $listaReservas = $this->ReservaDAO->listarReservasDueno();
         require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
     }
-    
+
+    public function VerReservasGuardian(){
+
+        $listaReservas = $this->ReservaDAO->listarSolicitudesOrReservas("Aceptada");
+        require_once(VIEWS_PATH. "DashboardGuardian/Reservas.php");
+    }
+
+    public function VerSolicitudesGuardian(){
+
+        $listaSolicitudes = $this->ReservaDAO->listarSolicitudesOrReservas("Pendiente");
+        
+        require_once(VIEWS_PATH. "DashboardGuardian/Solicitudes.php");
+    }
+
+    public function AceptarSolicitud($idReserva){
+
+        try{
+
+            if($this->ReservaDAO->aceptarSolicitud($idReserva)){
+
+                $mail= new Mail();
+
+                $reserva = $this->ReservaDAO->
+
+                $mail->enviarMail()
+
+                header("location: ../Reservas/VerReservasGuardian");
+            }
+            throw new Exception("No se pudo aceptar la solicitud");
+
+        }catch(Exception $ex){
+
+            $alert= new Alert($ex->getMessage(),"error");
+
+        }
+
+    }
+
+
+    public function RechazarSolicitud($idReserva){
+
+        try{
+
+            if($this->ReservaDAO->rechazarSolicitud($idReserva)){
+
+                header("location: ../Reservas/VerSolicitudesGuardian");
+            }
+            throw new Exception("No se pudo rechazar la solicitud");
+
+        }catch(Exception $ex){
+
+            $alert= new Alert($ex->getMessage(),"error");
+
+        }
+
+    }
+
     public function Iniciar($idGuardian){
 
         if(isset($_SESSION["UserId"])){

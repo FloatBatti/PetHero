@@ -16,25 +16,14 @@
     <div class="cabecera">
         <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" alt="Logo" height="100"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div></div>
         </div>
         <aside>
-            <div class="contenedora-aside">
-                <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT."Guardianes/EditarPerfil"?>">Editar Perfil</a></div>
-                <div class="icono mascota"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT. "Guardianes/editarDisponibilidad"?>">Establecer disponibilidad</a></div>
-                <div class="icono vermascotas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT ."Guardianes/vistaSolicitudes"?>">Solicitudes</a></div>
-                <div class="icono reservas"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT?>">Reservas</a></div>
-                <div class="icono mensajes"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "" ?>">Mensajes</a></div>                                         
-            </div>
+            <?php require_once(VIEWS_PATH . "dashboardGuardian/menuDash.php"); ?>
         </aside>
     </div>
 
