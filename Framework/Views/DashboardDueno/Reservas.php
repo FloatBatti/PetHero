@@ -48,7 +48,7 @@
                             <div class="col">
                                 <?php echo $reserva->getGuardian()->getUsername();?>
                             </div>
-
+                            <div class="col "><?php echo $reserva->getFecha(); ?></div>
                             <div class="col "><?php echo $reserva->getFechaInicio(); ?></div>
                             <div class="col "><?php echo $reserva->getFechaFin(); ?></div>
                             <div class="col ">
