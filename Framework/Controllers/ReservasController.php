@@ -75,18 +75,19 @@ class ReservasController{
 
     public function AceptarSolicitud($idReserva){
 
-        /*
+        
         try{
 
             if($this->ReservaDAO->aceptarSolicitud($idReserva)){
 
+                $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
+                
                 $mail= new Mail();
 
-                $reserva = $this->ReservaDAO->
-
-                $mail->enviarMail()
+                $mail->enviarMail($reserva);
 
                 header("location: ../Reservas/VerReservasGuardian");
+
             }
             throw new Exception("No se pudo aceptar la solicitud");
 
@@ -94,8 +95,10 @@ class ReservasController{
 
             $alert= new Alert($ex->getMessage(),"error");
 
+            throw $ex;
+
         }
-        */
+        
 
     }
 
@@ -135,7 +138,7 @@ class ReservasController{
 
     public function Confirmar($fechaIn,$fechaOut,$idMascota){
 
-        if(isset($_SESSION["DuenoId"])){
+        if(isset($_SESSION["UserId"])){
 
 
             $listaMascotas = $this->MascotaDAO->GetAll();

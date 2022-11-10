@@ -103,14 +103,6 @@ class DuenosController
         }
     }    
  
-    public function RegistroTerminado()
-    {
-
-
-        //require_once(VIEWS_PATH . "index.php");
-
-        header("Location: ../Views/index.php");
-    }
 
     public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
     {
@@ -126,6 +118,8 @@ class DuenosController
         $dueño->setDireccion($direccion);
 
         $nameImg = $dueño->getUsername() ."-". $fotoPerfil["name"];
+
+        $dueño->setFotoPerfil($nameImg);
    
 
         if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 

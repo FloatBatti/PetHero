@@ -52,7 +52,7 @@ class GuardianesController
 
     }
 
-    public function Add($inicio, $fin, $sizes, $costo,  $fotoEspacio, $descripcion)
+    public function Add($inicio, $fin, $sizes, $costo, $fotoEspacio, $descripcion)
     {
 
         $guardian =  unserialize($_SESSION["GuardTemp"]);
@@ -67,7 +67,10 @@ class GuardianesController
         }
 
         $guardian->setCosto($costo);
-        $guardian->setFotoEspacioURL($fotoEspacio);
+
+        $nameImg = $guardian->getUsername() ."-". $fotoEspacio["name"];
+
+        $guardian->setFotoEspacioURL($nameImg);
         $guardian->setDescripcion($descripcion);
 
 

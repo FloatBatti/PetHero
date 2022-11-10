@@ -27,11 +27,10 @@
                     <h2>Reservas Aceptadas</h2>
                 </div>
                 <div class="row rotulo">
-                    <div class="col campo Nombre">Nombre</div>
-                    <div class="col campo Nombre">Apellido</div>
+                    <div class="col campo Nombre">Usuario</div>
                     <div class="col campo Mascota">Mascota</div>
-                    <div class="col campo fecha">fecha inicio</div>
-                    <div class="col campo fecha">fecha fin</div>
+                    <div class="col campo fecha">Fecha inicio</div>
+                    <div class="col campo fecha">Fecha fin</div>
                     <div class="col campo costo">Costo</div>
                 </div>
                 <div class="scrolleable">
