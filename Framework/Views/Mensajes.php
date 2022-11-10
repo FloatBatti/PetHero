@@ -23,11 +23,15 @@
         <div class="contenedora-section">
             <div class="contendora-chat">
                 <div class="lista-mensajes">
-                    <div class="conenedora-mensaje"><div class="mensaje"><div class="autor-mensaje"></div></div></div>
-                    <div class="conenedora-mensaje"><div class="mensaje"><div class="autor-mensaje"></div></div></div>
+                    <div class="contenedora-mensaje emisor"><div class="autor-mensaje">Emisor</div><div class="mensaje"></div></div>
+                    <div class="contenedora-mensaje receptor"><div class="mensaje"></div><div class="autor-mensaje">Receptor</div></div>
+                    <div class="contenedora-mensaje emisor"><div class="autor-mensaje">Emisor</div><div class="mensaje"></div></div>
+                    <div class="contenedora-mensaje receptor"><div class="mensaje"></div><div class="autor-mensaje">Receptor</div></div>
                     
                 </div>
-                <div class="contenedora-reply"><div class="reply"></div><div class="Go"></div></div>
+                <hr>
+                <div class="contenedora-reply"><textarea name="chat" class="reply" maxlength="50" placeholder="max 50 caracteres" size="50" required></textarea> <div class="Go"><img src="../assets/img/send.png"></div></div>
+            <hr>
             </div>
             
         </div>

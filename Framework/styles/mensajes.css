@@ -2,9 +2,10 @@
     width: 70%;
     height:90%;
     background-color: lightgray;
-    box-shadow: 10px 10px 20px black;
     border-radius: 5px;
     margin-left: 20px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.76);
+     
 }
 
 .lista-mensajes{
@@ -12,24 +13,50 @@
     flex-direction: column;
     height:60%;
     margin: 0 auto auto 20px;
-    overflow-y: scroll;   
+    overflow-y: scroll;background-image: url(../assets/img/fondo-mascotas-chat.jpg);
 }
-.conenedora-mensaje{
+.contenedora-mensaje{
     border-radius: 7px;
-    background-color: rgb(245, 243, 242);
-    border:1px solid gray;
     height: 200px;
-    width: 400px;
+    display: flex;
+    flex-direction: row;
     margin-top:20px;
+    
+}
+.mensaje{
+    border:1px solid gray;
+    height: 150px;
+    width: 400px;
+    background-color: antiquewhite;
+    border-radius: 7px;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.receptor{
+    justify-content: end;
+    
+}
+.emisor{
+    justify-content: start;
+    
+}
+.autor-mensaje{
+    border-radius: 5px;
+    background-color: rgb(230, 166, 47);
+    height:fit-content;
+    border: 1px solid gray;
+    padding:5px;
+    margin:15px;
 }
 .contenedora-reply{
     width: auto;
-    height: 200px;
+    height: 150px;
     display:flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     
+   
 }
 .reply{
     border:1px solid black;
@@ -37,11 +64,19 @@
     border-radius: 7px;
     height:60% ;
     width: 70%;
-    margin: auto;
+   
 }
 .Go{
     height:60%;
     width:150px;
-    border:1px solid black;
+    border:1px solid gainsboro;
     border-radius: 7px;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px gray;
 }
+
