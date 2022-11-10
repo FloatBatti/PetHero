@@ -45,8 +45,6 @@ class Guardian extends Usuario{
     public function setFotoEspacioURL($fotoEspacioURL)
     {
         $this->fotoEspacioURL = $fotoEspacioURL;
-
-        return $this;
     }
 
     public function getDescripcion()
