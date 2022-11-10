@@ -13,29 +13,30 @@ class MascotaDAO{
 
     public function GetAll(){
 
+        $listaMascotas = array();
+
+        $query = "SELECT 
+        m.id_mascota,
+        m.nombre,
+        r.nombre_raza,
+        t.nombre_tamaño,
+        m.plan_vacunacion,
+        m.foto_mascota,
+        m.video
+        FROM mascotas m
+        inner join 
+        tamaños t on t.id_tamaño = m.id_tamaño
+        inner join
+        razas r on r.id_raza = m.id_raza
+        where id_dueño = (select id_dueño from dueños d inner join usuarios u on u.id_usuario = d.id_usuario where u.id_usuario = :id_usuario);";
+    
+        $parameters["id_usuario"] = $_SESSION["UserId"];
+
+        $this->connection = Connection::GetInstance();
+        
         try{
 
-            $listaMascotas = array();
-
-            $query = "SELECT 
-            m.id_mascota,
-            m.nombre,
-            r.nombre_raza,
-            t.nombre_tamaño,
-            m.plan_vacunacion,
-            m.foto_mascota,
-            m.video
-            FROM mascotas m
-            inner join 
-            tamaños t on t.id_tamaño = m.id_tamaño
-            inner join
-            razas r on r.id_raza = m.id_raza
-            where id_dueño = (select id_dueño from dueños d inner join usuarios u on u.id_usuario = d.id_usuario where u.id_usuario =". $_SESSION["UserId"] . ");";
-        
-        
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query);
+            $resultSet = $this->connection->Execute($query, $parameters);
 
             foreach($resultSet as $reg){
 
@@ -69,27 +70,29 @@ class MascotaDAO{
 
         $mascota = new Mascota();
 
+        
+        $query = "SELECT 
+        m.id_mascota,
+        m.nombre,
+        r.nombre_raza,
+        t.nombre_tamaño,
+        m.plan_vacunacion,
+        m.foto_mascota,
+        m.video
+        FROM mascotas m
+        inner join 
+        tamaños t on t.id_tamaño = m.id_tamaño
+        inner join
+        razas r on r.id_raza = m.id_raza
+        where m.id_mascota = :id_mascota ;";
+
+        $parameters["id_mascota"]= $idMascota;
+
+        $this->connection = Connection::GetInstance();
+
         try{
 
-            $query = "SELECT 
-            m.id_mascota,
-            m.nombre,
-            r.nombre_raza,
-            t.nombre_tamaño,
-            m.plan_vacunacion,
-            m.foto_mascota,
-            m.video
-            FROM mascotas m
-            inner join 
-            tamaños t on t.id_tamaño = m.id_tamaño
-            inner join
-            razas r on r.id_raza = m.id_raza
-            where m.id_mascota =". $idMascota . ";";
-
-
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query);
+            $resultSet = $this->connection->Execute($query, $parameters);
 
             foreach($resultSet as $reg){
 
@@ -99,8 +102,7 @@ class MascotaDAO{
                 $mascota->setTamaño($reg["nombre_tamaño"]);
                 $mascota->setPlanVacURL($reg["plan_vacunacion"]);
                 $mascota->setFotoURL($reg["foto_mascota"]);
-                $mascota->setVideoURL($reg["video"]);
-                
+                $mascota->setVideoURL($reg["video"]);   
                 
             }
 
@@ -112,32 +114,26 @@ class MascotaDAO{
 
         }
 
-
-
-
     }
     
     public function Add(Mascota $mascota){
 
+        $query = "CALL agregar_mascota(:nombre, :raza, :tamano, :idUsuario, :planVacunacion, :foto, :video)";
+
+        $parameters["nombre"] = $mascota->getNombre();
+        $parameters["raza"] = $mascota->getRaza();
+        $parameters["tamano"] = $mascota->getTamaño();
+        $parameters["idUsuario"] = $_SESSION["UserId"];
+        $parameters["planVacunacion"] = $mascota->getPlanVacURL();
+        $parameters["foto"] = $mascota->getFotoURL();
+        $parameters["video"] = $mascota->getVideoURL();
+
+        $this->connection = Connection::GetInstance();
+        
         try {
 
-
-            $query = "CALL agregar_mascota(:nombre, :raza, :tamano, :idUsuario, :planVacunacion, :foto, :video)";
-
-            $parameters["nombre"] = $mascota->getNombre();
-            $parameters["raza"] = $mascota->getRaza();
-            $parameters["tamano"] = $mascota->getTamaño();
-            $parameters["idUsuario"] = $_SESSION["UserId"];
-            $parameters["planVacunacion"] = $mascota->getPlanVacURL();
-            $parameters["foto"] = $mascota->getFotoURL();
-            $parameters["video"] = $mascota->getVideoURL();
-
-            $this->connection = Connection::GetInstance();
-
             return $this->connection->ExecuteNonQuery($query, $parameters);
-
-
-            
+          
         } catch (Exception $ex) {
             throw $ex;
         }
@@ -146,9 +142,7 @@ class MascotaDAO{
 
     public function listarRazas($especie){
 
-        try{
-
-            $listaRazas = array();
+        $listaRazas = array();
 
             $query = "SELECT 
             r.nombre_raza
@@ -156,11 +150,15 @@ class MascotaDAO{
             razas r
             INNER JOIN
             especies e ON r.id_especie = e.id_especie
-            where e.nombre_especie = '".$especie."';";
+            where e.nombre_especie = :especie ;";
+
+            $parameters["especie"] = $especie;
 
             $this->connection = Connection::GetInstance();
+        
+        try{
 
-            $resultSet = $this->connection->Execute($query);
+            $resultSet = $this->connection->Execute($query, $parameters);
             
             foreach($resultSet as $reg){
 

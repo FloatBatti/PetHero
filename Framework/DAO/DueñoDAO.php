@@ -13,26 +13,26 @@ class DueñoDAO implements InterfaceDAO{
 
     public function GetAll(){
 
+        $dueñosList = array();
+
+        $query = "SELECT 
+        d.id_dueño,
+        u.username,
+        u.dni,
+        u.nombre,
+        u.apellido,
+        u.correo,
+        u.contraseña,
+        u.telefono,
+        u.foto_perfil
+        FROM
+        usuarios u
+        INNER JOIN
+        dueños d ON d.id_usuario = u.id_usuario";
+
+        $this->connection = Connection::GetInstance();
+        
         try{
-
-            $dueñosList = array();
-
-            $query = "SELECT 
-            d.id_dueño,
-            u.username,
-            u.dni,
-            u.nombre,
-            u.apellido,
-            u.correo,
-            u.contraseña,
-            u.telefono,
-            u.foto_perfil
-            FROM
-            usuarios u
-            INNER JOIN
-            dueños d ON d.id_usuario = u.id_usuario";
-
-            $this->connection = Connection::GetInstance();
 
             $resultSet = $this->connection->Execute($query);
 
@@ -61,46 +61,19 @@ class DueñoDAO implements InterfaceDAO{
             throw $ex;
         }
     }
-
-    public function checkDueño($username, $dni, $correo)
-    {
-
-        try {
-
-            $query = "SELECT 
-            u.username, u.dni, u.correo
-            FROM
-                usuarios u
-            WHERE
-                u.username = :username or u.dni= :dni or u.correo = :correo;";
-
-            $parameters["username"] = $username;
-            $parameters["dni"] = $dni;
-            $parameters["correo"] = $correo;
-
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query, $parameters);
-
-            return $resultSet;
-
-        } catch (Exception $ex) {
-
-            throw $ex;
-        }
-    }
     
     public function Add($dueño){
 
+        $query = "INSERT INTO 
+        dueños (id_usuario) 
+        values ((select id_usuario from usuarios where username = :username));";
+
+        $parameters["username"] = $dueño->getUsername();
+
+        $this->connection = Connection::GetInstance();
+
         try {
-
-            $query = "INSERT INTO 
-                dueños (id_usuario) 
-                values ((select id_usuario from usuarios where username = '" . $dueño->getUsername() . "'));";
-
-            $this->connection = Connection::GetInstance();
-
-            return $this->connection->ExecuteNonQuery($query);
+            return $this->connection->ExecuteNonQuery($query, $parameters);
             
         } catch (Exception $ex) {
             throw $ex;
@@ -111,34 +84,43 @@ class DueñoDAO implements InterfaceDAO{
     public function devolverDueñoPorId($usuarioId){
 
         $dueño = new Dueño();
-        try{
-            $query = "SELECT 
+
+        $query = "SELECT 
         * 
         FROM usuarios u 
         inner join dueños d 
         on u.id_usuario = d.id_usuario
-        where d.id_usuario = " . $usuarioId . ";";
+        where d.id_usuario = :id_usuario";
+
+        $parameters["id_usuario"] = $usuarioId;
 
         $this->connection = Connection::GetInstance();
 
-        $resultSet = $this->connection->Execute($query);
 
-        //Recorrio cada columna del resultSet, osea, del registro devuelto
-        foreach($resultSet as $reg){
+        try{
+            
+            $resultSet = $this->connection->Execute($query, $parameters);
 
-            $dueño->setId($usuarioId);
-            $dueño->setUsername($reg["username"]);
-            $dueño->setDni($reg["dni"]);
-            $dueño->setNombre($reg["nombre"]);
-            $dueño->setApellido($reg["apellido"]);
-            $dueño->setCorreoelectronico($reg["correo"]);
-            $dueño->setPassword($reg["password"]);
-            $dueño->setTelefono($reg["telefono"]);
-            $dueño->setDireccion($reg["direccion"]);
-            $dueño->setFotoPerfil($reg["foto_perfil"]);
-            $dueño->setTipoUsuario($reg["tipo_usuario"]);
+            if($resultSet){
+
+                $reg = $resultSet[0];
+
+                $dueño->setId($usuarioId);
+                $dueño->setUsername($reg["username"]);
+                $dueño->setDni($reg["dni"]);
+                $dueño->setNombre($reg["nombre"]);
+                $dueño->setApellido($reg["apellido"]);
+                $dueño->setCorreoelectronico($reg["correo"]);
+                $dueño->setPassword($reg["password"]);
+                $dueño->setTelefono($reg["telefono"]);
+                $dueño->setDireccion($reg["direccion"]);
+                $dueño->setFotoPerfil($reg["foto_perfil"]);
+                $dueño->setTipoUsuario($reg["tipo_usuario"]);
+
+            }
+
             return $dueño; 
-        }
+        
         }catch (Exception $ex) {
             throw $ex;
         }

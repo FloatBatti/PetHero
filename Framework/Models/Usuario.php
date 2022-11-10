@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-abstract class Usuario {
+class Usuario {
 
     private $id;
     private $username;
@@ -14,6 +14,34 @@ abstract class Usuario {
     private $direccion;
     private $fotoPerfil;
     private $tipoUsuario;
+
+    public function __construct(
+        $id = null, 
+        $username= null, 
+        $dni = null, 
+        $nombre = null, 
+        $apellido= null,
+        $correoelectronico = null,
+        $password= null,
+        $telefono= null,
+        $direccion= null,
+        $fotoPerfil= null,
+        $tipoUsuario = null
+        )
+    {
+        
+        $this->id= $id;
+        $this->username= $username;
+        $this->dni= $dni; 
+        $this->nombre= $nombre;
+        $this->apellido= $apellido;
+        $this->correoelectronico= $correoelectronico;
+        $this->password= $password;
+        $this->telefono= $telefono;
+        $this->direccion= $direccion;
+        $this->fotoPerfil= $fotoPerfil;
+        $this->tipoUsuario= $tipoUsuario;  
+    }
     
     
     public function getUsername(){

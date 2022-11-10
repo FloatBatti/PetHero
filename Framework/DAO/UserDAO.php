@@ -19,41 +19,60 @@ class UserDAO{
         
     }
 
-    public function retornarUsuarioLogueado($username, $password){
+    public function retornarUsuarioLogueado($username){
 
+        $guardianDAO = new GuardianDAO();
+        $dueñoDAO = new DueñoDAO();
+
+        $query = "SELECT 
+        u.id_usuario,
+        u.username,
+        u.dni,
+        u.nombre,
+        u.apellido,
+        u.correo,
+        u.password,
+        u.telefono,
+        u.direccion,
+        u.foto_perfil, 
+        u.tipo_usuario
+        FROM
+            usuarios u
+        WHERE
+            u.username = :username;";
+
+        $parameters["username"] = $username;
+    
+        $this->connection = Connection::GetInstance();
+        
+        
         try {
-
-            $guardianDAO = new GuardianDAO();
-            $dueñoDAO = new DueñoDAO();
-
-            $query = "SELECT 
-            u.id_usuario, u.tipo_usuario
-            FROM
-                usuarios u
-            WHERE
-                u.username = :username and u.password= :password;";
-
-            $parameters["username"] = $username;
-            $parameters["password"] = $password;
-
-            $this->connection = Connection::GetInstance();
 
             $resultSet = $this->connection->Execute($query, $parameters);
 
-            //Hasta aca es todo Base de datos
+            $usuario = new Usuario();
 
-            $usuario = null;
-            
-            //Si el tipo de usuario es G llamamos a la funcion que nos retorna el guardian
-            if($resultSet[0]["tipo_usuario"] == "G"){
+            if($resultSet){
 
-                return $usuario = $guardianDAO->devolverGuardianPorId($resultSet[0]["id_usuario"]);
+                $reg = $resultSet[0];
+
+                $usuario->setId($reg["id_usuario"]);
+                $usuario->setUsername($reg["username"]);
+                $usuario->setDni($reg["dni"]);
+                $usuario->setNombre($reg["nombre"]);
+                $usuario->setApellido($reg["apellido"]);
+                $usuario->setCorreoelectronico($reg["correo"]);
+                $usuario->setPassword($reg["password"]);
+                $usuario->setTelefono($reg["telefono"]);
+                $usuario->setDireccion($reg["direccion"]);
+                $usuario->setFotoPerfil($reg["foto_perfil"]);
+                $usuario->setTipoUsuario($reg["tipo_usuario"]);
+
+                /* NO SIRVE PORQUE PRIMERO DEVO CHEQUEAR EL REULT SET
+                return $usuario = new Usuario($reg["id_usuario"], $reg["username"], $reg["dni"],$reg["nombre"],$reg["apellido"],$reg["correo"],$reg["password"],$reg["telefono"], $reg["direccion"], $reg["foto_perfil"], $reg["tipo_usuario"]);
+                */
             }
-            //Si el tipo de usuario es D llamamos a la funcion que nos retorna el dueño
-            else if($resultSet[0]["tipo_usuario"] == "D"){
 
-                return $usuario = $dueñoDAO->devolverDueñoPorId($resultSet[0]["id_usuario"]);
-            }
             
             return $usuario; //Retorna null si no existe o devuelve el objeto en caso de existir
                
