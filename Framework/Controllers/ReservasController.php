@@ -15,7 +15,7 @@ use Models\Mail as Mail;
 class ReservasController{
     
     private $ReservaDAO;
-    private $GuardianeDAO;
+    private $GuardianDAO;
     private $MascotaDAO;
     private $DueñoDAO;
 
