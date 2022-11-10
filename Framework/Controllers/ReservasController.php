@@ -75,6 +75,7 @@ class ReservasController{
 
     public function AceptarSolicitud($idReserva){
 
+        /*
         try{
 
             if($this->ReservaDAO->aceptarSolicitud($idReserva)){
@@ -94,6 +95,7 @@ class ReservasController{
             $alert= new Alert($ex->getMessage(),"error");
 
         }
+        */
 
     }
 

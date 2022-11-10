@@ -45,7 +45,7 @@ class ReservaDAO{
 
             $listaReservas = array();
 
-            $query = "CALL listar_solicitud_reservas('".$estado."');";
+            $query = "CALL listar_solicitud_reservas('".$estado."',".$_SESSION["UserId"].");";
 
             $this->connection = Connection::GetInstance();
                 
@@ -168,4 +168,5 @@ class ReservaDAO{
 
     }
 
+    public function devolverReservaPorId($idReserva){}
 }
