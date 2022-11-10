@@ -121,14 +121,15 @@ class DuenosController
 
         $dueño->setFotoPerfil($nameImg);
    
+        $type = null;
 
-        if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
+        try{
 
-            if($password == $rePassword){
+            if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
 
-                $dueño->setPassword($password);
-
-                try{
+                if($password == $rePassword){
+    
+                    $dueño->setPassword($password);
 
                     if($this->UserDAO->AddDueño($dueño)){
 
@@ -137,28 +138,28 @@ class DuenosController
                         header("location: ../Home");
                     }
     
-                    throw new Exception("El dueño no pudo registrarse"); //Mensaje que funciona como alert
+                    $type = "alert alert-primary";
+                    throw new Exception("Error al registrar dueño"); 
+    
                 }
-                catch (Exception $ex){
-
-                    $alert=new Alert($ex->getMessage(),"error");
-                }
-
+                
+                $type = "alert alert-primary";
+                throw new Exception("Las contraseñas no coinciden"); 
+            
+    
             }
-            else{
+            
+            $type = "alert alert-primary";
+            throw new Exception("El usuario ya existe");
 
-                echo "<script> if(confirm('La contraseñas no coinciden')); </script>";
 
-                $this->vistaRegistro();
-            }
+        }catch (Exception $ex){
+
+            $alert = new Alert($type, $ex->getMessage());
+            $this->VistaRegistro();
 
         }
-        else{
-
-            echo "<script> if(confirm('El usuario ya existe')); </script>";
-
-            $this->vistaRegistro();
-        }
+        
     
           
             

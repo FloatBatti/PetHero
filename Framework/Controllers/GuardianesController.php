@@ -73,15 +73,26 @@ class GuardianesController
         $guardian->setFotoEspacioURL($nameImg);
         $guardian->setDescripcion($descripcion);
 
+        $type = null;
 
-        if($this->UserDAO->AddGuardian($guardian)){
+        try{
 
-            Archivos::subirArch("fotoEspacio", $fotoEspacio, "EspaciosGuardianes/", $guardian->getUsername());
-            header("location: ../Home");
+            if($this->UserDAO->AddGuardian($guardian)){
+
+                Archivos::subirArch("fotoEspacio", $fotoEspacio, "EspaciosGuardianes/", $guardian->getUsername());
+                header("location: ../Home");
+            }
+            
+            throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
+
+
+        }catch (Exception $ex){
+
+            $type = "alert alert-primary";
+            $alert = new Alert($type, $ex->getMessage());
+
         }
-        
-        throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
-        
+
     }
 
     public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
@@ -103,31 +114,41 @@ class GuardianesController
 
         Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
 
-        if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
+        $type = null;
 
-            if ($password == $rePassword) {
+        try{
 
-                Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
+            if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
 
-                $guardian->setPassword($password);
+                if ($password == $rePassword) {
+    
+                    Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
+    
+                    $guardian->setPassword($password);
+    
+                    $_SESSION["GuardTemp"] = serialize($guardian);
+    
+                    $this->RegistrarDisponibilidad();
+    
+                } 
+    
+                $type = "alert alert-primary";
+                throw new Exception("Las contraseñas no coinciden");
+                
+    
+            } 
+    
+            $type = "alert alert-primary";
+            throw new Exception("El usuario ya existe");
 
-                $_SESSION["GuardTemp"] = serialize($guardian);
+        }catch (Exception $ex){
 
-                $this->RegistrarDisponibilidad();
+            $alert = new Alert($type, $ex->getMessage());
+            $this->VistaRegistro();
 
-            } else {
-
-                echo "<script> if(confirm('Las contraseñas no coinciden')); </script>";
-
-                $this->vistaRegistro();
-            }
-
-        } else {
-
-            echo "<script> if(confirm('El usuario ya existe')); </script>";
-
-            $this->vistaRegistro();
         }
+
+
         
     }
     
@@ -142,10 +163,13 @@ class GuardianesController
         }
     }
     public function editarDisponibilidad(){
+
         try{
             $guardian=$this->GuardianDAO->devolverGuardianPorId($_SESSION["UserId"]);
+            
             if($guardian){
             require_once(VIEWS_PATH . "/DashboardGuardian/EditarDisponibilidad.php");
+
             }throw new Exception("Error al cargar usuario");
         
         }catch(Exception $ex){
@@ -161,14 +185,22 @@ class GuardianesController
     }
     public function EditarPerfil(){
         
+        $type = null;
+
         try{
+
             $usuario = $this->GuardianDAO->devolverGuardianPorId($_SESSION["UserId"]);
+
             if($usuario){
+
                 require_once(VIEWS_PATH . "DashboardGuardian/EditarPerfil.php");
             }
-            throw new Exception("error");
+            $type = "alert alert-primary";
+            throw new Exception("Error al editar perfil");
+
         }catch(Exception $ex){
-            $alert=new Alert($ex->getMessage(),"error");
+
+            $alert=new Alert($type,$ex->getMessage());
             $this->vistaDashboard();
         }   
     }

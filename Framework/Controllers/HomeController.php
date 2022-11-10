@@ -2,6 +2,8 @@
 namespace Controllers;
 use DAO\UserDAO as UserDAO;
 use \Exception as Exception;
+use Models\Alert;
+
 class HomeController{
     
     private $UserDAO;
@@ -13,7 +15,6 @@ class HomeController{
     
     public function Index(){
 
-        require_once(VIEWS_PATH . "header.php");
         require_once(VIEWS_PATH."index.php");
 
     }
@@ -39,30 +40,46 @@ class HomeController{
 
     public function Login($username, $password){
 
-        $usuario = $this->UserDAO->retornarUsuarioLogueado($username,$password);
+        
+        try{
 
-        if($usuario){
+            $usuario = $this->UserDAO->retornarUsuarioLogueado($username);
 
-            switch($usuario->getTipoUsuario()){
+            if($usuario){
+            
+                if($usuario->getPassword() == $password){
 
-                case "G":
-                $_SESSION["UserId"] = $usuario->getId();
-                $this->DashGuardianView();
-                break;
+                    switch($usuario->getTipoUsuario()){
     
-                case "D":
-                $_SESSION["UserId"] = $usuario->getId();
-                $this->DashDuenoView();
-                break;
+                        case "G":
+                        $_SESSION["UserId"] = $usuario->getId();
+                        $this->DashGuardianView();
+                        break;
+            
+                        case "D":
+                        $_SESSION["UserId"] = $usuario->getId();
+                        $this->DashDuenoView();
+                        break;
+                    }
+
+                }
+                else{
+
+                    throw new Exception("Contraseña Incorrecta");
+                }
+            
+            }
+            else{
+                throw new Exception("Usuario Incorrecto");
             }
 
-        }
-        else{
-            //Agregar la logica de la alterta
-            header("location: ../Home");
-        }
+        }catch(Exception $ex){
 
-        
+            $alert = new Alert("error", $ex->getMessage());
+            header("location: ../Home");
+
+        }
+            
         
     }
 

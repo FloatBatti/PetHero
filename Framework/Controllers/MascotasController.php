@@ -97,6 +97,8 @@ class MascotasController{
         $mascota->setPlanVacURL($nameImgPlan);
         $mascota->setVideoURL($videoUrl);
 
+        $type = null;
+
         try{
 
             if($MascotasDAO->Add($mascota)){
@@ -106,12 +108,14 @@ class MascotasController{
                 header("location:../Mascotas/VerFiltroMascotas");
 
             }
+
+            $type = "This is a danger alert—check it out!";
             throw new Exception("No se pudo agregar la mascota");
 
         }
         catch (Exception $ex){
 
-            $alert = new Alert ($ex->getMessage(),"error");
+            $alert = new Alert ($type, $ex->getMessage());
             $this->VistaMascotas();
         }
 

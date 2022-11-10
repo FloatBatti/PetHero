@@ -37,19 +37,22 @@ class ReservaDAO{
 
     public function listarSolicitudesOrReservas($estado){ //Devuelve solicitudes o reservas del guardian dependendiendo del estado
 
+        $guardianDAO = new GuardianDAO();
+        $dueñoDAO = new DueñoDAO();
+        $mascotaDAO = new MascotaDAO();
+
+        $listaReservas = array();
+
+        $query = "CALL listar_solicitud_reservas(:estado, :id_usuario);";
+
+        $paramaters["estado"] = $estado;
+        $paramaters["id_usuario"] = $_SESSION["UserId"];
+
+        $this->connection = Connection::GetInstance();
+
         try{
-
-            $guardianDAO = new GuardianDAO();
-            $dueñoDAO = new DueñoDAO();
-            $mascotaDAO = new MascotaDAO();
-
-            $listaReservas = array();
-
-            $query = "CALL listar_solicitud_reservas('".$estado."',".$_SESSION["UserId"].");";
-
-            $this->connection = Connection::GetInstance();
                 
-            $resultSet = $this->connection->Execute($query);
+            $resultSet = $this->connection->Execute($query, $paramaters);
 
             foreach($resultSet as $reg){
 
@@ -81,13 +84,16 @@ class ReservaDAO{
 
     public function rechazarSolicitud($idReserva){
 
+        
+        $query = "UPDATE reservas set estado= 'Rechazado' where id_reserva = :id_reserva;";
+
+        $paramaters["id_reserva"] = $idReserva;
+
+        $this->connection = Connection::GetInstance();
+
         try{
 
-            $query = "UPDATE reservas set estado= 'Rechazado' where id_reserva =".$idReserva.";";
-
-            $this->connection = Connection::GetInstance();
-
-            return $this->connection->ExecuteNonQuery($query);
+            return $this->connection->ExecuteNonQuery($query, $paramaters);
 
         }catch(Exception $ex){
 
@@ -97,13 +103,15 @@ class ReservaDAO{
 
     public function aceptarSolicitud($idReserva){
 
+        $query = "UPDATE reservas set estado= 'Aceptada' where id_reserva = :id_reserva;";
+
+        $paramaters["id_reserva"] = $idReserva;
+
+        $this->connection = Connection::GetInstance();
+
         try{
 
-            $query = "UPDATE reservas set estado= 'Aceptada' where id_reserva =".$idReserva.";";
-
-            $this->connection = Connection::GetInstance();
-
-            return $this->connection->ExecuteNonQuery($query);
+            return $this->connection->ExecuteNonQuery($query,$paramaters);
 
         }catch(Exception $ex){
 
@@ -111,34 +119,36 @@ class ReservaDAO{
         }
     }
 
-    public function listarReservasDueno(){
+    public function listarReservasDueno(){ // GUARDAR NOMBRES EN VEZ DE OBJETO
 
+        $guardianDAO = new GuardianDAO();
+        $dueñoDAO = new DueñoDAO();
+        $mascotaDAO = new MascotaDAO();
+
+        $listaReservas = array();
+
+        $query = "SELECT
+        r.id_reserva,
+        r.fecha_reserva,
+        r.fecha_inicio,
+        r.fecha_fin,
+        g.id_usuario as guardian,
+        r.id_mascota,
+        r.costo_total,
+        r.estado 
+        from 
+        reservas r
+        inner join guardianes g on r.id_guardian = g.id_guardian
+        inner join usuarios u on u.id_usuario = g.id_usuario
+        where r.id_dueño = (select d.id_dueño from dueños d inner join usuarios u on d.id_usuario = u.id_usuario where u.id_usuario = :id_ususario);";
+
+        $parameters["id_usuario"] = $_SESSION["UserId"];
+
+        $this->connection = Connection::GetInstance();
+        
         try{
 
-            $guardianDAO = new GuardianDAO();
-            $dueñoDAO = new DueñoDAO();
-            $mascotaDAO = new MascotaDAO();
-
-            $listaReservas = array();
-
-            $query = "SELECT
-            r.id_reserva,
-            r.fecha_reserva,
-            r.fecha_inicio,
-            r.fecha_fin,
-            g.id_usuario as guardian,
-            r.id_mascota,
-            r.costo_total,
-            r.estado 
-            from 
-            reservas r
-            inner join guardianes g on r.id_guardian = g.id_guardian
-            inner join usuarios u on u.id_usuario = g.id_usuario
-            where r.id_dueño = (select d.id_dueño from dueños d inner join usuarios u on d.id_usuario = u.id_usuario where u.id_usuario =".$_SESSION["UserId"].");";
-    
-            $this->connection = Connection::GetInstance();
-    
-            $resultSet = $this->connection->Execute($query);
+            $resultSet = $this->connection->Execute($query, $parameters);
     
             foreach($resultSet as $reg){
     
@@ -170,29 +180,29 @@ class ReservaDAO{
 
     public function devolverReservaPorId($idReserva){
 
+        $guardianDAO = new GuardianDAO();
+        $dueñoDAO = new DueñoDAO();
+        $mascotaDAO = new MascotaDAO();
+
+        $query = "SELECT
+        r.id_reserva,
+        r.fecha_reserva,
+        r.fecha_inicio,
+        r.fecha_fin,
+        d.id_usuario as dueño,
+        r.id_mascota,
+        r.costo_total,
+        r.estado 
+        from 
+        reservas r
+        inner join dueños d on r.id_dueño = d.id_dueño
+        inner join usuarios u on u.id_usuario = d.id_usuario
+        where r.id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario = u.id_usuario where u.id_usuario =". $_SESSION["UserId"].")
+        and r.id_reserva = ". $idReserva. ";";
+
+        $this->connection = Connection::GetInstance();
+
         try{
-
-            $guardianDAO = new GuardianDAO();
-            $dueñoDAO = new DueñoDAO();
-            $mascotaDAO = new MascotaDAO();
-
-            $query = "SELECT
-            r.id_reserva,
-            r.fecha_reserva,
-            r.fecha_inicio,
-            r.fecha_fin,
-            d.id_usuario as dueño,
-            r.id_mascota,
-            r.costo_total,
-            r.estado 
-            from 
-            reservas r
-            inner join dueños d on r.id_dueño = d.id_dueño
-            inner join usuarios u on u.id_usuario = d.id_usuario
-            where r.id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario = u.id_usuario where u.id_usuario =". $_SESSION["UserId"].")
-            and r.id_reserva = ". $idReserva. ";";
-    
-            $this->connection = Connection::GetInstance();
     
             $resultSet = $this->connection->Execute($query);
 
