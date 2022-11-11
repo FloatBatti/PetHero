@@ -30,81 +30,99 @@ class ReservasController{
 
     public function Add(){
 
-        try{
+        if(isset($_SESSION["UserId"])){
+            try{
 
-            $reserva=unserialize($_SESSION["Reserva"]);
-            unset($_SESSION["Reserva"]);
+                $reserva=unserialize($_SESSION["Reserva"]);
+                unset($_SESSION["Reserva"]);
 
-            if($this->ReservaDAO->crearReserva($reserva)){
+                if($this->ReservaDAO->crearReserva($reserva)){
 
-                header("location: ../Reservas/VerReservasDueno");   
-            }
-            throw new Exception("No se pudo crear la reserva, intente nuevamente");
+                    header("location: ../Reservas/VerReservasDueno");   
+                }
+                throw new Exception("No se pudo crear la reserva, intente nuevamente");
 
-        }catch(Exception $ex){
+            }catch(Exception $ex){
 
-            $alert=new Alert($ex->getMessage(),"error");
-        } 
-
+                $alert=new Alert($ex->getMessage(),"error");
+            } 
+        }
     }
 
     public function VerConfimacion()
     {
-        $reserva=unserialize($_SESSION["Reserva"]);
-        require_once(VIEWS_PATH. "DashboardDueno/ConfirmarSolicitud.php");
+        if(isset($_SESSION["UserId"])){
+
+            $reserva=unserialize($_SESSION["Reserva"]);
+            require_once(VIEWS_PATH. "DashboardDueno/ConfirmarSolicitud.php");
+
+        }
     }
 
     public function VerReservasDueno(){
 
-        $listaReservas = $this->ReservaDAO->listarReservasDueno();
-        require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
+        if(isset($_SESSION["UserId"])){
+
+            $listaReservas = $this->ReservaDAO->listarReservasDueno();
+            require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
+
+        }
     }
 
     public function VerReservasGuardian(){
 
-        $listaReservas = $this->ReservaDAO->listarSolicitudesOrReservas("Aceptada");
-        require_once(VIEWS_PATH. "DashboardGuardian/Reservas.php");
+        if(isset($_SESSION["UserId"])){
+
+            $listaReservas = $this->ReservaDAO->listarSolicitudesOrReservas("Aceptada");
+            require_once(VIEWS_PATH. "DashboardGuardian/Reservas.php");
+
+        }
     }
 
     public function VerSolicitudesGuardian(){
 
-        $listaSolicitudes = $this->ReservaDAO->listarSolicitudesOrReservas("Pendiente");
-        
-        require_once(VIEWS_PATH. "DashboardGuardian/Solicitudes.php");
+        if(isset($_SESSION["UserId"])){
+
+            $listaSolicitudes = $this->ReservaDAO->listarSolicitudesOrReservas("Pendiente");
+            require_once(VIEWS_PATH. "DashboardGuardian/Solicitudes.php");
+        }
     }
 
     public function AceptarSolicitud($idReserva){
 
+        if(isset($_SESSION["UserId"])){
         
-        try{
+            try{
 
-            if($this->ReservaDAO->aceptarSolicitud($idReserva)){
+                if($this->ReservaDAO->aceptarSolicitud($idReserva)){
 
-                $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
-                
-                $mail= new Mail();
+                    $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
+                    
+                    $mail= new Mail();
 
-                $mail->enviarMail($reserva);
+                    $mail->enviarMail($reserva);
 
-                header("location: ../Reservas/VerReservasGuardian");
+                    header("location: ../Reservas/VerReservasGuardian");
+
+                }
+                throw new Exception("No se pudo aceptar la solicitud");
+
+            }catch(Exception $ex){
+
+                $alert= new Alert($ex->getMessage(),"error");
+
+                throw $ex;
 
             }
-            throw new Exception("No se pudo aceptar la solicitud");
-
-        }catch(Exception $ex){
-
-            $alert= new Alert($ex->getMessage(),"error");
-
-            throw $ex;
-
-        }
         
-
+    }
     }
 
 
     public function RechazarSolicitud($idReserva){
 
+        if(isset($_SESSION["UserId"])){
+        
         try{
 
             if($this->ReservaDAO->rechazarSolicitud($idReserva)){
@@ -118,6 +136,7 @@ class ReservasController{
             $alert= new Alert($ex->getMessage(),"error");
 
         }
+    }
 
     }
 
