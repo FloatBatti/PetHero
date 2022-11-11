@@ -12,6 +12,8 @@
     font-size: 20px;
 }
 .cont{
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -83,4 +85,13 @@
     cursor: pointer;
     color: transparent;
     background-color: rgba(211,211,211);
+}
+.botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+.letter{
+    height: 80px;
 }

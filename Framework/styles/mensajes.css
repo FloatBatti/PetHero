@@ -30,13 +30,14 @@
     background-color: antiquewhite;
     border-radius: 7px;
     box-shadow: 5px 5px 5px gray;
+    padding: 10px;
 }
 
-.receptor{
+.derecha{
     justify-content: end;
     
 }
-.emisor{
+.izquierda{
     justify-content: start;
     
 }
