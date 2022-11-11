@@ -87,18 +87,18 @@ class UserDAO{
     public function checkUsuario($username, $dni, $correo)
     {
 
+        $query = "SELECT 
+        u.username, u.dni, u.correo
+        FROM
+            usuarios u
+        WHERE
+            u.username = :username or u.dni= :dni or u.correo = :correo;";
+
+        $parameters["username"] = $username;
+        $parameters["dni"] = $dni;
+        $parameters["correo"] = $correo;
+        
         try {
-
-            $query = "SELECT 
-            u.username, u.dni, u.correo
-            FROM
-                usuarios u
-            WHERE
-                u.username = :username or u.dni= :dni or u.correo = :correo;";
-
-            $parameters["username"] = $username;
-            $parameters["dni"] = $dni;
-            $parameters["correo"] = $correo;
 
             $this->connection = Connection::GetInstance();
 
@@ -115,24 +115,24 @@ class UserDAO{
 
         $guardianDAO = new GuardianDAO();
 
+        $query = "INSERT INTO 
+        usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, foto_perfil, tipo_usuario) 
+        VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :foto_perfil, :tipo_usuario);";
+
+        $parameters["username"] = $guardian->getUsername();
+        $parameters["dni"] = $guardian->getDni();
+        $parameters["nombre"] = $guardian->getNombre();
+        $parameters["apellido"] = $guardian->getApellido();
+        $parameters["correo"] = $guardian->getCorreoelectronico();
+        $parameters["password"] = $guardian->getPassword();
+        $parameters["telefono"] = $guardian->getTelefono();
+        $parameters["direccion"] = $guardian->getDireccion();
+        $parameters["foto_perfil"] = $guardian->getFotoPerfil(); 
+        $parameters["tipo_usuario"] = "G";
+
+        $this->connection = Connection::GetInstance();
+
         try {
-
-            $query = "INSERT INTO 
-                usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, foto_perfil, tipo_usuario) 
-                VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :foto_perfil, :tipo_usuario);";
-
-            $parameters["username"] = $guardian->getUsername();
-            $parameters["dni"] = $guardian->getDni();
-            $parameters["nombre"] = $guardian->getNombre();
-            $parameters["apellido"] = $guardian->getApellido();
-            $parameters["correo"] = $guardian->getCorreoelectronico();
-            $parameters["password"] = $guardian->getPassword();
-            $parameters["telefono"] = $guardian->getTelefono();
-            $parameters["direccion"] = $guardian->getDireccion();
-            $parameters["foto_perfil"] = $guardian->getFotoPerfil(); 
-            $parameters["tipo_usuario"] = "G";
-
-            $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -147,25 +147,24 @@ class UserDAO{
     {
         $dueñoDAO = new DueñoDAO();
 
+        $query = "INSERT INTO 
+        usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, foto_perfil, tipo_usuario) 
+        VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :foto_perfil, :tipo_usuario);";
+
+        $parameters["username"] = $dueño->getUsername();
+        $parameters["dni"] = $dueño->getDni();
+        $parameters["nombre"] = $dueño->getNombre();
+        $parameters["apellido"] = $dueño->getApellido();
+        $parameters["correo"] = $dueño->getCorreoelectronico();
+        $parameters["password"] = $dueño->getPassword();
+        $parameters["telefono"] = $dueño->getTelefono();
+        $parameters["direccion"] = $dueño->getDireccion();
+        $parameters["foto_perfil"] = $dueño->getFotoPerfil(); 
+        $parameters["tipo_usuario"] = "D";
+
+        $this->connection = Connection::GetInstance();
+
         try {
-
-            $query = "INSERT INTO 
-                usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, foto_perfil, tipo_usuario) 
-                VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :foto_perfil, :tipo_usuario);";
-
-            $parameters["username"] = $dueño->getUsername();
-            $parameters["dni"] = $dueño->getDni();
-            $parameters["nombre"] = $dueño->getNombre();
-            $parameters["apellido"] = $dueño->getApellido();
-            $parameters["correo"] = $dueño->getCorreoelectronico();
-            $parameters["password"] = $dueño->getPassword();
-            $parameters["telefono"] = $dueño->getTelefono();
-            $parameters["direccion"] = $dueño->getDireccion();
-            $parameters["foto_perfil"] = $dueño->getFotoPerfil(); 
-            $parameters["tipo_usuario"] = "D";
-
-            $this->connection = Connection::GetInstance();
-
             $this->connection->ExecuteNonQuery($query, $parameters);
 
             return $dueñoDAO->Add($dueño);
@@ -174,14 +173,19 @@ class UserDAO{
             throw $ex;
         }
     }
+
     public function AddFavorito($id){
             
+        $query = "CALL agregar_favorito( :id_usuario, :id);";
+
+        $parameters["id_usuario"] = $_SESSION["UserId"];
+        $parameters["id"] = $id;
+            
+        $this->connection = Connection::GetInstance();
             
         try{
-            $query = "CALL agregar_favorito(" . $_SESSION["UserId"] .",". $id . ");";
-            
-            $this->connection = Connection::GetInstance();
-            return $this->connection->ExecuteNonQuery($query);
+
+            return $this->connection->ExecuteNonQuery($query, $parameters);
          
         }
         catch(Exception $ex){
@@ -190,33 +194,42 @@ class UserDAO{
     }
     public function deleteFavorito($idGuardian){
         
-        try{
-            $query = "CALL borrar_favorito(" . $_SESSION["UserId"] .",". $idGuardian . ");";
+        $query = "CALL borrar_favorito( :id_usuario, :id_guardian);";
+
+        $parameters["id_usuario"] = $_SESSION["UserId"];
+        $parameters["id_guardian"] = $idGuardian;
             
-            $this->connection = Connection::GetInstance();
-            $this->connection->ExecuteNonQuery($query);
+        $this->connection = Connection::GetInstance();
+        
+        try{
+
+            $this->connection->ExecuteNonQuery($query, $parameters);
               
         }
         catch(Exception $ex){
+
             throw $ex;
-            }
+        
+        }
 
     }
     
     public function grabarDatosActualizados($telefono,$direccion,$password){
        
+        $query = "UPDATE usuarios u
+        set u.telefono = :telefono, u.direccion=:direccion, u.password=:password WHERE u.id_usuario=:buscado";
+
+        $parameters["telefono"] = $telefono;
+        $parameters["direccion"] = $direccion;
+        $parameters["password"] = $password;
+        $parameters["buscado"] = ($_SESSION["UserId"]);
+       
+        
         try{
-            $query = "UPDATE usuarios u
-                set u.telefono = :telefono, u.direccion=:direccion, u.password=:password WHERE u.id_usuario=:buscado";
 
-               $parameters["telefono"] = $telefono;
-               $parameters["direccion"] = $direccion;
-               $parameters["password"] = $password;
-               $parameters["buscado"] = ($_SESSION["UserId"]);
-               
-               $this->connection = Connection::GetInstance();
+            $this->connection = Connection::GetInstance();
 
-                $this->connection->ExecuteNonQuery($query, $parameters);
+            $this->connection->ExecuteNonQuery($query, $parameters);
 
 
         }
