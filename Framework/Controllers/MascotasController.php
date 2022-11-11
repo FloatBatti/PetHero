@@ -19,107 +19,128 @@ class MascotasController{
 
     public function VistaMascotas(){
 
-        $listaMascotas = $this->MascotasDAO->GetAll();
-        require_once(VIEWS_PATH. "dashboardDueno/Mascotas.php");
-       
+        if(isset($_SESSION["UserId"])){
+
+            $listaMascotas = $this->MascotasDAO->GetAll();
+            require_once(VIEWS_PATH. "dashboardDueno/Mascotas.php");
+
+        }
     }
 
     public function VerRegistroGato(){
 
-        $listaRazas = $this->MascotasDAO->listarRazas("Gato");
-        require_once(VIEWS_PATH. "dashboardDueno/RegistroGato.php");
+        if(isset($_SESSION["UserId"])){
+
+            $listaRazas = $this->MascotasDAO->listarRazas("Gato");
+            require_once(VIEWS_PATH. "dashboardDueno/RegistroGato.php");
+
+        }
 
     }
 
     public function VerRegistroPerro(){
 
-        $listaRazas = $this->MascotasDAO->listarRazas("Perro");
-        require_once(VIEWS_PATH. "dashboardDueno/RegistroPerro.php");
+        if(isset($_SESSION["UserId"])){
+
+            $listaRazas = $this->MascotasDAO->listarRazas("Perro");
+            require_once(VIEWS_PATH. "dashboardDueno/RegistroPerro.php");
+
+        }
 
     }
 
     public function VerFiltroMascotas(){
 
+        if(isset($_SESSION["UserId"])){
+
         require_once(VIEWS_PATH. "dashboardDueno/filtroRegistroMascota.php");
+
+        }
     }
 
     public function AddGato($nombre, $raza, $tamano ,$fotoGato,$fotoPlan, $videoUrl=null){
 
-        $MascotasDAO = new MascotaDAO();
+        if(isset($_SESSION["UserId"])){
 
-        $mascota = new Mascota();
-        $mascota->setNombre($nombre);
-        $mascota->setRaza($raza);
-        $mascota->setEspecie("Perro");
-        $mascota->setTamaño($tamano);
-        
-        $nameImgPerro = $mascota->getNombre() ."-". $fotoGato["name"];
-        $nameImgPlan = $mascota->getNombre() ."-". $fotoPlan["name"];
+            $MascotasDAO = new MascotaDAO();
 
-        $mascota->setFotoURL($nameImgPerro);
-        $mascota->setPlanVacURL($nameImgPlan);
-        $mascota->setVideoURL($videoUrl);
+            $mascota = new Mascota();
+            $mascota->setNombre($nombre);
+            $mascota->setRaza($raza);
+            $mascota->setEspecie("Perro");
+            $mascota->setTamaño($tamano);
+            
+            $nameImgPerro = $mascota->getNombre() ."-". $fotoGato["name"];
+            $nameImgPlan = $mascota->getNombre() ."-". $fotoPlan["name"];
 
-        try{
+            $mascota->setFotoURL($nameImgPerro);
+            $mascota->setPlanVacURL($nameImgPlan);
+            $mascota->setVideoURL($videoUrl);
 
-            if($MascotasDAO->Add($mascota)){
+            try{
 
-                Archivos::subirArch("fotoGato", $fotoGato, "Mascotas/FotosMascotas/", $mascota->getNombre());
-                Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
-                header("location:../Mascotas/VerFiltroMascotas");
+                if($MascotasDAO->Add($mascota)){
+
+                    Archivos::subirArch("fotoGato", $fotoGato, "Mascotas/FotosMascotas/", $mascota->getNombre());
+                    Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
+                    header("location:../Mascotas/VerFiltroMascotas");
+
+                }
+                throw new Exception("No se pudo agregar la mascota");
 
             }
-            throw new Exception("No se pudo agregar la mascota");
+            catch (Exception $ex){
 
-        }
-        catch (Exception $ex){
+                $alert = new Alert ($ex->getMessage(),"error");
+                $this->VistaMascotas();
+            }
 
-            $alert = new Alert ($ex->getMessage(),"error");
-            $this->VistaMascotas();
         }
         
     }
 
     public function AddPerro($nombre, $raza, $tamano ,$fotoPerro,$fotoPlan, $videoUrl=null){
 
-        $MascotasDAO = new MascotaDAO();
+        if(isset($_SESSION["UserId"])){
 
-        $mascota = new Mascota();
-        $mascota->setNombre($nombre);
-        $mascota->setRaza($raza);
-        $mascota->setEspecie("Perro");
-        $mascota->setTamaño($tamano);
-        
-        $nameImgPerro = $mascota->getNombre() ."-". $fotoPerro["name"];
-        $nameImgPlan = $mascota->getNombre() ."-". $fotoPlan["name"];
+            $MascotasDAO = new MascotaDAO();
 
-        $mascota->setFotoURL($nameImgPerro);
-        $mascota->setPlanVacURL($nameImgPlan);
-        $mascota->setVideoURL($videoUrl);
+            $mascota = new Mascota();
+            $mascota->setNombre($nombre);
+            $mascota->setRaza($raza);
+            $mascota->setEspecie("Perro");
+            $mascota->setTamaño($tamano);
+            
+            $nameImgPerro = $mascota->getNombre() ."-". $fotoPerro["name"];
+            $nameImgPlan = $mascota->getNombre() ."-". $fotoPlan["name"];
 
-        $type = null;
+            $mascota->setFotoURL($nameImgPerro);
+            $mascota->setPlanVacURL($nameImgPlan);
+            $mascota->setVideoURL($videoUrl);
 
-        try{
+            $type = null;
 
-            if($MascotasDAO->Add($mascota)){
+            try{
 
-                Archivos::subirArch("fotoPerro", $fotoPerro, "Mascotas/FotosMascotas/", $mascota->getNombre());
-                Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
-                header("location:../Mascotas/VerFiltroMascotas");
+                if($MascotasDAO->Add($mascota)){
+
+                    Archivos::subirArch("fotoPerro", $fotoPerro, "Mascotas/FotosMascotas/", $mascota->getNombre());
+                    Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
+                    header("location:../Mascotas/VerFiltroMascotas");
+
+                }
+
+                $type = "This is a danger alert—check it out!";
+                throw new Exception("No se pudo agregar la mascota");
 
             }
+            catch (Exception $ex){
 
-            $type = "This is a danger alert—check it out!";
-            throw new Exception("No se pudo agregar la mascota");
+                $alert = new Alert ($type, $ex->getMessage());
+                $this->VistaMascotas();
+            }
 
         }
-        catch (Exception $ex){
-
-            $alert = new Alert ($type, $ex->getMessage());
-            $this->VistaMascotas();
-        }
-
-        
     }
 
 

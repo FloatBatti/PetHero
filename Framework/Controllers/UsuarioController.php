@@ -16,17 +16,19 @@ class UsuarioController{
 
     public function ActualizarDatos($telefono,$direccion,$password,$rePassword){
         
-        if($password==$rePassword){
-            
-            $this->userDAO->grabarDatosActualizados($telefono,$direccion,$password);
-        
-            header("location: ../Home");
+        if(isset($_SESSION["UserId"])){
 
+            if($password==$rePassword){
+                
+                $this->userDAO->grabarDatosActualizados($telefono,$direccion,$password);
+            
+                header("location: ../Home");
+
+            }
+            else{
+                throw new Exception;
+            }
         }
-        else{
-            throw new Exception;
-        }
-        
 
     }
 

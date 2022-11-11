@@ -5,8 +5,10 @@ namespace Controllers;
 
     public function vistaChat(){
         
-        require_once(VIEWS_PATH."Mensajes.php");
-    }
+        if(isset($_SESSION["UserId"])){
+            require_once(VIEWS_PATH."Mensajes.php");
+        }
+    }   
 
 }
 ?>
