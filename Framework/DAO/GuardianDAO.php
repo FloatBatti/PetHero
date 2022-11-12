@@ -188,8 +188,9 @@ class GuardianDAO implements InterfaceDAO
         
             $resultSet = $this->connection->Execute($query, $parameters);
 
-            
-            foreach($resultSet as $reg){
+            if($resultSet){
+
+                $reg = $resultSet[0];
 
                 $guardian->setId($reg["id_usuario"]);
                 $guardian->setUsername($reg["username"]);
@@ -208,13 +209,18 @@ class GuardianDAO implements InterfaceDAO
                 $guardian->setCosto($reg["costo_diario"]);
                 $guardian->setFotoEspacioURL($reg["foto_espacio"]);
                 $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
+
+            }       
                 
-                return $guardian;
-        }
+            return $guardian;
+            
         }catch (Exception $ex) {
+
             throw $ex;
         }
     }
+
+    
 
     public function obtenerTamañosMascotas($idUsuario){
 

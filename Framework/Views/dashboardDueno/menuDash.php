@@ -1,6 +1,6 @@
 <div class="contenedora-aside">
                 <div class="icono perfil"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/EditarPerfil"?>">Editar Perfil</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/VistaEditarPerfil"?>">Editar Perfil</a></div>
                 <div class="icono mascota"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Mascotas/VerFiltroMascotas" ?>">Registrar Mascota</a></div>
                 <div class="icono vermascotas"></div>

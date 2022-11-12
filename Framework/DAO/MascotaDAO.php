@@ -57,9 +57,6 @@ class MascotaDAO{
 
             return $listaMascotas;
 
-
-
-
         }catch (Exception $ex) {
             throw $ex;
         }
@@ -69,8 +66,7 @@ class MascotaDAO{
     public function devolverMasctotaPorId($idMascota){
 
         $mascota = new Mascota();
-
-        
+   
         $query = "SELECT 
         m.id_mascota,
         m.nombre,
@@ -94,7 +90,9 @@ class MascotaDAO{
 
             $resultSet = $this->connection->Execute($query, $parameters);
 
-            foreach($resultSet as $reg){
+            if($resultSet){
+
+                $reg=$resultSet[0];
 
                 $mascota->setId($reg["id_mascota"]);
                 $mascota->setNombre($reg["nombre"]);
@@ -102,11 +100,11 @@ class MascotaDAO{
                 $mascota->setTamaño($reg["nombre_tamaño"]);
                 $mascota->setPlanVacURL($reg["plan_vacunacion"]);
                 $mascota->setFotoURL($reg["foto_mascota"]);
-                $mascota->setVideoURL($reg["video"]);   
-                
+                $mascota->setVideoURL($reg["video"]);  
+            
             }
-
-            return $mascota;
+                
+           return $mascota;
 
         }catch(Exception $ex) {
 
@@ -144,17 +142,17 @@ class MascotaDAO{
 
         $listaRazas = array();
 
-            $query = "SELECT 
-            r.nombre_raza
-            FROM
-            razas r
-            INNER JOIN
-            especies e ON r.id_especie = e.id_especie
-            where e.nombre_especie = :especie ;";
+        $query = "SELECT 
+        r.nombre_raza
+        FROM
+        razas r
+        INNER JOIN
+        especies e ON r.id_especie = e.id_especie
+        where e.nombre_especie = :especie ;";
 
-            $parameters["especie"] = $especie;
+        $parameters["especie"] = $especie;
 
-            $this->connection = Connection::GetInstance();
+        $this->connection = Connection::GetInstance();
         
         try{
 
