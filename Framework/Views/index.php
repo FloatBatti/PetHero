@@ -56,12 +56,18 @@
 
             </form>
 
+                
           </div>
 
         </div>
 
       </div>
     </div>
+
+    <?php if(isset($alert)){?>
+    <div class="alert alert-success" role="alert"><?php echo $alert?></div>
+    <?php }?>
+    
 
   </main>
 
@@ -100,9 +106,7 @@
           <div class="circulo">4</div>
           <span class="step-title">Disfruta el servicio de Pet Hero</span></strong>
           <p class="step-element">Relajate y deja tu mascota en las mejores manos</p>
-        </div>
 
-      </div>
 
 
     </div>

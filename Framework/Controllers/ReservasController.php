@@ -133,7 +133,7 @@ class ReservasController{
 
         }catch(Exception $ex){
 
-            $alert= new Alert($ex->getMessage(),"error");
+            $alert= new Alert("danger", $ex->getMessage());
 
         }
     }
@@ -159,7 +159,6 @@ class ReservasController{
 
         if(isset($_SESSION["UserId"])){
 
-
             $listaMascotas = $this->MascotaDAO->GetAll();
             $guardian = $this->GuardianDAO->devolverGuardianPorId($_SESSION["GuardianId"]);
             unset($_SESSION["GuardianId"]);
@@ -177,8 +176,6 @@ class ReservasController{
             $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
             $reserva->setCosto($costo);
             $reserva->setEstado("Pendiente");
-
-            // NO TOCAR PORQUE SE ESTA CREANDO EL PROCEDURE
 
             $_SESSION["Reserva"] = serialize($reserva);
             
