@@ -12,5 +12,5 @@
                 <div class="icono reservas"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Reservas/VerReservasDueno" ?>">Reservas</a></div>
                 <div class="icono mensajes"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Mensaje/vistaChat"?>">Mensajes</a></div>                                         
-            </div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Mensaje/bandejaEntrada"?>">Mensajes</a></div>                                         
+</div>

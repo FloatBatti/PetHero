@@ -24,29 +24,42 @@
         <div class="contenedora-section">
             <div class="plantilla-guardian">
                 <div class="cont imagen">
-                    <div class=" cont img-perfil"><img src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>" height="70"></div>
+                    <div class=" cont img-perfil"><figure><img src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>"></figure></div>
                     <div class=" cont nombre-perfil"><?php echo $guardian->getUsername();?></div>
                 </div>
-                <div class="cont calificacion"><div class="cont solicitud calificacion"></div><div class="cont stars"><a href=""><img src="../assets/img/3_stars.png"></a></div></div>
-
-                <div class="cont foto-espacio"><div class="cont foto"><img src="../assets/EspaciosGuardianes/<?php echo $guardian->getFotoEspacioURL()?>" height="70"></div></div>
-
+                <div class="cont calificacion"><div class="cont solicitud calificacion">Valoracion</div><div class="cont stars"><a href=""><img src="../assets/img/3_stars.png"></a></div></div>
+                
+                <div class="cont foto-espacio"><div class="cont-foto"><figure><img src="../assets/EspaciosGuardianes/<?php echo $guardian->getFotoEspacioURL()?>" height="270"></figure></div></div>
+                
                 <div class="cont descripcion">
                     <div class="cont dias">Dias de atencion:<br>Desde<?php echo $guardian->getFechaInicio()?> hasta <?php echo $guardian->getFechaFin();?><br></div>
-                    <div class="cont mascotas">Tipos de mascota permitidos:<br><?php foreach($tamaños as $tipo){echo $tipo." ";}?><br></div>
-                
+                    <hr>
+                    <div class="cont mascotas">Tipos de mascota permitidos: <hr><br><?php foreach($tamaños as $tipo){echo $tipo." ";}?><br></div>
+                    <hr>
                     <div class="cont costo">Precio por dia: $<?php echo $guardian->getCosto();?></div>
+                    <hr>
                     <div class="cont texto"><?php echo $guardian->getDescripcion();?></div>
                 </div>
-                <div class="cont solicitud">
+                <div class="botones">
+                    <div class="cont solicitud">
+                        <div class="boton">
+                            <a href="../Reservas/Iniciar?id=<?php echo $guardian->getId();?>"><img src="../assets/img/perro-mail.png"></a>
+                        </div>  
+                        <div class="cont">Enviar solicitud</div>
+                    </div>
 
-                    <div class="boton">
-                        <a href="../Reservas/Iniciar?id=<?php echo $guardian->getId();?>"><img src="../assets/img/perro-mail.png"></a>
-                    </div>  
+                        <div class="cont solicitud">
+                            <div class="cont"><a href=""><img src="../assets/img/reviews.png"></a></div><div class="cont"></div>Reviews
+                        </div>
+                    <div>
+                        <div class="cont letter"><a href="../Mensaje/vistaChat?id=<?php echo $guardian->getId();?>"><img src="../assets/img/icono-mensaje.png"></a></div><div>Enviar Mensaje</div>
+                    </div>
+                
+                </div>
 
-                <div class="cont">Enviar solicitud</div></div>
-                <div class="cont solicitud"><div class="cont"><a href=""><img src="../assets/img/reviews.png"></a></div><div class="cont"></div>Reviews</div>
+
             </div>
+                
         </div>
         <aside>
         <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
