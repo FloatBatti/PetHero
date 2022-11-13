@@ -17,6 +17,56 @@ class UserDAO{
     public function GetAll(){
 
         
+    }public function retornarNombrePorId($id){
+
+
+        $query = "SELECT 
+        u.id_usuario,
+        u.username,
+        u.nombre,
+        u.apellido,
+        u.correo,
+        u.telefono,
+        u.direccion,
+        u.tipo_usuario
+        FROM
+            usuarios u
+        WHERE
+            u.id_usuario = :id;";
+
+        $parameters["id"] = $id;
+    
+        $this->connection = Connection::GetInstance();
+        
+        
+        try {
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            $usuario = new Usuario();
+
+            if($resultSet){
+
+                $reg = $resultSet[0];
+
+                $usuario->setId($reg["id_usuario"]);
+                $usuario->setUsername($reg["username"]);
+                $usuario->setNombre($reg["nombre"]);
+                $usuario->setApellido($reg["apellido"]);
+                $usuario->setCorreoelectronico($reg["correo"]);
+                $usuario->setTelefono($reg["telefono"]);
+                $usuario->setDireccion($reg["direccion"]);
+                $usuario->setTipoUsuario($reg["tipo_usuario"]);
+  
+            }
+
+            return $usuario; 
+               
+        } catch (Exception $ex) {
+
+            throw $ex;
+        }
+
     }
 
     public function retornarUsuarioLogueado($username){

@@ -28,7 +28,7 @@
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="drop-Mascota">
-                <div class="header-Mascotas"><img src="../assets/img/tituloMascotas.png"></div>
+                <div class="header-Mascotas">Mis Mascotas</div>
 
                 <div class="conteiner-list">
 

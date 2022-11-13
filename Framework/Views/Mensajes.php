@@ -23,14 +23,31 @@
         <div class="contenedora-section">
             <div class="contendora-chat">
                 <div class="lista-mensajes">
-                    <div class="contenedora-mensaje emisor"><div class="autor-mensaje">Emisor</div><div class="mensaje"></div></div>
-                    <div class="contenedora-mensaje receptor"><div class="mensaje"></div><div class="autor-mensaje">Receptor</div></div>
-                    <div class="contenedora-mensaje emisor"><div class="autor-mensaje">Emisor</div><div class="mensaje"></div></div>
-                    <div class="contenedora-mensaje receptor"><div class="mensaje"></div><div class="autor-mensaje">Receptor</div></div>
+                    <?php
+                    foreach($listaMensajes as $mensaje){
+                        if($mensaje->getEmisor()==$_SESSION["UserId"]){
+                            ?>
+                            <div class="contenedora-mensaje derecha"><div class="mensaje"><?php echo $mensaje->getContenido();?></div><div class="side-msj"><div class="autor-mensaje">Yo</div><div class="fecha"><?php echo $mensaje->getFecha();?></div></div></div>
+                        
+                    <?php    
+                    }else{
+                        ?>
+                        <div class="contenedora-mensaje izquierda"><div class="side-msj"><div class="autor-mensaje"><?php echo $usuario->getUsername();?></div><div class="fecha"><?php echo $mensaje->getFecha();?></div></div><div class="mensaje"><?php echo $mensaje->getContenido();?></div></div>
+                    <?php
+                    }
+                }
+                    ?>
+                    
                     
                 </div>
                 <hr>
-                <div class="contenedora-reply"><textarea name="chat" class="reply" maxlength="50" placeholder="max 50 caracteres" size="50" required></textarea> <div class="Go"><img src="../assets/img/send.png"></div></div>
+                
+                
+                <form class="contenedora-reply" action="../Mensaje/Add" method="post">
+                    <input type="number" name="id" class="destinatario" value="<?php echo($usuario->getId());?>" readonly>
+                    <textarea name="chat" class="reply" maxlength="50" placeholder="max 50 caracteres" size="50" required></textarea> 
+                    <div class="Go send"><input type="submit" class="send"></div>
+                </form>
             <hr>
             </div>
             

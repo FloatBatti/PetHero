@@ -132,6 +132,8 @@ class Usuario {
 
         $this->tipoUsuario = $tipoUsuario;
     }
-}
 
+    
+    
+}
 ?>

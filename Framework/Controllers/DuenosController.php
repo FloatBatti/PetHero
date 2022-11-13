@@ -51,6 +51,10 @@ class DuenosController
     {
         require_once(VIEWS_PATH . "DashboardDueno/Dashboard.php");
     }
+    public function verMensajes(){
+        
+        require_once(VIEWS_PATH. "/DashboardDueno/verMensajes.php");
+    }
 
 
     public function vistaGuardianes()
