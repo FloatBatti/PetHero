@@ -57,7 +57,8 @@
                             </div>
                             <div class="col nombre-ex"><?php echo $guardian->getUsername() ?></div>
                             <div class="col tipo-ex"><?php
-                                                        $lista=$DAOGuardianes->obtenerTamañosMascotas($guardian->getId());
+
+                                                        $lista=$guardian->getTipoMascota();
                                                     
                                                         foreach ($lista as $tipo) {
 
@@ -65,8 +66,11 @@
                                                         }
 
                                                         ?></div>
+
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
+
                             <div class="col calificacion-ex">***__</div>
+
                         <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/ojo_perfil.png" height="50"></a></div>
                         
                             <div class="col favoritos-ex"><a href="../Duenos/agregarFavorito?id=<?php echo $guardian->getId();?>"><img src="../assets/img/estrella_fav.png" height="50"></a></div>

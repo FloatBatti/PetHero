@@ -17,6 +17,8 @@ class Mail{
 
     public function enviarMail(Reserva $reserva){
 
+        /*
+        
         $email = $reserva->getDueño()->getCorreoelectronico();
 
         $asunto = "Confirmacion de reserva del guardian " . $reserva->getGuardian()->getUsername();
@@ -24,6 +26,8 @@ class Mail{
         $mensaje = "Su reserva con el guardian " . $reserva->getGuardian()->getUsername() . " a sido aceptada para el dia ". $reserva->getFechaInicio() . " con finalizacion en " . $reserva->getFechaFin() . ". La mascota a cuidar es " . $reserva->getMascota()->getNombre() . " con un importe de $" . $reserva->getCosto() . ". El importe a pagar en primera estancia es el 50%";
 
         mail($email, $asunto, $mensaje, $this->header);
+
+        */
     }
 
 }
