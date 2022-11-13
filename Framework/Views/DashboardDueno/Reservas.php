@@ -11,6 +11,7 @@
 
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/verReservas.css" rel="stylesheet">
+    <link href="../styles/alert.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,22 +47,27 @@
 
                         <div class="row reserva-row">
                             <div class="col">
-                                <?php echo $reserva->getGuardian()->getUsername();?>
+                                <a href=""><?php echo $reserva->getGuardian();?></a>
                             </div>
                             <div class="col "><?php echo $reserva->getFecha(); ?></div>
                             <div class="col "><?php echo $reserva->getFechaInicio(); ?></div>
                             <div class="col "><?php echo $reserva->getFechaFin(); ?></div>
                             <div class="col ">
-                                <?php echo $reserva->getMascota()->getNombre();?>
+                                <?php echo $reserva->getMascota();?>
                             </div>
                             <div class="col"><?php echo $reserva->getCosto(); ?></div>
                             <div class="col"><?php echo $reserva->getEstado(); ?></div>
-                            <div class="col"><a href=""><img src="../assets/img/remove.png" height="45"></a></div>
+
+                            <div class="col"><a href="../Reservas/CancelarSolicitud?id=<?php echo $reserva->getId();?>"><img src="../assets/img/remove.png" height="45"></a></div>
                         </div>
 
                     <?php } ?>
 
                 </div>
+
+                <?php if (isset($alert)) { ?>
+                     <div class="alert-<?php echo $type?>"><?php echo $alert?></div>
+                 <?php } ?>
         </div>
     </div>
     <aside>

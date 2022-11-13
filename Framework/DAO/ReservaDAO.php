@@ -35,6 +35,25 @@ class ReservaDAO{
         }
     }
 
+    public function cancelarReserva($idReserva){
+
+        $query = "DELETE FROM reservas where id_reserva = :id_reserva;";
+
+        $paramaters["id_reserva"] = $idReserva;
+
+        $this->connection = Connection::GetInstance();
+
+        try{
+
+            return $this->connection->ExecuteNonQuery($query, $paramaters);
+
+        }catch(Exception $ex){
+
+            throw $ex;
+        }
+
+    }
+
     public function listarSolicitudesOrReservas($estado){ //Devuelve solicitudes o reservas del guardian dependendiendo del estado
 
         $guardianDAO = new GuardianDAO();
@@ -62,9 +81,9 @@ class ReservaDAO{
                 $reserva->setFecha($reg["fecha_reserva"]);
                 $reserva->setFechaInicio($reg["fecha_inicio"]);
                 $reserva->setFechaFin($reg["fecha_fin"]);
-                $reserva->setGuardian($guardianDAO->devolverGuardianPorId($_SESSION["UserId"]));
-                $reserva->setDueño($dueñoDAO->devolverDueñoPorId($reg["dueño"]));
-                $reserva->setMascota($mascotaDAO->devolverMasctotaPorId($reg["id_mascota"]));
+                $reserva->setGuardian($_SESSION["UserId"]);
+                $reserva->setDueño($reg["dueño"]);
+                $reserva->setMascota($reg["mascota"]);
                 $reserva->setCosto($reg["costo_total"]);
                 $reserva->setEstado($reg["estado"]);
 
@@ -132,15 +151,16 @@ class ReservaDAO{
         r.fecha_reserva,
         r.fecha_inicio,
         r.fecha_fin,
-        g.id_usuario as guardian,
-        r.id_mascota,
+        u.username as guardian,
+        m.nombre as mascota,
         r.costo_total,
         r.estado 
         from 
         reservas r
         inner join guardianes g on r.id_guardian = g.id_guardian
         inner join usuarios u on u.id_usuario = g.id_usuario
-        where r.id_dueño = (select d.id_dueño from dueños d inner join usuarios u on d.id_usuario = u.id_usuario where u.id_usuario = :id_ususario);";
+        inner join mascotas m on r.id_mascota = m.id_mascota
+        where r.id_dueño = (select d.id_dueño from dueños d inner join usuarios u on d.id_usuario = u.id_usuario where u.id_usuario = :id_usuario);";
 
         $parameters["id_usuario"] = $_SESSION["UserId"];
 
@@ -158,9 +178,9 @@ class ReservaDAO{
                 $reserva->setFecha($reg["fecha_reserva"]);
                 $reserva->setFechaInicio($reg["fecha_inicio"]);
                 $reserva->setFechaFin($reg["fecha_fin"]);
-                $reserva->setGuardian($guardianDAO->devolverGuardianPorId($reg["guardian"]));
-                $reserva->setDueño($dueñoDAO->devolverDueñoPorId($_SESSION["UserId"]));
-                $reserva->setMascota($mascotaDAO->devolverMasctotaPorId($reg["id_mascota"]));
+                $reserva->setGuardian($reg["guardian"]);
+                $reserva->setDueño($_SESSION["UserId"]);
+                $reserva->setMascota($reg["mascota"]);
                 $reserva->setCosto($reg["costo_total"]);
                 $reserva->setEstado($reg["estado"]);
 
@@ -185,42 +205,38 @@ class ReservaDAO{
         $mascotaDAO = new MascotaDAO();
 
         $query = "SELECT
-        r.id_reserva,
-        r.fecha_reserva,
-        r.fecha_inicio,
-        r.fecha_fin,
-        d.id_usuario as dueño,
-        r.id_mascota,
-        r.costo_total,
-        r.estado 
+        *
         from 
-        reservas r
-        inner join dueños d on r.id_dueño = d.id_dueño
-        inner join usuarios u on u.id_usuario = d.id_usuario
-        where r.id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario = u.id_usuario where u.id_usuario =". $_SESSION["UserId"].")
-        and r.id_reserva = ". $idReserva. ";";
+        reservas 
+        where id_reserva = :id_reserva;";
+
+ 
+        $parameters["id_reserva"] = $idReserva;
 
         $this->connection = Connection::GetInstance();
 
         try{
     
-            $resultSet = $this->connection->Execute($query);
+            $resultSet = $this->connection->Execute($query, $parameters);
 
             $reserva = new Reserva();
-    
-            foreach($resultSet as $reg){
+
+            if($resultSet){
+
+                $reg = $resultSet[0];
     
                 $reserva->setId($reg["id_reserva"]);
                 $reserva->setFecha($reg["fecha_reserva"]);
                 $reserva->setFechaInicio($reg["fecha_inicio"]);
                 $reserva->setFechaFin($reg["fecha_fin"]);
-                $reserva->setGuardian($guardianDAO->devolverGuardianPorId($_SESSION["UserId"]));
-                $reserva->setDueño($dueñoDAO->devolverDueñoPorId($reg["dueño"]));
-                $reserva->setMascota($mascotaDAO->devolverMasctotaPorId($reg["id_mascota"]));
+                $reserva->setGuardian("id_guardian");
+                $reserva->setDueño($reg["id_dueño"]);
+                $reserva->setMascota($reg["id_mascota"]);
                 $reserva->setCosto($reg["costo_total"]);
                 $reserva->setEstado($reg["estado"]);
-            }
 
+            }
+  
             return $reserva;
 
         }catch(Exception $ex){

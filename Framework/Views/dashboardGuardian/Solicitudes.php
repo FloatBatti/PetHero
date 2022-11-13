@@ -36,8 +36,8 @@
                 <div class="scrolleable">
                 <?php foreach ($listaSolicitudes as $solicitud){?>
                 <div class="row solicitud">
-                    <div class="col campo Nombre"><?php echo $solicitud->getDueño()->getUsername()?></div>
-                    <div class="col campo Mascota"><a href=""><?php echo $solicitud->getMascota()->getNombre()?></a></div>
+                    <div class="col campo Nombre"><?php echo $solicitud->getDueño()?></div>
+                    <div class="col campo Mascota"><?php echo $solicitud->getMascota()?></div>
                     <div class="col campo fecha"><?php echo $solicitud->getFechaInicio()?></div>
                     <div class="col campo fecha"><?php echo $solicitud->getFechaFin()?></div>
                     <div class="col campo costo"><?php echo $solicitud->getCosto()?></div>

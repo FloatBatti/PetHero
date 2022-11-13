@@ -47,10 +47,12 @@ class DuenosController
             $this->vistaDashboard();
         }   
     }
+
     public function vistaDashboard()
     {
         require_once(VIEWS_PATH . "DashboardDueno/Dashboard.php");
     }
+    
     public function verMensajes(){
         
         require_once(VIEWS_PATH. "/DashboardDueno/verMensajes.php");
