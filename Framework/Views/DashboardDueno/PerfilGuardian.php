@@ -52,7 +52,7 @@
                             <div class="cont"><a href=""><img src="../assets/img/reviews.png"></a></div><div class="cont"></div>Reviews
                         </div>
                     <div>
-                        <div class="cont letter"><a href="../Mensaje/vistaChat?id=<?php echo $guardian->getId();?>"><img src="../assets/img/icono-mensaje.png"></a></div><div>Enviar Mensaje</div>
+                        <div class="cont letter"><a href="../Mensaje/nuevoMensaje?id=<?php echo $guardian->getId();?>&nombre=<?php echo $guardian->getUsername();?>"><img src="../assets/img/icono-mensaje.png"></a></div><div>Enviar Mensaje</div>
                     </div>
                 
                 </div>
