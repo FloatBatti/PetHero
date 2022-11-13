@@ -36,8 +36,8 @@
                 <div class="scrolleable">
                 <?php foreach ($listaReservas as $reserva){?>
                 <div class="row solicitud">
-                    <div class="col campo Nombre"><?php echo $reserva->getDueño()->getUsername()?></div>
-                    <div class="col campo Mascota"><a href=""><?php echo $reserva->getMascota()->getNombre()?></a></div>
+                    <div class="col campo Nombre"><?php echo $reserva->getDueño()?></div>
+                    <div class="col campo Mascota"><?php echo $reserva->getMascota()?></div>
                     <div class="col campo fecha"><?php echo $reserva->getFechaInicio()?></div>
                     <div class="col campo fecha"><?php echo $reserva->getFechaFin()?></div>
                     <div class="col campo costo"><?php echo $reserva->getCosto()?></div>

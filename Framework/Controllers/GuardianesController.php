@@ -88,7 +88,7 @@ class GuardianesController
             }catch (Exception $ex){
 
                 $alert = new Alert("danger", $ex->getMessage());
-                $this->RegistrarDisponibilidad();
+                //$this->RegistrarDisponibilidad();
 
             }
         }
@@ -127,19 +127,20 @@ class GuardianesController
         
                         $_SESSION["GuardTemp"] = serialize($guardian);
         
-                        $this->RegistrarDisponibilidad();
+                        header("location: ../Guardianes/RegistrarDisponibilidad");
         
-                    } 
-        
+                    }
+
                     $type = "danger";
                     throw new Exception("Las contraseñas no coinciden");
-                    
-        
-                } 
-        
+                  
+                }
+
                 $type = "danger";
                 throw new Exception("El usuario ya existe");
 
+                
+        
             }catch (Exception $ex){
 
                 $alert = new Alert($type, $ex->getMessage());

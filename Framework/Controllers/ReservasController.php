@@ -31,20 +31,22 @@ class ReservasController{
     public function Add(){
 
         if(isset($_SESSION["UserId"])){
-            try{
 
-                $reserva=unserialize($_SESSION["Reserva"]);
-                unset($_SESSION["Reserva"]);
+            $reserva=unserialize($_SESSION["Reserva"]);
+            unset($_SESSION["Reserva"]);
+          
+            try{
 
                 if($this->ReservaDAO->crearReserva($reserva)){
 
                     header("location: ../Reservas/VerReservasDueno");   
                 }
+
                 throw new Exception("No se pudo crear la reserva, intente nuevamente");
 
             }catch(Exception $ex){
 
-                $alert=new Alert($ex->getMessage(),"error");
+                $alert=new Alert("danger", $ex->getMessage());
             } 
         }
     }
@@ -59,11 +61,12 @@ class ReservasController{
         }
     }
 
-    public function VerReservasDueno(){
+    public function VerReservasDueno($alert = null, $type = null){
 
         if(isset($_SESSION["UserId"])){
 
             $listaReservas = $this->ReservaDAO->listarReservasDueno();
+
             require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
 
         }
@@ -88,6 +91,63 @@ class ReservasController{
         }
     }
 
+    public function CancelarSolicitud($id){
+
+        if(isset($_SESSION["UserId"])){
+
+            try{
+
+                $reserva = $this->ReservaDAO->devolverReservaPorId($id);
+                $estado = $reserva->getEstado();
+
+                if($reserva){
+
+                    switch($estado){
+
+                        case "Aceptada":
+                            header("location: ../Reservas/VerReservasDueno?alert=No se puede cancelar la solicitud aceptada. Por favor, envie un mensaje al guardian&type=danger");   
+                        break;
+
+                        case "Pendiente":
+
+                            if($this->ReservaDAO->cancelarReserva($id)){
+    
+                                header("location: ../Reservas/VerReservasDueno?alert=Cancelacion exitosa. Se le avisara al guardian&type=success");
+                            }
+        
+                            throw new Exception("No se pudo cancelar la reserva");
+
+                        break;
+
+                        case "Rechazado":
+
+                            if($this->ReservaDAO->cancelarReserva($id)){
+    
+                                header("location: ../Reservas/VerReservasDueno?alert=Reserva quitada del historial&type=success");
+                            }
+        
+                            throw new Exception("No se pudo cancelar la reserva");
+
+                        break;
+
+                    }
+ 
+                }
+
+                throw new Exception("Error al encontrar al usuario");
+
+            }catch (Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                $this->VerReservasDueno($alert);
+                
+            }
+
+        }   
+
+
+    }
+
     public function AceptarSolicitud($idReserva){
 
         if(isset($_SESSION["UserId"])){
@@ -98,9 +158,11 @@ class ReservasController{
 
                     $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
                     
+                   /*
                     $mail= new Mail();
 
                     $mail->enviarMail($reserva);
+                    */
 
                     header("location: ../Reservas/VerReservasGuardian");
 
@@ -144,11 +206,10 @@ class ReservasController{
 
         if(isset($_SESSION["UserId"])){
             
-            $DueñosDAO = new DueñosDAO();
-            $dueño=$DueñosDAO->devolverDueñoPorId($_SESSION["UserId"]);
+
+            $dueño=$this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
             $listaMascotas = $this->MascotaDAO->GetAll();
-            $guardianes=new GuardianDAO();
-            $guardian=$guardianes->devolverGuardianPorId($idGuardian);
+            $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);
             //Guardo el id en sesion para llevarlo a l metodo confirmar y mantener el usuario elegido
             $_SESSION["GuardianId"] = $guardian->getId();
             require_once(VIEWS_PATH. "DashboardDueno/Solicitud.php");
