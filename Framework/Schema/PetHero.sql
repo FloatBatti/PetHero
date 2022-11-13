@@ -308,3 +308,21 @@ inner join mascotas m on r.id_mascota = m.id_mascota
 where r.id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario = u.id_usuario where u.id_usuario = id_user_guardian)
 and r.estado = p_estado;
 END //
+
+delimiter //
+create procedure nuevo_mensaje(in emisor bigint, in receptor bigint, in contenido varchar(150) )
+BEGIN
+insert into mensajes(fecha,id_emisor,id_receptor,contenido)values(current_timestamp(),emisor,receptor, contenido);
+END//
+DELIMITER //
+create procedure listar_chat(in id_sesion bigint,in id_interlocutor bigint)
+begin
+SELECT 
+      fecha, 
+      id_emisor,
+      id_receptor,
+      contenido 
+      from mensajes 
+      where (id_emisor =id_sesion and id_receptor =id_interlocutor) or (id_emisor = id_interlocutor and id_receptor = id_sesion)
+      order by fecha desc;
+END //
