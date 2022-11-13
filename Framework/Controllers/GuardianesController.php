@@ -73,7 +73,6 @@ class GuardianesController
             $guardian->setFotoEspacioURL($nameImg);
             $guardian->setDescripcion($descripcion);
 
-            $type = null;
 
             try{
 
@@ -83,13 +82,12 @@ class GuardianesController
                     header("location: ../Home");
                 }
                 
-                $type = "alert alert-primary";
-                throw new Exception("El guardian no pudo registrarse"); //Mensaje que funciona como alert
+                throw new Exception("Error de servidor, intente nuevamente"); //Mensaje que funciona como alert
 
 
             }catch (Exception $ex){
 
-                $alert = new Alert($type, $ex->getMessage());
+                $alert = new Alert("danger", $ex->getMessage());
                 $this->RegistrarDisponibilidad();
 
             }
@@ -133,13 +131,13 @@ class GuardianesController
         
                     } 
         
-                    $type = "alert alert-primary";
+                    $type = "danger";
                     throw new Exception("Las contraseñas no coinciden");
                     
         
                 } 
         
-                $type = "alert alert-primary";
+                $type = "danger";
                 throw new Exception("El usuario ya existe");
 
             }catch (Exception $ex){
@@ -179,7 +177,7 @@ class GuardianesController
                 throw new Exception("Error al cargar usuario");
             
             }catch(Exception $ex){
-                $alert=new Alert($ex->getMessage(),"error");
+                $alert=new Alert("danger", $ex->getMessage());
                 $this->vistaDashboard();
             }
 
@@ -190,22 +188,17 @@ class GuardianesController
 
         if(isset($_SESSION["UserId"])){
         
-            $type = null;
-
             try {
 
                 if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion)){
 
                     header("location: ../Guardianes/vistaDashboard");
                 }
-
-                $type = "alert alert-primary";
                 throw new Exception("No se pudieron actulizar los datos");
-            
-                
+                  
             } catch (Exception $ex) {
                 
-                $alert = new Alert($type, $ex->getMessage());
+                $alert = new Alert("warning", $ex->getMessage());
                 header("location: ../Guardianes/vistaDashboard?=". $alert);
             }
             

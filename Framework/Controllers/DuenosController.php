@@ -25,25 +25,25 @@ class DuenosController
         $this->UserDAO = new UserDAO();
     }
 
-    public function VistaRegistro()
+    public function VistaRegistro($alert = null)
     {
-
         require_once(VIEWS_PATH . "RegistroDueño.php");
     }
 
-    public function EditarPerfil()
+    public function VistaEditarPerfil()
     {
         try{
 
             if($usuario = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"])){
+
                 require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
             }
 
-            throw new Exception("error");
+            throw new Exception("No se pudo editar perfil");
 
         }catch(Exception $ex){
 
-            $alert=new Alert($ex->getMessage(),"error");
+            $alert=new Alert("warning", $ex->getMessage());
             $this->vistaDashboard();
         }   
     }
@@ -57,15 +57,15 @@ class DuenosController
     }
 
 
-
-
     public function vistaGuardianes()
     {
 
         if (isset($_SESSION["UserId"])) {
 
-            $DAOGuardianes = new GuardianDAO();
-            $listaGuardianes = $DAOGuardianes->GetAll();
+            $guardianesDAO = new GuardianDAO();
+
+            $listaGuardianes = $guardianesDAO->GetAll();
+
             require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
         }
     }
@@ -74,21 +74,29 @@ class DuenosController
 
         if (isset($_SESSION["UserId"])) {
 
-            $DAOGuardianes = new GuardianDAO();
-            $listaGuardianes = $DAOGuardianes->GetFavoritos();
+            $guardianesDAO = new GuardianDAO();
+            $listaGuardianes = $guardianesDAO->GetFavoritos();
             require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
         }
     }
 
     public function borrarFavorito($idGuardian)
     {
+        $usuarioDAO = new UserDAO();
+
         try{
-            $DAOusuarios = new UserDAO();
-            if($DAOusuarios->deleteFavorito($idGuardian)){
+            
+            if($usuarioDAO->deleteFavorito($idGuardian)){
+
                 header("location: ../Duenos/vistaFavoritos");
-            }throw new Exception("Error al eliminar el guardian...");
+
+            }
+            throw new Exception("Error al eliminar el guardian");
+
         }catch (Exception $ex){
-                $aler=new Alert($ex->getMessage(),"error");        
+
+                $alert=new Alert("danger", $ex->getMessage()); 
+                      
                 $this->vistaFavoritos();
             }
     }
@@ -96,13 +104,21 @@ class DuenosController
     
 
     public function agregarFavorito($id){
+
+        $usuarioDAO=new UserDAO();
+
         try{
-            $DAOusuarios=new UserDAO();
-            if($DAOusuarios->AddFavorito($id)){
+
+            if($usuarioDAO->AddFavorito($id)){
+
                 header("location: ../Duenos/vistaFavoritos");
-            }throw new Exception("El guardian ya esta en favoritos");
+
+            }
+            throw new Exception("El guardian ya esta en favoritos");
+
         }catch(Exception $ex){
-            $aler=new Alert($ex->getMessage(),"error");        
+
+            $alert=new Alert("warning", $ex->getMessage());        
             $this->vistaFavoritos();
         }
     }    
@@ -124,9 +140,8 @@ class DuenosController
         $nameImg = $dueño->getUsername() ."-". $fotoPerfil["name"];
 
         $dueño->setFotoPerfil($nameImg);
-   
-        $type = null;
 
+        
         try{
 
             if(!$this->UserDAO->checkUsuario($username,$dni, $mail)){ 
@@ -139,28 +154,24 @@ class DuenosController
 
                         Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $dueño->getUsername());
                         
-                        header("location: ../Home");
+                        header("location: ../Home?alert=Perfil creado con exito. Puede loguearse");
                     }
-    
-                    $type = "alert alert-primary";
-                    throw new Exception("Error al registrar dueño"); 
+
+                    throw new Exception("Error de servidor, intente nuevamente"); 
     
                 }
                 
-                $type = "alert alert-primary";
                 throw new Exception("Las contraseñas no coinciden"); 
             
     
             }
             
-            $type = "alert alert-primary";
             throw new Exception("El usuario ya existe");
 
 
         }catch (Exception $ex){
-
-            $alert = new Alert($type, $ex->getMessage());
-            $this->VistaRegistro();
+            
+            $this->VistaRegistro($ex->getMessage());
 
         }
         

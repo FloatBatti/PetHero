@@ -13,7 +13,7 @@ class HomeController{
         $this->UserDAO = new UserDAO();
     }
     
-    public function Index(){
+    public function Index($alert=null){
 
         require_once(VIEWS_PATH."index.php");
 

@@ -273,8 +273,7 @@ class UserDAO{
         $parameters["direccion"] = $direccion;
         $parameters["password"] = $password;
         $parameters["buscado"] = ($_SESSION["UserId"]);
-       
-        
+             
         try{
 
             $this->connection = Connection::GetInstance();
