@@ -13,7 +13,8 @@
     flex-direction: column;
     height:60%;
     margin: 0 auto auto 20px;
-    overflow-y: scroll;background-image: url(../assets/img/fondo-mascotas-chat.jpg);
+    overflow-y: scroll;
+    background-image: url(../assets/img/fondo-mascotas-chat.jpg);
 }
 .contenedora-mensaje{
     border-radius: 7px;
@@ -25,7 +26,7 @@
 }
 .mensaje{
     border:1px solid gray;
-    height: 150px;
+    height: 100px;
     width: 400px;
     background-color: antiquewhite;
     border-radius: 7px;
@@ -77,7 +78,21 @@
     align-items: center;
     justify-content: center;
     margin-left: 10px;
-    cursor: pointer;
     box-shadow: 5px 5px 5px gray;
+    
 }
-
+input{
+    border:none;
+    background-color: lightgray;
+    
+}
+.send{
+    cursor: pointer;
+}
+.fecha{
+    font-size: 14px;
+    color:rgb(75, 45, 185);
+}
+.destinatario{
+    width:10px
+}

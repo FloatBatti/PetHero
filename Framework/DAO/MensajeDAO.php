@@ -4,7 +4,7 @@ namespace DAO;
 
 use Models\Mensaje as Mensaje;
 use \Exception as Exception;
-
+use Models\Inbox as Inbox;
 
 class MensajeDAO{
 
@@ -15,25 +15,19 @@ class MensajeDAO{
     }
     public function GetMsg($id)
     {
-      $listaMensajes = array();
         
-      $query ="SELECT 
-      fecha, 
-      id_emisor,
-      id_receptor,
-      contenido 
-      from mensajes 
+      $listaMensajes = array();
+      $query = "CALL listar_chat(:id_sesion, :id_interlocutor);";  
       
-      order by fecha;";
-           //where (id_emisor = :id_usuario and id_receptor = :id) or (id_emisor = :id and id_receptor = :id_usuario)   
-            $parameters["id_usuario"]=$_SESSION["UserId"];
-            $parameters["id"]=$id;
+      
+            $parameters["id_sesion"]=$_SESSION["UserId"];
+            $parameters["id_interlocutor"]=$id;
 
             $this->connection = Connection::GetInstance();
 
             try {
 
-                $resultSet = $this->connection->Execute($query);
+                $resultSet = $this->connection->Execute($query,$parameters);
     
                 foreach($resultSet as $reg){
     
@@ -54,30 +48,60 @@ class MensajeDAO{
                 throw $ex;
             }
     }
+    public function traerBandeja(){
+
+        $bandeja=array();
+
+        $query="SELECT m.fecha,m.id_emisor, u.username from mensajes m
+        inner join usuarios u on u.id_usuario=m.id_emisor
+        where (id_receptor=:id_session)
+        group by u.username ;";
+
+        $parameters["id_session"]=$_SESSION["UserId"];
+
+        $this->connection = Connection::GetInstance();
+        try {
+
+            $resultSet = $this->connection->Execute($query,$parameters);
+           
+            foreach($resultSet as $reg){
+
+                $inbox=new Inbox();
+                $inbox->setFecha($reg["fecha"]);
+                $inbox->setId($reg["id_emisor"]);
+                $inbox->setNombre($reg["username"]);
+                array_push($bandeja,$inbox);
+                
+            }
+            return $bandeja;
+
+        }catch (Exception $ex){
+            throw $ex;
+        }
+
+    
+    }
     public function Add($mensaje){
+        
+        $query="CALL nuevo_mensaje(:emisor,:receptor,:contenido);";
 
-
-        $query = "INSERT INTO
-        mensajes
-        (fecha,id_emisor,id_receptor,contenido)
-        values(current_timestamp(),5,7, contenido),
-        :fecha, :id_emisor,:id_receptor,:contenido;";
- 
-
-        $parameters["fecha"] = $mensaje->getFecha();
-        $parameters["id_emisor"] =$mensaje->getEmisor();
-        $parameters["id_receptor"] =$mensaje->getReceptor();
-        $parameters["contenido"] =$mensaje->getContenido();
+        $parameters["emisor"]=$mensaje->getEmisor();;
+        $parameters["receptor"]=$mensaje->getReceptor();
+        $parameters["contenido"]=$mensaje->getContenido();
+        
+        
 
         $this->connection = Connection::GetInstance();   
 
         try {
+
             return $this->connection->ExecuteNonQuery($query, $parameters);
+            
         }
         catch (Exception $ex) {
             throw $ex;
         }
-
+    
     }
 
 

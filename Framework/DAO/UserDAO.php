@@ -19,8 +19,6 @@ class UserDAO{
         
     }public function retornarNombrePorId($id){
 
-        $guardianDAO = new GuardianDAO();
-        $dueñoDAO = new DueñoDAO();
 
         $query = "SELECT 
         u.id_usuario,

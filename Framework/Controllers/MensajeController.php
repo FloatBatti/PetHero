@@ -25,41 +25,51 @@ use Models\Alert;
                 $usuario=$this->interlocutor($listaMensajes[0]);
                 require_once(VIEWS_PATH."Mensajes.php");
             }
-
             
         }
     }
     public function interlocutor($mensaje){
-            if($mensaje->getEmisor()== $_SESSION["UserId"]){
+            if($mensaje->getEmisor() != $_SESSION["UserId"]){
                 
+                $usuario=$this->usersDAO->retornarNombrePorId($mensaje->getEmisor());
+                
+            }else{
                 $usuario=$this->usersDAO->retornarNombrePorId($mensaje->getReceptor());
-                return $usuario;
             }
-            
+            return $usuario; 
 
-    } 
+    }
+    public function bandejaEntrada(){
+        if(isset($_SESSION["UserId"])){
+            if($bandeja=$this->mensajeDAO->traerBandeja()){
+
+                require_once(VIEWS_PATH."/DashboardDueno/verMensajes.php");
+            }else{
+                header("location: ../Home");
+            }
+        }   
+
+    }
     public function Add($id,$chat){
-
+        
         if(isset($_SESSION["UserId"])){
         
             $mensaje=new Mensaje();
-
-            $mensaje->setFecha(date("Y-m-d"));
             $mensaje->setEmisor($_SESSION["UserId"]);
             $mensaje->setReceptor($id);
             $mensaje->setContenido($chat);
 
         try{
             if($this->mensajeDAO->Add($mensaje)){
-                //header("location: ../Mensaje/vistaChat");
-                header("location: ../Home");
+                header("location: ../Mensaje/vistaChat?id=$id");
+                
             }
-            $type = "alert alert-primary";
                 throw new Exception("No se pudo enviar el mensaje..."); 
+               
 
         }catch (Exception $ex){
-
-            $alert = new Alert($type, $ex->getMessage());
+            
+           $alert=new Alert("alert alert-primary",$ex->getMessage());
             header("location: ../Home");
 
         }
