@@ -53,11 +53,13 @@ class HomeController{
     
                         case "G":
                         $_SESSION["UserId"] = $usuario->getId();
+                        $_SESSION["Tipo"]=$usuario->getTipoUsuario();
                         $this->DashGuardianView();
                         break;
             
                         case "D":
                         $_SESSION["UserId"] = $usuario->getId();
+                        $_SESSION["Tipo"]=$usuario->getTipoUsuario();
                         $this->DashDuenoView();
                         break;
                     }
@@ -86,6 +88,7 @@ class HomeController{
     public function LogOut(){
         
         unset($_SESSION["UserId"]);
+        unset($_SESSION["Tipo"]);
         $this->Index();
     }
 

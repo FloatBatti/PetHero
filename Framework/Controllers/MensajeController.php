@@ -23,7 +23,13 @@ use Models\Alert;
         if(isset($_SESSION["UserId"])){
             if($listaMensajes=$this->mensajeDAO->GetMsg($id)){
                 $usuario=$this->interlocutor($listaMensajes[0]);
-                require_once(VIEWS_PATH."Mensajes.php");
+                if($_SESSION["Tipo"]=="D"){
+                    
+                    require_once(VIEWS_PATH."/DashboardDueno/Mensajes.php");
+                }else{
+                    require_once(VIEWS_PATH."/DashboardGuardian/Mensajes.php");
+                }
+        
             }
             
         }
@@ -42,13 +48,42 @@ use Models\Alert;
     public function bandejaEntrada(){
         if(isset($_SESSION["UserId"])){
             if($bandeja=$this->mensajeDAO->traerBandeja()){
+                switch($_SESSION["Tipo"]){
+                    case "D":
+                        require_once(VIEWS_PATH."/DashboardDueno/verMensajes.php");
+                    break;
+                    case "G":
+                        require_once(VIEWS_PATH."/DashboardGuardian/verMensajes.php");
+                    break;
+                }
 
-                require_once(VIEWS_PATH."/DashboardDueno/verMensajes.php");
+            }else{
+                switch($_SESSION["Tipo"]){
+                    case "D":
+                        require_once(VIEWS_PATH."/DashboardDueno/Dashboard.php");
+                    break;
+                    case "G":
+                        require_once(VIEWS_PATH."/DashboardGuardian/Dashboard.php");
+                    break;
+            } 
+
+        }
+    }else{
+        header("location: ../Home");
+    }
+    }
+    public function nuevoMensaje($id,$nombre){
+        if(isset($_SESSION["UserId"])){
+            if($_SESSION["Tipo"]=="D"){
+                
+                require_once(VIEWS_PATH."DashboardDueno/enviarNuevoMensaje.php");
+           
             }else{
                 header("location: ../Home");
-            }
-        }   
-
+            } 
+        }else{
+            header("location: ../Home");
+        }         
     }
     public function Add($id,$chat){
         
@@ -61,8 +96,9 @@ use Models\Alert;
 
         try{
             if($this->mensajeDAO->Add($mensaje)){
-                header("location: ../Mensaje/vistaChat?id=$id");
                 
+                header("location: ../Mensaje/vistaChat?id=$id");
+                                
             }
                 throw new Exception("No se pudo enviar el mensaje..."); 
                
@@ -70,7 +106,7 @@ use Models\Alert;
         }catch (Exception $ex){
             
            $alert=new Alert("alert alert-primary",$ex->getMessage());
-            header("location: ../Home");
+            //header("location: ../Home");
 
         }
 
