@@ -8,8 +8,7 @@
 
     
 
-    <!-- BOOTSTRAP CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/verMascota.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,16 +32,14 @@
                 <div class="conteiner-list">
 
                     <?php foreach ($listaMascotas as $mascota) {?>
-
-                            <div class="row mascotita">
-                                <div class="col contendor-img">
-                                    <div class="img-Mascota"><a href=""><img src="../assets/Mascotas/FotosMascotas/<?php echo $mascota->getFotoURL()?>" height="50"></a></div>
-                                </div>
-                                <div class="col nombre"><?php
-                                                        echo $mascota->getNombre() ?></div>
+                            
+                        <div class="mascotita">
+                                <div class=""><?php echo $mascota->getNombre() ?></div>
+                                <div class=""><a href="../Mascotas/verPerfilMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/ojo_perfil.png"></a></div>                         
                                 <div class="col editar"><a href=""><img src="../assets/img/edit.png"></a></div>
-                                <div class="col borrar"><a href=""><img src="../assets/img/remove.png"></a></div>
-                            </div>         
+                                <div class="col borrar"><a href="../Mascotas/removerMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/delete.png"></a></div>
+                            </div>  
+                                   
                     <?php } ?>
 
                 </div>

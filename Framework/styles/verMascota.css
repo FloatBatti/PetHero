@@ -29,12 +29,16 @@
     justify-content: center;
     margin-left: 10%;
     overflow-y: scroll;
-    height: 75%;
+    height: 70%;
+    width: 90%;
 }
 
 .mascotita{
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     padding: 7px;
+    height: 100px;
     width: 90%;
     margin-bottom: 10px;
     text-align: center;
@@ -42,6 +46,7 @@
     border-radius: 5px;
     background-color: rgb(231, 160, 7);
     box-shadow: 10px 4px 20px rgb(14, 12, 9);
+    font-size: 25px;
 }
 
 .img-Mascota{

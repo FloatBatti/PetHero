@@ -225,7 +225,7 @@ class ReservasController{
             unset($_SESSION["GuardianId"]);
 
             $dueño = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
-            $mascota = $this->MascotaDAO->devolverMasctotaPorId($idMascota);
+            $mascota = $this->MascotaDAO->devolverMascotaPorId($idMascota);
             
             $reserva = new Reserva();
             $reserva->setFecha(date("Y-m-d H:i:s"));
