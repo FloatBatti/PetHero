@@ -34,8 +34,8 @@
                     <?php foreach ($listaMascotas as $mascota) {?>
                             
                         <div class="mascotita">
-                                <div class=""><?php echo $mascota->getNombre() ?></div>
-                                <div class=""><a href="../Mascotas/verPerfilMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/ojo_perfil.png"></a></div>                         
+                                <div class="col nombre"><?php echo $mascota->getNombre() ?></div>
+                                <div class="col"><a href="../Mascotas/verPerfilMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/verperfil.png"></a></div>                         
                                 <div class="col editar"><a href=""><img src="../assets/img/edit.png"></a></div>
                                 <div class="col borrar"><a href="../Mascotas/removerMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/delete.png"></a></div>
                             </div>  

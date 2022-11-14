@@ -30,6 +30,7 @@
                 <div class="atributo">Especie</div><div class="text especie"><?php echo $mascota->getEspecie();?></div>
                 <div class="atributo">Tamaño</div><div class="text tamaño"><?php echo $mascota->getTamaño();?></div>
                 </div>
+                
                 <div class="cont3">
                     <div class="vacunacion">Libreta de Vacunacion</div>
                     <div><figure><img class="libreta" src="../assets/Mascotas/PlanesVacunacion/<?php echo $mascota->getPlanVacURL();?>"></figure></div>
