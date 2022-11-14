@@ -18,48 +18,38 @@
     </div>
     <div class="contenedora">
 
-        <form action="<?php echo FRONT_ROOT ?> Guardianes/Add" method="post" enctype="multipart/form-data">
-            <div class="ultimos">
-                <label for="disponibilidad">
-                    <h4>Disponibilidad</h4>
-                </label><br>
-                <div class="ultimos">
-                    <div>Desde<input type="date" name="inicio" class="" min="<?php echo date("Y-m-d"); ?>"></div>
-                    <div>Hasta<input type="date" name="fin" class="" min="<?php echo date("Y-m-d"); ?>"></div>
-                </div>
-
-                <div>Tamaño de mascotas aceptado</div>
-                <div class="tipo">
-                    <div><input type="checkbox" name="sizes[]" value="Pequeño" class="">Pequeños.</div>
-                    <div><input type="checkbox" name="sizes[]" value="Mediano" class="">Medianos.</div>
-                    <div><input type="checkbox" name="sizes[]" value="Grande" class="">Grandes.</div>
-                </div>
-                <div class="ultimos">
-                    <div><label for="costo">Precio por dia</label></div>
-                    <div class="datoregistro">
-                        <input type="number" name="costo" class="" min="0"><br>
-                    </div>
-
-                    <div><label for="fotoEspacio">Foto del espacio</label></div>
-                    <div class="datoregistro">
-                        <input type="file" name="fotoEspacio" class="" required><br>
-                    </div>
-                    <div><label for="descripcion">Descripcion del espacio ofrecido</label></div>
-                    <div class="datoregistro">
-                        <input type="text" name="descripcion" class="descripcion" required><br>
-                    </div>
-                    <div class="boton">
-                        <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEnviar.png"></a></button>
-                    </div>
-                </div>
+<form action="<?php echo FRONT_ROOT ?> Guardianes/Add" method="post" enctype="multipart/form-data">
+        <div class="ultimos">
+        <label for="disponibilidad"><h4>Disponibilidad</h4></label><br>
+        <div class="ultimos">
+            <div>Desde<input type="date" name="inicio"  class="" min="<?php echo date("Y-m-d");?>"></div>
+            <div>Hasta<input type="date" name="fin"  class="" min="<?php echo date("Y-m-d");?>"></div>
+        </div>
+    
+        <div>Tamaño de mascotas aceptado</div>
+        <div class="tipo">
+            <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="" checked>Pequeños.</div>
+            <div><input type="checkbox" name="sizes[]" value= "Mediano" class="">Medianos.</div>
+            <div><input type="checkbox" name="sizes[]" value= "Grande" class="">Grandes.</div>          
+        </div>
+    <div class="ultimos">
+        <div><label for="costo">Precio por dia</label></div>
+        <div class="datoregistro">
+            <input type="number" name="costo" class="" min="0"><br>
+        </div>
+        
+        <div><label for="fotoEspacio">Foto del espacio</label></div>
+            <div class="datoregistro">    
+                <input type="file" name="fotoEspacio" class="" required><br>
             </div>
-
-            <?php if (isset($alert)) { ?>
-                <div class="alert-<?php echo $alert->getType() ?>"><?php echo $alert->getMessage() ?></div>
-            <?php } ?>
-
-        </form>
-
+            <div><label for="descripcion">Descripcion del espacio ofrecido</label></div>
+            <div class="datoregistro">    
+            <input type="text" name="descripcion" class="descripcion" required><br>
+        </div>
+        <div class="boton">
+            <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEnviar.png"></a></button>
+        </div>  
+    </div> 
     </div>
     <div class="separador"></div>
     <footer>

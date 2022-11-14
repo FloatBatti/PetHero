@@ -26,6 +26,14 @@
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="conteiner-list">
+            <div class="row encabezado-row">
+                        <div class="col ">Nombre</div>
+                        <div class="col ">Tipo mascota admitido</div>
+                        <div class="col ">Descripcion espacio</div>
+                        <div class="col ">Ver Perfil</div>
+                        <div class="col ">Borrar</div>
+
+                    </div>
                 <div>
 
                     
@@ -33,9 +41,7 @@
                     <?php foreach ($listaGuardianes as $guardian) { ?>
 
                         <div class="row guardian-row">
-                            <div class="col contendor-img">
-                                <div class="img-ex">img</div>
-                            </div>
+                            
                             <div class="col nombre-ex"><?php echo $guardian->getNombre() ?></div>
                             <div class="col tipo-ex"><?php
 
@@ -46,8 +52,7 @@
 
                                                         ?></div>
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
-                            <div class="col calificacion-ex">***__</div>
-                            <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/ojo_perfil.png" height="50"></a></div>
+                            <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
                             <div class="col favoritos-ex"><a href="../Duenos/borrarFavorito?idGuardian=<?php echo $guardian->getId();?> "><img src="../assets/img/delete.png" height="50"></a></div>
                         </div>
 

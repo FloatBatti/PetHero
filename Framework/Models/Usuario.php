@@ -25,7 +25,7 @@ class Usuario {
         $password= null,
         $telefono= null,
         $direccion= null,
-        $fotoPerfil= null,
+        $fotoPerfil= "perfil-default.png",
         $tipoUsuario = null
         )
     {

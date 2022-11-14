@@ -27,12 +27,12 @@
                     foreach($listaMensajes as $mensaje){
                         if($mensaje->getEmisor()==$_SESSION["UserId"]){
                             ?>
-                            <div class="contenedora-mensaje derecha"><div class="mensaje"><?php echo $mensaje->getContenido();?></div><div class="side-msj"><div class="autor-mensaje">Yo</div><div class="fecha"><?php echo $mensaje->getFecha();?></div></div></div>
+                            <div class="contenedora-mensaje derecha"><div class="mensaje der"><?php echo $mensaje->getContenido();?></div><div class="side-msj"><div class="autor-mensaje">Yo</div><div class="fecha"><?php echo $mensaje->getFecha();?></div></div></div>
                         
                     <?php    
                     }else{
                         ?>
-                        <div class="contenedora-mensaje izquierda"><div class="side-msj"><div class="autor-mensaje"><?php echo $usuario->getUsername();?></div><div class="fecha"><?php echo $mensaje->getFecha();?></div></div><div class="mensaje"><?php echo $mensaje->getContenido();?></div></div>
+                        <div class="contenedora-mensaje izquierda"><div class="side-msj"><div class="autor-mensaje"><?php echo $usuario->getUsername();?></div><div class="fecha"><?php echo $mensaje->getFecha();?></div></div><div class="mensaje interlocutor"><?php echo $mensaje->getContenido();?></div></div>
                     <?php
                     }
                 }

@@ -1,7 +1,7 @@
 .plantilla-guardian{
-    height:90%;
+    height:95%;
     width:80%;
-    margin:10px auto;
+    margin:10px auto auto 10px;
     border-radius: 5px;
     background-color: rgba(211,211,211);
     box-shadow: 20px 20px 30px black;
@@ -23,20 +23,25 @@
     flex-direction: row;
     
 }
-.img-perfil{
-    border: 6px solid rgb(253, 178, 17);
-    width: 30%;
-    height:90%;
-    border-radius: 50%;     
+.descripcion{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+         
+
+.foto-perfil{
+    width: 130px;
+    height:130px;
+    border-radius: 50%;
 }
 
 .nombre-perfil{
     width: 50%;
     height:100%;
     display: flex;
-    justify-content: center;
-    text-align: center;
-    
+    align-items: center;
+   
 }
 .calificacion{
     padding-top: 20px;    
@@ -49,6 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -10px;
 }
 .cont-foto figure{
     position: relative; 
@@ -60,6 +66,7 @@
     transition: all 500ms ease-out;
 
 }
+
 .cont-foto figure:hover{
     transform: scale(3);
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
@@ -96,6 +103,7 @@
     background-color: rgba(211,211,211);
 }
 .botones{
+    margin-top: -20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

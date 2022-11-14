@@ -267,54 +267,25 @@ class ReservasController{
 
         if(isset($_SESSION["UserId"])){
 
-            try{
+            $listaMascotas = $this->MascotaDAO->GetAll();
+            $guardian = $this->GuardianDAO->devolverGuardianPorId($_SESSION["GuardianId"]);
+            unset($_SESSION["GuardianId"]);
 
-                $guardian = $this->GuardianDAO->devolverGuardianPorId($_SESSION["GuardianId"]);
+            $dueño = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
+            $mascota = $this->MascotaDAO->devolverMascotaPorId($idMascota);
+            
+            $reserva = new Reserva();
+            $reserva->setFecha(date("Y-m-d H:i:s"));
+            $reserva->setFechaInicio($fechaIn);
+            $reserva->setFechaFin($fechaOut);
+            $reserva->setMascota($mascota);
+            $reserva->setGuardian($guardian);
+            $reserva->setDueño($dueño);
+            $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
+            $reserva->setCosto($costo);
+            $reserva->setEstado("Pendiente");
 
-                unset($_SESSION["GuardianId"]);
-    
-                $dueño = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
-
-                $mascota = $this->MascotaDAO->devolverMascotaPorId($idMascota);
-
-                $reserva = new Reserva();
-        
-                $reserva->setFecha(date("Y-m-d H:i:s"));
-                $reserva->setFechaInicio($fechaIn);
-                $reserva->setFechaFin($fechaOut);
-                $reserva->setMascota($mascota->getId());
-                $reserva->setGuardian($guardian->getId());
-                $reserva->setDueño($dueño->getId());
-                $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
-                $reserva->setCosto($costo);
-                $reserva->setEstado("Pendiente");
-
-                switch($this->checkSolicitud($guardian, $mascota, $reserva)){
-
-
-                    case 0:
-
-                        throw new Exception("El tamaño de su mascota no coincide con el que cuida el guardian");
-                        break;
-
-                    case 1:
-
-                        throw new Exception("La fecha de fin tiene que ser mayor a la de inicio");
-                        break;
-                
-                    case 2:
-                        $_SESSION["ReservaTemp"] = serialize($reserva);   
-                        require_once(VIEWS_PATH. "DashboardDueno/ConfirmarSolicitud.php");
-                    break;
-    
-                }
-
-            }catch(Exception $ex){
-
-                $alert = new Alert("danger", $ex->getMessage());
-                $this->Iniciar($guardian->getId(), $alert);
-
-            }
+            $_SESSION["Reserva"] = serialize($reserva);
             
 
         }
