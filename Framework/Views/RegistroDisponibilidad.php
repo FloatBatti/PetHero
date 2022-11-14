@@ -1,20 +1,22 @@
 <!doctype html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrar Disponibilidad</title>
-    
-    <link href="../styles/regDisponibilidad.css" rel="stylesheet" >
 
-  </head>
-  <body>
-  <div class="cabecera">
+    <link href="../styles/regDisponibilidad.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="cabecera">
         <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
-<div class="contenedora">
+    <div class="contenedora">
 
 <form action="<?php echo FRONT_ROOT ?> Guardianes/Add" method="post" enctype="multipart/form-data">
         <div class="ultimos">
@@ -49,13 +51,12 @@
         </div>  
     </div> 
     </div>
-
-</form>
-</div>
-<div class="separador"></div>
-    <footer><div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
+    <div class="separador"></div>
+    <footer>
+        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
         <div><a href="">Terminos y Condiciones</a></div>
         <div><a href="">Aviso de privacidad</a></div>
     </footer>
 </body>
+
 </html>

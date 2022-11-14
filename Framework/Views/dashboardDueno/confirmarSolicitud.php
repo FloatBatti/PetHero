@@ -25,28 +25,30 @@
         <div class="contenedora-section">
             <div class="contenedora-solicitud">
                 
-                <div class="contenedora-fechas">
+                <div class="contenedora-datos">
+
                     <div class="contendora-confirmacion">
+
+                    <p class="cabecera-dato">Guardian</p>   
                             <div class="dato-confirmacion">
-                                Guardian
-                                <?php echo $reserva->getGuardian()->getUsername();?>
+                                <?php echo $guardian->getUsername();?>
                             </div>
-                            <div class="dato-confirmacion">
-                                Fecha inicio
+                            <p class="cabecera-dato">Fecha inicio</p>
+                            <div class="dato-confirmacion">   
                                 <?php echo $reserva->getFechaInicio(); ?>
                             </div>
-                            <div class="dato-confirmacion">
-                                Fecha Fin
+                            <p class="cabecera-dato">Fecha Fin</p>
+                            <div class="dato-confirmacion">                           
                                 <?php echo $reserva->getFechaFin(); ?>
                             </div>
+                            <p class="cabecera-dato">Mascota</p>
                             <div class="dato-confirmacion">
-                                Mascota
                                 <?php 
-                                    echo $reserva->getMascota()->getNombre();
+                                    echo $mascota->getNombre();
                                 ?>
                             </div>
-                            <div class="dato-confirmacion"> 
-                                Costo
+                            <p class="cabecera-dato">Costo</p>
+                            <div class="dato-confirmacion">                                
                                 <?php echo $reserva->getCosto(); ?>
                             </div>
                             

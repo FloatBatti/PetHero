@@ -37,10 +37,10 @@ use Models\Alert;
     public function interlocutor($mensaje){
             if($mensaje->getEmisor() != $_SESSION["UserId"]){
                 
-                $usuario=$this->usersDAO->retornarNombrePorId($mensaje->getEmisor());
+                $usuario=$this->usersDAO->retornarUsuarioPorId($mensaje->getEmisor());
                 
             }else{
-                $usuario=$this->usersDAO->retornarNombrePorId($mensaje->getReceptor());
+                $usuario=$this->usersDAO->retornarUsuarioPorId($mensaje->getReceptor());
             }
             return $usuario; 
 
@@ -73,7 +73,9 @@ use Models\Alert;
         header("location: ../Home");
     }
     }
+
     public function nuevoMensaje($id,$nombre){
+
         if(isset($_SESSION["UserId"])){
             if($_SESSION["Tipo"]=="D"){
                 
@@ -86,6 +88,7 @@ use Models\Alert;
             header("location: ../Home");
         }         
     }
+
     public function Add($id,$chat){
         
         if(isset($_SESSION["UserId"])){
@@ -107,6 +110,7 @@ use Models\Alert;
         }catch (Exception $ex){
             
            $alert=new Alert("alert alert-primary",$ex->getMessage());
+           throw $ex;
             //header("location: ../Home");
 
         }
