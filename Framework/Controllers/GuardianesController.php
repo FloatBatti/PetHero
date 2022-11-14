@@ -34,7 +34,7 @@ class GuardianesController
         }
     }
 
-    public function VistaRegistro()
+    public function VistaRegistro($alert = null)
     {
         if(isset($_SESSION["UserId"])){
 
@@ -42,7 +42,7 @@ class GuardianesController
         }
     }
 
-    public function RegistrarDisponibilidad()
+    public function RegistrarDisponibilidad($alert = null)
     {
         if(isset($_SESSION["UserId"])){
 
@@ -88,7 +88,7 @@ class GuardianesController
             }catch (Exception $ex){
 
                 $alert = new Alert("danger", $ex->getMessage());
-                //$this->RegistrarDisponibilidad();
+                $this->RegistrarDisponibilidad($alert);
 
             }
         }
@@ -144,7 +144,7 @@ class GuardianesController
             }catch (Exception $ex){
 
                 $alert = new Alert($type, $ex->getMessage());
-                $this->VistaRegistro();
+                $this->VistaRegistro($alert);
 
             }
 

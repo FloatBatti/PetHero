@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrar Guardian</title>
     <link href="../styles/regGuardian.css" rel="stylesheet" >
+    <link href="../styles/alert.css" rel="stylesheet" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -63,8 +64,12 @@
                                 <button type="submit" class="submit"><a href=""><img src="../assets/img/choque.png"></a></button>
                          </div>
                 </div>
-        </form>
+                
+                <?php if (isset($alert)) { ?>
+                        <div class="alert-<?php echo $alert->getType()?>"><?php echo $alert->getMessage()?></div>
+                <?php } ?>
 
+        </form>
 
 </div>
 <div class="footer-separador"></div>

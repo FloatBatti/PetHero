@@ -12,14 +12,14 @@ class ReservaDAO{
 
         try{
 
-            $query = "CALL crear_reserva (:fechaRerva, :fechaInicio, :fechaFin, :idUserGuardian, :idUserDueno, :idMascota, :costoTotal, :estado);";
+            $query = "CALL crear_reserva (:fechaReserva, :fechaInicio, :fechaFin, :idUserGuardian, :idUserDueno, :idMascota, :costoTotal, :estado);";
 
-            $parameters["fechaRerva"] = $reserva->getFecha();
+            $parameters["fechaReserva"] = $reserva->getFecha();
             $parameters["fechaInicio"] = $reserva->getFechaInicio();
             $parameters["fechaFin"] = $reserva->getFechaFin();
-            $parameters["idUserGuardian"] = $reserva->getGuardian()->getId();
+            $parameters["idUserGuardian"] = $reserva->getGuardian();
             $parameters["idUserDueno"] = $_SESSION["UserId"];
-            $parameters["idMascota"] = $reserva->getMascota()->getId();
+            $parameters["idMascota"] = $reserva->getMascota();
             $parameters["costoTotal"] = $reserva->getCosto();
             $parameters["estado"] = $reserva->getEstado();
 
@@ -95,7 +95,8 @@ class ReservaDAO{
 
         }catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en el servidor. Intente más tarde");
         }
 
 
@@ -116,7 +117,8 @@ class ReservaDAO{
 
         }catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en el servidor. Intente más tarde");
         }
     }
 
@@ -139,10 +141,6 @@ class ReservaDAO{
     }
 
     public function listarReservasDueno(){ // GUARDAR NOMBRES EN VEZ DE OBJETO
-
-        $guardianDAO = new GuardianDAO();
-        $dueñoDAO = new DueñoDAO();
-        $mascotaDAO = new MascotaDAO();
 
         $listaReservas = array();
 
@@ -192,17 +190,14 @@ class ReservaDAO{
         }
         catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en el servidor. Intente más tarde");
         }
 
 
     }
 
     public function devolverReservaPorId($idReserva){
-
-        $guardianDAO = new GuardianDAO();
-        $dueñoDAO = new DueñoDAO();
-        $mascotaDAO = new MascotaDAO();
 
         $query = "SELECT
         *
@@ -229,7 +224,7 @@ class ReservaDAO{
                 $reserva->setFecha($reg["fecha_reserva"]);
                 $reserva->setFechaInicio($reg["fecha_inicio"]);
                 $reserva->setFechaFin($reg["fecha_fin"]);
-                $reserva->setGuardian("id_guardian");
+                $reserva->setGuardian($reg["id_guardian"]);
                 $reserva->setDueño($reg["id_dueño"]);
                 $reserva->setMascota($reg["id_mascota"]);
                 $reserva->setCosto($reg["costo_total"]);
@@ -241,7 +236,57 @@ class ReservaDAO{
 
         }catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en el servidor. Intente más tarde");
         }
+    }
+
+    public function devolverReservasEnRango($fechaMin, $fechaMax){
+
+        $listaReservas = array();
+
+        $query="select * from reservas r
+        where ((r.fecha_inicio between :fecha_min and :fecha_max) 
+        or (r.fecha_fin between :fecha_min and :fecha_max)) 
+        and r.id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on u.id_usuario = g.id_usuario where u.id_usuario = :id_usuario)
+        and r.estado = 'Aceptada';";
+
+        $parameters["fecha_min"] = $fechaMin;
+        $parameters["fecha_max"] = $fechaMax;
+        $parameters["id_usuario"] = $_SESSION["UserId"];
+
+        $this->connection = Connection::GetInstance();
+
+        try{
+    
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            foreach($resultSet as $reg){
+
+                $reserva = new Reserva();
+    
+                $reserva->setId($reg["id_reserva"]);
+                $reserva->setFecha($reg["fecha_reserva"]);
+                $reserva->setFechaInicio($reg["fecha_inicio"]);
+                $reserva->setFechaFin($reg["fecha_fin"]);
+                $reserva->setGuardian($reg["id_guardian"]);
+                $reserva->setDueño($reg["id_dueño"]);
+                $reserva->setMascota($reg["id_mascota"]);
+                $reserva->setCosto($reg["costo_total"]);
+                $reserva->setEstado($reg["estado"]);
+
+                array_push($listaReservas, $reserva);
+
+            }
+  
+            return $listaReservas;
+
+        }catch(Exception $ex){
+
+            //throw $ex;
+            throw new Exception("Error en el servidor. Intente más tarde");
+        }
+
+        
     }
 }

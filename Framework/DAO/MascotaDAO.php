@@ -63,7 +63,7 @@ class MascotaDAO{
         
     }
     
-    public function devolverMasctotaPorId($idMascota){
+    public function devolverMascotaPorId($idMascota){
 
         $mascota = new Mascota();
    

@@ -49,7 +49,7 @@ class MascotasController{
 
     }
 
-    public function VerFiltroMascotas(){
+    public function VerFiltroMascotas($alert=null){
 
         if(isset($_SESSION["UserId"])){
 
