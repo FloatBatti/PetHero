@@ -164,6 +164,20 @@ constraint pk_cupon_pago primary key (id_cupon_pago),
 constraint fk_cupon_pago_reserva foreign key (id_reserva) references reservas(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE Mensajes(
+      
+id_mensaje bigint  AUTO_INCREMENT,
+fecha datetime not null ,
+id_emisor bigint NOT NULL,
+id_receptor bigint NOT NULL,
+contenido varchar(150) not null,
+
+constraint pk_id_mensaje PRIMARY KEY (id_mensaje),
+constraint fk_id_emisor FOREIGN KEY (id_emisor) REFERENCES usuarios (id_usuario),
+constraint fk_id_receptor FOREIGN KEY (id_receptor) REFERENCES usuarios (id_usuario)
+);
+
+
 /*TAMAÑOS*/
 
 insert into tamaños (nombre_tamaño) values ("Grande");
@@ -314,6 +328,7 @@ create procedure nuevo_mensaje(in emisor bigint, in receptor bigint, in contenid
 BEGIN
 insert into mensajes(fecha,id_emisor,id_receptor,contenido)values(current_timestamp(),emisor,receptor, contenido);
 END//
+
 DELIMITER //
 create procedure listar_chat(in id_sesion bigint,in id_interlocutor bigint)
 begin
@@ -326,3 +341,4 @@ SELECT
       where (id_emisor =id_sesion and id_receptor =id_interlocutor) or (id_emisor = id_interlocutor and id_receptor = id_sesion)
       order by fecha desc;
 END //
+

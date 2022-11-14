@@ -8,7 +8,8 @@
     box-shadow: 20px 20px 30px black;
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
-    margin-left:20px;
+    margin: 0 auto;
+    margin-top: 2%;
 }
 
 .contenedora-cabecera{
@@ -19,8 +20,9 @@
     margin-bottom: 10px;
 
 }
-.contenedora-fechas{
-    margin-top: 20px;
+
+.contenedora-datos{
+    
     display: flex;
     justify-content: space-around;
     height:70%;
@@ -80,7 +82,24 @@ select{
     text-align: center;
 
 }
+
 .boton{
     margin-top: 20px;
     grid-column: 1/3;
+}
+
+.cabecera-dato{
+
+    font-size: 21px;
+    color: #721C24;  
+}
+
+.dato-confirmacion{
+
+    border: 1px red solid;
+    border-radius: 5px;
+    background-color: #D4EDDA;
+    color: #155724;
+    border: solid #C3E6CB 1px;
+    
 }

@@ -6,7 +6,7 @@
                 <div class="icono vermascotas"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Mascotas/vistaMascotas" ?>">Mis Mascotas</a></div>
                 <div class="icono guardian"></div>
-                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaGuardianes" ?>">Guardianes</a></div>
+                <div class="opcion"><a href="<?php echo FRONT_ROOT . "Guardianes/vistaGuardianes" ?>">Guardianes</a></div>
                 <div class="icono favoritos"></div>
                 <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
                 <div class="icono reservas"></div>

@@ -8,6 +8,7 @@
 
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/solicitud.css" rel="stylesheet">
+    <link href="../styles/alert.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,18 +26,18 @@
             <div class="contenedora-solicitud">
                 <div class="contenedora-cabecera">
                     <div class="img-perfil"></div>
-                    <div class="nombre-perfil"><?php echo $guardian->getUsername()?></div>
+                    <div class="nombre-perfil"><?php echo $guardian->getUsername() ?></div>
                 </div>
                 <div class="contenedora-fechas">
                     <form action="<?php echo FRONT_ROOT ?>Reservas/Confirmar" method="POST">
                         <div class="contenedora-inputs">
                             <div class="cont">
-                                <div><label for="fechaIn" >Fecha Inicio</label></div>
-                                <div></div><input type="date" name="fechaIn" min="<?php echo date($guardian->getFechaInicio());?>" max="<?php echo date($guardian->getFechaFin());?>">
+                                <div><label for="fechaIn">Fecha Inicio</label></div>
+                                <div></div><input type="date" name="fechaIn" min="<?php echo date($guardian->getFechaInicio()); ?>" max="<?php echo date($guardian->getFechaFin()); ?>">
                             </div>
                             <div class="cont">
                                 <div><label for="fechaOut">Fecha Fin</label></div>
-                                <div><input type="date" name="fechaOut" min="<?php echo date($guardian->getFechaInicio());?>" max="<?php echo date($guardian->getFechaFin());?>"></div>
+                                <div><input type="date" name="fechaOut" min="<?php echo date($guardian->getFechaInicio()); ?>" max="<?php echo date($guardian->getFechaFin()); ?>"></div>
                             </div>
                             <div class="cont">
 
@@ -58,13 +59,18 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </form>
+                    <?php if (isset($alert)) { ?>
+                        <div class="alert-<?php echo $alert->getType() ?>"><?php echo $alert->getMessage() ?></div>
+                    <?php } ?>
                 </div>
             </div>
 
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
+            <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>
         </aside>
     </div>
 

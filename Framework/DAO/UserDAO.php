@@ -17,7 +17,9 @@ class UserDAO{
     public function GetAll(){
 
         
-    }public function retornarNombrePorId($id){
+    }
+    
+    public function retornarUsuarioPorId($id){
 
 
         $query = "SELECT 

@@ -10,6 +10,7 @@
     font-size: 22px;
     color: #721C24;
     border-radius: 5px;
+    text-align: center;
 }
 
 .alert-success{
@@ -24,4 +25,5 @@
     font-size: 22px;
     color: #155724;
     border-radius: 5px;
+    text-align: center;
 }

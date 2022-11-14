@@ -13,6 +13,7 @@ class DueñoDAO implements InterfaceDAO{
 
     public function GetAll(){
 
+        /*
         $dueñosList = array();
 
         $query = "SELECT 
@@ -60,6 +61,7 @@ class DueñoDAO implements InterfaceDAO{
 
             throw $ex;
         }
+        */
     }
     
     public function Add($dueño){
@@ -94,6 +96,7 @@ class DueñoDAO implements InterfaceDAO{
 
         $parameters["id_usuario"] = $usuarioId;
 
+
         $this->connection = Connection::GetInstance();
 
 
@@ -103,6 +106,7 @@ class DueñoDAO implements InterfaceDAO{
 
             if($resultSet){
 
+                
                 $reg = $resultSet[0];
 
                 $dueño->setId($usuarioId);
@@ -122,9 +126,60 @@ class DueñoDAO implements InterfaceDAO{
             return $dueño; 
         
         }catch (Exception $ex) {
-            throw $ex;
+
+            //throw $ex;
+            throw new Exception("Error en el servidor");
         }
         
+
+    }
+
+    public function devolverUsuarioPorDueño($idDueño){
+
+        $dueño = new Dueño();
+
+        $query = "SELECT 
+        *
+        FROM  
+        usuarios u
+        inner join 
+        dueños d 
+        on
+        d.id_usuario = u.id_usuario  
+        where d.id_dueño = :id_dueño;";
+
+        $parameters["id_dueño"] = $idDueño;
+
+        $this->connection = Connection::GetInstance();
+
+
+        try{
+            
+            $resultSet = $this->connection->Execute($query,$parameters);
+
+            if($resultSet){
+
+                $reg = $resultSet[0];
+
+                $dueño->setId($reg["id_usuario"]);
+                $dueño->setUsername($reg["username"]);
+                $dueño->setDni($reg["dni"]);
+                $dueño->setNombre($reg["nombre"]);
+                $dueño->setApellido($reg["apellido"]);
+                $dueño->setCorreoelectronico($reg["correo"]);
+                $dueño->setPassword($reg["password"]);
+                $dueño->setTelefono($reg["telefono"]);
+                $dueño->setDireccion($reg["direccion"]);
+                $dueño->setFotoPerfil($reg["foto_perfil"]);
+                $dueño->setTipoUsuario($reg["tipo_usuario"]);
+
+            }
+
+            return $dueño; 
+        
+        }catch (Exception $ex) {
+            throw $ex;
+        }
 
     }
 
