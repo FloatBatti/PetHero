@@ -310,4 +310,130 @@ class GuardianDAO implements InterfaceDAO
         }
 
     }
+
+    public function getGuardianesFiltradosFecha($fechaMin, $fechaMax){
+
+        $listaFiltrada = array();
+
+        $query = "SELECT 
+        g.id_usuario,
+        u.username,
+        u.nombre,
+        u.apellido,
+        u.correo,
+        u.telefono,
+        u.foto_perfil,
+        g.dia_inicio,
+        g.dia_fin,
+        g.descripcion,
+        g.costo_diario,
+        g.foto_espacio
+        FROM
+        usuarios u
+        INNER JOIN
+        guardianes g ON g.id_usuario = u.id_usuario
+        where ((g.dia_inicio between :fecha_min and :fecha_max) 
+		or (g.dia_fin between :fecha_min and :fecha_max)) 
+        ;";
+
+        $parameters[":fecha_min"] = $fechaMin;
+        $parameters[":fecha_max"] = $fechaMax;
+        
+        $this->connection = Connection::GetInstance();
+
+
+        try {
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            foreach($resultSet as $reg){
+
+                $guardian=new Guardian();
+                $guardian->setId($reg["id_usuario"]);
+                $guardian->setUsername($reg["username"]);
+                $guardian->setNombre($reg["nombre"]);
+                $guardian->setApellido($reg["apellido"]);
+                $guardian->setCorreoelectronico($reg["correo"]);
+                $guardian->setTelefono($reg["telefono"]);
+                $guardian->setFotoPerfil($reg["foto_perfil"]);
+                $guardian->setFechaInicio($reg["dia_inicio"]);
+                $guardian->setDescripcion($reg["descripcion"]);
+                $guardian->setFechaFin($reg["dia_fin"]);
+                $guardian->setCosto($reg["costo_diario"]);
+                $guardian->setFotoEspacioURL($reg["foto_espacio"]);
+                $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
+
+                array_push($listaFavoritos,$guardian);
+
+            }
+
+            return $listaFiltrada;
+
+        } catch (Exception $ex) {
+
+            throw $ex;
+        }
+    }
+
+    public function getGuardianesFiltradosNombre($nombreGuardian){
+
+        $listaFiltrada = array();
+
+        $query = "SELECT 
+        g.id_usuario,
+        u.username,
+        u.nombre,
+        u.apellido,
+        u.correo,
+        u.telefono,
+        u.foto_perfil,
+        g.dia_inicio,
+        g.dia_fin,
+        g.descripcion,
+        g.costo_diario,
+        g.foto_espacio
+        FROM
+        usuarios u
+        INNER JOIN
+        guardianes g ON g.id_usuario = u.id_usuario
+        where u.username = :username;";
+
+        $parameters[":username"] = $nombreGuardian;
+
+        
+        $this->connection = Connection::GetInstance();
+
+
+        try {
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            foreach($resultSet as $reg){
+
+                $guardian=new Guardian();
+                $guardian->setId($reg["id_usuario"]);
+                $guardian->setUsername($reg["username"]);
+                $guardian->setNombre($reg["nombre"]);
+                $guardian->setApellido($reg["apellido"]);
+                $guardian->setCorreoelectronico($reg["correo"]);
+                $guardian->setTelefono($reg["telefono"]);
+                $guardian->setFotoPerfil($reg["foto_perfil"]);
+                $guardian->setFechaInicio($reg["dia_inicio"]);
+                $guardian->setDescripcion($reg["descripcion"]);
+                $guardian->setFechaFin($reg["dia_fin"]);
+                $guardian->setCosto($reg["costo_diario"]);
+                $guardian->setFotoEspacioURL($reg["foto_espacio"]);
+                $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
+
+                array_push($listaFavoritos,$guardian);
+
+            }
+
+            return $listaFiltrada;
+
+        } catch (Exception $ex) {
+
+            throw $ex;
+        }
+    }
 }

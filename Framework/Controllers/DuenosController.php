@@ -59,18 +59,7 @@ class DuenosController
     }
 
 
-    public function vistaGuardianes()
-    {
 
-        if (isset($_SESSION["UserId"])) {
-
-            $guardianesDAO = new GuardianDAO();
-
-            $listaGuardianes = $guardianesDAO->GetAll();
-
-            require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
-        }
-    }
     public function vistaFavoritos()
     {
 

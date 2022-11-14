@@ -34,6 +34,23 @@ class GuardianesController
         }
     }
 
+    public function vistaGuardianes($listaFiltrada=null, $alert=null)
+    {
+
+        if (isset($_SESSION["UserId"])) {
+
+            if(!$listaFiltrada){
+                $listaGuardianes = $this->GuardianDAO->GetAll();
+
+            }else{
+
+                $listaGuardianes = $listaFiltrada;
+            }
+
+            require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
+        }
+    }
+
     public function VistaRegistro($alert = null)
     {
         if(isset($_SESSION["UserId"])){
@@ -119,7 +136,6 @@ class GuardianesController
             
             $guardian->setFotoPerfil($nameImg);
 
-            
 
             $type = null;
 
@@ -213,6 +229,7 @@ class GuardianesController
             
         }
     }
+
     public function EditarPerfil(){
         
         if(isset($_SESSION["UserId"])){
@@ -238,12 +255,14 @@ class GuardianesController
 
         }
     }
+
     public function vistaDashboard(){
         if(isset($_SESSION["UserId"])){
 
             require_once(VIEWS_PATH . "DashboardGuardian/Dashboard.php");
         }
     }
+
     public function vistaSolicitudes(){
         if(isset($_SESSION["UserId"])){
 
@@ -251,5 +270,38 @@ class GuardianesController
         }
     }
     
+    public function filtrarGuardianes($fechaMin, $fechaMax, $guardian){
+
+        if(isset($_SESSION["UserId"])){
+
+            $listaFiltrada = null;
+
+            try{
+
+                var_dump($guardian);
+                /*
+                if(empty($guardian)){
+
+                    $listaFiltrada = $this->GuardianDAO->getGuardianesFiltradosFecha($fechaMin,$fechaMax);
+
+                }else{
+
+                    $listaFiltrada = $this->GuardianDAO->getGuardianesFiltradosNombre($guardian);
+                }
+
+                var_dump($listaFiltrada);
+
+                //$this->vistaGuardianes($listaFiltrada);
+
+                */
+
+            }catch(Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                //$this->vistaGuardianes($alert);
+            }
+        }
+
+    }
 }
 

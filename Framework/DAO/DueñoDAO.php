@@ -96,6 +96,7 @@ class DueñoDAO implements InterfaceDAO{
 
         $parameters["id_usuario"] = $usuarioId;
 
+
         $this->connection = Connection::GetInstance();
 
 
@@ -125,7 +126,9 @@ class DueñoDAO implements InterfaceDAO{
             return $dueño; 
         
         }catch (Exception $ex) {
-            throw $ex;
+
+            //throw $ex;
+            throw new Exception("Error en el servidor");
         }
         
 
@@ -143,7 +146,7 @@ class DueñoDAO implements InterfaceDAO{
         dueños d 
         on
         d.id_usuario = u.id_usuario  
-        where d.id_dueño = :id_dueño ;";
+        where d.id_dueño = :id_dueño;";
 
         $parameters["id_dueño"] = $idDueño;
 
@@ -152,7 +155,7 @@ class DueñoDAO implements InterfaceDAO{
 
         try{
             
-            $resultSet = $this->connection->Execute($query, $parameters);
+            $resultSet = $this->connection->Execute($query,$parameters);
 
             if($resultSet){
 

@@ -211,23 +211,13 @@ class ReservasController{
             try{
 
                 $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
-                
 
-                //if($this->ReservaDAO->rechazarSolicitud($idReserva)){
+                if($this->ReservaDAO->rechazarSolicitud($idReserva)){
 
-                    var_dump($reserva->getDueño()) ;
-                    var_dump($this->DueñoDAO->devolverUsuarioPorDueño($reserva->getDueño()));
 
-                    /*
-                    $mensaje->setEmisor($_SESSION["UserId"]);
-                    $mensaje->setReceptor();
-                    $mensaje->setContenido("Se canceló su reserva con el Guardian. Si quiere ver mas detalles del porque comuniquese por este medio");
-
-                    $mensajeDAO->Add($mensaje);
-                    */
-                    //header("location: ../Reservas/VerSolicitudesGuardian");
-                //}
-                //throw new Exception("No se pudo rechazar la solicitud");
+                    header("location: ../Reservas/VerSolicitudesGuardian");
+                }
+                throw new Exception("No se pudo rechazar la solicitud");
 
             }catch(Exception $ex){
 

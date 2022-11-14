@@ -49,7 +49,8 @@ class ReservaDAO{
 
         }catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en el servidor. Intentelo más tarde");
         }
 
     }
@@ -96,7 +97,7 @@ class ReservaDAO{
         }catch(Exception $ex){
 
             //throw $ex;
-            throw new Exception("Error en el servidor. Intente más tarde");
+            throw new Exception("Error en el servidor. Intentelo más tarde");
         }
 
 
@@ -118,7 +119,7 @@ class ReservaDAO{
         }catch(Exception $ex){
 
             //throw $ex;
-            throw new Exception("Error en el servidor. Intente más tarde");
+            throw new Exception("Error en el servidor. Intentelo más tarde");
         }
     }
 
@@ -136,7 +137,8 @@ class ReservaDAO{
 
         }catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en el servidor. Intentelo más tarde");
         }
     }
 
@@ -191,7 +193,7 @@ class ReservaDAO{
         catch(Exception $ex){
 
             //throw $ex;
-            throw new Exception("Error en el servidor. Intente más tarde");
+            throw new Exception("Error en el servidor. Intentelo más tarde");
         }
 
 
@@ -205,7 +207,6 @@ class ReservaDAO{
         reservas 
         where id_reserva = :id_reserva;";
 
- 
         $parameters["id_reserva"] = $idReserva;
 
         $this->connection = Connection::GetInstance();
@@ -237,7 +238,7 @@ class ReservaDAO{
         }catch(Exception $ex){
 
             //throw $ex;
-            throw new Exception("Error en el servidor. Intente más tarde");
+            throw new Exception("Error en el servidor. Intentelo más tarde");
         }
     }
 
@@ -284,7 +285,7 @@ class ReservaDAO{
         }catch(Exception $ex){
 
             //throw $ex;
-            throw new Exception("Error en el servidor. Intente más tarde");
+            throw new Exception("Error en el servidor. Intentelo más tarde");
         }
 
         
