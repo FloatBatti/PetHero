@@ -42,7 +42,7 @@
 
                         <div class="row guardian-row">
                             
-                            <div class="col nombre-ex"><?php echo $guardian->getNombre() ?></div>
+                            <div class="col nombre-ex"><?php echo $guardian->getUser() ?></div>
                             <div class="col tipo-ex"><?php
 
                                                         foreach ($guardian->getTipoMascota() as $tipo) {
