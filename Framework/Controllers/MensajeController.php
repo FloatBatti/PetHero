@@ -47,7 +47,8 @@ use Models\Alert;
     }
     public function bandejaEntrada(){
         if(isset($_SESSION["UserId"])){
-            if($bandeja=$this->mensajeDAO->traerBandeja()){
+            $bandeja=$this->mensajeDAO->traerBandeja();
+            if($bandeja){
                 switch($_SESSION["Tipo"]){
                     case "D":
                         require_once(VIEWS_PATH."/DashboardDueno/verMensajes.php");

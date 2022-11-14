@@ -27,4 +27,5 @@
 .contenedora-eleccion:hover{
     box-shadow: 10px 10px 40px black;
     color: rgb(211, 132, 42);
+    font-size: 25px;
 }

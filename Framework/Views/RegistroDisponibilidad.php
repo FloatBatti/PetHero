@@ -26,7 +26,7 @@
     
         <div>Tamaño de mascotas aceptado</div>
         <div class="tipo">
-            <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="">Pequeños.</div>
+            <div><input type="checkbox" name="sizes[]" value= "Pequeño" class="" checked>Pequeños.</div>
             <div><input type="checkbox" name="sizes[]" value= "Mediano" class="">Medianos.</div>
             <div><input type="checkbox" name="sizes[]" value= "Grande" class="">Grandes.</div>          
         </div>

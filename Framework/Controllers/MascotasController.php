@@ -57,6 +57,15 @@ class MascotasController{
 
         }
     }
+    public function verPerfilMascota($id){
+        
+        $mascota=$this->MascotasDAO->devolverMascotaPorId($id);
+        if($mascota){
+            require_once(VIEWS_PATH."DashboardDueno/perfilMascota.php");
+        }else{
+            header("location: ../Home");
+        }
+    }
 
     public function AddGato($nombre, $raza, $tamano ,$fotoGato,$fotoPlan, $videoUrl=null){
 
@@ -140,6 +149,12 @@ class MascotasController{
                 $this->VistaMascotas();
             }
 
+        }
+    }
+    public function removerMascota($id){
+
+        if($this->MascotasDAO->borrarMascota($id)){
+            header("location: ../Mascotas/VistaMascotas");
         }
     }
 

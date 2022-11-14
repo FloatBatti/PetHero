@@ -25,15 +25,13 @@
             <div class="contenedora-gral">
 
                 <div class="contenedora-eleccion perro">
-                  <div><h2>Perro</h2></div>
-                  <img src="../assets/img/perrofiltro.png">
-                  <div><a href="../Mascotas/VerRegistroPerro"><h4>Continuar</h4></a></div>
+                  <div><h2>Perro</h2></div> 
+                  <div><a href="../Mascotas/VerRegistroPerro"><img src="../assets/img/perrofiltro.png"></a></div>
                 </div>
           
                 <div class="contenedora-eleccion gato">
                   <div><h2>Gato</h2></div>
-                  <img src="../assets/img/gatofiltro.png">
-                  <div><a href="../Mascotas/VerRegistroGato"><h4>Continuar</h4></a></div>
+                  <div><a href="../Mascotas/VerRegistroGato"><img src="../assets/img/gatofiltro.png"></a></div>
                 </div>
               </div>
         </div>

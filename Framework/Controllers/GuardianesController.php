@@ -94,7 +94,7 @@ class GuardianesController
         }
     }
 
-    public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
+    public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil=null)
     {
 
         if(isset($_SESSION["UserId"])){
@@ -106,12 +106,20 @@ class GuardianesController
             $guardian->setCorreoelectronico($mail);
             $guardian->setTelefono($telefono);
             $guardian->setDireccion($direccion);
+            
+            if(empty($fotoPerfil["name"])){
+                
+                $nameImg="perfil-default.png";
 
-            $nameImg = $guardian->getUsername() ."-". $fotoPerfil["name"];
+            }else{
 
+                $nameImg = $guardian->getUsername() ."-". $fotoPerfil["name"];
+
+            }               
+            
             $guardian->setFotoPerfil($nameImg);
 
-            Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
+            
 
             $type = null;
 
@@ -120,7 +128,7 @@ class GuardianesController
                 if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
 
                     if ($password == $rePassword) {
-        
+                       
                         Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
         
                         $guardian->setPassword($password);

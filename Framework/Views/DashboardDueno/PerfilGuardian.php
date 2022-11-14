@@ -24,7 +24,7 @@
         <div class="contenedora-section">
             <div class="plantilla-guardian">
                 <div class="cont imagen">
-                    <div class=" cont img-perfil"><figure><img src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>"></figure></div>
+                    <div class=" cont img-perfil"><figure ><img class="foto-perfil" src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>"></figure></div>
                     <div class=" cont nombre-perfil"><?php echo $guardian->getUsername();?></div>
                 </div>
                 <div class="cont calificacion"><div class="cont solicitud calificacion">Valoracion</div><div class="cont stars"><a href=""><img src="../assets/img/3_stars.png"></a></div></div>
@@ -33,11 +33,11 @@
                 
                 <div class="cont descripcion">
                     <div class="cont dias">Dias de atencion:<br>Desde<?php echo $guardian->getFechaInicio()?> hasta <?php echo $guardian->getFechaFin();?><br></div>
-                    <hr>
-                    <div class="cont mascotas">Tipos de mascota permitidos: <hr><br><?php foreach($tamaños as $tipo){echo $tipo." ";}?><br></div>
-                    <hr>
+                   
+                    <div class="cont mascotas">Tipos de mascota permitidos:<br><?php foreach($tamaños as $tipo){echo $tipo." ";}?><br></div>
+                    
                     <div class="cont costo">Precio por dia: $<?php echo $guardian->getCosto();?></div>
-                    <hr>
+                    
                     <div class="cont texto"><?php echo $guardian->getDescripcion();?></div>
                 </div>
                 <div class="botones">

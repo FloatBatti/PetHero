@@ -38,11 +38,9 @@
                 </div>
                 </form>
                     <div class="row encabezado-row">
-                        <div class="col ">Foto Perfil</div>
                         <div class="col ">Nombre</div>
                         <div class="col ">Tipo mascota admitido</div>
                         <div class="col ">Descripcion espacio</div>
-                        <div class="col ">Calificacion</div>
                         <div class="col ">Ver Perfil</div>
                         <div class="col ">Agregar Favorito</div>
 
@@ -52,9 +50,7 @@
                     <?php foreach ($listaGuardianes as $guardian) { ?>
 
                         <div class="row guardian-row">
-                            <div class="col contendor-img">
-                                <div class="img-ex"><img src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil();?>" height="50"></div>
-                            </div>
+                            
                             <div class="col nombre-ex"><?php echo $guardian->getUsername() ?></div>
                             <div class="col tipo-ex"><?php
 
@@ -69,9 +65,7 @@
 
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
 
-                            <div class="col calificacion-ex">***__</div>
-
-                        <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/ojo_perfil.png" height="50"></a></div>
+                        <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
                         
                             <div class="col favoritos-ex"><a href="../Duenos/agregarFavorito?id=<?php echo $guardian->getId();?>"><img src="../assets/img/estrella_fav.png" height="50"></a></div>
                         </div>
