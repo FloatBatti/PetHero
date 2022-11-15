@@ -41,12 +41,12 @@
               <h1 id="title-log">Login</h1>
 
               <div class="inputContainer">
-                <input type="text" class="input-log" name="username" placeholder="a">
+                <input type="text" class="input-log" name="username" placeholder="a" required>
                 <label for="username" class="label-log">Usuario</label>
               </div>
 
               <div class="inputContainer">
-                <input type="password" class="input-log" name="password" placeholder="b">
+                <input type="password" class="input-log" name="password" placeholder="b" required>
                 <label for="password" class="label-log">Contraseña</label>
               </div>
 
