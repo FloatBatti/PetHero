@@ -58,62 +58,6 @@ class DuenosController
         require_once(VIEWS_PATH. "/DashboardDueno/verMensajes.php");
     }
 
-    public function vistaFavoritos()
-    {
-
-        if (isset($_SESSION["UserId"])) {
-
-            $guardianesDAO = new GuardianDAO();
-            $listaGuardianes = $guardianesDAO->GetFavoritos();
-            require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
-        }
-    }
-
-    public function borrarFavorito($idGuardian)
-    {
-        $usuarioDAO = new UserDAO();
-
-        try{
-            
-            if($usuarioDAO->deleteFavorito($idGuardian)){
-
-                header("location: ../Duenos/vistaFavoritos");
-
-            }
-            throw new Exception("Error al eliminar el guardian");
-
-        }catch (Exception $ex){
-
-                $alert=new Alert("danger", $ex->getMessage()); 
-                      
-                $this->vistaFavoritos();
-            }
-    }
-        
-    
-
-    public function agregarFavorito($id){
-
-        $usuarioDAO=new UserDAO();
-
-        try{
-
-            if($usuarioDAO->AddFavorito($id)){
-
-                header("location: ../Duenos/vistaFavoritos");
-
-            }
-            throw new Exception("El guardian ya esta en favoritos");
-
-        }catch(Exception $ex){
-
-            $alert=new Alert("warning", $ex->getMessage());        
-            $this->vistaFavoritos();
-        }
-    }    
- 
-    
-
     public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
     {
 
@@ -153,7 +97,6 @@ class DuenosController
                 
                 throw new Exception("Las contraseñas no coinciden"); 
             
-    
             }
             
             throw new Exception("El usuario ya existe");
@@ -162,13 +105,187 @@ class DuenosController
         }catch (Exception $ex){
             
             $this->VistaRegistro($ex->getMessage());
-
-        }
-        
     
-          
+        }   
             
     }
+
+    /* PARTE QUE INTERACTUA CON LOS GUARDIANES */
+
+    public function vistaGuardianes($alert=null, $fechaMin=null, $fechaMax=null, $nombreGuardian=null)
+    {
+        
+        
+        $guardianDAO = new GuardianDAO();
+
+        if (isset($_SESSION["UserId"])) {
+
+            $listaGuardianes = array();
+            $resultBuscado = null;
+            
+            
+            try{
+
+                if($_POST){
+
+                    $resultBuscado= $this->filtrarGuardianes($fechaMin, $fechaMax, $nombreGuardian);
+                }
+
+                if($resultBuscado){
+
+                    if(is_array($resultBuscado)){
+
+                        $listaGuardianes = $resultBuscado;
+                        require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
+                    }
+                    else{
+
+                        header("location: ../Duenos/VerPerfilGuardian?idGuardian=".$resultBuscado->getId());
+                        
+                    }
+
+                }else{
+
+                    $listaGuardianes = $guardianDAO->GetAll();
+                    require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
+                }
+                    
+                
+                
+
+            }catch(Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
+                
+            }
+
+             
+        }
+
+       
+    }
+
+    public function VerPerfilGuardian($idGuardian){
+        
+        $guardianDAO = new GuardianDAO();
+        
+        if(isset($_SESSION["UserId"])){
+            
+            try{
+
+                $guardian=$guardianDAO ->devolverGuardianPorId($idGuardian);
+                $tamaños=$guardianDAO ->obtenerTamañosMascotas($guardian->getId());
+
+                require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
+
+
+            }catch(Exception $ex){
+
+                header("location: ../Duenos/vistaDashboard?alert=" .$ex->getMessage(). "&tipo=danger");
+            }
+   
+        }
+    }
+
+    public function vistaFavoritos()
+    {
+
+        if (isset($_SESSION["UserId"])) {
+
+            $guardianesDAO = new GuardianDAO();
+            $listaGuardianes = $guardianesDAO->GetFavoritos();
+            require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
+        }
+    }
+
+    public function agregarFavorito($id){
+
+        $usuarioDAO=new UserDAO();
+
+        try{
+
+            if($usuarioDAO->AddFavorito($id)){
+
+                header("location: ../Duenos/vistaFavoritos");
+
+            }
+            throw new Exception("El guardian ya esta en favoritos");
+
+        }catch(Exception $ex){
+
+            $alert=new Alert("warning", $ex->getMessage());        
+            $this->vistaFavoritos();
+        }
+    }   
+
+    public function borrarFavorito($idGuardian)
+    {
+        $usuarioDAO = new UserDAO();
+
+        try{
+            
+            if($usuarioDAO->deleteFavorito($idGuardian)){
+
+                header("location: ../Duenos/vistaFavoritos");
+
+            }
+            throw new Exception("Error al eliminar el guardian");
+
+        }catch (Exception $ex){
+
+                $alert=new Alert("danger", $ex->getMessage()); 
+                      
+                $this->vistaFavoritos();
+        }
+    }  
+
+    public function filtrarGuardianes($fechaMin, $fechaMax, $nombreGuardian){
+
+        $guardianDAO = new GuardianDAO();
+
+        if(isset($_SESSION["UserId"])){
+      
+            $resultado= null;
+           
+            try{
+
+                if(empty($nombreGuardian) and (!empty($fechaMin) and !empty($fechaMax))){
+
+                    $resultado = $guardianDAO->getGuardianesFiltradosFecha($fechaMin,$fechaMax);
+
+                    if($resultado){
+
+                        return $resultado;
+
+                    }else{
+
+                        throw new Exception("No se encontró un guardian para esas fechas");
+                    }
+                               
+                }else{
+
+                    $resultado = $guardianDAO->getGuardianPorNombre($nombreGuardian);
+
+                    if($resultado){
+
+                        return $resultado;
+
+                    }else{
+
+                        throw new Exception("No se encontró el guardian buscado");
+                    }
+    
+                }
+
+            }catch(Exception $ex){
+
+                throw $ex;
+            }
+        }
+
+    }
+    
     
     
 }

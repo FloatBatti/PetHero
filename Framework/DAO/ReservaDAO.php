@@ -84,7 +84,7 @@ class ReservaDAO{
                 $reserva->setFechaFin($reg["fecha_fin"]);
                 $reserva->setGuardian($_SESSION["UserId"]);
                 $reserva->setDueño($reg["dueño"]);
-                $reserva->setMascota($reg["id_mascota"]);
+                $reserva->setMascota($reg["mascota"]);
                 $reserva->setCosto($reg["costo_total"]);
                 $reserva->setEstado($reg["estado"]);
 

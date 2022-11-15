@@ -227,8 +227,6 @@ class GuardianDAO implements InterfaceDAO
         }
     }
 
-    
-
     public function obtenerTamañosMascotas($idUsuario){
 
         $listaTamaños = array();

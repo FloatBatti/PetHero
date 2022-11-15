@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/alert.css" rel="stylesheet">
     <link href="../styles/verGuardianes.css" rel="stylesheet">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,15 +28,16 @@
         <div class="contenedora-section">
             <div class="conteiner-list">
                 <div>  
-                <form action="<?php FRONT_ROOT . "Guardianes/filtrarGuardianes"?>" method="post">
+                    <!--- ACA NO USO LA COSNTANTE FRONT ROOT PORQUE ME DUPLICA EL CONTROLADOR--->
+                <form action="../Duenos/vistaGuardianes" id ="filtrado" method="post">
                     <div class="filtro-fecha">
                         <div>Fecha Inicio</div>
-                        <div><input type="date" name="fechaMin" value="<?php echo date('Y-m-d');?>"></div>
+                        <div><input type="date" name="fechaMin" value="" min="<?php echo date('Y-m-d');?>"></div>
                         <div>Fecha Fin</div>
-                        <div><input type="date" name="fechaMax" value="<?php echo date('Y-m-d')?>"></div>
+                        <div><input type="date" name="fechaMax" value="" min="<?php echo date('Y-m-d');?>"></div>
                         <div>Por Guardian</div>
-                        <div><input type="text" placeholder="guardian" name="nombreGuardian"></div>
-                        <div><button type="submit" class="lupa"></div>
+                        <div><input type="text" placeholder="guardian" value="" name="nombreGuardian"></div>
+                        <div><button type="submit" id ="filtrado" class="lupa"></div>
                     </div>  
                 </form>
                 </div>
@@ -67,7 +69,7 @@
 
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
 
-                        <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
+                        <div class="col perfil-ex"><a href="../Duenos/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
                         
                             <div class="col favoritos-ex"><a href="../Duenos/agregarFavorito?id=<?php echo $guardian->getId();?>"><img src="../assets/img/estrella_fav.png" height="50"></a></div>
                         </div>
@@ -76,6 +78,10 @@
 
 
                 </div>
+
+                <?php if (isset($alert)) { ?>
+                     <div class="alert-<?php echo $alert->getType()?>"><?php echo $alert->getMessage()?></div>
+                 <?php } ?>
             </div>
 
         </div>

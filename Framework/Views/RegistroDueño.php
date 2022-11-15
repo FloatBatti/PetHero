@@ -70,7 +70,7 @@
                         </div>
 
                         <?php if (isset($alert)) { ?>
-                                <div class="alert"><?php echo $alert ?></div>
+                                <div class="alert-danger"><?php echo $alert ?></div>
                         <?php } ?>
 
                 </form>

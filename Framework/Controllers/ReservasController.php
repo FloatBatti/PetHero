@@ -74,7 +74,7 @@ class ReservasController{
         }
     }
 
-    public function VerReservasGuardian($alert  = null){
+    public function VerReservasGuardian($alert = null){
 
         if(isset($_SESSION["UserId"])){
 
@@ -84,7 +84,7 @@ class ReservasController{
         }
     }
 
-    public function VerSolicitudesGuardian($alert  = null){
+    public function VerSolicitudesGuardian($alert = null){
 
         if(isset($_SESSION["UserId"])){
 
@@ -159,10 +159,9 @@ class ReservasController{
             try{
 
                 $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
-                $guardian = $this->GuardianDAO->devolverGuardianPorId($reserva->getId());
                 $mascota = $this->MascotaDAO->devolverMascotaPorId($reserva->getMascota());
 
-                $checkTipoEstadia = $this->checkTipoEstadia($reserva, $guardian, $mascota);
+                $checkTipoEstadia = $this->checkTipoEstadia($reserva, $mascota);
 
                 switch($checkTipoEstadia){
 
@@ -186,7 +185,7 @@ class ReservasController{
                     
 
                     case 1:          
-                    throw new Exception("Ya esta cuidando una mascota de la raza ".$mascota->getRaza(). " entre las fechas solicitadas. Rechazela y se le enviara un mensaje al dueño");
+                    throw new Exception("Raza incompatible con la que se cuida ese rango de fecha");
                     break;
 
 
@@ -199,7 +198,7 @@ class ReservasController{
 
             }
         
-    }
+        }
     }
 
     public function RechazarSolicitud($idReserva){
@@ -318,7 +317,7 @@ class ReservasController{
         }
     }
 
-    public function checkTipoEstadia($reserva, $guardian, $mascota){
+    public function checkTipoEstadia($reserva, $mascota){
 
         $resultado = 0;
 
@@ -332,7 +331,7 @@ class ReservasController{
                 $mascotaTemp = $this->MascotaDAO->devolverMascotaPorId($reservaEnRango->getMascota());
 
 
-                if($mascota->getRaza() == $mascotaTemp->getRaza()){
+                if($mascota->getRaza() != $mascotaTemp->getRaza()){
 
                     $resultado = 1;
                 }
@@ -383,7 +382,7 @@ class ReservasController{
         return $tiempo[11];
     }
 
-
+    public function anularReserva($reserva){}
 
            
 }
