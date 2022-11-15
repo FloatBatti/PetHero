@@ -47,7 +47,7 @@
 
                         <div class="row reserva-row">
                             <div class="col">
-                                <a href=""><?php echo $reserva->getGuardian();?></a>
+                                <?php echo $reserva->getGuardian();?>
                             </div>
                             <div class="col "><?php echo $reserva->getFecha(); ?></div>
                             <div class="col "><?php echo $reserva->getFechaInicio(); ?></div>
@@ -66,7 +66,7 @@
                 </div>
 
                 <?php if (isset($alert)) { ?>
-                     <div class="alert-<?php echo $type?>"><?php echo $alert?></div>
+                     <div class="alert-<?php echo $_GET["tipo"]?>"><?php echo $_GET["alert"]?></div>
                  <?php } ?>
         </div>
     </div>

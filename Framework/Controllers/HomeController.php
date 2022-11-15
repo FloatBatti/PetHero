@@ -43,42 +43,46 @@ class HomeController{
         
         try{
 
-            $usuario = $this->UserDAO->retornarUsuarioLogueado($username);
+            if($username and $password){
 
-            if($usuario){
-            
-                if($usuario->getPassword() == $password){
+                $usuario = $this->UserDAO->retornarUsuarioLogueado($username);
 
-                    switch($usuario->getTipoUsuario()){
-    
-                        case "G":
-                        $_SESSION["UserId"] = $usuario->getId();
-                        $_SESSION["Tipo"]=$usuario->getTipoUsuario();
-                        $this->DashGuardianView();
-                        break;
-            
-                        case "D":
-                        $_SESSION["UserId"] = $usuario->getId();
-                        $_SESSION["Tipo"]=$usuario->getTipoUsuario();
-                        $this->DashDuenoView();
-                        break;
+                if($usuario){
+                
+                    if($usuario->getPassword() == $password){
+
+                        switch($usuario->getTipoUsuario()){
+        
+                            case "G":
+                            $_SESSION["UserId"] = $usuario->getId();
+                            $_SESSION["Tipo"]=$usuario->getTipoUsuario();
+                            $this->DashGuardianView();
+                            break;
+                
+                            case "D":
+                            $_SESSION["UserId"] = $usuario->getId();
+                            $_SESSION["Tipo"]=$usuario->getTipoUsuario();
+                            $this->DashDuenoView();
+                            break;
+                        }
+
                     }
+                    else{
 
+                        throw new Exception("Contraseña Incorrecta");
+                    }   
                 }
                 else{
-
-                    throw new Exception("Contraseña Incorrecta");
+                    throw new Exception("Usuario o contraseña incorrecta. Si no tiene una cuenta, registrese");
                 }
-            
             }
             else{
-                throw new Exception("Usuario Incorrecto");
+                throw new Exception("Complete todos los campos");
             }
 
         }catch(Exception $ex){
 
-            $alert = new Alert("error", $ex->getMessage());
-            header("location: ../Home");
+            header("location: ../Home?tipo=danger&alert=".$ex->getMessage());
 
         }
             
@@ -92,7 +96,7 @@ class HomeController{
         $this->Index();
     }
 
-    public function Eleccion(){
+    public function Eleccion($alert = null){
         
         require_once(VIEWS_PATH."FiltroRegistro.php");
     }

@@ -6,13 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PET HERO</title>
 
+  <!-- COSTUM CSS -->
+  <link rel="stylesheet" href="styles/styleLanding.css">
+  <link rel="stylesheet" href="styles/alert.css">
+
   <!-- BOOTSTRAP CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-  <!-- COSTUM CSS -->
-  <link rel="stylesheet" href="styles/styleLanding.css">
-</head>
 
+</head>
 
 <body>
   <!-- HEADER -->
@@ -53,21 +55,20 @@
               </div>
 
               <a href="<?php echo FRONT_ROOT . "Home/Eleccion" ?>" id="register">No tienes cuenta? Registrate</a>
+              
+              <?php if (isset($alert)) { ?>
+              <div class="alert-<?php echo $_GET["tipo"] ?>" style="margin-top: 30%;"><?php echo $_GET["alert"]?></div>
+              <?php } ?>
 
             </form>
 
-                
+
           </div>
 
         </div>
 
       </div>
     </div>
-
-    <?php if(isset($alert)){?>
-    <div class="alert alert-success" role="alert"><?php echo $alert?></div>
-    <?php }?>
-    
 
   </main>
 
@@ -109,12 +110,12 @@
 
 
 
-    </div>
+        </div>
 
-  </div>
+      </div>
 
-  <!--BOOTSTRAP JAVASCRIPT-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+      <!--BOOTSTRAP JAVASCRIPT-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
 </body>
 

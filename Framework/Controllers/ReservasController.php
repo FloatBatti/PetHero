@@ -41,34 +41,35 @@ class ReservasController{
 
                 if($this->ReservaDAO->crearReserva($reserva)){
 
-                    header("location: ../Reservas/VerReservasDueno");   
-                }
+                    header("location: ../Reservas/VerReservasDueno?alert=Reserva Exitosa&tipo=success"); 
 
-                throw new Exception("No se pudo crear la reserva, intente nuevamente");
+                }else{ //Le pongo el else porque a veces sigue la ejecucion aunque se agregue la reserva
+
+                    throw new Exception("No se pudo crear la reserva, intente nuevamente");
+                }
 
             }catch(Exception $ex){
 
-                //$alert=new Alert("danger", $ex->getMessage());
-                echo $ex;
+                header("location: ../Reservas/VerReservasDueno?alert=" .$ex->getMessage(). "&tipo=danger");
             } 
         }
     }
 
-    public function VerConfimacion($reserva, $mascota, $guardian)
-    {
-        if(isset($_SESSION["UserId"])){
-
-            
-        }
-    }
-
-    public function VerReservasDueno($alert = null, $type = null){
+    public function VerReservasDueno($alert = null, $tipo = null){
 
         if(isset($_SESSION["UserId"])){
 
-            $listaReservas = $this->ReservaDAO->listarReservasDueno();
+            try{
 
-            require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
+                $listaReservas = $this->ReservaDAO->listarReservasDueno();
+
+                require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
+                
+            }catch(Exception $ex){
+
+                header("location: ../Duenos/vistaDashboard?alert=" .$ex->getMessage(). "&tipo=danger");
+
+            }     
 
         }
     }
@@ -106,14 +107,14 @@ class ReservasController{
                     switch($estado){
 
                         case "Aceptada":
-                            header("location: ../Reservas/VerReservasDueno?alert=No se puede cancelar la solicitud aceptada. Por favor, envie un mensaje al guardian&type=danger");   
+                            header("location: ../Reservas/VerReservasDueno?alert=No se puede cancelar la solicitud aceptada. Por favor, envie un mensaje al guardian&tipo=danger");   
                         break;
 
                         case "Pendiente":
 
                             if($this->ReservaDAO->cancelarReserva($id)){
     
-                                header("location: ../Reservas/VerReservasDueno?alert=Cancelacion exitosa&type=success");
+                                header("location: ../Reservas/VerReservasDueno?alert=Cancelacion exitosa&tipo=success");
                             }
                             
                             throw new Exception("No se pudo cancelar la reserva");
@@ -124,7 +125,7 @@ class ReservasController{
 
                             if($this->ReservaDAO->cancelarReserva($id)){
     
-                                header("location: ../Reservas/VerReservasDueno?alert=Reserva quitada del historial&type=success");
+                                header("location: ../Reservas/VerReservasDueno?alert=Reserva quitada del historial&tipo=success");
                             }
         
                             throw new Exception("No se pudo cancelar la reserva");
@@ -233,23 +234,30 @@ class ReservasController{
 
         if(isset($_SESSION["UserId"])){
             
+
+            try{
+
+                $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);              
+                $listaMascotas = $this->MascotaDAO->GetAll();
     
-            $dueño=$this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
-            $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);              
-            $listaMascotas = $this->MascotaDAO->GetAll();
-
-            if($listaMascotas){
-
-                $_SESSION["GuardianId"] = $guardian->getId();
-
-                //Guardo el id en sesion para llevarlo al metodo confirmar y mantener el usuario elegido
-                require_once(VIEWS_PATH. "DashboardDueno/Solicitud.php");
-
-            }else{
-
-                header("location: ../Mascotas/VerFiltroMascotas?alert=Registre una mascota para solicitar el cuidado de un guardian");
+                if($listaMascotas){
+    
+                    $_SESSION["GuardianId"] = $guardian->getId();
+    
+                    //Guardo el id en sesion para llevarlo al metodo confirmar y mantener el usuario elegido
+                    require_once(VIEWS_PATH. "DashboardDueno/Solicitud.php");
+    
+                }else{
+    
+                    header("location: ../Mascotas/VerFiltroMascotas?alert=Registre una mascota para solicitar el cuidado de un guardian");
+                }
             }
-      
+            catch(Exception $ex){
+
+                echo $ex;
+
+            }
+   
         } 
     }
 
@@ -257,25 +265,54 @@ class ReservasController{
 
         if(isset($_SESSION["UserId"])){
 
-            $listaMascotas = $this->MascotaDAO->GetAll();
-            $guardian = $this->GuardianDAO->devolverGuardianPorId($_SESSION["GuardianId"]);
-            unset($_SESSION["GuardianId"]);
+            try{
 
-            $dueño = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
-            $mascota = $this->MascotaDAO->devolverMascotaPorId($idMascota);
-            
-            $reserva = new Reserva();
-            $reserva->setFecha(date("Y-m-d H:i:s"));
-            $reserva->setFechaInicio($fechaIn);
-            $reserva->setFechaFin($fechaOut);
-            $reserva->setMascota($mascota);
-            $reserva->setGuardian($guardian);
-            $reserva->setDueño($dueño);
-            $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
-            $reserva->setCosto($costo);
-            $reserva->setEstado("Pendiente");
+                $guardian = $this->GuardianDAO->devolverGuardianPorId($_SESSION["GuardianId"]);
 
-            $_SESSION["Reserva"] = serialize($reserva);
+                unset($_SESSION["GuardianId"]);
+    
+                $dueño = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
+
+                $mascota = $this->MascotaDAO->devolverMascotaPorId($idMascota);
+
+                $reserva = new Reserva();
+        
+                $reserva->setFecha(date("Y-m-d H:i:s"));
+                $reserva->setFechaInicio($fechaIn);
+                $reserva->setFechaFin($fechaOut);
+                $reserva->setMascota($mascota->getId());
+                $reserva->setGuardian($guardian->getId());
+                $reserva->setDueño($dueño->getId());
+                $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
+                $reserva->setCosto($costo);
+                $reserva->setEstado("Pendiente");
+
+                switch($this->checkSolicitud($guardian, $mascota, $reserva)){
+
+
+                    case 0:
+
+                        throw new Exception("El tamaño de su mascota no coincide con el que cuida el guardian");
+                        break;
+
+                    case 1:
+
+                        throw new Exception("La fecha de fin tiene que ser mayor a la de inicio");
+                        break;
+                
+                    case 2:
+                        $_SESSION["ReservaTemp"] = serialize($reserva);   
+                        require_once(VIEWS_PATH. "DashboardDueno/ConfirmarSolicitud.php");
+                    break;
+    
+                }
+
+            }catch(Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                $this->Iniciar($guardian->getId(), $alert);
+
+            }
             
 
         }

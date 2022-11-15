@@ -26,17 +26,19 @@
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="conteiner-list">
+                <div>  
                 <form action="<?php FRONT_ROOT . "Guardianes/filtrarGuardianes"?>" method="post">
                     <div class="filtro-fecha">
                         <div>Fecha Inicio</div>
-                        <div><input type="date" name="buscoMin" value="<?php echo date('Y-m-d');?>"></div>
+                        <div><input type="date" name="fechaMin" value="<?php echo date('Y-m-d');?>"></div>
                         <div>Fecha Fin</div>
-                        <div><input type="date" name="buscoMax" value="<?php echo date('Y-m-d')?>"></div>
+                        <div><input type="date" name="fechaMax" value="<?php echo date('Y-m-d')?>"></div>
                         <div>Por Guardian</div>
-                        <div><input type="text" placeholder="guardian" name="buscado"></div>
+                        <div><input type="text" placeholder="guardian" name="nombreGuardian"></div>
                         <div><button type="submit" class="lupa"></div>
                     </div>  
                 </form>
+                </div>
                     <div class="row encabezado-row">
                         <div class="col ">Nombre</div>
                         <div class="col ">Tipo mascota admitido</div>

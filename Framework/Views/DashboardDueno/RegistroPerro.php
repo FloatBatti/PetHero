@@ -47,8 +47,8 @@
                         <div class="TT">
                             <div></div>
                             <label for="P"><input type="radio" id="P" name="tamano" value="Pequeño" class="radio">Pequeño</label>
-                            <label for="M"><input type="radio" id="M" name="tamano" value="Mediano" class="radio" selected>Mediano</label>
-                            <label for="G"><input type="radio" id="G" name="tamano" value="Mediano" class="radio">Grande</label>
+                            <label for="M"><input type="radio" id="M" name="tamano" value="Mediano" checked class="radio">Mediano</label>
+                            <label for="G"><input type="radio" id="G" name="tamano" value="Grande" class="radio">Grande</label>
                         </div>
                         <div class="dato-registro">
                             <label for="fotoPerro">Foto de la Mascota</label>
