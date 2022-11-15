@@ -27,7 +27,7 @@
                     <div class=" cont img-perfil"><figure ><img class="foto-perfil" src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>"></figure></div>
                     <div class=" cont nombre-perfil"><?php echo $guardian->getUsername();?></div>
                 </div>
-                <div class="cont calificacion"><div class="cont solicitud calificacion">Valoracion</div><div class="cont stars"><a href=""><img src="../assets/img/3_stars.png"></a></div></div>
+                <div class="cont calificacion"><div class="cont solicitud calificacion">Valoracion</div><div class="cont stars"><a href=""><img src="../assets/img/<?php echo $fotopuntaje;?>"></a></div></div>
                 
                 <div class="cont foto-espacio"><div class="cont-foto"><figure><img src="../assets/EspaciosGuardianes/<?php echo $guardian->getFotoEspacioURL()?>" height="270"></figure></div></div>
                 
