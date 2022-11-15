@@ -145,6 +145,7 @@ id_guardian bigint not null,
 id_dueño bigint not null,
 id_mascota bigint not null,
 costo_total float,
+estado varchar(50),
 
 constraint pk_reserva primary key (id_reserva),
 constraint fk_reserva_guardian foreign key (id_guardian) references guardianes(id_guardian) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -173,8 +174,8 @@ id_receptor bigint NOT NULL,
 contenido varchar(150) not null,
 
 constraint pk_id_mensaje PRIMARY KEY (id_mensaje),
-constraint fk_id_emisor FOREIGN KEY (id_emisor) REFERENCES usuarios (id_usuario),
-constraint fk_id_receptor FOREIGN KEY (id_receptor) REFERENCES usuarios (id_usuario)
+constraint fk_id_emisor FOREIGN KEY (id_emisor) REFERENCES usuarios (id_usuario)  ON UPDATE CASCADE ON DELETE CASCADE,
+constraint fk_id_receptor FOREIGN KEY (id_receptor) REFERENCES usuarios (id_usuario)  ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
@@ -218,6 +219,7 @@ insert into razas(nombre_raza, id_especie) values ("Cocker", 1);
 insert into razas(nombre_raza, id_especie) values ("Schanuzer", 1);
 insert into razas(nombre_raza, id_especie) values ("Breton", 1);
 insert into razas(nombre_raza, id_especie) values ("Collie", 1);
+insert into razas(nombre_raza, id_especie) values ("Gran Danés", 1);
 insert into razas(nombre_raza, id_especie) values ("San bernardo", 1);
 insert into razas(nombre_raza, id_especie) values ("Terranova", 1);
 insert into razas(nombre_raza, id_especie) values ("Dalmata", 1);
@@ -268,8 +270,6 @@ set id_dueño = (select d.id_dueño from dueños d inner join usuarios u on u.id
 insert into mascotas (nombre, id_raza, id_tamaño, id_dueño, plan_vacunacion, foto_mascota, video) values (p_nombre, id_raza, id_tamaño, id_dueño, p_plan_vacunacion, p_foto_mascota, p_video);
 
 END//
-
-alter table reservas add column estado varchar(50)
 
 DELIMITER //
 create procedure crear_reserva (in p_fecha_reserva date, in p_fecha_inicio date, in p_fecha_fin date, in id_user_guardian bigint, in id_user_dueño bigint, in p_id_mascota bigint, in p_costo_total bigint, p_estado varchar(50))
