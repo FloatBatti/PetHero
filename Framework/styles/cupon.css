@@ -13,14 +13,10 @@
 }
 form{
     height: 100%;
-    width:100%;
-    
+    width:100%;   
 }
 
-.datos-reserva{
-    width:50%;
-    background-color: gray;
-}
+
 .datos-tarjeta{
     width:50%;
     display: flex;
@@ -69,6 +65,8 @@ form{
 }
 .cod{
     width:60px;
+    border-radius: 5px;
+    border:none;
     
 }
 .data{
@@ -93,7 +91,15 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 .datos-reserva{
+    width:50%;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
     background-color: rgb(219, 166, 68);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+.datofactura{
+    width: 80%;
 }
