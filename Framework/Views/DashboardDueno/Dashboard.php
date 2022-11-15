@@ -7,6 +7,7 @@
     <title>Dashboard</title>
 
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/alert.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -16,14 +17,19 @@
     <div class="cabecera">
         <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
-            <div></div>
+            <div> 
+            <?php if (isset($alert)) { ?>
+                    <div class="alert-<?php echo $_GET["tipo"] ?>"><?php echo $_GET["alert"] ?></div>
+                    
+                <?php } ?>
+            </div>
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
+            <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>
         </aside>
     </div>
 

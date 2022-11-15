@@ -102,11 +102,13 @@ class UserDAO{
 
             $resultSet = $this->connection->Execute($query, $parameters);
 
-            $usuario = new Usuario();
+            $usuario = null;
 
             if($resultSet){
 
                 $reg = $resultSet[0];
+
+                $usuario = new Usuario();
 
                 $usuario->setId($reg["id_usuario"]);
                 $usuario->setUsername($reg["username"]);

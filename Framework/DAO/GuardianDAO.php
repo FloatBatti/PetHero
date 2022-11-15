@@ -171,7 +171,7 @@ class GuardianDAO implements InterfaceDAO
 
     public function devolverGuardianPorId($idUsuario){
         
-        $guardian = new Guardian();
+        $guardian = null;
 
         $query = "SELECT 
         * 
@@ -191,6 +191,8 @@ class GuardianDAO implements InterfaceDAO
             if($resultSet){
 
                 $reg = $resultSet[0];
+
+                $guardian = new Guardian();
 
                 $guardian->setId($reg["id_usuario"]);
                 $guardian->setUsername($reg["username"]);
@@ -216,7 +218,8 @@ class GuardianDAO implements InterfaceDAO
             
         }catch (Exception $ex) {
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error de servidor. Intente mas tarde");
         }
     }
 
@@ -336,8 +339,9 @@ class GuardianDAO implements InterfaceDAO
 		or (g.dia_fin between :fecha_min and :fecha_max)) 
         ;";
 
-        $parameters[":fecha_min"] = $fechaMin;
-        $parameters[":fecha_max"] = $fechaMax;
+        $parameters["fecha_min"] = $fechaMin;
+        $parameters["fecha_max"] = $fechaMax;
+
         
         $this->connection = Connection::GetInstance();
 
@@ -349,6 +353,7 @@ class GuardianDAO implements InterfaceDAO
             foreach($resultSet as $reg){
 
                 $guardian=new Guardian();
+
                 $guardian->setId($reg["id_usuario"]);
                 $guardian->setUsername($reg["username"]);
                 $guardian->setNombre($reg["nombre"]);
@@ -363,7 +368,7 @@ class GuardianDAO implements InterfaceDAO
                 $guardian->setFotoEspacioURL($reg["foto_espacio"]);
                 $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
 
-                array_push($listaFavoritos,$guardian);
+                array_push($listaFiltrada,$guardian);
 
             }
 
@@ -376,8 +381,6 @@ class GuardianDAO implements InterfaceDAO
     }
 
     public function getGuardianPorNombre($nombreGuardian){
-
-        $listaFiltrada = array();
 
         $query = "SELECT 
         g.id_usuario,
@@ -398,7 +401,7 @@ class GuardianDAO implements InterfaceDAO
         guardianes g ON g.id_usuario = u.id_usuario
         where u.username = :username;";
 
-        $parameters[":username"] = $nombreGuardian;
+        $parameters["username"] = $nombreGuardian;
 
         
         $this->connection = Connection::GetInstance();
@@ -408,7 +411,11 @@ class GuardianDAO implements InterfaceDAO
 
             $resultSet = $this->connection->Execute($query, $parameters);
 
-            foreach($resultSet as $reg){
+            $guardian = null;
+
+            if($resultSet){
+
+                $reg = $resultSet[0];
 
                 $guardian=new Guardian();
                 $guardian->setId($reg["id_usuario"]);

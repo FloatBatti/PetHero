@@ -13,10 +13,13 @@ body{
     height: 70%;
     
 }
+
+input[type=checkbox] {
+    transform: scale(1.5);
+  }
+  
 .cabecera{
     height: 150px;
-}
-.cabecera{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
@@ -26,14 +29,15 @@ form{
     border-radius: 5px;
     height: 700px;
     background-color: lightgray; 
-    padding:50px;
+    padding-left: 2%;
+    padding-right: 2%;
     box-shadow: 20px 20px 30px black;
     display:flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     
     
 }

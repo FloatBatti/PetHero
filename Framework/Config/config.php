@@ -5,7 +5,6 @@ define("ROOT",dirname(__DIR__). "/");
 define("FRONT_ROOT","/TP/PetHero/Framework/");
 define("VIEWS_PATH","Views/");
 define("CSS_PATH",FRONT_ROOT.VIEWS_PATH .".css/");
-define("JS_PATH",FRONT_ROOT.VIEWS_PATH . "js/");
 define("UPLOADS_PATH", "assets/");
 
 define("DB_HOST","localhost");

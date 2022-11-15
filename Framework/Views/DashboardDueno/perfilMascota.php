@@ -35,7 +35,7 @@
                     <div class="vacunacion">Libreta de Vacunacion</div>
                     <div><figure><img class="libreta" src="../assets/Mascotas/PlanesVacunacion/<?php echo $mascota->getPlanVacURL();?>"></figure></div>
                 </div>
-                <div class="cont4 video">Pincha acá para ver el video de<br><a href="<?php echo $mascota->getVideoURL();?>"><?php echo $mascota->getNombre();?></a></div>
+                <div class="cont4 video">Pincha acá para ver el video de<a href="<?php echo $mascota->getVideoURL();?>"> <?php echo $mascota->getNombre();?></a></div>
             </div>
                 
         </div>

@@ -48,7 +48,7 @@ class DuenosController
         }   
     }
 
-    public function vistaDashboard()
+    public function vistaDashboard($alert=null)
     {
         require_once(VIEWS_PATH . "DashboardDueno/Dashboard.php");
     }
@@ -57,8 +57,6 @@ class DuenosController
         
         require_once(VIEWS_PATH. "/DashboardDueno/verMensajes.php");
     }
-
-
 
     public function vistaFavoritos()
     {
@@ -114,6 +112,7 @@ class DuenosController
         }
     }    
  
+    
 
     public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
     {
@@ -145,7 +144,7 @@ class DuenosController
 
                         Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $dueño->getUsername());
                         
-                        header("location: ../Home?alert=Perfil creado con exito. Puede loguearse");
+                        header("location: ../Home?alert=Perfil creado con exito. Puede loguearse&tipo=success");
                     }
 
                     throw new Exception("Error de servidor, intente nuevamente"); 
