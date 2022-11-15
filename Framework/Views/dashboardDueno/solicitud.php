@@ -25,7 +25,7 @@
         <div class="contenedora-section">
             <div class="contenedora-solicitud">
                 <div class="contenedora-cabecera">
-                    <div class="img-perfil"></div>
+                    <div class="img-perfil"><figure ><img class="foto-perfil" src="../assets/FotosUsuarios/<?php echo $guardian->getFotoPerfil()?>"></figure></div>
                     <div class="nombre-perfil"><?php echo $guardian->getUsername() ?></div>
                 </div>
                 <div class="contenedora-fechas">
