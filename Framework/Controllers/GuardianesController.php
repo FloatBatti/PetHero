@@ -270,30 +270,31 @@ class GuardianesController
         }
     }
     
-    public function filtrarGuardianes($fechaMin, $fechaMax, $guardian){
+    public function filtrarGuardianes($buscoMin, $buscoMax, $buscado){
 
         if(isset($_SESSION["UserId"])){
-
+            var_dump($buscado);
             $listaFiltrada = null;
-
+           
             try{
 
-                var_dump($guardian);
-                /*
                 if(empty($guardian)){
 
-                    $listaFiltrada = $this->GuardianDAO->getGuardianesFiltradosFecha($fechaMin,$fechaMax);
-
+                    $listaFiltrada = $this->GuardianDAO->getGuardianesFiltradosFecha($buscoMin,$buscoMax);
+                    //$this->vistaGuardianes($listaFiltrada);
+                    
                 }else{
 
-                    $listaFiltrada = $this->GuardianDAO->getGuardianesFiltradosNombre($guardian);
+                    $guardian = $this->GuardianDAO->getGuardianPorNombre($buscado);
+                    require_once(VIEWS_PATH."/DashboardDueno/PerfilGuardian.php");
+                    //var_dump($guardian);
                 }
 
-                var_dump($listaFiltrada);
+                
 
                 //$this->vistaGuardianes($listaFiltrada);
 
-                */
+                
 
             }catch(Exception $ex){
 

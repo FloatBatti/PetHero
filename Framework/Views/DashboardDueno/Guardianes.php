@@ -26,16 +26,16 @@
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="conteiner-list">
-                <form action="<?php FRONT_ROOT . "Guardianes/FiltrarGuardianes"?>" method="post">
-                <div class="filtro-fecha">
-                    <div>Fecha Inicio</div>
-                    <div><input type="date" name="fechaMin" value="<?php echo date('Y-m-d')?>"></div>
-                    <div>Fecha Fin</div>
-                    <div><input type="date" name="fechaMax" value="<?php echo date('Y-m-d')?>"></div>
-                    <div><input type="text" placeholder="guardian" name="guardian"></div>
-                    <div><input type="submit"></div>
-                    <div><a href=""><img src="../assets/img/lupa.png"></a></div>    
-                </div>
+                <form action="<?php FRONT_ROOT . "Guardianes/filtrarGuardianes"?>" method="post">
+                    <div class="filtro-fecha">
+                        <div>Fecha Inicio</div>
+                        <div><input type="date" name="buscoMin" value="<?php echo date('Y-m-d');?>"></div>
+                        <div>Fecha Fin</div>
+                        <div><input type="date" name="buscoMax" value="<?php echo date('Y-m-d')?>"></div>
+                        <div>Por Guardian</div>
+                        <div><input type="text" placeholder="guardian" name="buscado"></div>
+                        <div><button type="submit" class="lupa"></div>
+                    </div>  
                 </form>
                     <div class="row encabezado-row">
                         <div class="col ">Nombre</div>

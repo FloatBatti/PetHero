@@ -375,7 +375,7 @@ class GuardianDAO implements InterfaceDAO
         }
     }
 
-    public function getGuardianesFiltradosNombre($nombreGuardian){
+    public function getGuardianPorNombre($nombreGuardian){
 
         $listaFiltrada = array();
 
@@ -425,11 +425,10 @@ class GuardianDAO implements InterfaceDAO
                 $guardian->setFotoEspacioURL($reg["foto_espacio"]);
                 $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
 
-                array_push($listaFavoritos,$guardian);
 
             }
 
-            return $listaFiltrada;
+            return $guardian;
 
         } catch (Exception $ex) {
 
