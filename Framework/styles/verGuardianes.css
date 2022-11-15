@@ -48,6 +48,7 @@
     
 }
 .filtro-fecha{
+    height: 80px;
     padding: 5px;
     width: 98%;
     margin-bottom: 1.5%;
@@ -62,13 +63,24 @@
     justify-content: space-around;
 }
 input{
+    border-radius: 3px;
+    height: 30px;
     width: 200px;
     border:none;
+    text-align: center;
     background-color: gainsboro;
+    border:1px solid orangered;
 
 }
-#ojito{
+.lupa{
+    text-decoration: none;
+    height: 70px;
+    width: 70px;
+    border:none;
+    background-color: rgb(236, 157, 10);
+    background-image: url(../assets/img/lupa.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 20px;
 
-    width: 100px;
-   
 }
