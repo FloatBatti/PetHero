@@ -33,6 +33,7 @@
                     <div class="col campo fecha">Fecha inicio</div>
                     <div class="col campo fecha">Fecha fin</div>
                     <div class="col campo costo">Costo</div>
+                    <div class="col campo">Anular</div>
                 </div>
                 <div class="scrolleable">
                 <?php foreach ($listaReservas as $reserva){?>
@@ -42,6 +43,8 @@
                     <div class="col campo fecha"><?php echo $reserva->getFechaInicio()?></div>
                     <div class="col campo fecha"><?php echo $reserva->getFechaFin()?></div>
                     <div class="col campo costo"><?php echo $reserva->getCosto()?></div>
+
+                    <div class="col campo"><a href=""><img src="../assets/img/remove.png" height="45"></a></div>
                     </div>
                     <?php }?>
                 </div>

@@ -25,6 +25,52 @@ class GuardianesController
 
 
 
+    public function vistaGuardianes($fechaMin=null, $fechaMax= null, $nombreGuardian=null, $alert = null)
+    {
+
+        if (isset($_SESSION["UserId"])) {
+
+            $listaGuardianes = array();
+
+            try{
+
+                if($_POST){
+
+                    $resultado = $this->filtrarGuardianes($fechaMin,$fechaMax,$nombreGuardian);
+
+                    if($resultado){
+
+                        if(is_array($resultado)){
+
+                            $listaGuardianes = $resultado;
+                        }
+                        else{
+    
+                            header("location: ../Guardianes/VerPerfilGuardian?idGuardian=".$resultado->getId());
+                            
+                        }
+
+                    }else{
+
+                        throw new Exception("No se encuentra el guardian filtrado");
+                    }
+                    
+                }else{
+    
+                    $listaGuardianes = $this->GuardianDAO->GetAll();
+                }
+                
+                require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
+
+            }catch(Exception $ex){
+
+
+                
+            }
+
+        }
+    }
+
     public function VistaRegistro($alert = null)
     {
         if(isset($_SESSION["UserId"])){
@@ -150,6 +196,25 @@ class GuardianesController
         
     }
     
+    public function VerPerfilGuardian($idGuardian){
+        
+        if(isset($_SESSION["UserId"])){
+            
+            try{
+
+                $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);
+                $tamaños=$this->GuardianDAO->obtenerTamañosMascotas($guardian->getId());
+
+                require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
+
+
+            }catch(Exception $ex){
+
+                header("location: ../Duenos/vistaDashboard?alert=" .$ex->getMessage(). "&tipo=danger");
+            }
+   
+        }
+    }
     public function editarDisponibilidad(){
 
         if(isset($_SESSION["UserId"])){
@@ -234,6 +299,34 @@ class GuardianesController
         }
     }
     
+    public function filtrarGuardianes($fechaMin, $fechaMax, $nombreGuardian){
 
+        if(isset($_SESSION["UserId"])){
+      
+            $resultado= null;
+           
+            try{
+
+                if(empty($nombreGuardian)){
+
+                    $resultado = $this->GuardianDAO->getGuardianesFiltradosFecha($fechaMin,$fechaMax);
+                    $this->vistaGuardianes();
+                     
+                }else{
+
+                    $resultado = $this->GuardianDAO->getGuardianPorNombre($nombreGuardian);
+                    $this->vistaGuardianes();
+                }
+
+                return $resultado;
+                
+            }catch(Exception $ex){
+
+                //throw $ex;
+                throw new Exception("Error en el filtrado. Intente mas tarde");
+            }
+        }
+
+    }
 }
 
