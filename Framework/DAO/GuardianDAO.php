@@ -174,10 +174,12 @@ class GuardianDAO implements InterfaceDAO
         $guardian = null;
 
         $query = "SELECT 
-        * 
-        FROM usuarios u 
+        * ,
+        ifnull(avg(r.calificacion),1) as puntaje
+        FROM usuarios u
         inner join guardianes g 
         on u.id_usuario = g.id_usuario
+        inner join reviews r on r.id_usuarioTo = u.id_usuario
         where u.id_usuario = :id_usuario;";
 
         $parameters["id_usuario"] = $idUsuario;
@@ -210,7 +212,9 @@ class GuardianDAO implements InterfaceDAO
                 $guardian->setDescripcion($reg["descripcion"]);
                 $guardian->setCosto($reg["costo_diario"]);
                 $guardian->setFotoEspacioURL($reg["foto_espacio"]);
+                $guardian->setCalificacion($reg["puntaje"]);
                 $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
+
 
             }       
                 

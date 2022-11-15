@@ -11,6 +11,7 @@ class Guardian extends Usuario{
     private $fechaFin;
     private $tipoMascota = array();
     private $fotoEspacioURL;
+    private $calificacion;
     private $descripcion;
     private $costo;
     
@@ -79,6 +80,18 @@ class Guardian extends Usuario{
         array_push($this->tipoMascota, $tamaño);
     }
    
+
+    public function getCalificacion()
+    {
+        return $this->calificacion;
+    }
+
+
+    public function setCalificacion($calificacion)
+    {
+        $this->calificacion = $calificacion;
+
+    }
 }
 
 ?>

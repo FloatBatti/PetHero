@@ -150,6 +150,7 @@ class GuardianesController
         
     }
     
+
     public function editarDisponibilidad(){
 
         if(isset($_SESSION["UserId"])){
@@ -234,6 +235,8 @@ class GuardianesController
         }
     }
     
+
+
 
 }
 
