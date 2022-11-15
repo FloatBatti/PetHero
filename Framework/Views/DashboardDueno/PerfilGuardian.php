@@ -32,7 +32,7 @@
                 <div class="cont foto-espacio"><div class="cont-foto"><figure><img src="../assets/EspaciosGuardianes/<?php echo $guardian->getFotoEspacioURL()?>" height="270"></figure></div></div>
                 
                 <div class="cont descripcion">
-                    <div class="cont dias">Dias de atencion:<br>Desde<?php echo $guardian->getFechaInicio()?> hasta <?php echo $guardian->getFechaFin();?><br></div>
+                    <div class="cont dias">Dias de atencion:<br>Desde <?php echo $guardian->getFechaInicio()?> hasta <?php echo $guardian->getFechaFin();?><br></div>
                    
                     <div class="cont mascotas">Tipos de mascota permitidos:<br><?php foreach($tamaños as $tipo){echo $tipo." ";}?><br></div>
                     

@@ -23,31 +23,51 @@ class GuardianesController
         $this->UserDAO = new UserDAO();
     }
 
-    public function ListToDuenoView(){
 
-        if(isset($_SESSION["DuenoId"])){
 
-            $listaGuardianes = $this->GuardianesDAO->GetAll();
-
-            require_once(VIEWS_PATH."DashboardDueno/Guardianes.php");
-
-        }
-    }
-
-    public function vistaGuardianes($listaFiltrada=null, $alert=null)
+    public function vistaGuardianes($fechaMin=null, $fechaMax= null, $nombreGuardian=null)
     {
 
         if (isset($_SESSION["UserId"])) {
 
-            if(!$listaFiltrada){
-                $listaGuardianes = $this->GuardianDAO->GetAll();
+            $listaGuardianes = array();
 
-            }else{
+            try{
 
-                $listaGuardianes = $listaFiltrada;
+                if($_POST){
+
+                    $resultado = $this->filtrarGuardianes($fechaMin,$fechaMax,$nombreGuardian);
+
+                    if($resultado){
+
+                        if(is_array($resultado)){
+
+                            $listaGuardianes = $resultado;
+                        }
+                        else{
+    
+                            header("location: ../Guardianes/VerPerfilGuardian?idGuardian=".$resultado->getId());
+                            
+                        }
+
+                    }else{
+
+                        throw new Exception("No se encuentra el guardian filtrado");
+                    }
+                    
+                }else{
+    
+                    $listaGuardianes = $this->GuardianDAO->GetAll();
+                }
+                
+                require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
+
+            }catch(Exception $ex){
+
+                
+                header("location: ../Guardianes/vistaGuardianes");
             }
 
-            require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
         }
     }
 
@@ -96,7 +116,7 @@ class GuardianesController
                 if($this->UserDAO->AddGuardian($guardian)){
 
                     Archivos::subirArch("fotoEspacio", $fotoEspacio, "EspaciosGuardianes/", $guardian->getUsername());
-                    header("location: ../Home");
+                    header("location: ../Home?alert=Perfil creado con exito. Puede loguearse&tipo=success");
                 }
                 
                 throw new Exception("Error de servidor, intente nuevamente"); //Mensaje que funciona como alert
@@ -180,10 +200,19 @@ class GuardianesController
         
         if(isset($_SESSION["UserId"])){
             
-            $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);
-            $tamaños=$this->GuardianDAO->obtenerTamañosMascotas($guardian->getId());
-            
-            require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
+            try{
+
+                $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);
+                $tamaños=$this->GuardianDAO->obtenerTamañosMascotas($guardian->getId());
+
+                require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
+
+
+            }catch(Exception $ex){
+
+                header("location: ../Duenos/vistaDashboard?alert=" .$ex->getMessage(). "&tipo=danger");
+            }
+   
         }
     }
     public function editarDisponibilidad(){
@@ -270,36 +299,30 @@ class GuardianesController
         }
     }
     
-    public function filtrarGuardianes($buscoMin, $buscoMax, $buscado){
+    public function filtrarGuardianes($fechaMin, $fechaMax, $nombreGuardian){
 
         if(isset($_SESSION["UserId"])){
-            var_dump($buscado);
-            $listaFiltrada = null;
+      
+            $resultado= null;
            
             try{
 
-                if(empty($guardian)){
+                if(empty($nombreGuardian)){
 
-                    $listaFiltrada = $this->GuardianDAO->getGuardianesFiltradosFecha($buscoMin,$buscoMax);
-                    //$this->vistaGuardianes($listaFiltrada);
-                    
+                    $resultado = $this->GuardianDAO->getGuardianesFiltradosFecha($fechaMin,$fechaMax);
+                     
                 }else{
 
-                    $guardian = $this->GuardianDAO->getGuardianPorNombre($buscado);
-                    require_once(VIEWS_PATH."/DashboardDueno/PerfilGuardian.php");
-                    //var_dump($guardian);
+                    $resultado = $this->GuardianDAO->getGuardianPorNombre($nombreGuardian);
+                    
                 }
 
+                return $resultado;
                 
-
-                //$this->vistaGuardianes($listaFiltrada);
-
-                
-
             }catch(Exception $ex){
 
-                $alert = new Alert("danger", $ex->getMessage());
-                //$this->vistaGuardianes($alert);
+                //throw $ex;
+                throw new Exception("Error en el filtrado. Intente mas tarde");
             }
         }
 
