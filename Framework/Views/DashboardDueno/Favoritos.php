@@ -52,7 +52,7 @@
 
                                                         ?></div>
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
-                            <div class="col perfil-ex"><a href="../Guardianes/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
+                            <div class="col perfil-ex"><a href="../Duenos/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
                             <div class="col favoritos-ex"><a href="../Duenos/borrarFavorito?idGuardian=<?php echo $guardian->getId();?> "><img src="../assets/img/delete.png" height="50"></a></div>
                         </div>
 

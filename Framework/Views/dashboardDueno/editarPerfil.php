@@ -22,7 +22,7 @@
             <div class="contenedora-section">
                 <div class="contenedora-edit">
                 
-                    <form action="<?php echo FRONT_ROOT . "Usuario/ActualizarDatos"?>" method="post">
+                    <form action="<?php echo FRONT_ROOT . "Usuario/ActualizarDatos"?>" method="post" enctype="multipart/form-data">
                     
                         <div class="contenedora-inputs">
                         <div class="titulo">Editar Perfil</div>
@@ -63,6 +63,8 @@
                                 <label for="re-pass">Repetir Contraseña</label>
                                 <input type="password" placeholder="" name="rePassword" class="" value="<?php echo $usuario->getPassword();?>" required><br>
                         </div>
+                        
+                        
                         
                         <div class="boton">
                             <button type="submit" class="submit"><img src="../assets/img/dogboneEdit.png"></button>

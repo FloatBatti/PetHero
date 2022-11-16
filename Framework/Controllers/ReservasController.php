@@ -316,6 +316,32 @@ class ReservasController{
 
         }
     }
+    public function vistaPago($id){
+
+        if(isset($_SESSION["UserId"])){
+
+            try{
+                $reserva=$this->ReservaDAO->devolverReservaPorId($id);
+                
+                if($reserva and $reserva->getEstado()=="Aceptada"){
+                    $guardian=$this->GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
+                    $mascota=$this->MascotaDAO->devolverMascotaPorId($reserva->getMascota());
+                    require_once(VIEWS_PATH."DashboardDueno/CuponDePago.php");
+                   
+                }else{
+                    throw new Exception("No se pudo encontrar la reserva o no cumple con la aprobacion.");
+                }
+                
+
+             }catch(Exception $ex){
+                $alert= new Alert("danger", $ex->getMessage());
+                echo $ex;
+            }
+
+        }
+        
+         
+        }    
 
     public function checkTipoEstadia($reserva, $mascota){
 

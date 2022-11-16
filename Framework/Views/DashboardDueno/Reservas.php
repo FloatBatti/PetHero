@@ -60,7 +60,7 @@
                             <div class="col"><?php echo $reserva->getEstado(); ?></div>
 
                             <div class="col"><a href="../Reservas/CancelarSolicitud?id=<?php echo $reserva->getId();?>"><img src="../assets/img/remove.png" height="45"></a></div>
-                            <div class="col"><a href="?id=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
+                            <div class="col"><a href="../Reservas/vistaPago?id=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
                         </div>
 
                     <?php } ?>
