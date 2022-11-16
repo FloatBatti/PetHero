@@ -148,8 +148,8 @@ costo_total float,
 estado varchar(50),
 
 constraint pk_reserva primary key (id_reserva),
-constraint fk_reserva_guardian foreign key (id_guardian) references guardianes(id_guardian) ON UPDATE CASCADE ON DELETE CASCADE,
-constraint fk_reserva_dueño foreign key (id_dueño) references dueños (id_dueño) ON UPDATE CASCADE ON DELETE CASCADE,
+constraint fk_reserva_guardian foreign key (id_guardian) references usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE,
+constraint fk_reserva_dueño foreign key (id_dueño) references usuarios (id_usuario) ON UPDATE CASCADE ON DELETE CASCADE,
 constraint fk_reserva_mascota foreign key (id_mascota) references mascotas(id_mascota) ON UPDATE CASCADE ON DELETE CASCADE,
 constraint chk_costo_total check (costo_total >=0)
 );
@@ -269,17 +269,6 @@ set id_dueño = (select d.id_dueño from dueños d inner join usuarios u on u.id
 
 insert into mascotas (nombre, id_raza, id_tamaño, id_dueño, plan_vacunacion, foto_mascota, video) values (p_nombre, id_raza, id_tamaño, id_dueño, p_plan_vacunacion, p_foto_mascota, p_video);
 
-END//
-
-DELIMITER //
-create procedure crear_reserva (in p_fecha_reserva date, in p_fecha_inicio date, in p_fecha_fin date, in id_user_guardian bigint, in id_user_dueño bigint, in p_id_mascota bigint, in p_costo_total bigint, p_estado varchar(50))
-BEGIN 
-declare id_guardian bigint;
-declare id_dueño bigint;
-set id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario=u.id_usuario where u.id_usuario = id_user_guardian);
-set id_dueño = (select d.id_dueño from dueños d inner join usuarios u on u.id_usuario = d.id_usuario where u.id_usuario = id_user_dueño);
-insert into reservas(fecha_reserva,fecha_inicio,fecha_fin, id_guardian,id_dueño,id_mascota, costo_total, estado) values (p_fecha_reserva,p_fecha_inicio,p_fecha_fin, id_guardian, id_dueño, p_id_mascota,p_costo_total,p_estado);
-END//
 
 
 DELIMITER //
@@ -309,17 +298,16 @@ r.id_reserva,
 r.fecha_reserva,
 r.fecha_inicio,
 r.fecha_fin,
+r.id_guardian,
 u.username as dueño,
 m.nombre as mascota,
-r.id_mascota,
 r.costo_total,
 r.estado 
 from 
 reservas r
-inner join dueños d on r.id_dueño = d.id_dueño
-inner join usuarios u on u.id_usuario = d.id_usuario
+inner join dueños u on r.id_dueño = u.id_usuario
 inner join mascotas m on r.id_mascota = m.id_mascota
-where r.id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on g.id_usuario = u.id_usuario where u.id_usuario = id_user_guardian)
+where r.id_guardian = id_user_guardian
 and r.estado = p_estado;
 END //
 

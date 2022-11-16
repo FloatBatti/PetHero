@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
 
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../../styles/alert.css" rel="stylesheet">
-    <link href="../../styles/cupon.css" rel="stylesheet">
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/alert.css" rel="stylesheet">
+    <link href="../styles/cupon.css" rel="stylesheet">
+    <link href="../styles/alert.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -16,7 +17,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -24,22 +25,38 @@
         <div class="contenedora-section">
             <div class="cupon">
                 <div class="datos-reserva">
-                    <div>Fecha de reserva</div>
-                    <div>Id de Reserva</div>
-                    <div>Fecha Inicio</div>
-                    <div>Fecha Fin</div>
-                    <div>Guardian</div>
-                    <div>Mascota</div>
-                    <div>Costo</div>
+                    <div class="datofactura">
+                        <div class="ask">Fecha de reserva</div><div class="return"><?php echo $reserva->getFecha(); ?><hr></div>
+                        </div>
+                    <div class="datofactura">
+                    <div class="ask">Id de Reserva</div><div class="return"><?php echo $reserva->getId(); ?><hr></div>
+                       </div>
+                        <div class="datofactura fechas">
+                        <div class="inner fechas"><div class="inner ask">Fecha Inicio</div><div class="return inner"><?php echo $reserva->getFechaInicio();?></div></div>
+                        <div class="inner fechas"><div div class="inner ask">Fecha Fin</div><div class="return inner"><?php echo $reserva->getFechaFin();?><hr></div></div>
+                        </div>
+                        
+                    <div class="datofactura">
+                            <div class="ask">Guardian</div><div class="return"><?php echo $guardian->getUsername();?><hr></div>
+                    </div>     
+                        <div class="datofactura">
+                            <div class="ask">Mascota</div><div class="return"><?php echo $mascota->getNombre();?><hr></div>
+                        </div>    
+                        <div class="datofactura">
+                            <div class="ask">Costo</div><div class="return"><?php echo $reserva->getCosto(); ?><hr></div>
+                        </div>
+                        <div class="total">
+                        <div class="ask">Total: </div><div class="costo-total">$<?php echo $reserva->getCosto();?>.- </div> 
+                    </div>
                 </div>
               
                 <div class="datos-tarjeta">
-                    <form>
+                    <form action="" method="" >
                         <div class="titulo"><div>PetHero Payment</div></div>
                         <div class="campo tc"><div class="campo">Tarjeta</div>
                             <select name="tc" class="tarjeta">
-                            <option value="MasterCard" clas="">MasterCard</option>
-                            <option value="Visa" class="">Visa</option>
+                            <option value="MasterCard" clas="master">MasterCard</option>
+                            <option value="Visa" class="visa">Visa</option>
                         </select>
                         </div>
                         
@@ -66,30 +83,15 @@
                 </div>    
             </div>
             <div> 
-            <!--<?php if (isset($alert)) { ?>
+           <?php if (isset($alert)) { ?>
                     <div class="alert-<?php echo $_GET["tipo"] ?>"><?php echo $_GET["alert"] ?></div>
                     
-                <?php } ?-->
+                <?php } ?>
             </div>
         </div>
         <aside>
-          <!--  <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>-->
-          <div class="contenedora-aside">
-            <div class="icono perfil"></div>
-            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/VistaEditarPerfil"?>">Editar Perfil</a></div>
-            <div class="icono mascota"></div>
-            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Mascotas/VerFiltroMascotas" ?>">Registrar Mascota</a></div>
-            <div class="icono vermascotas"></div>
-            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Mascotas/vistaMascotas" ?>">Mis Mascotas</a></div>
-            <div class="icono guardian"></div>
-            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Guardianes/vistaGuardianes" ?>">Guardianes</a></div>
-            <div class="icono favoritos"></div>
-            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Duenos/vistaFavoritos" ?>">Favoritos</a></div>
-            <div class="icono reservas"></div>
-            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Reservas/VerReservasDueno" ?>">Reservas</a></div>
-            <div class="icono mensajes"></div>
-            <div class="opcion"><a href="<?php echo FRONT_ROOT . "Mensaje/bandejaEntrada"?>">Mensajes</a></div>                                         
-</div>
+          <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>
+          
         </aside>
     </div>
 

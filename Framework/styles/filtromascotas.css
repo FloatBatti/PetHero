@@ -29,3 +29,11 @@
     color: rgb(211, 132, 42);
     font-size: 25px;
 }
+html{
+    cursor:url(../assets/img/cursorPaw.png),
+    auto;
+}
+a:hover{
+    cursor:url(../assets/img/cursorPawhover.png),
+    auto;
+}

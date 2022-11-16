@@ -220,6 +220,7 @@ class DuenosController
 
                 $guardian=$guardianDAO ->devolverGuardianPorId($idGuardian);
                 $tamaños=$guardianDAO ->obtenerTamañosMascotas($guardian->getId());
+                $fotopuntaje = $this->FotoValoracion($guardian->getCalificacion());
 
                 require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
 
@@ -366,4 +367,34 @@ class DuenosController
             header("location: ../Home");
         }
     }  
+
+    public function FotoValoracion($puntaje){
+        
+        if($puntaje>=1 and $puntaje<2){
+
+            return "1_stars.png";
+        }
+        else if($puntaje>=2 and $puntaje<3){
+
+            return "2_stars.png";
+
+        }
+        else if($puntaje>=3 and $puntaje<4){
+
+            return "3_stars.png";
+
+        }
+        else if($puntaje>=4 and $puntaje<4.7){
+
+            return "4_stars.png";
+
+        }
+        else{
+
+            return "5_stars.png";
+        }
+        
+        
+    }
 }
+

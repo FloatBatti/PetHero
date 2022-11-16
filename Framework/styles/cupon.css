@@ -1,5 +1,6 @@
 *{
     font-family: 'Open Sans', sans-serif;
+   
 }
 .cupon{
     height: 90%;
@@ -13,14 +14,10 @@
 }
 form{
     height: 100%;
-    width:100%;
-    
+    width:100%;   
 }
 
-.datos-reserva{
-    width:50%;
-    background-color: gray;
-}
+
 .datos-tarjeta{
     width:50%;
     display: flex;
@@ -29,17 +26,20 @@ form{
     text-align: center;
     
     
+    
 }
 .titulo{
-    height: 15%;
+    height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: -10px;
+    margin-bottom: -15px;
+    color:rgb(40, 40, 121);
+    
 }
 
 .enviar{
-    margin-top: 30px;
+    margin-top: 20px;
     height: 40px;
     width: 250px;
     border-radius: 8px;
@@ -53,9 +53,12 @@ form{
     background-size: 300%;
     background-image:linear-gradient(to left,#3eda00,#00da5b,#15692e);
     transition: 0.6s;
+    margin-bottom: 10px;
+    
 }
 .enviar:hover{
     background-position: right;
+    
 }
 .campo{
     margin:10px;   
@@ -69,6 +72,8 @@ form{
 }
 .cod{
     width:60px;
+    border-radius: 5px;
+    border:none;
     
 }
 .data{
@@ -79,11 +84,26 @@ form{
     margin:5px;
 }
 .tarjeta{
-    
+    text-align: center;
     border-radius: 5px;
     border:none;
     height: 25px;
     width: 100px;
+}
+.fechas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.master{
+    color: orangered;
+}
+.visa{
+    color:blue;
+}
+.inner{
+    width: 100%;
 }
 
 
@@ -93,7 +113,50 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 .datos-reserva{
+    padding: 10px;
+    width:50%;
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
     background-color: rgb(219, 166, 68);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+}
+.datofactura{
+    width: 80%;
+}
+.total{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    
+}
+.costo-total{
+    justify-content: end;
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 25px;
+}
+.ask{
+    color:white;
+    text-decoration:underline;
+    
+}
+.return{
+    color:black;    
+}
+.total{
+    height: 40px;
+    display:flex;
+}
+html{
+    cursor:url(../assets/img/cursorPaw.png),
+    auto;
+}
+a:hover{
+    cursor:url(../assets/img/cursorPawhover.png),
+    auto;
 }
