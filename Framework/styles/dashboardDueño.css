@@ -109,3 +109,11 @@ footer{
     justify-content: space-around;
     
 }
+html{
+    cursor:url(../assets/img/cursorPaw.png),
+    auto;
+}
+a:hover{
+    cursor:url(../assets/img/cursorPawhover.png),
+    auto;
+}
