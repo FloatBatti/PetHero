@@ -14,20 +14,34 @@ class UsuarioController{
     }
 
 
-    public function ActualizarDatos($telefono,$direccion,$password,$rePassword){
+    public function ActualizarDatos($telefono,$direccion,$password,$rePassword){ //CHECKED
         
         if(isset($_SESSION["UserId"])){
 
-            if($password==$rePassword){
+            try{
+
+                if($password==$rePassword){
                 
-                $this->userDAO->grabarDatosActualizados($telefono,$direccion,$password);
-            
-                header("location: ../Home");
+                    $this->userDAO->grabarDatosActualizados($telefono,$direccion,$password);
+                
+                    header("location: ../Home");
+
+                }else{
+                    throw new Exception("Contraseña cambiada incorrectamente");
+                }
+
+
+            }catch(Exception $ex){
+
+                $dash = $_SESSION["Tipo"]=="D" ? "Duenos" : "Guardianes";
+
+                header("location: ../".$dash."/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
 
             }
-            else{
-                throw new Exception;
-            }
+            
+        }else{
+
+            header("location: ../Home");
         }
 
     }

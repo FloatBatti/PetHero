@@ -19,7 +19,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -35,9 +35,9 @@
                             
                         <div class="mascotita">
                                 <div class="col nombre"><?php echo $mascota->getNombre() ?></div>
-                                <div class="col"><a href="../Mascotas/verPerfilMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/verperfil.png"></a></div>                         
+                                <div class="col"><a href="../Mascotas/VerPerfilMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/verperfil.png"></a></div>                         
                                 <div class="col editar"><a href=""><img src="../assets/img/edit.png"></a></div>
-                                <div class="col borrar"><a href="../Mascotas/removerMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/delete.png"></a></div>
+                                <div class="col borrar"><a href="../Mascotas/RemoverMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/delete.png"></a></div>
                             </div>  
                                    
                     <?php } ?>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>
+        <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
 

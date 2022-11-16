@@ -68,7 +68,8 @@ class GuardianDAO implements InterfaceDAO
             throw $ex;
         }
     }
-    public function GetFavoritos()
+
+    public function getFavoritos() //CHECKED
     {
         $listaFavoritos = array();
 
@@ -120,13 +121,15 @@ class GuardianDAO implements InterfaceDAO
 
             }
             return $listaFavoritos;
+
         } catch (Exception $ex) {
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
 
-    public function Add($guardian)
+    public function add($guardian) //CHECKED
     {
         $query = "INSERT INTO 
         guardianes (id_usuario, dia_inicio, dia_fin, descripcion, costo_diario, foto_espacio) 
@@ -165,11 +168,12 @@ class GuardianDAO implements InterfaceDAO
             return $resultado;
             
         } catch (Exception $ex) {
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
 
-    public function devolverGuardianPorId($idUsuario){
+    public function devolverGuardianPorId($idUsuario){ //CHECKED
         
         $guardian = null;
 
@@ -227,7 +231,7 @@ class GuardianDAO implements InterfaceDAO
         }
     }
 
-    public function obtenerTamañosMascotas($idUsuario){
+    public function obtenerTamañosMascotas($idUsuario){ //CHECKED
 
         $listaTamaños = array();
 
@@ -245,7 +249,6 @@ class GuardianDAO implements InterfaceDAO
 
         $parameters["id_usuario"] = $idUsuario;
           
-
         $this->connection = Connection::GetInstance();
 
         try{
@@ -264,30 +267,32 @@ class GuardianDAO implements InterfaceDAO
         }
         catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
 
     }
-    public function grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){
 
-            $resultado=null;
+    public function grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){ //CHECKED
 
-            $queryUpdate = "UPDATE guardianes g
-            set g.dia_inicio = :fechaInicio, g.dia_fin=:fechaFin, g.costo_diario=:costo,g.foto_espacio=:fotoUrl, g.descripcion=:descripcion WHERE g.id_usuario=:buscado";
+        $resultado=null;
 
-            $parameters["fechaInicio"] = $fechaInicio;
-            $parameters["fechaFin"] = $fechaFin;
-            $parameters["costo"] = $costo;
-            $parameters["fotoUrl"] = $fotoUrl;
-            $parameters["descripcion"] = $descripcion;
-            $parameters["buscado"] = ($_SESSION["UserId"]);
+        $queryUpdate = "UPDATE guardianes g
+        set g.dia_inicio = :fechaInicio, g.dia_fin=:fechaFin, g.costo_diario=:costo,g.foto_espacio=:fotoUrl, g.descripcion=:descripcion WHERE g.id_usuario=:buscado";
 
-            $queryDelete = "DELETE from tamaños_x_guardianes
-            where id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on u.id_usuario = g.id_usuario where g.id_usuario= :id_usuario );";
+        $parameters["fechaInicio"] = $fechaInicio;
+        $parameters["fechaFin"] = $fechaFin;
+        $parameters["costo"] = $costo;
+        $parameters["fotoUrl"] = $fotoUrl;
+        $parameters["descripcion"] = $descripcion;
+        $parameters["buscado"] = ($_SESSION["UserId"]);
 
-            $parametersDel["id_usuario"] = $_SESSION["UserId"];
+        $queryDelete = "DELETE from tamaños_x_guardianes
+        where id_guardian = (select g.id_guardian from guardianes g inner join usuarios u on u.id_usuario = g.id_usuario where g.id_usuario= :id_usuario );";
 
-           $this->connection = Connection::GetInstance();
+        $parametersDel["id_usuario"] = $_SESSION["UserId"];
+
+        $this->connection = Connection::GetInstance();
 
         try{
 
@@ -309,14 +314,17 @@ class GuardianDAO implements InterfaceDAO
 
                 }
                 return $resultado;
-    }
-        catch (Exception $ex) {
-            throw $ex;
-        }
+
+            }
+            catch (Exception $ex) {
+
+                //throw $ex;
+                throw new Exception("Error en la base de datos. Intentelo más tarde");
+            }
 
     }
 
-    public function getGuardianesFiltradosFecha($fechaMin, $fechaMax){
+    public function getGuardianesFiltradosFecha($fechaMin, $fechaMax){ //CHECKED
 
         $listaFiltrada = array();
 
@@ -378,11 +386,12 @@ class GuardianDAO implements InterfaceDAO
 
         } catch (Exception $ex) {
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
 
-    public function getGuardianPorNombre($nombreGuardian){
+    public function getGuardianPorNombre($nombreGuardian){ //CHECKED
 
         $query = "SELECT 
         g.id_usuario,
@@ -408,18 +417,22 @@ class GuardianDAO implements InterfaceDAO
         
         $this->connection = Connection::GetInstance();
 
+        $guardian = null;
 
         try {
 
             $resultSet = $this->connection->Execute($query, $parameters);
 
-            $guardian = null;
-
+            //ACA SE UTILIZA LOGICA PORQUE PARA PODER SER MAPEADO EL GUARDIAN SE NECESITA CHECKEAR SI ME DEVUELVE ALGO LA QUERY
+            //SI NO PONGO EL IF NO VA A SALTAR UN ERROR, POR ENDE NO LO AGARRA EL CATCH
+            //SE VA A OCACIONAR UN WARNING. EJEMPLO: Warning: Trying to access array offset on value of type null in C:\xampp\htdocs\TP\PetHero\Framework\DAO\GuardianDAO.php on line 432
+            
             if($resultSet){
 
                 $reg = $resultSet[0];
 
                 $guardian=new Guardian();
+                
                 $guardian->setId($reg["id_usuario"]);
                 $guardian->setUsername($reg["username"]);
                 $guardian->setNombre($reg["nombre"]);
@@ -441,7 +454,8 @@ class GuardianDAO implements InterfaceDAO
 
         } catch (Exception $ex) {
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
 }

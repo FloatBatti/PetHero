@@ -62,7 +62,7 @@
       </div>
 
       <div class="contenedora-boton">
-        <a href="<?php echo FRONT_ROOT . "Guardianes/vistaRegistro" ?>"><img src="../assets/img/RegistrarmeResized.png" height="50"></a>
+        <a href="<?php echo FRONT_ROOT . "Guardianes/VistaRegistro" ?>"><img src="../assets/img/RegistrarmeResized.png" height="50"></a>
       </div>
     </div>
 
