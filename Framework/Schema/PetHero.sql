@@ -305,7 +305,7 @@ r.costo_total,
 r.estado 
 from 
 reservas r
-inner join dueños u on r.id_dueño = u.id_usuario
+inner join usuarios u on r.id_dueño = u.id_usuario
 inner join mascotas m on r.id_mascota = m.id_mascota
 where r.id_guardian = id_user_guardian
 and r.estado = p_estado;
