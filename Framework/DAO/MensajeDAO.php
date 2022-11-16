@@ -13,42 +13,44 @@ class MensajeDAO{
     function __construct(){
         
     }
-    public function GetMsg($id)
-    {
+
+    public function GetMsg($id){ //CHECKED
         
       $listaMensajes = array();
       $query = "CALL listar_chat(:id_sesion, :id_interlocutor);";  
       
       
-            $parameters["id_sesion"]=$_SESSION["UserId"];
-            $parameters["id_interlocutor"]=$id;
+        $parameters["id_sesion"]=$_SESSION["UserId"];
+        $parameters["id_interlocutor"]=$id;
 
-            $this->connection = Connection::GetInstance();
+        $this->connection = Connection::GetInstance();
 
-            try {
+        try {
 
-                $resultSet = $this->connection->Execute($query,$parameters);
-    
-                foreach($resultSet as $reg){
-    
-                    $mensaje=new Mensaje();
-                    $mensaje->setFecha($reg["fecha"]);
-                    $mensaje->setEmisor($reg["id_emisor"]);
-                    $mensaje->setReceptor($reg["id_receptor"]);
-                    $mensaje->setContenido($reg["contenido"]);
-                  
-    
-                    array_push($listaMensajes,$mensaje);
-    
-                }
-                return $listaMensajes;
+            $resultSet = $this->connection->Execute($query,$parameters);
 
-            } catch (Exception $ex) {
-    
-                throw $ex;
+            foreach($resultSet as $reg){
+
+                $mensaje=new Mensaje();
+                $mensaje->setFecha($reg["fecha"]);
+                $mensaje->setEmisor($reg["id_emisor"]);
+                $mensaje->setReceptor($reg["id_receptor"]);
+                $mensaje->setContenido($reg["contenido"]);
+                
+
+                array_push($listaMensajes,$mensaje);
+
             }
+            return $listaMensajes;
+
+        } catch (Exception $ex) {
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
+        }
     }
-    public function traerBandeja(){
+
+    public function traerBandeja(){ //CHECKED
 
         $bandeja=array();
 
@@ -60,6 +62,7 @@ class MensajeDAO{
         $parameters["id_session"]=$_SESSION["UserId"];
 
         $this->connection = Connection::GetInstance();
+
         try {
 
             $resultSet = $this->connection->Execute($query,$parameters);
@@ -76,12 +79,15 @@ class MensajeDAO{
             return $bandeja;
 
         }catch (Exception $ex){
-            throw $ex;
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
 
     
     }
-    public function Add($mensaje){
+
+    public function Add($mensaje){ //CHECKED
         
         $query="CALL nuevo_mensaje(:emisor,:receptor,:contenido);";
 
@@ -89,8 +95,6 @@ class MensajeDAO{
         $parameters["receptor"]=$mensaje->getReceptor();
         $parameters["contenido"]=$mensaje->getContenido();
         
-        
-
         $this->connection = Connection::GetInstance();   
 
         try {
@@ -98,12 +102,14 @@ class MensajeDAO{
             return $this->connection->ExecuteNonQuery($query, $parameters);
             
         }
-        catch (Exception $ex) {
-            throw $ex;
+        catch (Exception $ex){
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
+
     
     }
-
 
 }
 

@@ -63,8 +63,10 @@ class DueñoDAO implements InterfaceDAO{
         }
         */
     }
+
     
-    public function Add($dueño){
+    
+    public function add($dueño){  //CHECKED
 
         $query = "INSERT INTO 
         dueños (id_usuario) 
@@ -78,15 +80,16 @@ class DueñoDAO implements InterfaceDAO{
             return $this->connection->ExecuteNonQuery($query, $parameters);
             
         } catch (Exception $ex) {
-            throw $ex;
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
 
     }
 
-    public function devolverDueñoPorId($usuarioId){
+    public function devolverDueñoPorId($usuarioId){ //CHECKED
 
-        $dueño = new Dueño();
-
+    
         $query = "SELECT 
         * 
         FROM usuarios u 
@@ -99,16 +102,18 @@ class DueñoDAO implements InterfaceDAO{
 
         $this->connection = Connection::GetInstance();
 
-
         try{
             
             $resultSet = $this->connection->Execute($query, $parameters);
+
+            $dueño = null;
 
             if($resultSet){
 
                 
                 $reg = $resultSet[0];
 
+                $dueño = new Dueño();
                 $dueño->setId($usuarioId);
                 $dueño->setUsername($reg["username"]);
                 $dueño->setDni($reg["dni"]);
@@ -128,13 +133,13 @@ class DueñoDAO implements InterfaceDAO{
         }catch (Exception $ex) {
 
             //throw $ex;
-            throw new Exception("Error en el servidor");
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
         
 
     }
 
-    public function devolverUsuarioPorDueño($idDueño){
+    public function devolverUsuarioPorDueño($idDueño){ //CHECKED
 
         $dueño = new Dueño();
 
@@ -178,7 +183,9 @@ class DueñoDAO implements InterfaceDAO{
             return $dueño; 
         
         }catch (Exception $ex) {
-            throw $ex;
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
 
     }

@@ -71,10 +71,7 @@ class UserDAO{
 
     }
 
-    public function retornarUsuarioLogueado($username){
-
-        $guardianDAO = new GuardianDAO();
-        $dueñoDAO = new DueñoDAO();
+    public function retornarUsuarioPorNombre($username){ //CHECKED
 
         $query = "SELECT 
         u.id_usuario,
@@ -121,10 +118,7 @@ class UserDAO{
                 $usuario->setDireccion($reg["direccion"]);
                 $usuario->setFotoPerfil($reg["foto_perfil"]);
                 $usuario->setTipoUsuario($reg["tipo_usuario"]);
-
-                /* NO SIRVE PORQUE PRIMERO DEVO CHEQUEAR EL REULT SET
-                return $usuario = new Usuario($reg["id_usuario"], $reg["username"], $reg["dni"],$reg["nombre"],$reg["apellido"],$reg["correo"],$reg["password"],$reg["telefono"], $reg["direccion"], $reg["foto_perfil"], $reg["tipo_usuario"]);
-                */
+                
             }
 
             
@@ -137,8 +131,7 @@ class UserDAO{
 
     }
 
-
-    public function checkUsuario($username, $dni, $correo)
+    public function checkUsuario($username, $dni, $correo)  //CHECKED
     {
 
         $query = "SELECT 
@@ -160,11 +153,12 @@ class UserDAO{
             
         } catch (Exception $ex) {
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
 
-    public function AddGuardian(Usuario $guardian)
+    public function addGuardian(Usuario $guardian) //CHECKED
     {
 
         $guardianDAO = new GuardianDAO();
@@ -193,14 +187,15 @@ class UserDAO{
             return $guardianDAO->Add($guardian);
             
         } catch (Exception $ex) {
-            throw $ex;
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
     
-    public function AddDueño(Usuario $dueño)
+    public function addDueño(Usuario $dueño) //CHECKED
     {
-        $dueñoDAO = new DueñoDAO();
-
+    
         $query = "INSERT INTO 
         usuarios (username, dni, nombre, apellido, correo, password, telefono, direccion, foto_perfil, tipo_usuario) 
         VALUES(:username, :dni, :nombre, :apellido, :correo, :password, :telefono, :direccion, :foto_perfil, :tipo_usuario);";
@@ -219,16 +214,17 @@ class UserDAO{
         $this->connection = Connection::GetInstance();
 
         try {
-            $this->connection->ExecuteNonQuery($query, $parameters);
 
-            return $dueñoDAO->Add($dueño);
+            return $this->connection->ExecuteNonQuery($query, $parameters);
 
         } catch (Exception $ex) {
-            throw $ex;
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
 
-    public function AddFavorito($id){
+    public function addFavorito($id){ //CHECKED
             
         $query = "CALL agregar_favorito( :id_usuario, :id);";
 
@@ -243,10 +239,13 @@ class UserDAO{
          
         }
         catch(Exception $ex){
-            throw $ex;
-            }
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
+        }
     }
-    public function deleteFavorito($idGuardian){
+    
+    public function deleteFavorito($idGuardian){ //CHECKED
         
         $query = "CALL borrar_favorito( :id_usuario, :id_guardian);";
 
@@ -257,12 +256,13 @@ class UserDAO{
         
         try{
 
-            $this->connection->ExecuteNonQuery($query, $parameters);
+            return $this->connection->ExecuteNonQuery($query, $parameters);
               
         }
         catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         
         }
 

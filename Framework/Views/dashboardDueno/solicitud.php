@@ -17,9 +17,9 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
@@ -70,7 +70,7 @@
 
         </div>
         <aside>
-            <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>
+            <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
 

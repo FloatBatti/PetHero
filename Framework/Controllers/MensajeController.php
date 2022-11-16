@@ -4,13 +4,12 @@ namespace Controllers;
 use Models\Mensaje as Mensaje;
 use DAO\MensajeDAO as MensajeDAO;
 use DAO\UserDAO as UserDAO;
-use Models\Usuario as Usuario;
 use Exception;
-use Models\Alert;
 
-    class MensajeController{
-        private $mensajeDAO;
-        private $usersDAO;
+class MensajeController{
+
+    private $mensajeDAO;
+    private $usersDAO;
 
     public function __construct()
     {
@@ -18,78 +17,151 @@ use Models\Alert;
         $this->usersDAO = new UserDAO();
     }
 
-    public function vistaChat($id){
+    public function VistaChat($id){ //CHECKED
         
         if(isset($_SESSION["UserId"])){
-            if($listaMensajes=$this->mensajeDAO->GetMsg($id)){
-                $usuario=$this->interlocutor($listaMensajes[0]);
-                if($_SESSION["Tipo"]=="D"){
-                    
-                    require_once(VIEWS_PATH."/DashboardDueno/Mensajes.php");
+
+            try{
+
+                $listaMensajes=$this->mensajeDAO->GetMsg($id);
+
+                if($listaMensajes){
+
+                    $usuario=$this->interlocutor($listaMensajes[0]);
+
+                    if($usuario){
+
+                        if($_SESSION["Tipo"]=="D"){
+                        
+                            require_once(VIEWS_PATH."/DashboardDueno/Mensajes.php");
+                            
+                        }else{
+        
+                            require_once(VIEWS_PATH."/DashboardGuardian/Mensajes.php");
+                        }
+
+
+                    }else{
+                        
+                        throw new Exception("Error al encontrar los mensajes enviados por ti");
+                    }
+
+
                 }else{
-                    require_once(VIEWS_PATH."/DashboardGuardian/Mensajes.php");
-                }
-        
-            }
-            
-        }
-    }
-    public function interlocutor($mensaje){
-            if($mensaje->getEmisor() != $_SESSION["UserId"]){
-                
-                $usuario=$this->usersDAO->retornarUsuarioPorId($mensaje->getEmisor());
-                
-            }else{
-                $usuario=$this->usersDAO->retornarUsuarioPorId($mensaje->getReceptor());
-            }
-            return $usuario; 
 
-    }
-    public function bandejaEntrada(){
-        if(isset($_SESSION["UserId"])){
-            $bandeja=$this->mensajeDAO->traerBandeja();
-            if($bandeja){
-                switch($_SESSION["Tipo"]){
-                    case "D":
-                        require_once(VIEWS_PATH."/DashboardDueno/verMensajes.php");
-                    break;
-                    case "G":
-                        require_once(VIEWS_PATH."/DashboardGuardian/verMensajes.php");
-                    break;
+                    throw new Exception("Error al encontrar los mensajes");
+     
                 }
 
-            }else{
-                switch($_SESSION["Tipo"]){
-                    case "D":
-                        require_once(VIEWS_PATH."/DashboardDueno/Dashboard.php");
-                    break;
-                    case "G":
-                        require_once(VIEWS_PATH."/DashboardGuardian/Dashboard.php");
-                    break;
-            } 
 
-        }
-    }else{
-        header("location: ../Home");
-    }
-    }
+            }
+            catch (Exception $ex){
 
-    public function nuevoMensaje($id,$nombre){
+                $dash = $_SESSION["Tipo"]=="D" ? "Duenos" : "Guardianes";
 
-        if(isset($_SESSION["UserId"])){
-            if($_SESSION["Tipo"]=="D"){
-                
-                require_once(VIEWS_PATH."DashboardDueno/enviarNuevoMensaje.php");
+                header("location: ../".$dash."/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+            }
            
-            }else{
-                header("location: ../Home");
-            } 
+        }else{
+
+            header("location: ../Home");
+        }
+    }
+
+    public function Interlocutor($mensaje){ //CHECKED
+
+        if(isset($_SESSION["UserId"])){
+            
+            try{
+
+
+                if($mensaje->getEmisor() != $_SESSION["UserId"]){
+                
+                    $usuario=$this->usersDAO->retornarUsuarioPorId($mensaje->getEmisor());
+                    
+                }else{
+    
+                    $usuario=$this->usersDAO->retornarUsuarioPorId($mensaje->getReceptor());
+                }
+
+                return $usuario;
+
+            }
+            catch (Exception $ex){
+
+                $dash = $_SESSION["Tipo"]=="D" ? "Duenos" : "Guardianes";
+
+                header("location: ../".$dash."/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+            }
+        
+        }else{
+
+            header("location: ../Home");
+        }
+    }
+
+    public function BandejaEntrada(){ //CHECKED
+
+        if(isset($_SESSION["UserId"])){
+
+            try{
+
+                $bandeja=$this->mensajeDAO->traerBandeja();
+
+                if($bandeja){
+
+                    switch($_SESSION["Tipo"]){
+
+                        case "D":
+                            require_once(VIEWS_PATH."/DashboardDueno/verMensajes.php");
+                        break;
+
+                        case "G":
+                            require_once(VIEWS_PATH."/DashboardGuardian/verMensajes.php");
+                        break;
+                    }
+    
+                }else{
+    
+                    switch($_SESSION["Tipo"]){
+
+                        case "D":
+                            require_once(VIEWS_PATH."/DashboardDueno/Dashboard.php");
+                        break;
+
+                        case "G":
+                            require_once(VIEWS_PATH."/DashboardGuardian/Dashboard.php");
+                        break;
+                        }
+                } 
+
+            }
+            catch (Exception $ex){
+
+                $dash = $_SESSION["Tipo"]=="D" ? "Duenos" : "Guardianes";
+
+                header("location: ../".$dash."/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+            }
+      
+        }else{
+            header("location: ../Home");
+        }
+            
+   
+    }
+
+    public function NuevoMensaje($id,$nombre){ //CHECKED
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"]=="D"){
+     
+            require_once(VIEWS_PATH."DashboardDueno/enviarNuevoMensaje.php");
+
         }else{
             header("location: ../Home");
         }         
     }
 
-    public function Add($id,$chat){
+    public function Add($id,$chat){ //CHECKED
         
         if(isset($_SESSION["UserId"])){
         
@@ -98,24 +170,30 @@ use Models\Alert;
             $mensaje->setReceptor($id);
             $mensaje->setContenido($chat);
 
-        try{
-            if($this->mensajeDAO->Add($mensaje)){
+            try{
                 
-                header("location: ../Mensaje/vistaChat?id=$id");
-                                
+                if($this->mensajeDAO->Add($mensaje)){
+                    
+                    header("location: ../Mensaje/vistaChat?id=" .$id);
+                                    
+                }else{
+
+                    throw new Exception("No se pudo enviar el mensaje"); 
+                }
+
+
+            }catch (Exception $ex){
+                
+                $dash = $_SESSION["Tipo"]=="D" ? "Duenos" : "Guardianes";
+
+                header("location: ../".$dash."/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+
             }
-                throw new Exception("No se pudo enviar el mensaje..."); 
-               
 
-        }catch (Exception $ex){
-            
-           $alert=new Alert("alert alert-primary",$ex->getMessage());
-           throw $ex;
-            //header("location: ../Home");
+        }else{
 
-        }
-
-        }
+            header("location: ../Home");
+        } 
     }
 }
 ?>

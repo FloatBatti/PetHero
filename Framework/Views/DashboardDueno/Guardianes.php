@@ -20,7 +20,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -29,7 +29,7 @@
             <div class="conteiner-list">
                 <div>  
                     <!--- ACA NO USO LA COSNTANTE FRONT ROOT PORQUE ME DUPLICA EL CONTROLADOR--->
-                <form action="../Duenos/vistaGuardianes" id ="filtrado" method="post">
+                <form action="../Duenos/VistaGuardianes" id ="filtrado" method="post">
                     <div class="filtro-fecha">
                         <div>Fecha Inicio</div>
                         <div><input type="date" name="fechaMin" value="" min="<?php echo date('Y-m-d');?>"></div>
@@ -69,9 +69,9 @@
 
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
 
-                        <div class="col perfil-ex"><a href="../Duenos/verPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
+                        <div class="col perfil-ex"><a href="../Duenos/VerPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
                         
-                            <div class="col favoritos-ex"><a href="../Duenos/agregarFavorito?id=<?php echo $guardian->getId();?>"><img src="../assets/img/estrella_fav.png" height="50"></a></div>
+                            <div class="col favoritos-ex"><a href="../Duenos/AgregarFavorito?id=<?php echo $guardian->getId();?>"><img src="../assets/img/estrella_fav.png" height="50"></a></div>
                         </div>
 
                     <?php } ?>
@@ -86,7 +86,7 @@
 
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH . "dashboardDueno/menuDash.php"); ?>
+        <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
 
