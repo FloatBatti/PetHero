@@ -16,7 +16,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -52,7 +52,7 @@
                             <div class="cont"><a href=""><img src="../assets/img/reviews.png"></a></div><div class="cont"></div>Reviews
                         </div>
                     <div>
-                        <div class="cont letter"><a href="../Mensaje/nuevoMensaje?id=<?php echo $guardian->getId();?>&nombre=<?php echo $guardian->getUsername();?>"><img src="../assets/img/icono-mensaje.png"></a></div><div>Enviar Mensaje</div>
+                        <div class="cont letter"><a href="../Mensaje/NuevoMensaje?id=<?php echo $guardian->getId();?>&nombre=<?php echo $guardian->getUsername();?>"><img src="../assets/img/icono-mensaje.png"></a></div><div>Enviar Mensaje</div>
                     </div>
                 
                 </div>
@@ -62,7 +62,7 @@
                 
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
+        <?php require_once(VIEWS_PATH. "dashboardDueno/MenuDash.php");?>
         </aside>
     </div>
 

@@ -14,7 +14,7 @@
     </head>
   <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -33,7 +33,7 @@
                     <div class="row inbox aesthetic">
                         <div class="col fecha"><?php echo $inbox->getFecha();?></div><hr>
                         <div class="col user"><?php echo $inbox->getNombre();?></div><hr>
-                        <div class="col abrir"><a href="../Mensaje/vistaChat?id=<?php echo $inbox->getId();?>"><img src="../assets/img/open.png"></a></div><hr>
+                        <div class="col abrir"><a href="../Mensaje/VistaChat?id=<?php echo $inbox->getId();?>"><img src="../assets/img/open.png"></a></div><hr>
                         <div class="col borrar"><a href="" ><img src="../assets/img/delete.png" ></a></div>
                     </div>
                     <?php }
@@ -45,7 +45,7 @@
         
             </div>
                 <aside>
-                    <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
+                    <?php require_once(VIEWS_PATH. "dashboardDueno/MenuDash.php");?>
                 </aside>
     </div>
         

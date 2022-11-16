@@ -1,9 +1,8 @@
 <?php
 namespace Controllers;
 
-use Models\Dueño as Dueño;
+
 use DAO\DueñoDAO as DueñosDAO;
-use Models\Guardian as Guardian;
 use DAO\GuardianDAO as GuardianDAO;
 use DAO\MascotaDAO as MascotaDAO;
 use DAO\MensajeDAO;
@@ -32,70 +31,138 @@ class ReservasController{
 
     public function Add(){
 
-        if(isset($_SESSION["UserId"])){
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") { //CHECKED
 
             $reserva=unserialize($_SESSION["ReservaTemp"]);
             unset($_SESSION["ReservaTemp"]);
+            $type = "danger";
           
             try{
 
                 if($this->ReservaDAO->crearReserva($reserva)){
 
-                    header("location: ../Reservas/VerReservasDueno?alert=Reserva Exitosa&tipo=success"); 
+                    $type = "success";
+                    throw new Exception("Solicitud enviada exitosamente");
 
-                }else{ //Le pongo el else porque a veces sigue la ejecucion aunque se agregue la reserva
+                }else{
 
                     throw new Exception("No se pudo crear la reserva, intente nuevamente");
+
                 }
+
 
             }catch(Exception $ex){
 
-                header("location: ../Reservas/VerReservasDueno?alert=" .$ex->getMessage(). "&tipo=danger");
-            } 
+                $alert = new Alert($type, $ex->getMessage());
+                $this->VerReservasDueno($alert);
+            }
+
+        }else{
+
+            header("location: ../Home");
         }
     }
 
-    public function VerReservasDueno($alert = null, $tipo = null){
+    public function VerReservasDueno($alert = null){ //CHECKED
 
-        if(isset($_SESSION["UserId"])){
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
 
             try{
 
                 $listaReservas = $this->ReservaDAO->listarReservasDueno();
 
-                require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
+                if($listaReservas){
+                  
+                    
+                    require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
+
+                }else{
+
+                    throw new Exception("No hay reservas pendientes");
+
+                }
+
                 
             }catch(Exception $ex){
 
-                header("location: ../Duenos/vistaDashboard?alert=" .$ex->getMessage(). "&tipo=danger");
+                $alert = new Alert("danger", $ex->getMessage());
+                
+                require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
 
             }     
 
+        }else{
+
+            header("location: ../Home");
         }
     }
 
     public function VerReservasGuardian($alert = null){
 
-        if(isset($_SESSION["UserId"])){
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G") {
 
-            $listaReservas = $this->ReservaDAO->listarSolicitudesOrReservas("Aceptada");
-            require_once(VIEWS_PATH. "DashboardGuardian/Reservas.php");
+            try{
 
+                $listaReservas = $this->ReservaDAO->listarSolicitudesOrReservas("Aceptada");
+
+                if($listaReservas){
+
+                    require_once(VIEWS_PATH. "DashboardGuardian/Reservas.php");
+
+                }else{
+            
+                    throw new Exception("No posee reservas");
+                }
+
+            }
+            catch(Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                
+                require_once(VIEWS_PATH. "DashboardGuardian/Reservas.php");
+            }  
+            
+        }else{
+
+            header("location: ../Home");
         }
     }
 
     public function VerSolicitudesGuardian($alert = null){
 
-        if(isset($_SESSION["UserId"])){
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G") {
 
-            $listaSolicitudes = $this->ReservaDAO->listarSolicitudesOrReservas("Pendiente");
-            require_once(VIEWS_PATH. "DashboardGuardian/Solicitudes.php");
+            try{
+
+                $listaSolicitudes = $this->ReservaDAO->listarSolicitudesOrReservas("Pendiente");
+
+                if($listaSolicitudes){
+
+                    require_once(VIEWS_PATH. "DashboardGuardian/Solicitudes.php");
+
+                }else{
+
+                    throw new Exception("No tiene solicitudes pendientes");
+                }
+
+            }catch(Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                require_once(VIEWS_PATH. "DashboardGuardian/Solicitudes.php");
+
+            }
+
+        }else{
+
+            header("location: ../Home");
         }
     }
 
     public function CancelarSolicitud($id){
 
-        if(isset($_SESSION["UserId"])){
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+
+            $type = "danger";
 
             try{
 
@@ -107,44 +174,55 @@ class ReservasController{
                     switch($estado){
 
                         case "Aceptada":
-                            header("location: ../Reservas/VerReservasDueno?alert=No se puede cancelar la solicitud aceptada. Por favor, envie un mensaje al guardian&tipo=danger");   
+                            throw new Exception("No se puede cancelar la solicitud aceptada. Por favor, envie un mensaje al guardian");  
                         break;
 
                         case "Pendiente":
 
-                            if($this->ReservaDAO->cancelarReserva($id)){
-    
-                                header("location: ../Reservas/VerReservasDueno?alert=Cancelacion exitosa&tipo=success");
+                            if($this->ReservaDAO->cancelarSolicitud($id)){
+
+                                $type = "success";
+                                throw new Exception("La reserva fue cancelada");
+
+                            }else{
+                                
+                                throw new Exception("No se pudo cancelar la solicitud");
                             }
                             
-                            throw new Exception("No se pudo cancelar la reserva");
+                            
 
                         break;
 
                         case "Rechazado":
 
-                            if($this->ReservaDAO->cancelarReserva($id)){
+                            if($this->ReservaDAO->cancelarSolicitud($id)){
     
-                                header("location: ../Reservas/VerReservasDueno?alert=Reserva quitada del historial&tipo=success");
+                                throw new Exception("Reserva quitada del historial");
+
+                            }else{
+
+                                throw new Exception("No se pudo cancelar la solicitud");
                             }
         
-                            throw new Exception("No se pudo cancelar la reserva");
-
                         break;
 
                     }
  
-                }
+                }else{
 
-                throw new Exception("Error al encontrar al usuario");
+                    throw new Exception("No se pudo encontrar la reserva");
+                }
 
             }catch (Exception $ex){
 
-                $alert = new Alert("danger", $ex->getMessage());
+                $alert = new Alert($type, $ex->getMessage());
                 $this->VerReservasDueno($alert);
-                
+                     
             }
 
+        }else{
+
+            header("location: ../Home");
         }   
 
 
@@ -152,7 +230,7 @@ class ReservasController{
 
     public function AceptarSolicitud($idReserva){
 
-        if(isset($_SESSION["UserId"])){
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G") {
         
             $type = "danger";
 
@@ -161,77 +239,121 @@ class ReservasController{
                 $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
                 $mascota = $this->MascotaDAO->devolverMascotaPorId($reserva->getMascota());
 
-                $checkTipoEstadia = $this->checkTipoEstadia($reserva, $mascota);
+                if($reserva){
 
-                switch($checkTipoEstadia){
+                    $checkTipoEstadia = $this->checkTipoEstadia($reserva, $mascota);
 
-                    case 0:
-                    if($this->ReservaDAO->aceptarSolicitud($idReserva)){
-
-                        $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
-                        
-                        
-                        //$mail= new Mail();
+                    switch($checkTipoEstadia){
     
-                        //$mail->enviarMail($reserva);
+                        case 0:
+
+                            if($this->ReservaDAO->aceptarSolicitud($idReserva)){
+        
+                                $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
+                                
+                                
+                                //$mail= new Mail();
+            
+                                //$mail->enviarMail($reserva);
+
+                                $type = "success";
+                                throw new Exception("La solicitud fue confirmada con exito");
+        
+                            }else{
+
+                                throw new Exception("No se pudo aceptar la solicitud. Error de servidor");
+
+                            }            
+                        break;
+
+                        case 3:
+
+                            if($this->ReservaDAO->aceptarSolicitud($idReserva)){
+        
+                                $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
+                                
+                                //$mail= new Mail();
+            
+                                //$mail->enviarMail($reserva);
+                                
+                               $type = "success";
+                               throw new Exception("La solicitud fue confirmada con exito");
+
+        
+                            }else{
+
+                                throw new Exception("No se pudo aceptar la solicitud. Error de servidor");
+
+                            }            
+                        break;
                         
-                        header("location: ../Reservas/VerReservasGuardian?alert=La solicitud fue confirmada con exito");
+                        case 1:          
+                        throw new Exception("Raza incompatible con la que se cuida ese rango de fecha");
+                        break;
     
                     }
-                    throw new Exception("No se pudo aceptar la solicitud. Error de servidor");
-                    
-                    break;
-                    
-                    
 
-                    case 1:          
-                    throw new Exception("Raza incompatible con la que se cuida ese rango de fecha");
-                    break;
+                }else{
 
-
+                    throw new Exception("No se pudo encontrar la reserva");
                 }
+
+                
 
             }catch(Exception $ex){
 
                 $alert= new Alert($type, $ex->getMessage());
-                $this->VerSolicitudesGuardian($alert);
+                $this->VerReservasGuardian($alert);
 
             }
         
-        }
+        }else{
+
+            header("location: ../Home");
+        }  
     }
 
     public function RechazarSolicitud($idReserva){
 
-        if(isset($_SESSION["UserId"])){
-        
-            $mensajeDAO = new MensajeDAO();
-            $mensaje = new Mensaje;
-            
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G") {
+              
             try{
 
                 $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
 
-                if($this->ReservaDAO->rechazarSolicitud($idReserva)){
+                if($reserva){
 
+                    if($this->ReservaDAO->rechazarSolicitud($idReserva)){
 
-                    header("location: ../Reservas/VerSolicitudesGuardian");
+                        header("location: ../Reservas/VerSolicitudesGuardian");
+
+                    }else{
+
+                        throw new Exception("No se pudo rechazar la solicitud");
+                    }
+    
+                    
+                }else{
+
+                    throw new Exception("Error al encontrar la reserva");
                 }
-                throw new Exception("No se pudo rechazar la solicitud");
 
             }catch(Exception $ex){
 
-                $alert= new Alert("danger", $ex->getMessage());
-                echo $ex;
+                header("location: ../Guardianes/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
 
             }
+
+        }else{
+
+            header("location: ../Home");
         }
 
     }
 
     public function Iniciar($idGuardian, $alert=null){
 
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
             
 
             try{
@@ -239,38 +361,49 @@ class ReservasController{
                 $guardian=$this->GuardianDAO->devolverGuardianPorId($idGuardian);              
                 $listaMascotas = $this->MascotaDAO->GetAll();
     
-                if($listaMascotas){
+                if($guardian){
+
+                    if($listaMascotas){
     
-                    $_SESSION["GuardianId"] = $guardian->getId();
-    
-                    //Guardo el id en sesion para llevarlo al metodo confirmar y mantener el usuario elegido
-                    require_once(VIEWS_PATH. "DashboardDueno/Solicitud.php");
-    
+                        $_SESSION["GuardianId"] = $guardian->getId();
+        
+                        //Guardo el id en sesion para llevarlo al metodo confirmar y mantener el usuario elegido
+                        require_once(VIEWS_PATH. "DashboardDueno/Solicitud.php");
+        
+                    }else{
+        
+                        header("location: ../Mascotas/VerFiltroMascotas?alert=Registre una mascota para solicitar el cuidado de un guardian");
+                    }
+
                 }else{
-    
-                    header("location: ../Mascotas/VerFiltroMascotas?alert=Registre una mascota para solicitar el cuidado de un guardian");
+
+                    throw new Exception("No se pudo inicar la reserva. Error al encontrar el Guardian");
+
                 }
+
             }
             catch(Exception $ex){
 
-                echo $ex;
+                $alert = new Alert("danger", $ex->getMessage());
+                $this->VerReservasDueno($alert);
 
             }
    
+        }else{
+
+            header("location: ../Home");
         } 
     }
 
     public function Confirmar($fechaIn,$fechaOut,$idMascota){
 
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
 
             try{
 
                 $guardian = $this->GuardianDAO->devolverGuardianPorId($_SESSION["GuardianId"]);
 
                 unset($_SESSION["GuardianId"]);
-    
-                $dueño = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
 
                 $mascota = $this->MascotaDAO->devolverMascotaPorId($idMascota);
 
@@ -281,12 +414,12 @@ class ReservasController{
                 $reserva->setFechaFin($fechaOut);
                 $reserva->setMascota($mascota->getId());
                 $reserva->setGuardian($guardian->getId());
-                $reserva->setDueño($dueño->getId());
+                $reserva->setDueño($_SESSION["UserId"]);
                 $costo = $guardian->getCosto() * $this->calcularFecha($fechaIn,$fechaOut);
                 $reserva->setCosto($costo);
                 $reserva->setEstado("Pendiente");
 
-                switch($this->checkSolicitud($guardian, $mascota, $reserva)){
+                switch($this->CheckSolicitud($guardian, $mascota, $reserva)){
 
 
                     case 0:
@@ -313,102 +446,141 @@ class ReservasController{
 
             }
             
+        }else{
 
+            header("location: ../Home");
         }
     }
-    public function vistaPago($id){
 
-        if(isset($_SESSION["UserId"])){
+    public function VistaPago($id){
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
 
             try{
+
                 $reserva=$this->ReservaDAO->devolverReservaPorId($id);
                 
                 if($reserva and $reserva->getEstado()=="Aceptada"){
+
                     $guardian=$this->GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
                     $mascota=$this->MascotaDAO->devolverMascotaPorId($reserva->getMascota());
+
                     require_once(VIEWS_PATH."DashboardDueno/CuponDePago.php");
                    
                 }else{
+
                     throw new Exception("No se pudo encontrar la reserva o no cumple con la aprobacion.");
                 }
                 
 
              }catch(Exception $ex){
-                $alert= new Alert("danger", $ex->getMessage());
-                echo $ex;
+
+                $alert = new Alert("danger", $ex->getMessage());
+                $this->VerReservasDueno($alert);
             }
 
+        }else{
+
+            header("location: ../Home");
+        }   
+         
+    }
+
+    public function CheckTipoEstadia($reserva, $mascota){
+
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
+
+            $resultado = 0;
+
+            try{
+
+                $listaReservas = $this->ReservaDAO->devolverReservasEnRango($reserva->getFechaInicio(), $reserva->getFechaFin());
+                //Recorro todas las reservas que estan entre la fecha de inicio y final de la que se quiere aceptar
+
+                if($listaReservas){
+
+                    foreach($listaReservas as $reservaEnRango){
+                        //Obtengo la mascota de cada reserva dentro del rango
+                        $mascotaTemp = $this->MascotaDAO->devolverMascotaPorId($reservaEnRango->getMascota());
+    
+    
+                        if($mascota->getRaza() != $mascotaTemp->getRaza()){
+    
+                            $resultado = 1;
+                        }
+                    }
+
+
+                }else{
+
+                    $resultado = 3;
+
+                }  
+                
+                return $resultado;
+
+            }catch(Exception $ex){
+
+                throw $ex;
+            }
+
+        }else{
+
+            header("location: ../Home");
         }
         
-         
-        }    
+    }
 
-    public function checkTipoEstadia($reserva, $mascota){
+    public function CheckSolicitud($guardian, $mascota, $reserva){
 
-        $resultado = 0;
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
 
-        try{
+            $resultado = 0;
 
-            $listaReservas = $this->ReservaDAO->devolverReservasEnRango($reserva->getFechaInicio(), $reserva->getFechaFin());
-            //Recorro todas las reservas que estan entre la fecha de inicio y final de la que se quiere aceptar
+            if($reserva->getFechaFin() < $reserva->getFechaInicio()){
 
-            foreach($listaReservas as $reservaEnRango){
-                //Obtengo la mascota de cada reserva dentro del rango
-                $mascotaTemp = $this->MascotaDAO->devolverMascotaPorId($reservaEnRango->getMascota());
+                $resultado = 1;
+                
+            }else{
 
+                foreach($guardian->getTipoMascota() as $tamaño){
 
-                if($mascota->getRaza() != $mascotaTemp->getRaza()){
-
-                    $resultado = 1;
+                    if($mascota->getTamaño() == $tamaño){
+        
+                        $resultado = 2;
+                    }
                 }
+
             }
 
             return $resultado;
 
-        }catch(Exception $ex){
-
-            throw $ex;
-        }
-        
-    }
-
-    public function checkSolicitud($guardian, $mascota, $reserva){
-
-        $resultado = 0;
-
-        if($reserva->getFechaFin() < $reserva->getFechaInicio()){
-
-            $resultado = 1;
-            
         }else{
 
-            foreach($guardian->getTipoMascota() as $tamaño){
-
-                if($mascota->getTamaño() == $tamaño){
-    
-                    $resultado = 2;
-                }
-            }
-
+            header("location: ../Home");
         }
-
-        return $resultado;
 
     }
 
-    public function calcularFecha($fechaIn,$fechaOut){
+    public function CalcularFecha($fechaIn,$fechaOut){
         //0 indice años, 1 meses, 2 dias, 11 total de dias.
-        $fecha1=date_create($fechaIn);
-        $fecha2=date_create($fechaOut);    
-        $intervalo=date_diff($fecha1,$fecha2);
-        $tiempo=array();
-        foreach($intervalo as $medida){
-            $tiempo[]=$medida;
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+            $fecha1=date_create($fechaIn);
+            $fecha2=date_create($fechaOut);    
+            $intervalo=date_diff($fecha1,$fecha2);
+            $tiempo=array();
+            foreach($intervalo as $medida){
+                $tiempo[]=$medida;
+
+            }
+            return $tiempo[11];
+
+        }else{
+
+            header("location: ../Home");
         }
-        return $tiempo[11];
+
     }
-
-    public function anularReserva($reserva){}
-
-           
+         
 }

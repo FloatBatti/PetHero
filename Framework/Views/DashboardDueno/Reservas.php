@@ -20,9 +20,9 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
@@ -60,7 +60,7 @@
                             <div class="col"><?php echo $reserva->getEstado(); ?></div>
 
                             <div class="col"><a href="../Reservas/CancelarSolicitud?id=<?php echo $reserva->getId();?>"><img src="../assets/img/remove.png" height="45"></a></div>
-                            <div class="col"><a href="../Reservas/vistaPago?id=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
+                            <div class="col"><a href="../Reservas/VistaPago?id=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
                         </div>
 
                     <?php } ?>
@@ -68,12 +68,12 @@
                 </div>
 
                 <?php if (isset($alert)) { ?>
-                     <div class="alert-<?php echo $_GET["tipo"]?>"><?php echo $_GET["alert"]?></div>
+                     <div class="alert-<?php echo $alert->getType()?>"><?php echo $alert->getMessage()?></div>
                  <?php } ?>
         </div>
     </div>
     <aside>
-    <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
+    <?php require_once(VIEWS_PATH. "dashboardDueno/MenuDash.php");?>
     </aside>
     </div>
 

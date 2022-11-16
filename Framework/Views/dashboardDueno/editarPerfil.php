@@ -14,7 +14,7 @@
     </head>
   <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -22,7 +22,7 @@
             <div class="contenedora-section">
                 <div class="contenedora-edit">
                 
-                    <form action="<?php echo FRONT_ROOT . "Usuario/ActualizarDatos"?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo FRONT_ROOT . "Usuario/ActualizarDatos"?>" method="post">
                     
                         <div class="contenedora-inputs">
                         <div class="titulo">Editar Perfil</div>
@@ -64,8 +64,6 @@
                                 <input type="password" placeholder="" name="rePassword" class="" value="<?php echo $usuario->getPassword();?>" required><br>
                         </div>
                         
-                        
-                        
                         <div class="boton">
                             <button type="submit" class="submit"><img src="../assets/img/dogboneEdit.png"></button>
                         </div>
@@ -76,7 +74,7 @@
                 
             </div>
         <aside>
-        <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
+        <?php require_once(VIEWS_PATH. "dashboardDueno/MenuDash.php");?>
         </aside>
     </div>
 

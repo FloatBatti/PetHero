@@ -24,27 +24,43 @@ class GuardianesController
     }
 
 
+    public function VistaDashboard($alert=null, $tipo=null){ //CHECKED
 
-    public function VistaRegistro($alert = null)
-    {
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
 
-            require_once(VIEWS_PATH . "RegistroGuardian.php");
+            require_once(VIEWS_PATH . "DashboardGuardian/Dashboard.php");
+
+        }else{
+
+            header("location: ../Home");
         }
     }
 
-    public function RegistrarDisponibilidad($alert = null)
+     /* FUNCIONES DE REGISTRO */
+
+    public function VistaRegistro($alert = null) //CHECKED
     {
-        if(isset($_SESSION["UserId"])){
+
+         require_once(VIEWS_PATH . "RegistroGuardian.php");
+        
+    }
+
+    public function RegistrarDisponibilidad($alert = null) //CHECKED
+    {
+        if(isset($_SESSION["GuardTemp"])){
 
             require_once(VIEWS_PATH . "RegistroDisponibilidad.php");
+
+        }else{
+
+            header("location: ../Home");
         }
     }
 
-    public function Add($inicio, $fin, $sizes, $costo, $fotoEspacio, $descripcion)
+    public function Add($inicio, $fin, $sizes, $costo, $fotoEspacio, $descripcion) //CHECKED
     {
 
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["GuardTemp"])){
 
             $guardian =  unserialize($_SESSION["GuardTemp"]);
 
@@ -67,93 +83,96 @@ class GuardianesController
 
             try{
 
-                if($this->UserDAO->AddGuardian($guardian)){
+                if($this->UserDAO->addGuardian($guardian)){
 
                     Archivos::subirArch("fotoEspacio", $fotoEspacio, "EspaciosGuardianes/", $guardian->getUsername());
                     header("location: ../Home?alert=Perfil creado con exito. Puede loguearse&tipo=success");
+
+                }else{
+                    
+                    throw new Exception("Error de servidor, intente nuevamente"); 
                 }
                 
-                throw new Exception("Error de servidor, intente nuevamente"); //Mensaje que funciona como alert
-
-
             }catch (Exception $ex){
 
                 $alert = new Alert("danger", $ex->getMessage());
                 $this->RegistrarDisponibilidad($alert);
 
             }
+
+        }else{
+
+            header("location: ../Home");
         }
     }
 
-    public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil=null)
+    public function Registro($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil=null) //CHECKED
     {
 
-        if(isset($_SESSION["UserId"])){
-            $guardian = new Guardian();
-            $guardian->setUsername($username);
-            $guardian->setDni($dni);
-            $guardian->setNombre($nombre);
-            $guardian->setApellido($apellido);
-            $guardian->setCorreoelectronico($mail);
-            $guardian->setTelefono($telefono);
-            $guardian->setDireccion($direccion);
+        $guardian = new Guardian();
+        $guardian->setUsername($username);
+        $guardian->setDni($dni);
+        $guardian->setNombre($nombre);
+        $guardian->setApellido($apellido);
+        $guardian->setCorreoelectronico($mail);
+        $guardian->setTelefono($telefono);
+        $guardian->setDireccion($direccion);
+        
+        if(empty($fotoPerfil["name"])){
             
-            if(empty($fotoPerfil["name"])){
-                
-                $nameImg="perfil-default.png";
+            $nameImg="perfil-default.png";
 
-            }else{
+        }else{
 
-                $nameImg = $guardian->getUsername() ."-". $fotoPerfil["name"];
+            $nameImg = $guardian->getUsername() ."-". $fotoPerfil["name"];
 
-            }               
-            
-            $guardian->setFotoPerfil($nameImg);
-
-
-            $type = null;
-
-            try{
-
-                if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
-
-                    if ($password == $rePassword) {
-                       
-                        Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
+        }               
         
-                        $guardian->setPassword($password);
-        
-                        $_SESSION["GuardTemp"] = serialize($guardian);
-        
-                        header("location: ../Guardianes/RegistrarDisponibilidad");
-        
-                    }
+        $guardian->setFotoPerfil($nameImg);
 
+
+        $type = null;
+
+        try{
+
+            if (!$this->UserDAO->checkUsuario($username, $dni, $mail)) {
+
+                if ($password == $rePassword) {
+                    
+                    Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $guardian->getUsername());
+    
+                    $guardian->setPassword($password);
+    
+                    $_SESSION["GuardTemp"] = serialize($guardian);
+    
+                    header("location: ../Guardianes/RegistrarDisponibilidad");
+    
+                }else{
+                    
                     $type = "danger";
                     throw new Exception("Las contraseñas no coinciden");
-                  
                 }
 
+                
+            }else{
+                
                 $type = "danger";
                 throw new Exception("El usuario ya existe");
-
-                
-        
-            }catch (Exception $ex){
-
-                $alert = new Alert($type, $ex->getMessage());
-                $this->VistaRegistro($alert);
-
             }
 
+        }catch (Exception $ex){
+
+            $alert = new Alert($type, $ex->getMessage());
+            $this->VistaRegistro($alert);
+
         }
-        
+   
     }
     
+    /* FUNCIONES DE DISPONIBILIDAD Y PERFIL */
+    public function EditarDisponibilidad(){ //CHECKED
 
-    public function editarDisponibilidad(){
-
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
 
             try{
 
@@ -163,44 +182,52 @@ class GuardianesController
                     
                     require_once(VIEWS_PATH . "/DashboardGuardian/EditarDisponibilidad.php");
 
+                }else{
+                    
+                    throw new Exception("Error al cargar usuario");
                 }
-                throw new Exception("Error al cargar usuario");
             
             }catch(Exception $ex){
-                $alert=new Alert("danger", $ex->getMessage());
-                $this->vistaDashboard();
+
+                header("location: ../Guardianes/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
             }
 
+        }else{
+
+            header("location: ../Home");
         }
     }
 
-    public function actualizarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){
+    public function ActualizarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){ //CHECKED
 
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
         
             try {
 
                 if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion)){
 
-                    header("location: ../Guardianes/vistaDashboard");
+                    header("location: ../Guardianes/VistaDashboard");
+                }else{
+                    
+                    throw new Exception("No se pudieron actulizar los datos");
                 }
-                throw new Exception("No se pudieron actulizar los datos");
+
                   
             } catch (Exception $ex) {
                 
-                $alert = new Alert("warning", $ex->getMessage());
-                header("location: ../Guardianes/vistaDashboard?=". $alert);
+                header("location: ../Guardianes/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
             }
             
+        }else{
+
+            header("location: ../Home");
         }
     }
 
-    public function EditarPerfil(){
+    public function EditarPerfil(){ //CHECKED
         
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
         
-            $type = null;
-
             try{
 
                 $usuario = $this->GuardianDAO->devolverGuardianPorId($_SESSION["UserId"]);
@@ -208,35 +235,38 @@ class GuardianesController
                 if($usuario){
 
                     require_once(VIEWS_PATH . "DashboardGuardian/EditarPerfil.php");
+
+                }else{
+                    
+                    throw new Exception("Error al editar perfil");
                 }
-                $type = "alert alert-primary";
-                throw new Exception("Error al editar perfil");
+
 
             }catch(Exception $ex){
 
-                $alert=new Alert($type,$ex->getMessage());
-                $this->vistaDashboard();
+                header("location: ../Guardianes/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
             }   
 
+        }else{
+
+            header("location: ../Home");
         }
     }
 
-    public function vistaDashboard(){
-        if(isset($_SESSION["UserId"])){
+    /* FUNCIONES DE SOLICITUDES */
 
-            require_once(VIEWS_PATH . "DashboardGuardian/Dashboard.php");
-        }
-    }
+    public function VistaSolicitudes(){ //CHECKED
 
-    public function vistaSolicitudes(){
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
 
             require_once(VIEWS_PATH. "DashboardGuardian/Solicitudes.php");
+
+        }else{
+
+            header("location: ../Home");
         }
     }
     
-
-
 
 }
 

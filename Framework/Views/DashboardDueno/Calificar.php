@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Calificar</title>
 
-    <link href="../../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../../styles/calificacion.css" rel="stylesheet">
+    <link href="../styles/dashboardDueño.css" rel="stylesheet">
+    <link href="../styles/calificacion.css" rel="stylesheet">
     
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../img/PetHeroLogo.png" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -42,7 +42,7 @@
                             <textarea name="comentario" class="caja" maxlength="50" placeholder="max 50 caracteres" size="50" required></textarea> 
                         </div>
                         <div class="boton">
-                            <button type="submit" class="submit"><img src="../../img/dogboneEnviar.png">
+                            <button type="submit" class="submit"><img src="../img/dogboneEnviar.png">
                         </div>
                         
                     </form>
@@ -52,7 +52,7 @@
 
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH. "dashboardDueno/menuDash.php");?>
+        <?php require_once(VIEWS_PATH. "dashboardDueno/MenuDash.php");?>
         </aside>
     </div>
 

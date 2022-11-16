@@ -17,59 +17,149 @@ class MascotasController{
         $this->MascotasDAO = new MascotaDAO();
     }
 
-    public function VistaMascotas(){
+    public function VistaMascotas(){ //CHECKED
 
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
 
-            $listaMascotas = $this->MascotasDAO->GetAll();
-            require_once(VIEWS_PATH. "dashboardDueno/Mascotas.php");
+            try{
 
-        }
-    }
+                $listaMascotas = $this->MascotasDAO->GetAll();
 
-    public function VerRegistroGato(){
+                if($listaMascotas){
 
-        if(isset($_SESSION["UserId"])){
+                    require_once(VIEWS_PATH. "dashboardDueno/Mascotas.php");
 
-            $listaRazas = $this->MascotasDAO->listarRazas("Gato");
-            require_once(VIEWS_PATH. "dashboardDueno/RegistroGato.php");
+                }else{
+                    
+                    throw new Exception("Error al cargar las mascotas");
+                }
 
-        }
 
-    }
+            }catch(Exception $ex){
 
-    public function VerRegistroPerro(){
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+                
+            }
 
-        if(isset($_SESSION["UserId"])){
 
-            $listaRazas = $this->MascotasDAO->listarRazas("Perro");
-            require_once(VIEWS_PATH. "dashboardDueno/RegistroPerro.php");
-
-        }
-
-    }
-
-    public function VerFiltroMascotas($alert=null){
-
-        if(isset($_SESSION["UserId"])){
-
-        require_once(VIEWS_PATH. "dashboardDueno/filtroRegistroMascota.php");
-
-        }
-    }
-    public function verPerfilMascota($id){
-        
-        $mascota=$this->MascotasDAO->devolverMascotaPorId($id);
-        if($mascota){
-            require_once(VIEWS_PATH."DashboardDueno/perfilMascota.php");
         }else{
+
             header("location: ../Home");
         }
     }
 
-    public function AddGato($nombre, $raza, $tamano ,$fotoGato,$fotoPlan, $videoUrl=null){
+    public function VerRegistroGato(){ //CHECKED
 
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            try{
+
+                $listaRazas = $this->MascotasDAO->listarRazas("Gato");
+
+                if($listaRazas){
+
+                    require_once(VIEWS_PATH. "dashboardDueno/RegistroGato.php");;
+
+                }else{
+                    
+                    throw new Exception("Error al abrir el registro");
+                }
+
+                
+
+
+            }catch(Exception $ex){
+
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+                
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+
+    }
+
+    public function VerRegistroPerro(){ //CHECKED
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            try{
+
+                $listaRazas = $this->MascotasDAO->listarRazas("Perro");
+
+                if($listaRazas){
+
+                    require_once(VIEWS_PATH. "dashboardDueno/RegistroPerro.php");
+
+                }else{
+                    
+                    throw new Exception("Error al abrir el registro");
+                }
+
+            }catch(Exception $ex){
+
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+                
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+
+    }
+
+    public function VerFiltroMascotas($alert=null){ //CHECKED
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            require_once(VIEWS_PATH. "dashboardDueno/FiltroRegistroMascota.php");
+
+        }else{
+
+            header("location: ../Home");
+        }
+    }
+
+    public function VerPerfilMascota($id){ //CHECKED
+        
+        
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            try{
+
+                $mascota=$this->MascotasDAO->devolverMascotaPorId($id);
+
+                if($mascota){
+
+                    require_once(VIEWS_PATH."DashboardDueno/perfilMascota.php");
+
+                }else{
+                    
+                    throw new Exception("Error al cargar el perfil de la mascota");
+                }
+
+                
+
+            }catch(Exception $ex){
+
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+                
+            }
+
+
+        }else{
+
+            header("location: ../Home");
+        }
+
+    }
+
+    public function AddGato($nombre, $raza, $tamano ,$fotoGato,$fotoPlan, $videoUrl=null){ //CHECKED
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
 
             $MascotasDAO = new MascotaDAO();
 
@@ -94,23 +184,29 @@ class MascotasController{
                     Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
                     header("location:../Mascotas/VerFiltroMascotas");
 
+                }else{
+
+                    throw new Exception("No se pudo agregar la mascota");
+
                 }
-                throw new Exception("No se pudo agregar la mascota");
+                
 
             }
             catch (Exception $ex){
 
-                $alert = new Alert ($ex->getMessage(),"error");
-                $this->VistaMascotas();
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
             }
 
+        }else{
+
+            header("location: ../Home");
         }
         
     }
 
-    public function AddPerro($nombre, $raza, $tamano ,$fotoPerro,$fotoPlan, $videoUrl=null){
+    public function AddPerro($nombre, $raza, $tamano ,$fotoPerro,$fotoPlan, $videoUrl=null){ //CHECKED
 
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
 
             $MascotasDAO = new MascotaDAO();
 
@@ -127,8 +223,6 @@ class MascotasController{
             $mascota->setPlanVacURL($nameImgPlan);
             $mascota->setVideoURL($videoUrl);
 
-            $type = null;
-
             try{
 
                 if($MascotasDAO->Add($mascota)){
@@ -137,24 +231,50 @@ class MascotasController{
                     Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
                     header("location:../Mascotas/VerFiltroMascotas");
 
-                }
+                }else{
 
-                $type = "This is a danger alert—check it out!";
-                throw new Exception("No se pudo agregar la mascota");
+                    throw new Exception("No se pudo agregar la mascota");
+
+                }
 
             }
             catch (Exception $ex){
 
-                $alert = new Alert ($type, $ex->getMessage());
-                $this->VistaMascotas();
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
             }
 
+        }else{
+
+            header("location: ../Home");
         }
     }
-    public function removerMascota($id){
 
-        if($this->MascotasDAO->borrarMascota($id)){
-            header("location: ../Mascotas/VistaMascotas");
+    public function removerMascota($id){ //CHECKED
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            try{
+
+                if($this->MascotasDAO->borrarMascota($id)){
+
+                    header("location: ../Mascotas/VistaMascotas");
+
+                }else{
+
+                    throw new Exception("No se pudo borrar la mascota");
+
+                }
+
+                
+            }
+            catch (Exception $ex){
+
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+            }
+        
+        }else{
+
+            header("location: ../Home");
         }
     }
 

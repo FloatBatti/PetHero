@@ -11,7 +11,7 @@ class MascotaDAO{
     
     private $connection;
 
-    public function GetAll(){
+    public function GetAll(){ //CHECKED
 
         $listaMascotas = array();
 
@@ -62,7 +62,9 @@ class MascotaDAO{
             return $listaMascotas;
 
         }catch (Exception $ex) {
-            throw $ex;
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
         
     }
@@ -122,7 +124,7 @@ class MascotaDAO{
 
     }
     
-    public function Add(Mascota $mascota){
+    public function Add(Mascota $mascota){ //CHECKED
 
         $query = "CALL agregar_mascota(:nombre, :raza, :tamano, :idUsuario, :planVacunacion, :foto, :video)";
 
@@ -141,12 +143,14 @@ class MascotaDAO{
             return $this->connection->ExecuteNonQuery($query, $parameters);
           
         } catch (Exception $ex) {
-            throw $ex;
+            
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
 
     }
 
-    public function listarRazas($especie){
+    public function listarRazas($especie){ //CHECKED
 
         $listaRazas = array();
 
@@ -177,21 +181,27 @@ class MascotaDAO{
         }
         catch(Exception $ex){
 
+            //throw new $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
-    public function borrarMascota($id){
+
+    public function borrarMascota($id){ //CHECKED
 
         $query= "DELETE from mascotas where id_mascota=:idbuscado;";
+        
         $parameters["idbuscado"]=$id;
 
         $this->connection = Connection::GetInstance();
 
         try{
+
             return $this->connection->ExecuteNonQuery($query, $parameters);
 
         }catch(Exception $ex){
 
-            throw $ex;
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         
         }
 

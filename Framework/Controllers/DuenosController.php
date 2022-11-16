@@ -11,7 +11,6 @@ use Models\Archivos;
 use Models\Alert;
 
 
-
 class DuenosController
 {
 
@@ -25,40 +24,14 @@ class DuenosController
         $this->UserDAO = new UserDAO();
     }
 
-    public function VistaRegistro($alert = null)
+    /* FUNCIONES DE REGISTRO */
+
+    public function VistaRegistro($alert = null) //CHECKED
     {
         require_once(VIEWS_PATH . "RegistroDueño.php");
     }
 
-    public function VistaEditarPerfil()
-    {
-        try{
-
-            if($usuario = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"])){
-
-                require_once(VIEWS_PATH . "/DashboardDueno/editarPerfil.php");
-            }
-
-            throw new Exception("No se pudo editar perfil");
-
-        }catch(Exception $ex){
-
-            $alert=new Alert("warning", $ex->getMessage());
-            $this->vistaDashboard();
-        }   
-    }
-
-    public function vistaDashboard($alert=null)
-    {
-        require_once(VIEWS_PATH . "DashboardDueno/Dashboard.php");
-    }
-    
-    public function verMensajes(){
-        
-        require_once(VIEWS_PATH. "/DashboardDueno/verMensajes.php");
-    }
-
-    public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil)
+    public function Add($username, $nombre, $apellido, $dni, $mail, $telefono, $direccion, $password, $rePassword, $fotoPerfil) //CHECKED
     {
 
         
@@ -84,23 +57,34 @@ class DuenosController
     
                     $dueño->setPassword($password);
 
-                    if($this->UserDAO->AddDueño($dueño)){
+                    if($this->UserDAO->addDueño($dueño)){
 
                         Archivos::subirArch("fotoPerfil", $fotoPerfil, "FotosUsuarios/", $dueño->getUsername());
+
+                        $this->DueñoDAO->Add($dueño);
                         
                         header("location: ../Home?alert=Perfil creado con exito. Puede loguearse&tipo=success");
+
+                    }else{
+
+                        throw new Exception("Error de servidor, intente nuevamente"); 
                     }
 
-                    throw new Exception("Error de servidor, intente nuevamente"); 
+                    
     
+                }else{
+
+                    throw new Exception("Las contraseñas no coinciden"); 
                 }
                 
-                throw new Exception("Las contraseñas no coinciden"); 
+                
             
+            }else{
+
+                throw new Exception("El usuario ya existe");
+
             }
             
-            throw new Exception("El usuario ya existe");
-
 
         }catch (Exception $ex){
             
@@ -110,25 +94,83 @@ class DuenosController
             
     }
 
-    /* PARTE QUE INTERACTUA CON LOS GUARDIANES */
+    /* FUNCIONES VARIAS */
 
-    public function vistaGuardianes($alert=null, $fechaMin=null, $fechaMax=null, $nombreGuardian=null)
+    public function VistaEditarPerfil() //CHECKED
+    {
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            try{
+
+                $usuario = $this->DueñoDAO->devolverDueñoPorId($_SESSION["UserId"]);
+
+                if($usuario){
+    
+                    require_once(VIEWS_PATH . "/DashboardDueno/EditarPerfil.php");
+                    
+                }else{
+
+                    throw new Exception("Error al intentar editar el pefil");
+                }
+    
+            
+            }catch(Exception $ex){
+    
+                header("location: ../Home?alert=" .$ex->getMessage()."&tipo=danger");
+            }        
+
+        }else{
+
+            header("location: ../Home");
+        }
+        
+        
+    }
+
+    public function VistaDashboard($alert=null, $tipo=null) //CHECKED
     {
         
-        
-        $guardianDAO = new GuardianDAO();
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
 
-        if (isset($_SESSION["UserId"])) {
+            require_once(VIEWS_PATH . "DashboardDueno/Dashboard.php");
+
+        }else{
+
+            header("location: ../Home");
+        }
+    }
+    
+    public function VerMensajes(){ //CHECKED
+        
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            require_once(VIEWS_PATH. "/DashboardDueno/VerMensajes.php");
+
+        }else{
+
+            header("location: ../Home");
+        }
+        
+    }
+
+    /* PARTE QUE INTERACTUA CON LOS GUARDIANES */
+
+    public function VistaGuardianes($alert=null, $fechaMin=null, $fechaMax=null, $nombreGuardian=null) //CHECKED
+    {
+            
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+
+            $guardianDAO = new GuardianDAO();
 
             $listaGuardianes = array();
             $resultBuscado = null;
-            
             
             try{
 
                 if($_POST){
 
-                    $resultBuscado= $this->filtrarGuardianes($fechaMin, $fechaMax, $nombreGuardian);
+                    $resultBuscado= $this->FiltrarGuardianes($fechaMin, $fechaMax, $nombreGuardian);
                 }
 
                 if($resultBuscado){
@@ -137,8 +179,8 @@ class DuenosController
 
                         $listaGuardianes = $resultBuscado;
                         require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
-                    }
-                    else{
+                        
+                    }else{
 
                         header("location: ../Duenos/VerPerfilGuardian?idGuardian=".$resultBuscado->getId());
                         
@@ -151,100 +193,137 @@ class DuenosController
                 }
                     
                 
-                
-
             }catch(Exception $ex){
 
-                $alert = new Alert("danger", $ex->getMessage());
+                $alert = new Alert("danger",$ex->getMessage());
+                $listaGuardianes = $guardianDAO->GetAll();
                 require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
                 
             }
 
              
+        }else{
+
+            header("location: ../Home");
         }
 
        
     }
 
-    public function VerPerfilGuardian($idGuardian){
+    public function VerPerfilGuardian($idGuardian){ //CHECKED
         
-        $guardianDAO = new GuardianDAO();
+        $guardianDAO = new GuardianDAO(); 
         
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
             
             try{
 
                 $guardian=$guardianDAO ->devolverGuardianPorId($idGuardian);
                 $tamaños=$guardianDAO ->obtenerTamañosMascotas($guardian->getId());
+                $fotopuntaje = $this->FotoValoracion($guardian->getCalificacion());
 
                 require_once(VIEWS_PATH . "DashboardDueno/PerfilGuardian.php");
 
 
             }catch(Exception $ex){
-
-                header("location: ../Duenos/vistaDashboard?alert=" .$ex->getMessage(). "&tipo=danger");
+       
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
             }
    
+        }else{
+
+            header("location: ../Home");
+            
         }
     }
 
-    public function vistaFavoritos()
+    public function VistaFavoritos($alert = null) //CHECKED
     {
 
-        if (isset($_SESSION["UserId"])) {
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
 
             $guardianesDAO = new GuardianDAO();
-            $listaGuardianes = $guardianesDAO->GetFavoritos();
-            require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
+
+            try{
+
+                $listaGuardianes = $guardianesDAO->getFavoritos();
+                require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
+
+            }catch(Exception $ex){
+
+                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+            }
+
+
+        }else{
+
+            header("location: ../Home");
         }
     }
 
-    public function agregarFavorito($id){
+    public function AgregarFavorito($id){ //CHECKED
 
         $usuarioDAO=new UserDAO();
 
-        try{
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
 
-            if($usuarioDAO->AddFavorito($id)){
+            try{
 
-                header("location: ../Duenos/vistaFavoritos");
+                if($usuarioDAO->addFavorito($id)){
 
+                    header("location: ../Duenos/VistaFavoritos");
+
+                }
+                throw new Exception("El guardian ya esta en favoritos");
+
+            }catch(Exception $ex){
+
+                $alert=new Alert("danger", $ex->getMessage());        
+                $this->vistaFavoritos($alert);
             }
-            throw new Exception("El guardian ya esta en favoritos");
 
-        }catch(Exception $ex){
+        }else{
 
-            $alert=new Alert("warning", $ex->getMessage());        
-            $this->vistaFavoritos();
+            header("location: ../Home");
         }
-    }   
+    }
 
-    public function borrarFavorito($idGuardian)
+    public function BorrarFavorito($idGuardian) //CHECKED
     {
         $usuarioDAO = new UserDAO();
 
-        try{
-            
-            if($usuarioDAO->deleteFavorito($idGuardian)){
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+        
+            try{
+                
+                if($usuarioDAO->deleteFavorito($idGuardian)){
 
-                header("location: ../Duenos/vistaFavoritos");
+                    header("location: ../Duenos/VistaFavoritos");
 
+                }else{
+
+                   throw new Exception("Error al eliminar el guardian");
+                }
+                
+                
+
+            }catch (Exception $ex){
+
+                $alert=new Alert("danger", $ex->getMessage());       
+                $this->vistaFavoritos($alert);
             }
-            throw new Exception("Error al eliminar el guardian");
 
-        }catch (Exception $ex){
+        }else{
 
-                $alert=new Alert("danger", $ex->getMessage()); 
-                      
-                $this->vistaFavoritos();
+            header("location: ../Home");
         }
     }  
 
-    public function filtrarGuardianes($fechaMin, $fechaMax, $nombreGuardian){
-
+    public function FiltrarGuardianes($fechaMin, $fechaMax, $nombreGuardian){ //CHECKED
+ 
         $guardianDAO = new GuardianDAO();
 
-        if(isset($_SESSION["UserId"])){
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
       
             $resultado= null;
            
@@ -282,10 +361,40 @@ class DuenosController
 
                 throw $ex;
             }
-        }
 
+        }else{
+
+            header("location: ../Home");
+        }
+    }  
+
+    public function FotoValoracion($puntaje){
+        
+        if($puntaje>=1 and $puntaje<2){
+
+            return "1_stars.png";
+        }
+        else if($puntaje>=2 and $puntaje<3){
+
+            return "2_stars.png";
+
+        }
+        else if($puntaje>=3 and $puntaje<4){
+
+            return "3_stars.png";
+
+        }
+        else if($puntaje>=4 and $puntaje<4.7){
+
+            return "4_stars.png";
+
+        }
+        else{
+
+            return "5_stars.png";
+        }
+        
+        
     }
-   
-    
-    
 }
+

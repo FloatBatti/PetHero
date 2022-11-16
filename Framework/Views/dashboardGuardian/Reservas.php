@@ -16,7 +16,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='../index.php'><img src="../assets/img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -33,30 +33,30 @@
                     <div class="col campo fecha">Fecha inicio</div>
                     <div class="col campo fecha">Fecha fin</div>
                     <div class="col campo costo">Costo</div>
-                    <div class="col campo">Anular</div>
                 </div>
                 <div class="scrolleable">
-                <?php foreach ($listaReservas as $reserva){?>
-                <div class="row solicitud">
-                    <div class="col campo Nombre"><?php echo $reserva->getDueño()?></div>
-                    <div class="col campo Mascota"><?php echo $reserva->getMascota()?></div>
-                    <div class="col campo fecha"><?php echo $reserva->getFechaInicio()?></div>
-                    <div class="col campo fecha"><?php echo $reserva->getFechaFin()?></div>
-                    <div class="col campo costo"><?php echo $reserva->getCosto()?></div>
+                    <?php foreach ($listaReservas as $reserva) { ?>
+                        <div class="row solicitud">
+                            <div class="col campo Nombre"><?php echo $reserva->getDueño() ?></div>
+                            <div class="col campo Mascota"><?php echo $reserva->getMascota() ?></div>
+                            <div class="col campo fecha"><?php echo $reserva->getFechaInicio() ?></div>
+                            <div class="col campo fecha"><?php echo $reserva->getFechaFin() ?></div>
+                            <div class="col campo costo"><?php echo $reserva->getCosto() ?></div>
 
-                    <div class="col campo"><a href=""><img src="../assets/img/remove.png" height="45"></a></div>
-                    </div>
-                    <?php }?>
+                        </div>
+                    <?php } ?>
                 </div>
+
                 <?php if (isset($alert)) { ?>
-                    <div class="alert-success"><?php echo $alert?></div>
-                <?php } ?>  
+                    <div class="alert-<?php echo $alert->getType()?>"><?php echo $alert->getMessage() ?></div>
+                <?php } ?>
+                
             </div>
 
         </div>
 
         <aside>
-            <?php require_once(VIEWS_PATH . "dashboardGuardian/menuDash.php"); ?>
+            <?php require_once(VIEWS_PATH . "dashboardGuardian/MenuDash.php"); ?>
         </aside>
     </div>
 
