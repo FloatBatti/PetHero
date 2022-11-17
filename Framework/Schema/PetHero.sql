@@ -305,7 +305,7 @@ r.costo_total,
 r.estado 
 from 
 reservas r
-inner join dueños u on r.id_dueño = u.id_usuario
+inner join usuarios u on r.id_dueño = u.id_usuario
 inner join mascotas m on r.id_mascota = m.id_mascota
 where r.id_guardian = id_user_guardian
 and r.estado = p_estado;
@@ -328,5 +328,6 @@ SELECT
       from mensajes 
       where (id_emisor =id_sesion and id_receptor =id_interlocutor) or (id_emisor = id_interlocutor and id_receptor = id_sesion)
       order by fecha desc;
+      
 END //
 
