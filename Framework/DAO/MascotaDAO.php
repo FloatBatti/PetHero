@@ -7,7 +7,7 @@ use DAO\IDueñoDAO as IDueñoDAO;
 use DAO\UserDAO as UserDAO;
 use Exception;
 
-class MascotaDAO{
+class MascotaDAO implements InterfaceDAO{
     
     private $connection;
 
