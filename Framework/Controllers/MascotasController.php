@@ -27,11 +27,11 @@ class MascotasController{
 
                 if($listaMascotas){
 
-                    require_once(VIEWS_PATH. "dashboardDueno/Mascotas.php");
+                    require_once(VIEWS_PATH. "DashboardDueno/Mascotas.php");
 
                 }else{
                     
-                    throw new Exception("Error al cargar las mascotas");
+                    throw new Exception("No posee ninguna mascota");
                 }
 
 
@@ -58,7 +58,7 @@ class MascotasController{
 
                 if($listaRazas){
 
-                    require_once(VIEWS_PATH. "dashboardDueno/RegistroGato.php");;
+                    require_once(VIEWS_PATH. "DashboardDueno/RegistroGato.php");;
 
                 }else{
                     
@@ -91,7 +91,7 @@ class MascotasController{
 
                 if($listaRazas){
 
-                    require_once(VIEWS_PATH. "dashboardDueno/RegistroPerro.php");
+                    require_once(VIEWS_PATH. "DashboardDueno/RegistroPerro.php");
 
                 }else{
                     
@@ -115,7 +115,7 @@ class MascotasController{
 
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
 
-            require_once(VIEWS_PATH. "dashboardDueno/FiltroRegistroMascota.php");
+            require_once(VIEWS_PATH. "DashboardDueno/FiltroRegistroMascota.php");
 
         }else{
 
