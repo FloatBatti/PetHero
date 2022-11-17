@@ -1,0 +1,70 @@
+.contenedora-msjs{
+    background-color: lightgray;
+    height: 90%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:10px;
+    
+}
+.bandeja-entrada{
+    overflow-y: scroll;
+    height:75%;
+    width: 80%;
+    
+}
+.aesthetic{
+    border-radius: 5px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.56);
+}
+.row{
+    width: 80%;
+    height:90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin:10px;
+    
+}
+.inbox{
+    width: 96%;
+}
+.rotulo{
+    background-color: rgb(236, 157, 10);
+}
+
+.col{
+    display:flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.fecha{
+    width:150px;
+    
+}
+
+.user{
+    width:230px;
+    
+}
+.relleno{
+    width:200px;
+    margin-left: 50px;
+}
+.borrar{
+    padding-right:20px;
+
+}
+.rotulo{
+
+}
+.inbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+

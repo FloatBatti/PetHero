@@ -1,0 +1,49 @@
+
+
+.imagen-guardian{
+    width: 15%;
+}
+
+.conteiner-list{
+
+    margin-top: 3%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4%;
+    margin-right: 4%;
+    text-align: center;
+    overflow-y: scroll;
+    height: 80% ;
+    
+
+}
+
+.encabezado-row{
+
+    padding: 7px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    align-items: center;   
+    border-radius: 5px;
+    background-color: rgb(236, 157, 10);
+    box-shadow: 10px 4px 20px rgb(14, 12, 9);
+    font-size: 20px;
+
+}
+
+.guardian-row{
+
+    padding: 7px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    align-items: center;   
+    border-radius: 5px;
+    background-color: gainsboro;
+    box-shadow: 10px 4px 20px rgb(14, 12, 9);
+}
+.scrolleable{
+    overflow-y: scroll;
+    height:80%;
+}

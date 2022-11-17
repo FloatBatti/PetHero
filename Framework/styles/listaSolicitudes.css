@@ -1,0 +1,49 @@
+.listasolicitudes{
+    width: 80%;
+    background-color: lightgray;
+    box-shadow: 20px 20px 30px black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    margin: 2% auto auto 10%;
+
+       
+}
+.solicitud{
+    width: 93%;
+    height: 55px;
+    background-color: rgb(231, 160, 7);
+    box-shadow: 20px 20px 30px -5px rgb(58, 29, 1);
+    border-radius: 5px;
+    display:flex;
+    margin: 10px auto;    
+}
+.rotulo{
+    width: 90%;
+    height: 60px;
+    background-color: rgb(90, 135, 103);
+    box-shadow: 20px 20px 30px -5px rgb(58, 29, 1);
+    border-radius: 5px;
+    display:flex;
+    margin-bottom: 1.75%;
+    margin-left: 3.5%;
+    padding-left: 10px;
+
+}
+.campo{
+    
+    margin: auto;
+}
+.scrolleable{
+    overflow-y: scroll;
+    height: 70%;
+}
+.titulo{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+h2{
+    color: brown;
+}
