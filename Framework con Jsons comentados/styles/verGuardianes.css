@@ -1,0 +1,86 @@
+
+
+.imagen-guardian{
+    width: 15%;
+}
+
+.conteiner-list{
+
+    margin-top: 3%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4%;
+    margin-right: 4%;
+    text-align: center;
+    height: 100%;
+
+}
+
+.encabezado-row{
+
+    padding: 5px;
+    width: 98%;
+    margin-left: 0.1%;
+    margin-bottom: 10px;
+    text-align: center;
+    align-items: center;   
+    border-radius: 5px;
+    background-color: rgb(236, 157, 10);
+    box-shadow: 10px 4px 20px rgb(14, 12, 9);
+    font-size: 20px;
+
+}
+
+.guardian-row{
+
+    padding: 7px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    align-items: center;   
+    border-radius: 5px;
+    background-color: gainsboro;
+    box-shadow: 10px 4px 20px rgb(14, 12, 9);
+}
+.scrolleable{
+    overflow-y: scroll;
+    height:60%;
+    
+}
+.filtro-fecha{
+    height: 80px;
+    padding: 5px;
+    width: 98%;
+    margin-bottom: 1.5%;
+    text-align: center;
+    align-items: center;   
+    border-radius: 5px;
+    background-color: rgb(236, 157, 10);
+    box-shadow: 10px 4px 20px rgb(14, 12, 9);
+    display:flex;
+    flex-direction: row;
+    font-family: 'Open Sans', sans-serif;
+    justify-content: space-around;
+}
+input{
+    border-radius: 3px;
+    height: 30px;
+    width: 200px;
+    border:none;
+    text-align: center;
+    background-color: gainsboro;
+    border:1px solid orangered;
+
+}
+.lupa{
+    text-decoration: none;
+    height: 70px;
+    width: 70px;
+    border:none;
+    background-color: rgb(236, 157, 10);
+    background-image: url(../assets/img/lupa.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 20px;
+
+}
