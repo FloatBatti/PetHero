@@ -1,0 +1,103 @@
+body{
+    background-image: url(../img/jazmin.jpeg);
+    background-repeat:no-repeat;
+    background-size: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+.cabecera{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10vh;
+}
+.contenedora-general{
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    
+}
+
+.contenedora-section{
+    height: 70vh;
+    width: 70vw;
+    float:right;
+    border-radius: 5px;
+    background-color: rgb(90, 135, 103, .9);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.76);
+    
+}
+
+.opcion{
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    color:brown;
+    border-radius: 3%;
+    transition:  .5s ease;
+    overflow: hidden;    
+}
+.opcion:hover{
+    box-shadow: 10px 10px 40px black;
+}
+
+.icono{
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+      
+}
+.mascota{
+    background-image: url(../img/collar.png);
+}
+.perfil{
+    background-image: url(../img/editarPerfil.png);
+}
+.vermascotas{
+    background-image: url(../img/mascotascolor.png);
+}
+.favoritos{
+    background-image: url(../img/favoritos.png);
+}
+.guardian{
+    background-image: url(../img/guardian.png);
+}
+.reservas{
+    background-image: url(../img/reservas.png);
+}
+a{
+    text-decoration: none;
+    color:brown;   
+}
+
+
+.contenedora-aside{
+    font-size: 20px;
+    border-radius: 5px;
+    height: 70vh;
+    width:25vw;
+    color: rgb(12, 3, 37);
+    background-color: lightgray; 
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.507);
+    display:grid;
+    grid-template-columns: 40% auto;
+    text-decoration: none;
+    
+}
+
+.footer-separador{
+    height: 150px;
+    
+}
+
+footer{
+    color: aliceblue;
+    font-weight: bold;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}

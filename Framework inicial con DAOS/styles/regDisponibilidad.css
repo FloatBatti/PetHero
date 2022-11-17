@@ -1,0 +1,103 @@
+body{
+    background-image: url(../img/patio\ mujer\ hijo\ perro.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    align-items: center;
+    
+}
+.contenedora{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 70%;
+    
+}
+.cabecera{
+    height: 150px;
+}
+.cabecera{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+form{
+    border-radius: 5px;
+    height: 700px;
+    background-color: lightgray; 
+    padding:50px;
+    box-shadow: 20px 20px 30px black;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    
+    
+}
+.tipo{
+    margin:20px;
+    display: flex;
+    flex-direction: row;
+}
+textarea{
+    width: 200px;
+}
+
+
+input{
+    font-size: 20px;
+    margin:5px;
+    color: black;
+}
+.horarios{
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.disponibilidad{
+    display:grid;
+    grid-template-columns: auto auto;
+    margin-bottom: 10px;
+
+}
+.ultimos{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    
+ }
+.domingo{
+    grid-column: 1/ span 3;
+}
+
+.boton{
+    margin-top: 40px;
+    width: 200px;
+    height: 100px;
+    align-items: center;
+    text-align: center;
+          
+}
+.submit{
+    border: none;
+    background-color: lightgray;    
+}
+.separador{
+    height: 170px;    
+}
+
+
+footer{
+    color: aliceblue;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-family: 'Open Sans', sans-serif;
+}

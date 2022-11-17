@@ -104,7 +104,7 @@ class GuardianesController
 
                 } else {
 
-                    echo "<script> if(confirm('La contraseña ya existe')); </script>";
+                    echo "<script> if(confirm('Las contraseñas no coinciden')); </script>";
 
                     $this->vistaRegistro();
                 }
