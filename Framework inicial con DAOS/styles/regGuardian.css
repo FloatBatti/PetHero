@@ -1,0 +1,90 @@
+body{
+    background-image: url(../img/patio\ mujer\ hijo\ perro.jpeg);
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: 100%;
+    align-items: center;
+    
+}
+.cabecera{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10%;
+}
+
+.contenedora-registro{
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 900px;
+    margin: 0 auto;
+      
+}
+form{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: lightgray;
+    font-size: 20px; 
+    box-shadow: 20px 20px 30px black;
+}
+
+.contenedora-form{
+    height:100%;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    
+       
+}
+
+label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+    text-align: center;
+}
+input{
+    margin:5px;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+    width: 300px;
+    height: 30px;
+    font-size: 20px;
+    color: black;
+}
+ 
+.boton{
+    
+    width: 180px;
+    height: 60px;
+    align-items: center;
+    text-align: center;
+          
+}
+.submit{
+    border: none;
+    background-color: lightgray;
+}
+.footer-separador{
+    height: 100px;
+    
+}
+footer{
+    color: aliceblue;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-family: 'Open Sans', sans-serif;
+}
