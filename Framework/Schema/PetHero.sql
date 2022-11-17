@@ -328,5 +328,6 @@ SELECT
       from mensajes 
       where (id_emisor =id_sesion and id_receptor =id_interlocutor) or (id_emisor = id_interlocutor and id_receptor = id_sesion)
       order by fecha desc;
+      
 END //
 
