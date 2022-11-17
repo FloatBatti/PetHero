@@ -36,7 +36,7 @@ class HomeController{
 
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
 
-            require_once(VIEWS_PATH."dashboardGuardian/Dashboard.php");
+            require_once(VIEWS_PATH."DashboardGuardian/Dashboard.php");
 
         }else{
 
