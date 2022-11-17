@@ -31,7 +31,7 @@ class MascotasController{
 
                 }else{
                     
-                    throw new Exception("Error al cargar las mascotas");
+                    throw new Exception("No posee ninguna mascota");
                 }
 
 
