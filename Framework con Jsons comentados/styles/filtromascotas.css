@@ -1,0 +1,39 @@
+
+.contenedora-gral{
+    height: 90%;
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.contenedora-eleccion{
+    color:rgb(42, 165, 124);
+    height: 60%;
+    width: 40%;
+    background-color: lightgray;
+    border-radius: 5px;
+    box-shadow: 10px 10px 20px black;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    margin:3px;
+    transition:  .5s ease;
+    overflow: hidden; 
+    
+}
+.contenedora-eleccion:hover{
+    box-shadow: 10px 10px 40px black;
+    color: rgb(211, 132, 42);
+    font-size: 25px;
+}
+html{
+    cursor:url(../assets/img/cursorPaw.png),
+    auto;
+}
+a:hover{
+    cursor:url(../assets/img/cursorPawhover.png),
+    auto;
+}
