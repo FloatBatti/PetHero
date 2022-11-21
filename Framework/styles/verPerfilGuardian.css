@@ -1,7 +1,8 @@
 .plantilla-guardian{
     height:95%;
     width:80%;
-    margin:10px auto auto 10px;
+    margin: 0 auto;
+    margin-top: 1%;
     border-radius: 5px;
     background-color: rgba(211,211,211);
     box-shadow: 20px 20px 30px black;
@@ -42,6 +43,8 @@
     height:100%;
     display: flex;
     align-items: center;
+    font-size: 30px;
+    color: brown;
    
 }
 .calificacion{
@@ -78,18 +81,36 @@
     margin: 20px auto;
 }
 .texto{
-    font-size: 15px;
+    font-size: 20px;
 }
-.solicitud{
+
+.letter{
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 10px;
+    padding-top: 30px;
+
+}
+
+.reserva{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 21px;
+}
+
+.review{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
 }
 .boton{
 
     width: 95px;
     height: 95px;
+    align-content: center;
    
 }
 .submit{
@@ -104,13 +125,10 @@
     background-color: rgba(211,211,211);
 }
 .botones{
+
     margin-top: -20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     
-}
-.letter{
-    margin-top: 17px;
-    height: 80px;
 }

@@ -17,7 +17,7 @@ class Mail{
 
     public function enviarMail(Reserva $reserva){
 
-        /*
+        
         
         $email = $reserva->getDueño()->getCorreoelectronico();
 
@@ -27,7 +27,7 @@ class Mail{
 
         mail($email, $asunto, $mensaje, $this->header);
 
-        */
+        
     }
 
 }

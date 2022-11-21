@@ -43,7 +43,7 @@
                             <div class="col campo Mascota"><?php echo $solicitud->getMascota() ?></div>
                             <div class="col campo fecha"><?php echo $solicitud->getFechaInicio() ?></div>
                             <div class="col campo fecha"><?php echo $solicitud->getFechaFin() ?></div>
-                            <div class="col campo costo"><?php echo $solicitud->getCosto() ?></div>
+                            <div class="col campo costo"><?php echo "$".$solicitud->getCosto() ?></div>
 
                             <div class="col campo aceptar"><a href="../Reservas/AceptarSolicitud?idReserva=<?php echo $solicitud->getId() ?>"><img src="../assets/img/ok.png" alt="Aceptar"></a></div>
 

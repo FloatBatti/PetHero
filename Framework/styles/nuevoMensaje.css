@@ -11,6 +11,8 @@
     background-color: lightgray;
     margin:20px auto auto 20px;
     color: brown;
+    margin: 0 auto;
+    margin-top: 8%;
 }
 
 
@@ -42,6 +44,11 @@ textarea{
     width: 200px;
     height: 70px;
       
+}
+
+.reply{
+
+    font-size: 20px;
 }
 .submit{
     border:none;

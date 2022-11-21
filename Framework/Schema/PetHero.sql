@@ -165,7 +165,7 @@ constraint pk_cupon_pago primary key (id_cupon_pago),
 constraint fk_cupon_pago_reserva foreign key (id_reserva) references reservas(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE Mensajes(
+create table if not exists Mensajes(
       
 id_mensaje bigint  AUTO_INCREMENT,
 fecha datetime not null ,
@@ -177,6 +177,17 @@ constraint pk_id_mensaje PRIMARY KEY (id_mensaje),
 constraint fk_id_emisor FOREIGN KEY (id_emisor) REFERENCES usuarios (id_usuario)  ON UPDATE CASCADE ON DELETE CASCADE,
 constraint fk_id_receptor FOREIGN KEY (id_receptor) REFERENCES usuarios (id_usuario)  ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+create table if not exists tokens(
+
+token varchar(15),
+id_reserva bigint not null,
+
+constraint pk_token primary key (token),
+constraint fk_token_reserva foreign key (id_reserva) references reservas(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE
+
+);
+
 
 
 /*TAMAÑOS*/

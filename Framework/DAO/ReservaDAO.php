@@ -103,11 +103,12 @@ class ReservaDAO{
 
     }
 
-    public function RechazarSolicitud($idReserva){
+    public function cambiarEstadoReserva($idReserva, $estado){
 
         
-        $query = "UPDATE reservas set estado= 'Rechazado' where id_reserva = :id_reserva;";
+        $query = "UPDATE reservas set estado= :estado where id_reserva = :id_reserva;";
 
+        $paramaters["estado"] = $estado;
         $paramaters["id_reserva"] = $idReserva;
 
         $this->connection = Connection::GetInstance();
@@ -123,26 +124,7 @@ class ReservaDAO{
         }
     }
 
-    public function AceptarSolicitud($idReserva){
-
-        $query = "UPDATE reservas set estado= 'Aceptada' where id_reserva = :id_reserva;";
-
-        $paramaters["id_reserva"] = $idReserva;
-
-        $this->connection = Connection::GetInstance();
-
-        try{
-
-            return $this->connection->ExecuteNonQuery($query,$paramaters);
-
-        }catch(Exception $ex){
-
-            //throw $ex;
-            throw new Exception("Error en la base de datos. Intentelo más tarde");
-        }
-    }
-
-    public function ListarReservasDueno(){ // GUARDAR NOMBRES EN VEZ DE OBJETO
+    public function listarReservasDueno(){ // GUARDAR NOMBRES EN VEZ DE OBJETO
 
         $listaReservas = array();
 
@@ -287,8 +269,78 @@ class ReservaDAO{
 
             //throw $ex;
             throw new Exception("Error en la base de datos. Intentelo más tarde");
-        }
-
-        
+        }  
     }
+
+    public function subirTokenReserva($tokenCheck, $idReserva){
+
+        $query="insert into tokens (token, id_reserva) values (:token, :id_reserva)";
+
+        $parameters["token"] = $tokenCheck;
+        $parameters["id_reserva"] = $idReserva;
+        
+        $this->connection = Connection::GetInstance();
+    
+        try{
+    
+            return $this->connection->ExecuteNonQuery($query, $parameters);
+
+        }catch(Exception $ex){
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
+        } 
+
+    }
+
+    public function eliminarTokenReserva($idReserva){
+
+        $query="delete from tokens where id_reserva = :id_reserva";
+
+        $parameters["id_reserva"] = $idReserva;
+        
+        $this->connection = Connection::GetInstance();
+    
+        try{
+    
+            return $this->connection->ExecuteNonQuery($query, $parameters);
+
+        }catch(Exception $ex){
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
+        } 
+
+    }
+
+    public function devolverTokenReserva($idReserva){
+
+        $token = null;
+
+        $query="select t.token from tokens t where t.id_reserva= :id_reserva;";
+
+        $parameters["id_reserva"] = $idReserva;
+        
+        $this->connection = Connection::GetInstance();
+    
+        try{
+    
+            $resultSet = $this->connection->Execute($query, $parameters);
+
+            if($resultSet){
+
+                $reg = $resultSet[0];
+                $token = $reg["token"];
+            }
+  
+            return $token;
+
+        }catch(Exception $ex){
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
+        } 
+
+    }
+
 }

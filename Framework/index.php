@@ -7,6 +7,10 @@ error_reporting(E_ALL);
 require "Config/Autoload.php";
 require "Config/Config.php";
 
+require_once "phpmailer/phpmailer/src/PHPMailer.php"; //Para enviar mails
+require_once  "phpmailer/phpmailer/src/SMTP.php"; //Para enviar mails
+require_once "phpmailer/phpmailer/src/Exception.php"; //Para enviar mails
+
 use Config\Autoload as Autoload;
 use Config\Router 	as Router;
 use Config\Request 	as Request;

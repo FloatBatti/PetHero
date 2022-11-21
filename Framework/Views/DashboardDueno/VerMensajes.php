@@ -21,20 +21,15 @@
     <div class="contenedora-general">
             <div class="contenedora-section">
             <div class="contenedora-msjs aesthetic">
-                <div class="row rotulo aesthetic">
-                        <div class="col fecha cabeza">Ultimo msj</div><hr>
-                        <div class="col user cabeza">Usuario</div><hr>
-                        <div class="col relleno"></div>
-                        
+                <div>
+                    <h2 class="title">Mensajes de Guardianes</h2>
                 </div>
                 <div class="bandeja-entrada aesthetic">
                 <?php foreach($bandeja as $inbox){?>
                 
                     <div class="row inbox aesthetic">
-                        <div class="col fecha"><?php echo $inbox->getFecha();?></div><hr>
-                        <div class="col user"><?php echo $inbox->getNombre();?></div><hr>
-                        <div class="col abrir"><a href="../Mensaje/VistaChat?id=<?php echo $inbox->getId();?>"><img src="../assets/img/open.png"></a></div><hr>
-                        <div class="col borrar"><a href="" ><img src="../assets/img/delete.png" ></a></div>
+                        <div class="col user"><?php echo $inbox->getNombre();?></div>
+                        <div class="col abrir"><a href="../Mensaje/VistaChat?id=<?php echo $inbox->getId();?>"><img src="../assets/img/open.png"></a></div>
                     </div>
                     <?php }
                     

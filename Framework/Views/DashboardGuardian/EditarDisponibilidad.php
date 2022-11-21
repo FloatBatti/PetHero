@@ -27,7 +27,7 @@
             <div class="setDispo">
                 <form action="<?php echo FRONT_ROOT ?> Guardianes/actualizarDisponibilidad" method="post">
 
-                    <h3>Establecer disponiblidad</h3>
+                    <h3 class="title">Establecer disponiblidad</h3>
                     <div class="disponibilidad">
                         <div>Fecha inicio<input type="date" name="fechaInicio" min="<?php echo date("Y-m-d"); ?>"></div>
                         <div>Fecha Fin<input type="date" name="fechaFin" min="<?php echo date("Y-m-d"); ?>"></div>

@@ -1,0 +1,164 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+   
+}
+.area-pago{
+    height: 90%;
+    width: 60%;
+    border-radius: 7px;
+    background-color: lightgray;
+    margin:20px auto auto 20px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.76);
+    margin: 0 auto ;
+    margin-top: 2%;
+}
+form{
+    height: 100%;
+    width:100%;   
+}
+
+
+.datos-tarjeta{
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    
+    
+    
+}
+.titulo{
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: -15px;
+    color:rgb(40, 40, 121);
+    
+}
+
+.enviar{
+    margin-top: 20px;
+    height: 40px;
+    width: 250px;
+    border-radius: 8px;
+    background-color: aqua;
+    border: 3px solid rgba(100, 100, 100, 0.1);
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    color:#FFF;
+    background-size: 300%;
+    background-image:linear-gradient(to left,#34ac05,#00da5b,#15692e);
+    transition: 0.6s;
+    margin-bottom: 10px;
+    
+}
+.enviar:hover{
+    background-position: right;
+    
+}
+.campo{
+    margin:10px;   
+}
+.venc{
+    border-radius: 5px;
+    border:none;
+    height: 25px;
+    width: 140px;
+    margin:5px;
+}
+.cod{
+    width:60px;
+    border-radius: 5px;
+    border:none;
+    
+}
+.data{
+    border-radius: 5px;
+    border:none;
+    height: 30px;
+    width: 330px;
+    margin:5px;
+}
+.tarjeta{
+    text-align: center;
+    border-radius: 5px;
+    border:none;
+    height: 25px;
+    width: 100px;
+}
+.fechas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.master{
+    color: orangered;
+}
+.visa{
+    color:blue;
+}
+.inner{
+    width: 100%;
+}
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.datos-reserva{
+    padding: 10px;
+    width:50%;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    background-color: rgb(219, 166, 68);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+}
+.datofactura{
+    width: 80%;
+}
+.total{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    
+}
+.costo-total{
+    justify-content: end;
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 25px;
+}
+.ask{
+    color:white;
+    text-decoration:underline;
+    
+}
+.return{
+    color:black;    
+}
+.total{
+    height: 40px;
+    display:flex;
+}
+html{
+    cursor:url(../assets/img/cursorPaw.png),
+    auto;
+}
+a:hover{
+    cursor:url(../assets/img/cursorPawhover.png),
+    auto;
+}
