@@ -36,7 +36,7 @@
     justify-content: space-around;
 }
 .atributo{
-    text-align: end;
+    text-align: left;
     color:rgb(18, 18, 133);
     
 }
@@ -48,6 +48,7 @@
 .vacunacion{
     text-align: center;
     color:rgb(18, 18, 133);
+    font-size: 25px;
     
 }
 

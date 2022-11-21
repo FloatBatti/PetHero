@@ -41,7 +41,7 @@
                             <div class="col campo Mascota"><?php echo $reserva->getMascota() ?></div>
                             <div class="col campo fecha"><?php echo $reserva->getFechaInicio() ?></div>
                             <div class="col campo fecha"><?php echo $reserva->getFechaFin() ?></div>
-                            <div class="col campo costo"><?php echo $reserva->getCosto() ?></div>
+                            <div class="col campo costo"><?php echo "$".$reserva->getCosto() ?></div>
 
                         </div>
                     <?php } ?>

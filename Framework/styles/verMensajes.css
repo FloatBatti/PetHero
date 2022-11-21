@@ -6,6 +6,8 @@
     flex-direction: column;
     align-items: center;
     margin:10px;
+    margin: 0 auto;
+    margin-top: 2%;
     
 }
 .bandeja-entrada{
@@ -40,15 +42,14 @@
     justify-content: center;
     align-items: center;
 }
-.fecha{
-    width:150px;
+
+.user{
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
     
 }
 
-.user{
-    width:230px;
-    
-}
 .relleno{
     width:200px;
     margin-left: 50px;
@@ -57,7 +58,11 @@
     padding-right:20px;
 
 }
-.rotulo{
+
+.title{
+
+    font-size: 35px;
+    color:brown;
 
 }
 .inbox{

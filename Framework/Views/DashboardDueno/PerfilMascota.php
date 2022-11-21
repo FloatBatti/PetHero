@@ -25,10 +25,10 @@
             <div class="plantilla-Mascota">
                 <div class="cont1 foto"><figure><img class="pic" src="../assets/Mascotas/FotosMascotas/<?php echo $mascota->getFotoUrl();?>"></figure></div>
                 <div class="cont2 datos">
-                <div class="atributo">Nombre</div><div class="text nombre"><?php echo $mascota->getNombre();?></div>
-                <div class="atributo">Raza</div><div class="text raza"><?php echo $mascota->getRaza();?></div>
-                <div class="atributo">Especie</div><div class="text especie"><?php echo $mascota->getEspecie();?></div>
-                <div class="atributo">Tamaño</div><div class="text tamaño"><?php echo $mascota->getTamaño();?></div>
+                <div class="atributo">Nombre:</div><div class="text nombre"><?php echo $mascota->getNombre();?></div>
+                <div class="atributo">Raza:</div><div class="text raza"><?php echo $mascota->getRaza();?></div>
+                <div class="atributo">Especie:</div><div class="text especie"><?php echo $mascota->getEspecie();?></div>
+                <div class="atributo">Tamaño:</div><div class="text tamaño"><?php echo $mascota->getTamaño();?></div>
                 </div>
                 
                 <div class="cont3">
