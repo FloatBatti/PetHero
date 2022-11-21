@@ -5,13 +5,14 @@ namespace Controllers;
 use DAO\DueñoDAO as DueñosDAO;
 use DAO\GuardianDAO as GuardianDAO;
 use DAO\MascotaDAO as MascotaDAO;
-use DAO\MensajeDAO;
 use DAO\ReservaDAO as ReservaDAO;
 use Exception;
 use Models\Reserva as Reserva;
 use Models\Alert as Alert;
-use Models\Mail as Mail;
-use Models\Mensaje;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
+
 
 class ReservasController{
     
@@ -158,7 +159,7 @@ class ReservasController{
         }
     }
 
-    public function CancelarSolicitud($id){
+    public function CancelarSolicitud($idReserva){
 
         if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
 
@@ -166,7 +167,7 @@ class ReservasController{
 
             try{
 
-                $reserva = $this->ReservaDAO->devolverReservaPorId($id);
+                $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
                 $estado = $reserva->getEstado();
 
                 if($reserva){
@@ -174,12 +175,26 @@ class ReservasController{
                     switch($estado){
 
                         case "Aceptada":
-                            throw new Exception("No se puede cancelar la solicitud aceptada. Por favor, envie un mensaje al guardian");  
+
+                            $this->EnviarMailAnulacion($reserva);
+
+                            if($this->ReservaDAO->cancelarSolicitud($idReserva)){
+    
+                                $type = "success";
+                                throw new Exception("La reserva fue anulada con exito. Se le avisara al guardian");
+
+                            }else{
+
+                                throw new Exception("No se pudo cancelar la solicitud");
+                            }
+
+                            
+                              
                         break;
 
                         case "Pendiente":
 
-                            if($this->ReservaDAO->cancelarSolicitud($id)){
+                            if($this->ReservaDAO->cancelarSolicitud($idReserva)){
 
                                 $type = "success";
                                 throw new Exception("La reserva fue cancelada");
@@ -189,13 +204,11 @@ class ReservasController{
                                 throw new Exception("No se pudo cancelar la solicitud");
                             }
                             
-                            
-
                         break;
 
                         case "Rechazado":
 
-                            if($this->ReservaDAO->cancelarSolicitud($id)){
+                            if($this->ReservaDAO->cancelarSolicitud($idReserva)){
     
                                 throw new Exception("Reserva quitada del historial");
 
@@ -205,6 +218,12 @@ class ReservasController{
                             }
         
                         break;
+
+                        case "Pagada":
+                            throw new Exception("La reserva tiene que estar completada para ser borrada del historial");  
+                        break;
+
+
 
                     }
  
@@ -247,14 +266,11 @@ class ReservasController{
     
                         case 0:
 
-                            if($this->ReservaDAO->aceptarSolicitud($idReserva)){
+                            if($this->ReservaDAO->cambiarEstadoReserva($idReserva, "Aceptada")){
         
                                 $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
-                                
-                                
-                                //$mail= new Mail();
-            
-                                //$mail->enviarMail($reserva);
+                                   
+                                $this->EnviarMailAceptacion($reserva);
 
                                 $type = "success";
                                 throw new Exception("La solicitud fue confirmada con exito");
@@ -268,16 +284,14 @@ class ReservasController{
 
                         case 3:
 
-                            if($this->ReservaDAO->aceptarSolicitud($idReserva)){
+                            if($this->ReservaDAO->cambiarEstadoReserva($idReserva, "Aceptada")){
         
                                 $reserva = $this->ReservaDAO->devolverReservaPorId($idReserva);
                                 
-                                //$mail= new Mail();
-            
-                                //$mail->enviarMail($reserva);
+                                $this->EnviarMailAceptacion($reserva);
                                 
-                               $type = "success";
-                               throw new Exception("La solicitud fue confirmada con exito");
+                                $type = "success";
+                                throw new Exception("La solicitud fue confirmada con exito");
 
         
                             }else{
@@ -323,7 +337,7 @@ class ReservasController{
 
                 if($reserva){
 
-                    if($this->ReservaDAO->rechazarSolicitud($idReserva)){
+                    if($this->ReservaDAO->cambiarEstadoReserva($idReserva, "Rechazada")){
 
                         header("location: ../Reservas/VerSolicitudesGuardian");
 
@@ -348,6 +362,45 @@ class ReservasController{
 
             header("location: ../Home");
         }
+
+    }
+
+    public function ValidarToken($tokenInput){
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+
+            $idReserva = $_SESSION["ReservaTemp"];
+            unset($_SESSION["ReservaTemp"]);
+            
+            try{
+
+                $token = $this->ReservaDAO->devolverTokenReserva($idReserva);
+
+                if($tokenInput == $token){
+
+                    header("location: ../Reservas/VistaPago?idReserva=".$idReserva."&tokenFlag=1");
+
+                }else{
+
+                    throw new Exception("Token Invalido. Revise que coincida con el enviado");
+
+                }
+
+            }
+            catch(Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                $this->VerReservasDueno($alert);
+
+            }
+
+
+
+        }else{
+
+            header("location: ../Home");
+        } 
+
 
     }
 
@@ -452,31 +505,88 @@ class ReservasController{
         }
     }
 
-    public function VistaPago($id){
+    public function VerAuthPago($idReserva){
 
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
 
             try{
 
-                $reserva=$this->ReservaDAO->devolverReservaPorId($id);
+                $reserva=$this->ReservaDAO->devolverReservaPorId($idReserva);
                 
-                if($reserva and $reserva->getEstado()=="Aceptada"){
+                if($reserva){
+    
+                    switch($reserva->getEstado()){
 
-                    $guardian=$this->GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
-                    $mascota=$this->MascotaDAO->devolverMascotaPorId($reserva->getMascota());
+                        case "Aceptada":
+                            $_SESSION["ReservaTemp"] = $idReserva;
+                            require_once(VIEWS_PATH."DashboardDueno/AutentificarPago.php");
+                        break;
 
-                    require_once(VIEWS_PATH."DashboardDueno/CuponDePago.php");
-                   
+                        case "Pendiente":
+                            throw new Exception("La reserva tiene que ser aceptada para poder pagarse");
+                        break;
+
+                        case "Pagada":
+                            throw new Exception("La reserva ya esta pagada");
+                        break;
+
+                        case "Rechazada":
+                            throw new Exception("La reserva no puede pagarse si esta rechazada");
+                        break;
+
+                        case "Completada":
+                            throw new Exception("No se puede pagar una reserva completada");
+                        break;
+                    }
+
+
+    
                 }else{
-
-                    throw new Exception("No se pudo encontrar la reserva o no cumple con la aprobacion.");
+    
+                    throw new Exception("Error al procesar el pago de la reserva");
                 }
-                
 
-             }catch(Exception $ex){
+                
+            }catch(Exception $ex){
 
                 $alert = new Alert("danger", $ex->getMessage());
                 $this->VerReservasDueno($alert);
+            }
+                  
+        }else{
+
+            header("location: ../Home");
+        }   
+
+    }
+
+    public function VistaPago($idReserva=null, $tokenFlag=null){
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+
+                
+            try{
+
+                if($tokenFlag){
+                    
+                    $reserva = $this->ReservaDAO->DevolverReservaPorId($idReserva);
+                    $guardian = $this->GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
+                    $dueño = $this->DueñoDAO->devolverDueñoPorId($reserva->getDueño());
+                    $mascota = $this->MascotaDAO->devolverMascotaPorId($reserva->getMascota());
+
+                    require_once(VIEWS_PATH."DashboardDueno/PagoReserva.php");
+                         
+                }else{
+
+                    throw new Exception("No puede acceder a esta pagina sin un Token");
+                
+                }
+                
+            }catch(Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                $this->VerReservasDueno($alert);
+                
             }
 
         }else{
@@ -485,8 +595,47 @@ class ReservasController{
         }   
          
     }
+    
+    public function PagarReserva($tc, $numeroTarjeta, $nombre, $apellido, $vencimiento, $cvc, $idReserva){
 
-    public function CheckTipoEstadia($reserva, $mascota){
+        // Se tendria que implementar una verificacion de tarjeta
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            $tipo = "danger";
+            try{
+
+                $id = (int) $idReserva;
+
+                $this->ReservaDAO->eliminarTokenReserva($idReserva);
+              
+                $this->ReservaDAO->cambiarEstadoReserva($idReserva, "Pagada");
+
+                $this->EnviarMailFactura($this->ReservaDAO->devolverReservaPorId($id));
+
+                $tipo= "success";
+                throw new Exception("Reserva pagada con exito");
+
+
+
+            }catch(Exception $ex){
+
+                $alert = new Alert($tipo, $ex->getMessage());
+                $this->VerReservasDueno($alert);
+
+            }
+
+
+        }else{
+
+            header("location: ../Home");
+        }
+        
+
+
+        
+    }
+
+    private function CheckTipoEstadia($reserva, $mascota){
 
 
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
@@ -532,7 +681,7 @@ class ReservasController{
         
     }
 
-    public function CheckSolicitud($guardian, $mascota, $reserva){
+    private function CheckSolicitud($guardian, $mascota, $reserva){
 
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
 
@@ -563,9 +712,10 @@ class ReservasController{
 
     }
 
-    public function CalcularFecha($fechaIn,$fechaOut){
+    private function CalcularFecha($fechaIn,$fechaOut){
         //0 indice años, 1 meses, 2 dias, 11 total de dias.
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
             $fecha1=date_create($fechaIn);
             $fecha2=date_create($fechaOut);    
             $intervalo=date_diff($fecha1,$fecha2);
@@ -583,4 +733,191 @@ class ReservasController{
 
     }
          
+    private function EnviarMailAceptacion(Reserva $reserva){
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
+
+            $mail = new PHPMailer(True);
+        
+            try{
+
+                $dueño = $this->DueñoDAO->devolverDueñoPorId($reserva->getDueño());
+                $guardian = $this->GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
+                $mascota = $this->MascotaDAO->devolverMascotaPorId($reserva->getMascota());
+                $token = $this->GenerarToken();
+
+                $mailReceptor = $dueño->getCorreoelectronico();
+
+                //Server settings
+                //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';                   // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'petherolab@gmail.com';                 // SMTP username
+                $mail->Password = 'yowqxocqmbfexmvd';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom('petherolab@gmail.com', 'Mailer');
+                $mail->addAddress($mailReceptor, 'Mailer');  
+
+                //$mail->addReplyTo('info@example.com', 'Information');
+                //$mail->addCC('cc@example.com');
+                //$mail->addBCC('bcc@example.com');
+
+
+                //Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Solicitud aceptada por el Guardian '. $guardian->getUsername();
+
+                $mail->Body = "Hola <b>".$dueño->getUsername()."</b>!<br><br>Su reserva con el guardian <b>" . $guardian->getUsername() . "</b> a sido aceptada para el dia <b>". $reserva->getFechaInicio() . "</b> con finalizacion en <b>" . $reserva->getFechaFin() . "</b>.<br>La mascota a cuidar es <b>" . $mascota->getNombre() . "</b> con un importe de <b>$" . $reserva->getCosto() . "</b>. El importe a pagar en primera estancia es el 50%. <br><br>Su Token de confirmación es: <b>". $token ."</b>";
+
+                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                $mail->send();
+                $this->ReservaDAO->subirTokenReserva($token, $reserva->getId());
+
+            }catch(Exception $ex){
+
+                throw $ex;
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+        
+    }
+
+    private function EnviarMailFactura(Reserva $reserva){
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            $mail = new PHPMailer(True);
+        
+            try{
+
+                $dueño = $this->DueñoDAO->devolverDueñoPorId($reserva->getDueño());
+                $guardian = $this->GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
+
+                $mailReceptor = $dueño->getCorreoelectronico();
+
+                //Server settings
+                //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';                   // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'petherolab@gmail.com';                 // SMTP username
+                $mail->Password = 'yowqxocqmbfexmvd';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom('petherolab@gmail.com', 'Mailer');
+                $mail->addAddress($mailReceptor, 'Mailer');  
+
+                //$mail->addReplyTo('info@example.com', 'Information');
+                //$mail->addCC('cc@example.com');
+                //$mail->addBCC('bcc@example.com');
+
+
+                //Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Pago con exito de la reserva numero '. $reserva->getId();
+
+                $mail->Body = "Hola <b>".$dueño->getUsername()."</b>!<br><br>Su reserva con el guardian <b>" . $guardian->getUsername() . "</b> a sido pagada exitosamente.<br><br>Debe llevar su mascota el dia <b>" .$reserva->getFechaInicio(). "</b> a la siguiente direccion: <b>". $guardian->getDireccion(). "</b>.";
+
+                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                $mail->send();
+
+            }catch(Exception $ex){
+
+                throw $ex;
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+
+    }
+
+    private function EnviarMailAnulacion(Reserva $reserva){
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
+            $mail = new PHPMailer(True);
+        
+            try{
+
+                $dueño = $this->DueñoDAO->devolverDueñoPorId($reserva->getDueño());
+                $guardian = $this->GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
+                $mascota = $this->MascotaDAO->devolverMascotaPorId($reserva->getMascota());
+
+                $mailReceptor = $guardian->getCorreoelectronico();
+
+                //Server settings
+                //$mail->SMTPDebug = 2;                                 // Enable verbose debug output
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';                   // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'petherolab@gmail.com';                 // SMTP username
+                $mail->Password = 'yowqxocqmbfexmvd';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom('petherolab@gmail.com', 'Mailer');
+                $mail->addAddress($mailReceptor, 'Mailer');  
+
+                //$mail->addReplyTo('info@example.com', 'Information');
+                //$mail->addCC('cc@example.com');
+                //$mail->addBCC('bcc@example.com');
+
+
+                //Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Anulacion de reserva';
+
+                $mail->Body = "Hola <b>".$guardian->getUsername()."</b>!<br><br>Lamentamos comunicarle que el dia <b>".$reserva->getFechaInicio()."</b> la mascota <b>" .$mascota->getNombre(). "</b> ya no va a contar con su cuidado. El dueño <b>".$dueño->getUsername()."</b> anuló la reserva.";
+
+                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                $mail->send();
+
+            }catch(Exception $ex){
+
+                throw $ex;
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+
+    }
+
+    private function GenerarToken(){
+
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
+
+            $cadena = "QWERTYUIOPASDFGHJKLNZXCVBNM0123456789";
+            $token = "";
+
+            for ($i=0; $i < 10; $i++) { 
+                
+                $token.= $cadena[rand(0,35)];
+            }
+
+
+            return $token;
+
+        }else{
+
+            header("location: ../Home");
+        }
+
+    }
 }

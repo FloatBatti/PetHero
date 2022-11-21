@@ -56,11 +56,11 @@
                             <div class="col ">
                                 <?php echo $reserva->getMascota();?>
                             </div>
-                            <div class="col"><?php echo $reserva->getCosto(); ?></div>
+                            <div class="col"><?php echo "$".$reserva->getCosto(); ?></div>
                             <div class="col"><?php echo $reserva->getEstado(); ?></div>
 
-                            <div class="col"><a href="../Reservas/CancelarSolicitud?id=<?php echo $reserva->getId();?>"><img src="../assets/img/remove.png" height="45"></a></div>
-                            <div class="col"><a href="../Reservas/VistaPago?id=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
+                            <div class="col"><a href="../Reservas/CancelarSolicitud?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/remove.png" height="45"></a></div>
+                            <div class="col"><a href="../Reservas/VerAuthPago?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
                         </div>
 
                     <?php } ?>

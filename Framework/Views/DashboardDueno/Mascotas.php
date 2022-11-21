@@ -36,7 +36,6 @@
                         <div class="mascotita">
                                 <div class="col nombre"><?php echo $mascota->getNombre() ?></div>
                                 <div class="col"><a href="../Mascotas/VerPerfilMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/verperfil.png"></a></div>                         
-                                <div class="col editar"><a href=""><img src="../assets/img/edit.png"></a></div>
                                 <div class="col borrar"><a href="../Mascotas/RemoverMascota?id=<?php echo $mascota->getId();?>"><img src="../assets/img/delete.png"></a></div>
                             </div>  
                                    

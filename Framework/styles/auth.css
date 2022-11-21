@@ -1,0 +1,30 @@
+.input-token{
+
+    height: 30px;
+    width: 80%;
+    font-size: 20px;
+
+}
+
+.contenedora-token{
+
+    text-align: center;
+    align-content: center;
+    margin: 0 auto;
+    width: 30%;
+    background-color: lightgray;
+    padding: 20px;
+    padding-top: 15px;
+    padding-bottom: 45px;
+    margin-top: 15%;
+    color: brown;
+    border-radius: 15px;
+}
+
+.boton-auth{
+
+    margin-top: 10%;
+    width: 150px;
+    height: 45px;
+    font-size: 20px;
+}

@@ -182,7 +182,7 @@ class MascotasController{
 
                     Archivos::subirArch("fotoGato", $fotoGato, "Mascotas/FotosMascotas/", $mascota->getNombre());
                     Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
-                    header("location:../Mascotas/VerFiltroMascotas");
+                    header("location:../Mascotas/VistaMascotas");
 
                 }else{
 
@@ -229,7 +229,7 @@ class MascotasController{
 
                     Archivos::subirArch("fotoPerro", $fotoPerro, "Mascotas/FotosMascotas/", $mascota->getNombre());
                     Archivos::subirArch("fotoPlan", $fotoPlan, "Mascotas/PlanesVacunacion/", $mascota->getNombre());
-                    header("location:../Mascotas/VerFiltroMascotas");
+                    header("location:../Mascotas/VistaMascotas");
 
                 }else{
 
