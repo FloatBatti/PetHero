@@ -8,7 +8,8 @@
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.671);
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
-    margin-left: 30px;
+    margin: 0 auto;
+    margin-top: 2%;
 }
 
 .datos-reserva{
@@ -57,8 +58,10 @@ form{
 .caja{
     margin-top: 10px;
     height: 100px;
-    width: 300px;
+    width: 100%;
+    font-size: 20px;
 }
+
 .comentario{
     width: 60%;
     height: 40%;
@@ -75,12 +78,17 @@ form{
     justify-content: center;
     align-items: center;
     width: 33%;
+    color: brown;
     
 }
 .fechas{
     display:flex;
     flex-direction: column;
     justify-content: space-around;
-    font-size: 14px;
+    font-size: 14px;   
+}
+
+.puntuacion{
     
+    font-size: 20px;
 }

@@ -183,7 +183,7 @@ class GuardianDAO implements InterfaceDAO
         FROM usuarios u
         inner join guardianes g 
         on u.id_usuario = g.id_usuario
-        inner join reviews r on r.id_usuarioTo = u.id_usuario
+        inner join reviews r on r.id_guardian = u.id_usuario
         where u.id_usuario = :id_usuario;";
 
         $parameters["id_usuario"] = $idUsuario;
@@ -227,7 +227,7 @@ class GuardianDAO implements InterfaceDAO
         }catch (Exception $ex) {
 
             //throw $ex;
-            throw new Exception("Error de servidor. Intente mas tarde");
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
 

@@ -6,6 +6,7 @@ use DAO\DueñoDAO as DueñosDAO;
 use DAO\GuardianDAO as GuardianDAO;
 use DAO\MascotaDAO as MascotaDAO;
 use DAO\ReservaDAO as ReservaDAO;
+use DAO\UserDAO;
 use Exception;
 use Models\Reserva as Reserva;
 use Models\Alert as Alert;
@@ -20,6 +21,7 @@ class ReservasController{
     private $GuardianDAO;
     private $MascotaDAO;
     private $DueñoDAO;
+    private $UserDAO;
 
 
     public function __construct(){
@@ -28,6 +30,7 @@ class ReservasController{
         $this->GuardianDAO = new GuardianDAO();
         $this->MascotaDAO = new MascotaDAO();
         $this->DueñoDAO = new DueñosDAO();
+        $this->UserDAO = new UserDAO();
     }
 
     public function Add(){
@@ -87,7 +90,6 @@ class ReservasController{
             }catch(Exception $ex){
 
                 $alert = new Alert("danger", $ex->getMessage());
-                
                 require_once(VIEWS_PATH. "DashboardDueno/Reservas.php");
 
             }     
@@ -104,7 +106,11 @@ class ReservasController{
 
             try{
 
-                $listaReservas = $this->ReservaDAO->listarSolicitudesOrReservas("Aceptada");
+                $reservasAceptadas = $this->ReservaDAO->listarSolicitudesOrReservas("Aceptada");
+                $reservasPagadas = $this->ReservaDAO->listarSolicitudesOrReservas("Pagada");
+                $estadiasCompletadas = $this->ReservaDAO->ListarSolicitudesOrReservas("Completada");
+
+                $listaReservas = array_merge($reservasAceptadas, $reservasPagadas, $estadiasCompletadas);
 
                 if($listaReservas){
 
@@ -216,14 +222,16 @@ class ReservasController{
 
                                 throw new Exception("No se pudo cancelar la solicitud");
                             }
-        
+                            
                         break;
 
                         case "Pagada":
-                            throw new Exception("La reserva tiene que estar completada para ser borrada del historial");  
+                            throw new Exception("Solo se pueden quitar las reservas rechazadas");  
                         break;
 
-
+                        case "Completada":
+                            throw new Exception("Solo se pueden quitar las reservas rechazadas");  
+                        break;
 
                     }
  
@@ -601,7 +609,7 @@ class ReservasController{
         // Se tendria que implementar una verificacion de tarjeta
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
 
-            $tipo = "danger";
+            $type = "danger";
             try{
 
                 $id = (int) $idReserva;
@@ -612,14 +620,14 @@ class ReservasController{
 
                 $this->EnviarMailFactura($this->ReservaDAO->devolverReservaPorId($id));
 
-                $tipo= "success";
+                $type= "success";
                 throw new Exception("Reserva pagada con exito");
 
 
 
             }catch(Exception $ex){
 
-                $alert = new Alert($tipo, $ex->getMessage());
+                $alert = new Alert($type, $ex->getMessage());
                 $this->VerReservasDueno($alert);
 
             }
@@ -633,6 +641,60 @@ class ReservasController{
 
 
         
+    }
+
+    public function CompletarCuidado($idReserva){
+
+        // Se tendria que implementar una verificacion de tarjeta
+        if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
+
+            $type = "danger";
+
+            try{
+
+                $id = (int) $idReserva;
+
+                $reserva = $this->ReservaDAO->DevolverReservaPorId($id);
+                
+                if($reserva){
+
+                    switch($reserva->getEstado()){
+
+                        case "Aceptada":
+                            throw new Exception("La reserva no esta pagada");
+                        break;
+
+                        case "Pagada":
+                            //Aqui tendria que ir un algoritmo que checkee si la fecha fin es menor a la actual y si el cuidado se efetuó correctamente
+                            $type = "success";
+                            $this->ReservaDAO->cambiarEstadoReserva($id, "Completada");
+                            throw new Exception("Se completo la reserva. Gracias por su servicio");
+                        break;
+
+                        case "Completada":
+                            throw new Exception("La reserva ya aparece como completada");
+                        break;
+
+                    }
+
+                }else{
+
+                    throw new Exception("Error al procesar la reserva");
+                }
+
+
+            }catch(Exception $ex){
+
+                $alert = new Alert($type, $ex->getMessage());
+                $this->VerReservasGuardian($alert);
+
+            }
+
+
+        }else{
+
+            header("location: ../Home");
+        }
     }
 
     private function CheckTipoEstadia($reserva, $mascota){

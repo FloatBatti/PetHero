@@ -4,12 +4,15 @@ namespace Controllers;
 
 use DAO\DueñoDAO as DueñoDAO;
 use DAO\GuardianDAO;
+use DAO\MascotaDAO;
+use DAO\ReservaDAO;
+use DAO\ReviewDAO;
 use Models\Dueño as Dueño;
 use DAO\UserDAO as UserDAO;
 use Exception;
 use Models\Archivos;
 use Models\Alert;
-
+use Models\Review;
 
 class DuenosController
 {
@@ -237,7 +240,7 @@ class DuenosController
         }
     }
 
-    public function VistaFavoritos($alert = null) //CHECKED
+    public function vistaFavoritos($alert = null) //CHECKED
     {
 
         if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
@@ -247,11 +250,21 @@ class DuenosController
             try{
 
                 $listaGuardianes = $guardianesDAO->getFavoritos();
-                require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
+
+                if($listaGuardianes){
+
+                    require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
+
+                }else{
+
+                    throw new Exception("No tiene guardianes favoritos");
+                }
+                
 
             }catch(Exception $ex){
 
-                header("location: ../Duenos/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+                $alert=new Alert("danger", $ex->getMessage());       
+                require_once(VIEWS_PATH . "DashboardDueno/Favoritos.php");
             }
 
 
@@ -368,7 +381,131 @@ class DuenosController
         }
     }  
 
-    public function FotoValoracion($puntaje){
+    public function VistaReviews($idGuardian, $alert=null){
+
+
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+
+            $ReviewDAO = new ReviewDAO();
+        
+            try{
+                
+                $listaReviews = $ReviewDAO->devolverReviewsGuardian($idGuardian);
+                
+
+                if($listaReviews){
+
+                    require_once(VIEWS_PATH . "DashboardDueno/Reviews.php");
+
+                }else{
+
+                    throw new Exception("El guardian no posee reviews");
+                }      
+
+            }catch (Exception $ex){
+  
+                $alert = new Alert("danger", $ex->getMessage());
+                require_once(VIEWS_PATH . "DashboardDueno/Reviews.php");
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+
+
+    }
+
+    public function VistaGenerarReview($idReserva){
+
+
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+
+            $ReservaDAO = new ReservaDAO();
+            $GuardianDAO = new GuardianDAO();
+            $MascotaDAO = new MascotaDAO();
+            $ReviewDAO = new ReviewDAO();
+        
+            try{
+                
+                
+                $reserva = $ReservaDAO->DevolverReservaPorId($idReserva);
+                
+                if($reserva){
+
+                    $guardian = $GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
+                    $mascota = $MascotaDAO->devolverMascotaPorId($reserva->getMascota());
+                    $review = $ReviewDAO->devolverReviewPorReserva($reserva->getId());
+
+                    if($review){
+
+                        throw new Exception("Usted ya realizo una review sobre esa estadía"); 
+
+                    }else{
+                        
+                        require_once(VIEWS_PATH. "DashboardDueno/Calificar.php");
+                    }
+    
+                }else{
+
+                    throw new Exception("Error al procesar la review");
+                }
+
+                    
+      
+
+            }catch (Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                $this->VistaReviews($reserva->getGuardian(), $alert);
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+        
+    }
+
+    public function CrearReview($calificacion, $comentario, $idGuardian, $idReserva){
+
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+        
+            $review = new Review();
+            $ReviweDAO = new ReviewDAO();
+            $type= "danger";
+            
+            try{
+            
+                $review->setDueño($_SESSION["UserId"]);
+                $review->setCalificacion($calificacion);
+                $review->setComentario($comentario);
+                $review->setGuardian($idGuardian);
+                $review->setReserva($idReserva);
+
+                if($ReviweDAO->crearReview($review)){
+
+                    header("location: ../Duenos/VistaReviews?idGuardian=".$idGuardian);
+    
+                }else{
+
+                    throw new Exception("Error al crear la review. Intente mas tarde");
+                }
+
+                
+            }catch (Exception $ex){
+  
+            
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+        
+    }
+
+    private function FotoValoracion($puntaje){
         
         if($puntaje>=1 and $puntaje<2){
 

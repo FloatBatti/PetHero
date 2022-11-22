@@ -34,7 +34,7 @@
                         <div class="col ">Borrar</div>
 
                     </div>
-                <div>
+                <div class="scrolleable">
                     <?php foreach ($listaGuardianes as $guardian) { ?>
 
                         <div class="row guardian-row">

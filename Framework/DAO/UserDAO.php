@@ -5,19 +5,12 @@ use DAO\Connection;
 
 use Models\Usuario as Usuario;
 use Exception;
-use DAO\DueñoDAO as DueñoDAO;
 use DAO\GuardianDAO as GuardianDAO;
-use Models\Dueño;
 
 class UserDAO{
     
     private $connection;
 
-
-    public function GetAll(){
-
-        
-    }
     
     public function retornarUsuarioPorId($id){
 
