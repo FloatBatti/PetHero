@@ -8,6 +8,7 @@
 
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/editarPerfil.css" rel="stylesheet">
+    <link href="../styles/alert.css" rel="stylesheet">
     <link href="../styles/editarDisponibilidad.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,6 +58,10 @@
                             <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEnviar.png" alt="Enviar"></a></button>
                         </div>
                     </div>
+
+                    <?php if (isset($alert)) { ?>
+                     <div class="alert-<?php echo $alert->getType()?>"><?php echo $alert->getMessage()?></div>
+                 <?php } ?>
                 </form>
 
             </div>

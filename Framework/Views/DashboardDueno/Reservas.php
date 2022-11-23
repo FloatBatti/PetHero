@@ -64,7 +64,7 @@
 
                             <div class="col"><a href="../Reservas/VerAuthPago?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
 
-                            <div class="col"><a href="../Duenos/VistaGenerarReview?idReserva=<?php echo $reserva->getId()?>"><img src="../assets/img/reviews.png" height="45"></a></div>
+                            <div class="col"><a href="../Reservas/VistaGenerarReview?idReserva=<?php echo $reserva->getId()?>"><img src="../assets/img/reviews.png" height="45"></a></div>
                         </div>
 
                     <?php } ?>

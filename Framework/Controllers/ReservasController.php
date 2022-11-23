@@ -7,6 +7,7 @@ use DAO\GuardianDAO as GuardianDAO;
 use DAO\MascotaDAO as MascotaDAO;
 use DAO\ReservaDAO as ReservaDAO;
 use DAO\UserDAO;
+use DAO\ReviewDAO;
 use Exception;
 use Models\Reserva as Reserva;
 use Models\Alert as Alert;
@@ -108,9 +109,10 @@ class ReservasController{
 
                 $reservasAceptadas = $this->ReservaDAO->listarSolicitudesOrReservas("Aceptada");
                 $reservasPagadas = $this->ReservaDAO->listarSolicitudesOrReservas("Pagada");
+                $reservasAnuladas = $this->ReservaDAO->listarSolicitudesOrReservas("Anulada");
                 $estadiasCompletadas = $this->ReservaDAO->ListarSolicitudesOrReservas("Completada");
 
-                $listaReservas = array_merge($reservasAceptadas, $reservasPagadas, $estadiasCompletadas);
+                $listaReservas = array_merge($reservasAceptadas, $reservasPagadas,$reservasAnuladas, $estadiasCompletadas);
 
                 if($listaReservas){
 
@@ -184,7 +186,7 @@ class ReservasController{
 
                             $this->EnviarMailAnulacion($reserva);
 
-                            if($this->ReservaDAO->cancelarSolicitud($idReserva)){
+                            if($this->ReservaDAO->cambiarEstadoReserva($idReserva, "Anulada")){
     
                                 $type = "success";
                                 throw new Exception("La reserva fue anulada con exito. Se le avisara al guardian");
@@ -226,11 +228,11 @@ class ReservasController{
                         break;
 
                         case "Pagada":
-                            throw new Exception("Solo se pueden quitar las reservas rechazadas");  
+                            throw new Exception("Solo se pueden quitar las reservas rechazadas o pendientes");  
                         break;
 
                         case "Completada":
-                            throw new Exception("Solo se pueden quitar las reservas rechazadas");  
+                            throw new Exception("Solo se pueden quitar las reservas rechazadas o pendientes");  
                         break;
 
                     }
@@ -671,6 +673,10 @@ class ReservasController{
                             throw new Exception("Se completo la reserva. Gracias por su servicio");
                         break;
 
+                        case "Anulada":
+                            throw new Exception("La reserva nunca se hizo");
+                        break;
+
                         case "Completada":
                             throw new Exception("La reserva ya aparece como completada");
                         break;
@@ -695,6 +701,66 @@ class ReservasController{
 
             header("location: ../Home");
         }
+    }
+
+    public function VistaGenerarReview($idReserva){
+
+
+        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
+
+            $ReservaDAO = new ReservaDAO();
+            $GuardianDAO = new GuardianDAO();
+            $MascotaDAO = new MascotaDAO();
+            $ReviewDAO = new ReviewDAO();
+        
+            try{
+                
+                
+                $reserva = $ReservaDAO->DevolverReservaPorId($idReserva);
+                
+                if($reserva){
+
+                    $guardian = $GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
+                    $mascota = $MascotaDAO->devolverMascotaPorId($reserva->getMascota());
+                    $review = $ReviewDAO->devolverReviewPorReserva($reserva->getId());
+
+                    if($reserva->getEstado() == "Completada"){
+
+                        if($review){
+
+                            throw new Exception("Usted ya realizo una review sobre esa estadía"); 
+    
+                        }else{
+                            
+                            require_once(VIEWS_PATH. "DashboardDueno/Calificar.php");
+                        }
+
+                    }else{
+
+                        throw new Exception("La estadía tiene que estar completada para generar una review"); 
+                    }
+
+
+    
+                }else{
+
+                    throw new Exception("Error al procesar la review");
+                }
+
+                    
+      
+
+            }catch (Exception $ex){
+
+                $alert = new Alert("danger", $ex->getMessage());
+                $this->VerReservasDueno($alert);
+            }
+
+        }else{
+
+            header("location: ../Home");
+        }
+        
     }
 
     private function CheckTipoEstadia($reserva, $mascota){

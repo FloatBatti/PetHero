@@ -178,16 +178,9 @@ class DuenosController
 
                 if($resultBuscado){
 
-                    if(is_array($resultBuscado)){
-
-                        $listaGuardianes = $resultBuscado;
-                        require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
+                    $listaGuardianes = $resultBuscado;
+                    require_once(VIEWS_PATH . "DashboardDueno/Guardianes.php");
                         
-                    }else{
-
-                        header("location: ../Duenos/VerPerfilGuardian?idGuardian=".$resultBuscado->getId());
-                        
-                    }
 
                 }else{
 
@@ -365,7 +358,7 @@ class DuenosController
 
                     }else{
 
-                        throw new Exception("No se encontró el guardian buscado");
+                        throw new Exception("No se encontró a un guardian que coincida");
                     }
     
                 }
@@ -416,56 +409,6 @@ class DuenosController
 
     }
 
-    public function VistaGenerarReview($idReserva){
-
-
-        if (isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D") {
-
-            $ReservaDAO = new ReservaDAO();
-            $GuardianDAO = new GuardianDAO();
-            $MascotaDAO = new MascotaDAO();
-            $ReviewDAO = new ReviewDAO();
-        
-            try{
-                
-                
-                $reserva = $ReservaDAO->DevolverReservaPorId($idReserva);
-                
-                if($reserva){
-
-                    $guardian = $GuardianDAO->devolverGuardianPorId($reserva->getGuardian());
-                    $mascota = $MascotaDAO->devolverMascotaPorId($reserva->getMascota());
-                    $review = $ReviewDAO->devolverReviewPorReserva($reserva->getId());
-
-                    if($review){
-
-                        throw new Exception("Usted ya realizo una review sobre esa estadía"); 
-
-                    }else{
-                        
-                        require_once(VIEWS_PATH. "DashboardDueno/Calificar.php");
-                    }
-    
-                }else{
-
-                    throw new Exception("Error al procesar la review");
-                }
-
-                    
-      
-
-            }catch (Exception $ex){
-
-                $alert = new Alert("danger", $ex->getMessage());
-                $this->VistaReviews($reserva->getGuardian(), $alert);
-            }
-
-        }else{
-
-            header("location: ../Home");
-        }
-        
-    }
 
     public function CrearReview($calificacion, $comentario, $idGuardian, $idReserva){
 

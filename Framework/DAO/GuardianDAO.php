@@ -410,7 +410,7 @@ class GuardianDAO implements InterfaceDAO
         usuarios u
         INNER JOIN
         guardianes g ON g.id_usuario = u.id_usuario
-        where u.username = :username;";
+        where u.username like '".$nombreGuardian."%';";
 
         $parameters["username"] = $nombreGuardian;
 
@@ -418,15 +418,45 @@ class GuardianDAO implements InterfaceDAO
         $this->connection = Connection::GetInstance();
 
         $guardian = null;
+        $listaGuardianes = array();
 
         try {
 
-            $resultSet = $this->connection->Execute($query, $parameters);
+            $resultSet = $this->connection->Execute($query);
 
             //ACA SE UTILIZA LOGICA PORQUE PARA PODER SER MAPEADO EL GUARDIAN SE NECESITA CHECKEAR SI ME DEVUELVE ALGO LA QUERY
             //SI NO PONGO EL IF NO VA A SALTAR UN ERROR, POR ENDE NO LO AGARRA EL CATCH
             //SE VA A OCACIONAR UN WARNING. EJEMPLO: Warning: Trying to access array offset on value of type null in C:\xampp\htdocs\TP\PetHero\Framework\DAO\GuardianDAO.php on line 432
             
+          
+                foreach($resultSet as $reg){
+
+
+                    $guardian=new Guardian();
+                
+                    $guardian->setId($reg["id_usuario"]);
+                    $guardian->setUsername($reg["username"]);
+                    $guardian->setNombre($reg["nombre"]);
+                    $guardian->setApellido($reg["apellido"]);
+                    $guardian->setCorreoelectronico($reg["correo"]);
+                    $guardian->setTelefono($reg["telefono"]);
+                    $guardian->setFotoPerfil($reg["foto_perfil"]);
+                    $guardian->setFechaInicio($reg["dia_inicio"]);
+                    $guardian->setDescripcion($reg["descripcion"]);
+                    $guardian->setFechaFin($reg["dia_fin"]);
+                    $guardian->setCosto($reg["costo_diario"]);
+                    $guardian->setFotoEspacioURL($reg["foto_espacio"]);
+                    $guardian->setTipoMascota($this->obtenerTamañosMascotas($reg["id_usuario"]));
+
+                    array_push($listaGuardianes, $guardian);
+
+
+                }
+
+            return $listaGuardianes;
+            
+            /*
+
             if($resultSet){
 
                 $reg = $resultSet[0];
@@ -452,10 +482,13 @@ class GuardianDAO implements InterfaceDAO
 
             return $guardian;
 
+
+            */
+
         } catch (Exception $ex) {
 
-            //throw $ex;
-            throw new Exception("Error en la base de datos. Intentelo más tarde");
+            throw $ex;
+            //throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
     }
 }
