@@ -170,7 +170,7 @@ class GuardianesController
     }
     
     /* FUNCIONES DE DISPONIBILIDAD Y PERFIL */
-    public function EditarDisponibilidad(){ //CHECKED
+    public function EditarDisponibilidad($alert = null){ //CHECKED
 
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
 
@@ -202,11 +202,15 @@ class GuardianesController
 
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
         
+            $type = "danger";
+
             try {
 
                 if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion)){
 
-                    header("location: ../Guardianes/VistaDashboard");
+                    $type= "success";
+                    throw new Exception("Disponibilidad cambiada con exito");
+
                 }else{
                     
                     throw new Exception("No se pudieron actulizar los datos");
@@ -215,7 +219,8 @@ class GuardianesController
                   
             } catch (Exception $ex) {
                 
-                header("location: ../Guardianes/VistaDashboard?alert=".$ex->getMessage()."&tipo=danger");
+                $alert = new Alert($type, $ex->getMessage());
+                $this->EditarDisponibilidad($alert);
             }
             
         }else{

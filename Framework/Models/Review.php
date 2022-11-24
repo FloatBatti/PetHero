@@ -5,8 +5,9 @@ class Review{
 
     private $id;
     private $fecha;
-    private $autorID;//Quien realiza
-    private $userID; //Quien recibe
+    private $dueño;//Quien realiza
+    private $guardian; //Quien recibe
+    private $reserva; //Que reserva se comenta
     private $calificacion; // 1-5
     private $comentario;
 
@@ -48,26 +49,36 @@ class Review{
         $this->comentario = $comentario;
     }
  
-    public function getUserID()
+    public function getGuardian()
     {
-        return $this->userID;
+        return $this->guardian;
     }
 
-    public function setUserID($user)
+    public function setGuardian($guardian)
     {
-        $this->userID = $user;
+        $this->guardian= $guardian;
 
-        return $this;
     }
 
-    public function getAutorID()
+    public function getDueño()
     {
-        return $this->autorID;
+        return $this->dueño;
     }
 
-    public function setAutorID($autor)
+    public function setDueño($dueño)
     {
-        $this->autorID = $autor;
+        $this->dueño = $dueño;
+
+    }
+
+    public function getReserva()
+    {
+        return $this->reserva;
+    }
+
+    public function setReserva($reserva)
+    {
+        $this->reserva = $reserva;
 
     }
 }

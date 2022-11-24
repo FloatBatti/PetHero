@@ -1,8 +1,0 @@
-agregar boton de ver reservas en dashboard dueño
-desarrollar boton de editarPerfil en dashboard dueño
-
-generar nuevas vistas apartir de ver guardianes:
-	Ver PerfilGuardian->solicitar reserva->confirmar(ver sketch)
-				->Ver reviews del guardian(ver sketch)
-
-

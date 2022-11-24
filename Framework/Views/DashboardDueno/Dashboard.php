@@ -23,7 +23,7 @@
         <div class="contenedora-section">
             <div>
                 <?php if (isset($alert)) { ?>
-                    <div class="alert-<?php echo $_GET["tipo"] ?>"><?php echo $_GET["alert"] ?></div>
+                    <div class="alert-<?php echo $tipo ?>"><?php echo $alert?></div>
 
                 <?php } ?>
             </div>

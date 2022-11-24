@@ -39,6 +39,7 @@
                     <div class="col ">Estado</div>
                     <div class="col ">Cancelar</div>
                     <div class="col ">Pagar</div>
+                    <div class="col ">Calificar</div>
 
                    
                 </div>
@@ -60,7 +61,10 @@
                             <div class="col"><?php echo $reserva->getEstado(); ?></div>
 
                             <div class="col"><a href="../Reservas/CancelarSolicitud?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/remove.png" height="45"></a></div>
+
                             <div class="col"><a href="../Reservas/VerAuthPago?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
+
+                            <div class="col"><a href="../Reservas/VistaGenerarReview?idReserva=<?php echo $reserva->getId()?>"><img src="../assets/img/reviews.png" height="45"></a></div>
                         </div>
 
                     <?php } ?>

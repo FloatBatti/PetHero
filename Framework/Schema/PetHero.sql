@@ -21,19 +21,6 @@ constraint unq_dni unique (dni),
 constraint unq_correo unique (correo)
 );
 
-create table if not exists Reviews(
-
-id_review bigint auto_increment,
-fecha date not null,
-id_usuarioFrom bigint not null,
-id_usuarioTo bigint not null,
-calificacion float not null,
-comentario varchar(150),
-
-constraint pk_review primary key (id_review),
-constraint fk_usuarioFrom_usuario foreign key (id_usuarioFrom) references usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE,
-constraint fk_usuarioTo_usuario foreign key (id_usuarioTo) references usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE
-);
 
 create table if not exists Guardianes(
 
@@ -154,15 +141,20 @@ constraint fk_reserva_mascota foreign key (id_mascota) references mascotas(id_ma
 constraint chk_costo_total check (costo_total >=0)
 );
 
-create table if not exists Cupones_pago(
+create table if not exists Reviews(
 
-id_cupon_pago bigint auto_increment,
-fecha_envio date not null,
+id_review bigint auto_increment,
+fecha date not null,
+id_dueño bigint not null,
+id_guardian bigint not null,
 id_reserva bigint not null,
-costo_cupon float not null,
+calificacion float not null,
+comentario varchar(150),
 
-constraint pk_cupon_pago primary key (id_cupon_pago),
-constraint fk_cupon_pago_reserva foreign key (id_reserva) references reservas(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE
+constraint pk_review primary key (id_review),
+constraint fk_review_dueño foreign key (id_dueño) references usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE,
+constraint fk_review_guardian foreign key (id_guardian) references usuarios(id_usuario) ON UPDATE CASCADE ON DELETE CASCADE,
+constraint fk_review_reserva foreign key (id_reserva) references reservas(id_reserva) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table if not exists Mensajes(

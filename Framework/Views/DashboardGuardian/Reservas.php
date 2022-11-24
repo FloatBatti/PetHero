@@ -33,6 +33,8 @@
                     <div class="col campo fecha">Fecha inicio</div>
                     <div class="col campo fecha">Fecha fin</div>
                     <div class="col campo costo">Costo</div>
+                    <div class="col campo costo">Estado</div>
+                    <div class="col campo costo">Completar</div>
                 </div>
                 <div class="scrolleable">
                     <?php foreach ($listaReservas as $reserva) { ?>
@@ -42,6 +44,8 @@
                             <div class="col campo fecha"><?php echo $reserva->getFechaInicio() ?></div>
                             <div class="col campo fecha"><?php echo $reserva->getFechaFin() ?></div>
                             <div class="col campo costo"><?php echo "$".$reserva->getCosto() ?></div>
+                            <div class="col campo costo"><?php echo $reserva->getEstado() ?></div>
+                            <div class="col campo "><a href="../Reservas/CompletarCuidado?idReserva=<?php echo $reserva->getId()?>"><img src="../assets/img/completar.png" alt="completar"></a></div>
 
                         </div>
                     <?php } ?>

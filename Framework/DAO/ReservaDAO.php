@@ -142,7 +142,7 @@ class ReservaDAO{
         reservas r
         inner join usuarios u on u.id_usuario = r.id_guardian
         inner join mascotas m on m.id_mascota = r.id_mascota
-        where r.id_dueño = :id_usuario;";
+        where r.id_dueño = :id_usuario and r.estado != 'Anulada'";
 
         $parameters["id_usuario"] = $_SESSION["UserId"];
 
@@ -340,6 +340,64 @@ class ReservaDAO{
             //throw $ex;
             throw new Exception("Error en la base de datos. Intentelo más tarde");
         } 
+
+    }
+
+    public function listarCompletadasDueno($idGuardian){ // GUARDAR NOMBRES EN VEZ DE OBJETO
+
+        $listaReservas = array();
+
+        $query = "SELECT
+        r.id_reserva,
+        r.fecha_reserva,
+        r.fecha_inicio,
+        r.fecha_fin,
+        u.username as guardian,
+        r.id_guardian,
+        m.nombre as mascota,
+        r.costo_total,
+        r.estado 
+        from 
+        reservas r
+        inner join usuarios u on u.id_usuario = r.id_guardian
+        inner join mascotas m on m.id_mascota = r.id_mascota
+        where r.id_dueño = :id_usuario and r.id_guardian = :id_guardian and r.estado = 'Completada';";
+
+        $parameters["id_guardian"] = $idGuardian;
+        $parameters["id_usuario"] = $_SESSION["UserId"];
+
+        $this->connection = Connection::GetInstance();
+        
+        try{
+
+            $resultSet = $this->connection->Execute($query, $parameters);
+    
+            foreach($resultSet as $reg){
+    
+                $reserva = new Reserva();
+
+                $reserva->setId($reg["id_reserva"]);
+                $reserva->setFecha($reg["fecha_reserva"]);
+                $reserva->setFechaInicio($reg["fecha_inicio"]);
+                $reserva->setFechaFin($reg["fecha_fin"]);
+                $reserva->setGuardian($reg["guardian"]);
+                $reserva->setDueño($_SESSION["UserId"]);
+                $reserva->setMascota($reg["mascota"]);
+                $reserva->setCosto($reg["costo_total"]);
+                $reserva->setEstado($reg["estado"]);
+
+                array_push($listaReservas, $reserva);
+            }
+
+            return $listaReservas;
+
+        }
+        catch(Exception $ex){
+
+            //throw $ex;
+            throw new Exception("Error en la base de datos. Intentelo más tarde");
+        }
+
 
     }
 
