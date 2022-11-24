@@ -30,8 +30,8 @@
                 <div class="rotulo">
                     <div class="campo Nombre">Usuario</div>
                     <div class="campo Mascota">Mascota</div>
-                    <div class="campo fecha">fecha inicio</div>
-                    <div class="campo fecha">fecha fin</div>
+                    <div class="campo fecha">Fecha inicio</div>
+                    <div class="campo fecha">Fecha fin</div>
                     <div class="campo costo">Costo</div>
                     <div class="campo aceptar">Aceptar</div>
                     <div class="campo rechazar">Rechazar</div>

@@ -1,9 +1,4 @@
 
-
-.imagen-guardian{
-    width: 15%;
-}
-
 .conteiner-list{
 
     margin-top: 3%;
@@ -12,7 +7,6 @@
     margin-left: 4%;
     margin-right: 4%;
     text-align: center;
-    /*overflow-y: scroll;*/
     height: 80% ;
     
 
@@ -33,9 +27,9 @@
 
 }
 
-.guardian-row{
+.review-row{
 
-    padding: 7px;
+    padding: 20px;
     width: 99%;
     margin-bottom: 10px;
     text-align: center;
@@ -50,3 +44,25 @@
     overflow-y: scroll;
     height:90%;
 }
+
+.stars{
+    display:flex;
+    justify-content: space-around;
+}
+
+.nombre{
+
+    font-size: 20px;
+    
+}
+
+.fecha{
+
+    font-size: 20px;
+ }
+
+ .comentario{
+
+
+    overflow:hidden;
+ }

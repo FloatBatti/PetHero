@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="cont review">
-                        <a href=""><img src="../assets/img/reviews.png"></a>
+                        <a href="../Duenos/VistaReviews?idGuardian=<?php echo $guardian->getId()?>"><img src="../assets/img/reviews.png"></a>
                         Reviews
                     </div>
                     

@@ -21,5 +21,4 @@ session_start();
 
 Router::Route(new Request());
 
-
 ?>

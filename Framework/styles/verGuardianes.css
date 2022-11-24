@@ -34,18 +34,18 @@
 .guardian-row{
 
     padding: 7px;
-    width: 100%;
+    width: 99%;
     margin-bottom: 10px;
     text-align: center;
     align-items: center;   
     border-radius: 5px;
     background-color: gainsboro;
     box-shadow: 10px 4px 20px rgb(14, 12, 9);
+    margin-left: 0.10%;
 }
 .scrolleable{
     overflow-y: scroll;
-    height:60%;
-    
+    height:60%; 
 }
 .filtro-fecha{
     height: 80px;
