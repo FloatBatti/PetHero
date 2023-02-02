@@ -7,7 +7,7 @@ use DAO\IDueñoDAO as IDueñoDAO;
 use DAO\UserDAO as UserDAO;
 use Exception;
 
-class MascotaDAO implements InterfaceDAO{
+class MascotaDAO{
     
     private $connection;
 
@@ -144,8 +144,8 @@ class MascotaDAO implements InterfaceDAO{
           
         } catch (Exception $ex) {
             
-            //throw $ex;
-            throw new Exception("Error en la base de datos. Intentelo más tarde");
+            throw $ex;
+            //throw new Exception("Error en la base de datos. Intentelo más tarde");
         }
 
     }
