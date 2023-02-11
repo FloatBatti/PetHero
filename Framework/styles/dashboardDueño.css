@@ -1,5 +1,5 @@
 body{
-    background-image: url(../assets/img/jazmin.jpeg);
+    background-image: url(../assets/img/BackReg.png);
     background-repeat:no-repeat;
     background-size: 100%;
     font-family: 'Open Sans', sans-serif;
@@ -10,6 +10,7 @@ body{
     justify-content: space-between;
     height: 10vh;
 }
+
 .contenedora-general{
     display:flex;
     flex-direction: row-reverse;
@@ -18,10 +19,10 @@ body{
 }
 
 .contenedora-section{
-    height: 70vh;
+    height: 85vh;
     width: 70vw;
     float:right;
-    border-radius: 5px;
+    border-radius: 0px 5px 5px 0px;
     background-color: rgb(90, 135, 103, .9);
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.76);
     
@@ -38,8 +39,8 @@ body{
     overflow: hidden;    
 }
 .opcion:hover{
-    box-shadow: 10px 10px 40px black;
     color: blue;
+    font-size: 20px;
     
 }
 
@@ -79,9 +80,9 @@ a{
 
 
 .contenedora-aside{
-    font-size: 20px;
-    border-radius: 5px;
-    height: 70vh;
+    font-size: 18px;
+    border-radius: 5px 0px 0px 5px;
+    height: 85vh;
     width:25vw;
     color: rgb(12, 3, 37);
     background-color: lightgray; 

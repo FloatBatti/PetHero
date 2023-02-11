@@ -1,11 +1,11 @@
 .listasolicitudes{
     width: 80%;
     background-color: lightgray;
-    box-shadow: 20px 20px 30px black;
+    border: 1px solid black;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    height: 90%;
+    height: 93%;
     margin: 2% auto auto 10%;
 
        
@@ -14,27 +14,33 @@
     width: 93%;
     height: 55px;
     background-color: rgb(231, 160, 7);
-    box-shadow: 20px 20px 30px -5px rgb(58, 29, 1);
+    border: 1px solid black;
     border-radius: 5px;
     display:flex;
-    margin: 10px auto;    
+    font-size: 13px;
+    text-align: center;
+    align-items: center;
+    margin-left: 3.6% 
 }
 .rotulo{
-    width: 90%;
-    height: 60px;
+    
+    width: 91%;
+    height: 50px;
     background-color: rgb(90, 135, 103);
-    box-shadow: 20px 20px 30px -5px rgb(58, 29, 1);
+    box-shadow: 10px 4px 20px rgb(14, 12, 9);
+    border: 1px solid black;
     border-radius: 5px;
     display:flex;
+    flex-direction: row;
     margin-bottom: 1.75%;
     margin-left: 3.5%;
     padding-left: 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
 
 }
-.campo{
-    
-    margin: auto;
-}
+
 .scrolleable{
     overflow-y: scroll;
     height: 70%;
@@ -46,4 +52,9 @@
 }
 h2{
     color: brown;
+}
+
+img:hover{
+    transform: scale(1.2);
+    transition: .5s ease;
 }

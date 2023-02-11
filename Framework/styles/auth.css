@@ -11,8 +11,9 @@
     text-align: center;
     align-content: center;
     margin: 0 auto;
-    width: 30%;
+    width: 45%;
     background-color: lightgray;
+    border: solid 1px black;
     padding: 20px;
     padding-top: 15px;
     padding-bottom: 45px;

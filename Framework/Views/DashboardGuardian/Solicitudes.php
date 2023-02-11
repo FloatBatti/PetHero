@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/listaSolicitudes.css" rel="stylesheet">
     <link href="../styles/alert.css" rel="stylesheet">
@@ -16,7 +18,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
+    <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -27,27 +29,27 @@
                 <div class="titulo">
                     <h2>Solicitudes Pendientes</h2>
                 </div>
-                <div class="rotulo">
-                    <div class="campo Nombre">Usuario</div>
-                    <div class="campo Mascota">Mascota</div>
-                    <div class="campo fecha">Fecha inicio</div>
-                    <div class="campo fecha">Fecha fin</div>
-                    <div class="campo costo">Costo</div>
-                    <div class="campo aceptar">Aceptar</div>
-                    <div class="campo rechazar">Rechazar</div>
+                <div class="row rotulo">
+                    <div class="col">Usuario</div>
+                    <div class="col">Mascota</div>
+                    <div class="col">Inicio</div>
+                    <div class="col">Fin</div>
+                    <div class="col">Costo</div>
+                    <div class="col">Aceptar</div>
+                    <div class="col">Rechazar</div>
                 </div>
                 <div class="scrolleable">
                     <?php foreach ($listaSolicitudes as $solicitud) { ?>
                         <div class="row solicitud">
-                            <div class="col campo Nombre"><?php echo $solicitud->getDueño() ?></div>
-                            <div class="col campo Mascota"><?php echo $solicitud->getMascota() ?></div>
-                            <div class="col campo fecha"><?php echo $solicitud->getFechaInicio() ?></div>
-                            <div class="col campo fecha"><?php echo $solicitud->getFechaFin() ?></div>
-                            <div class="col campo costo"><?php echo "$".$solicitud->getCosto() ?></div>
+                            <div class="col"><?php echo $solicitud->getDueño() ?></div>
+                            <div class="col"><?php echo $solicitud->getMascota() ?></div>
+                            <div class="col"><?php echo $solicitud->getFechaInicio() ?></div>
+                            <div class="col"><?php echo $solicitud->getFechaFin() ?></div>
+                            <div class="col"><?php echo "$".$solicitud->getCosto() ?></div>
 
-                            <div class="col campo aceptar"><a href="../Reservas/AceptarSolicitud?idReserva=<?php echo $solicitud->getId() ?>"><img src="../assets/img/ok.png" alt="Aceptar"></a></div>
+                            <div class="col"><a href="../Reservas/AceptarSolicitud?idReserva=<?php echo $solicitud->getId() ?>"><img src="../assets/img/ok.png" alt="Aceptar" width="50px"></a></div>
 
-                            <div class="col campo rechazar"><a href="../Reservas/RechazarSolicitud?idReserva=<?php echo $solicitud->getId() ?>"><img src="../assets/img/rechaza.png" alt="Rechazar"></a></div>
+                            <div class="col"><a href="../Reservas/RechazarSolicitud?idReserva=<?php echo $solicitud->getId() ?>"><img src="../assets/img/rechaza.png" alt="Rechazar" width="50px"></a></div>
                         </div>
                     <?php } ?>
                 </div>
@@ -64,13 +66,6 @@
             <?php require_once(VIEWS_PATH . "dashboardGuardian/MenuDash.php"); ?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

@@ -14,15 +14,17 @@
     overflow-y: scroll;
     height:75%;
     width: 80%;
+    margin-top: 20px;
+    box-shadow: 10px 4px 20px rgb(14, 12, 9);
     
 }
 .aesthetic{
     border-radius: 5px;
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.56);
+    border: 1px solid black;
 }
 .row{
     width: 80%;
-    height:90px;
+    height:60px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -61,8 +63,9 @@
 
 .title{
 
-    font-size: 35px;
+    font-size: 30px;
     color:brown;
+    margin-top: 20px;
 
 }
 .inbox{
@@ -71,5 +74,8 @@
     justify-content: space-around;
 }
 
-
+img:hover{
+    transform: scale(1.2);
+    transition: .5s ease;
+}
 

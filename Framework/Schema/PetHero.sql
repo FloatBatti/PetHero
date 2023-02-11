@@ -272,7 +272,7 @@ set id_dueño = (select d.id_dueño from dueños d inner join usuarios u on u.id
 
 insert into mascotas (nombre, id_raza, id_tamaño, id_dueño, plan_vacunacion, foto_mascota, video) values (p_nombre, id_raza, id_tamaño, id_dueño, p_plan_vacunacion, p_foto_mascota, p_video);
 
-
+end//
 
 DELIMITER //
 create procedure listar_chat(in id_sesion bigint,in id_interlocutor bigint)
@@ -320,16 +320,5 @@ BEGIN
 insert into mensajes(fecha,id_emisor,id_receptor,contenido)values(current_timestamp(),emisor,receptor, contenido);
 END//
 
-DELIMITER //
-create procedure listar_chat(in id_sesion bigint,in id_interlocutor bigint)
-begin
-SELECT 
-      fecha, 
-      id_emisor,
-      id_receptor,
-      contenido 
-      from mensajes 
-      where (id_emisor =id_sesion and id_receptor =id_interlocutor) or (id_emisor = id_interlocutor and id_receptor = id_sesion)
-      order by fecha desc;
-END //
+
 

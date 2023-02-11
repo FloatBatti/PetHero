@@ -198,7 +198,7 @@ class GuardianesController
         }
     }
 
-    public function ActualizarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){ //CHECKED
+    public function ActualizarDisponibilidad($fechaInicio,$fechaFin,$costo,$descripcion,$sizes=null){ //CHECKED
 
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "G"){
         
@@ -206,17 +206,23 @@ class GuardianesController
 
             try {
 
-                if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion)){
+                if($sizes != null){
 
-                    $type= "success";
-                    throw new Exception("Disponibilidad cambiada con exito");
+                    if($this->GuardianDAO->grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$descripcion)){
+
+                        $type= "success";
+                        throw new Exception("Disponibilidad cambiada con exito");
+    
+                    }else{
+                        
+                        throw new Exception("No se pudieron actulizar los datos");
+                    }
 
                 }else{
-                    
-                    throw new Exception("No se pudieron actulizar los datos");
-                }
 
-                  
+                    throw new Exception("Debe seleccionar al menos un tamaño");
+                }
+     
             } catch (Exception $ex) {
                 
                 $alert = new Alert($type, $ex->getMessage());

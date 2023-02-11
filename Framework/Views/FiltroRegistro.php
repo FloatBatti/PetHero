@@ -19,7 +19,7 @@
 
   <div class="cabecera">
     <!--contenedora para el logo en el top + faqs, etc -->
-    <a href='../index.php'><img src="../assets/img/PetHeroLogo.png" height="120"></a>
+    <div class="logo"><a href='../index.php'><img src="../assets/img/volver.png"></a></div>
   </div>
   <div class="contenedora-gral">
 
@@ -30,21 +30,19 @@
       <!--contenedora para eleccion de dueño -->
 
       <div class="contenedora-titulo">
-        <img src="../assets/img/icono-Dueño.png" height="400">
+        <img src="../assets/img/dueño.png" width="150px">
       </div>
-      <div class="superheroicon"><img src="../assets/img/petsuperhero-removebg-preview.png"> </div>
+      <div class="superheroicon"><img src="../assets/img/collarReg.png" width="80px"></div>
       <div class="contenedora-texto">
         <div class="texto">
           <p>
-            Deberás brindar datos personales y de contacto.<br>
-            Podrás registrar las mascotas que desees.<br>
-            Una vez hecho ya podras usar los servicios de la web. <br>
+            Podrás registrar las mascotas que desees, buscar el guardián ideal y gestionar tus reservas.<br>
           </p>
         </div>
       </div>
 
       <div class="contenedora-boton">
-        <a href="<?php echo FRONT_ROOT . "Duenos/VistaRegistro" ?>"><img src="../assets/img/RegistrarmeResized.png" height="50"></a>
+        <a href="<?php echo FRONT_ROOT . "Duenos/VistaRegistro" ?>"><img src="../assets/img/registrarme.png" height="50"></a>
       </div>
 
     </div>
@@ -53,16 +51,16 @@
       <!--acontenedora para eleccion de guardian -->
 
       <div class="contenedora-titulo">
-        <img src="../assets/img/My Project-1.png">
+        <img src="../assets/img/titGuardian.png" width="250px">
       </div>
-      <div class="superheroicon"><img src="../assets/img/petsuperhero-removebg-preview.png"> </div>
+      <div class="superheroicon"><img src="../assets/img/casita.png" width="90px"> </div>
 
       <div class="contenedora-texto">
-        <div class="texto">Deberas brindar datos personales y de contacto.<br> Será necesario agregar información acerca <br>del espacio brindado para el cuidado de las mascotas como asi mísmo <br>una descripción del servicio ofrecído <br>y registrar la disponibilidad con la que lo harás.</div>
+        <div class="texto">Podrás ofrecer tu servicio de cuidado, elegiendo la disponibilidad que gustes. Podras ver y gestionar comodamente las solicitudes de reservas.</div>
       </div>
 
       <div class="contenedora-boton">
-        <a href="<?php echo FRONT_ROOT . "Guardianes/VistaRegistro" ?>"><img src="../assets/img/RegistrarmeResized.png" height="50"></a>
+        <a href="<?php echo FRONT_ROOT . "Guardianes/VistaRegistro" ?>"><img src="../assets/img/registrarme.png" height="50"></a>
       </div>
     </div>
 
@@ -71,10 +69,12 @@
   <!--ofrece un margen inferior por encima del footer -->
 
 
+  <!--
   <footer>
     <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
     <div><a href="">Terminos y Condiciones</a></div>
     <div><a href="">Aviso de privacidad</a></div>
   </footer>
+  -->
 
 </html>

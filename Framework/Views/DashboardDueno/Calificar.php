@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Calificar</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/calificacion.css" rel="stylesheet">
     
@@ -17,7 +20,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -37,8 +40,8 @@
                             <div><img src="../assets/img/allstars.png" height="100"></div>
                         </div>
                         <div class="comentario">
-                            <div>Agregue un comentario de su experiencia con el guardian.</div>
-                            <textarea name="comentario" class="caja" maxlength="150" placeholder="max 150 caracteres" size="50" required></textarea> 
+                            <p class="consigna">Agregue un comentario de su experiencia con el guardian.</p>
+                            <textarea name="comentario" class="caja" maxlength="150" placeholder="Máximo 150 caracteres." size="50" required></textarea> 
                         </div>
                         <input type="hidden" name="idGuardian" value="<?php echo $guardian->getId()?>">
                         <input type="hidden" name="idReserva" value="<?php echo $reserva->getId()?>">
@@ -56,13 +59,6 @@
         <?php require_once(VIEWS_PATH. "dashboardDueno/MenuDash.php");?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

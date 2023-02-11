@@ -15,7 +15,6 @@
     /*overflow-y: scroll;*/
     height: 80% ;
     
-
 }
 
 .encabezado-row{
@@ -28,7 +27,7 @@
     border-radius: 5px;
     background-color: rgb(236, 157, 10);
     box-shadow: 10px 4px 20px rgb(14, 12, 9);
-    font-size: 20px;
+    font-size: 15px;
     margin-left: 0.10%;
 
 }
@@ -42,11 +41,26 @@
     align-items: center;   
     border-radius: 5px;
     background-color: gainsboro;
-    box-shadow: 10px 4px 20px rgb(14, 12, 9);
+    border: 1px solid black;
     margin-left: 0.10%;
 }
 
 .scrolleable{
     overflow-y: scroll;
     height:90%;
+}
+
+img:hover{
+    transform: scale(1.2);
+    transition: .5s ease;
+}
+
+.descripcion-ex{
+
+    margin-left: 20px;
+}
+
+.tipo-ex{
+
+    margin-left: 20px;
 }

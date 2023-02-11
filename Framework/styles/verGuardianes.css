@@ -1,5 +1,3 @@
-
-
 .imagen-guardian{
     width: 15%;
 }
@@ -27,7 +25,7 @@
     border-radius: 5px;
     background-color: rgb(236, 157, 10);
     box-shadow: 10px 4px 20px rgb(14, 12, 9);
-    font-size: 20px;
+    font-size: 15px;
 
 }
 
@@ -40,15 +38,16 @@
     align-items: center;   
     border-radius: 5px;
     background-color: gainsboro;
-    box-shadow: 10px 4px 20px rgb(14, 12, 9);
+    border: 1px solid black;
     margin-left: 0.10%;
 }
 .scrolleable{
     overflow-y: scroll;
     height:60%; 
 }
+
 .filtro-fecha{
-    height: 80px;
+    height: 65px;
     padding: 5px;
     width: 98%;
     margin-bottom: 1.5%;
@@ -62,6 +61,7 @@
     font-family: 'Open Sans', sans-serif;
     justify-content: space-around;
 }
+
 input{
     border-radius: 3px;
     height: 30px;
@@ -72,15 +72,51 @@ input{
     border:1px solid orangered;
 
 }
+
 .lupa{
     text-decoration: none;
-    height: 70px;
-    width: 70px;
+    height:40px;
+    width: 40px;
     border:none;
     background-color: rgb(236, 157, 10);
     background-image: url(../assets/img/lupa.png);
     background-repeat: no-repeat;
-    background-size: cover;
-    margin-right: 20px;
+    background-size: 40px;
+    margin-right: 10px;
 
+}
+
+img:hover{
+    transform: scale(1.2);
+    transition: .5s ease;
+}
+
+.nombre-ex{
+
+    font-size: 15px;
+}
+
+.descripcion-ex{
+
+    font-size: 15px;
+}
+
+.tipo-ex{
+
+    font-size: 15px;
+}
+
+.alert-2{
+
+    margin:  0 auto;
+    background-color: #F8D7DA;
+    margin-top: 2px;
+    padding: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid #F5C6CB 1px;
+    font-size: 15px;
+    color: #721C24;
+    border-radius: 5px;
+    text-align: center;
 }

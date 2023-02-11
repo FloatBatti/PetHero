@@ -841,18 +841,21 @@ class ReservasController{
     }
 
     private function CalcularFecha($fechaIn,$fechaOut){
-        //0 indice años, 1 meses, 2 dias, 11 total de dias.
+
         if(isset($_SESSION["UserId"]) and $_SESSION["Tipo"] == "D"){
+
 
             $fecha1=date_create($fechaIn);
             $fecha2=date_create($fechaOut);    
             $intervalo=date_diff($fecha1,$fecha2);
             $tiempo=array();
+
             foreach($intervalo as $medida){
                 $tiempo[]=$medida;
 
             }
-            return $tiempo[11];
+
+            return $tiempo[8] + 1;
 
         }else{
 
@@ -882,7 +885,7 @@ class ReservasController{
                 $mail->Host = 'smtp.gmail.com';                   // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
                 $mail->Username = 'petherolab@gmail.com';                 // SMTP username
-                $mail->Password = 'yowqxocqmbfexmvd';                           // SMTP password
+                $mail->Password = 'nxziflffvldrplfu';                           // SMTP password
                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                 $mail->Port = 587;                                    // TCP port to connect to
 
@@ -937,7 +940,7 @@ class ReservasController{
                 $mail->Host = 'smtp.gmail.com';                   // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
                 $mail->Username = 'petherolab@gmail.com';                 // SMTP username
-                $mail->Password = 'yowqxocqmbfexmvd';                           // SMTP password
+                $mail->Password = 'nxziflffvldrplfu';                           // SMTP password
                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                 $mail->Port = 587;                                    // TCP port to connect to
 
@@ -992,7 +995,7 @@ class ReservasController{
                 $mail->Host = 'smtp.gmail.com';                   // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
                 $mail->Username = 'petherolab@gmail.com';                 // SMTP username
-                $mail->Password = 'yowqxocqmbfexmvd';                           // SMTP password
+                $mail->Password = 'nxziflffvldrplfu';                           // SMTP password
                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                 $mail->Port = 587;                                    // TCP port to connect to
 

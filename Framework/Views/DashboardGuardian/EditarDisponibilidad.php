@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Editar disponibilidad</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
-    <link href="../styles/editarPerfil.css" rel="stylesheet">
-    <link href="../styles/alert.css" rel="stylesheet">
     <link href="../styles/editarDisponibilidad.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" alt="Logo PetHero" height="100"></a>
+    <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -28,32 +28,27 @@
             <div class="setDispo">
                 <form action="<?php echo FRONT_ROOT ?> Guardianes/actualizarDisponibilidad" method="post">
 
-                    <h3 class="title">Establecer disponiblidad</h3>
+                    <h3 class="title">Seleccione su nueva disponiblidad</h3>
                     <div class="disponibilidad">
                         <div>Fecha inicio<input type="date" name="fechaInicio" min="<?php echo date("Y-m-d"); ?>"></div>
                         <div>Fecha Fin<input type="date" name="fechaFin" min="<?php echo date("Y-m-d"); ?>"></div>
                     </div>
 
-                    <div><label for="tamano">Tamaño de mascotas aceptado</label></div>
-                    <div class="tipo">
-                        <div><input type="checkbox" name="sizes[]" value="Pequeño" class="" checked>Pequeños.</div>
-                        <div><input type="checkbox" name="sizes[]" value="Mediano" class="">Medianos.</div>
-                        <div><input type="checkbox" name="sizes[]" value="Grande" class="">Grandes.</div>
-                    </div>
                     <div class="ultimos">
-                        <div><label for="costo">Precio por dia</label></div>
+                        <div><label for="costo">Precio por día</label></div>
                         <div class="datoregistro">
                             <input type="number" name="costo" class="" value="<?php echo $guardian->getCosto(); ?>">
                         </div>
-
-                        <div><label for="fotoEspacio">Foto del espacio.<br>(Colocar direccion URL de la imagen)</label></div>
-                        <div class="datoregistro">
-                            <input type="text" name="fotoUrl" class="" value="<?php echo $guardian->getFotoEspacioURL(); ?>" required><br>
-                        </div>
-                        <div><label for="descripcion">Descripcion del espacio ofrecido</label></div>
+                        <div><label for="descripcion">Descripción del espacio ofrecido</label></div>
                         <div class="datoregistro">
                             <input type="text" name="descripcion" class="descripcion" value="<?php echo $guardian->getDescripcion(); ?>" required><br>
                         </div>
+                        <div><label style="margin-top: 5px; margin-bottom: 5px;">Tamaño de mascotas aceptado</label></div>
+                        <div class="tipo">
+                        <div><input type="checkbox" name="sizes[]" value="Pequeño"><p class="check">Pequeños</p></div>
+                        <div><input type="checkbox" name="sizes[]" value="Mediano"><p class="check">Medianos</p></div>
+                        <div><input type="checkbox" name="sizes[]" value="Grande"><p  class="check">Grandes</p></div>
+                    </div>
                         <div class="boton">
                             <button type="submit" class="submit"><a href=""><img src="../assets/img/dogboneEnviar.png" alt="Enviar"></a></button>
                         </div>
@@ -71,13 +66,6 @@
             <?php require_once(VIEWS_PATH . "dashboardGuardian/MenuDash.php"); ?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

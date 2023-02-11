@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/verPerfilGuardian.css" rel="stylesheet">
 
@@ -16,7 +18,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -30,7 +32,7 @@
                     <div class=" cont nombre-perfil"><?php echo $guardian->getUsername(); ?></div>
                 </div>
                 <div class="cont calificacion">
-                    <div class="cont solicitud calificacion">Valoracion</div>
+                    <div class="cont solicitud calificacion">Valoración</div>
                     <div class="cont stars"><a href=""><img src="../assets/img/<?php echo $fotopuntaje; ?>"></a></div>
                 </div>
 
@@ -52,24 +54,24 @@
                     <div class="cont texto"><?php echo $guardian->getDescripcion(); ?></div>
                 </div>
                 <div class="botones">
-                    
+
                     <div class="cont reserva">
-                            <a href="../Reservas/Iniciar?id=<?php echo $guardian->getId(); ?>"><img src="../assets/img/perro-mail.png"></a>
+                        <a href="../Reservas/Iniciar?id=<?php echo $guardian->getId(); ?>"><img src="../assets/img/perro-mail.png" width="55px"></a>
                         Enviar solicitud
                     </div>
 
                     <div class="cont review">
-                        <a href="../Duenos/VistaReviews?idGuardian=<?php echo $guardian->getId()?>"><img src="../assets/img/reviews.png"></a>
+                        <a href="../Duenos/VistaReviews?idGuardian=<?php echo $guardian->getId() ?>"><img src="../assets/img/reviews.png" width="72px"></a>
                         Reviews
                     </div>
-                    
-                    
+
+
                     <div class="cont letter">
-                        <a href="../Mensaje/NuevoMensaje?id=<?php echo $guardian->getId(); ?>&nombre=<?php echo $guardian->getUsername(); ?>"><img src="../assets/img/icono-mensaje.png"></a>
+                        <a href="../Mensaje/NuevoMensaje?id=<?php echo $guardian->getId(); ?>&nombre=<?php echo $guardian->getUsername(); ?>"><img src="../assets/img/icono-mensaje.png" width="62px"></a>
                         Enviar Mensaje
                     </div>
-                        
-                    
+
+
 
                 </div>
 
@@ -81,14 +83,6 @@
             <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
-
 </body>
 
 </html>

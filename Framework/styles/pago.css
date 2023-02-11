@@ -3,14 +3,13 @@
    
 }
 .area-pago{
-    height: 90%;
-    width: 60%;
+    height: 95%;
+    width: 75%;
     border-radius: 7px;
     background-color: lightgray;
-    margin:20px auto auto 20px;
     display: flex;
     flex-direction: row;
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.76);
+    border: 1px solid black;
     margin: 0 auto ;
     margin-top: 2%;
 }
@@ -69,7 +68,7 @@ form{
     border-radius: 5px;
     border:none;
     height: 25px;
-    width: 140px;
+    width: 170px;
     margin:5px;
 }
 .cod{
@@ -90,7 +89,7 @@ form{
     border-radius: 5px;
     border:none;
     height: 25px;
-    width: 100px;
+    width: 170px;
 }
 .fechas{
     display: flex;
