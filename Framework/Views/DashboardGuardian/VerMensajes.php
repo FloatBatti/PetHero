@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Editar Perfil</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/verMensajes.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +18,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -24,7 +26,7 @@
         <div class="contenedora-section">
             <div class="contenedora-msjs aesthetic">
                 <div>
-                <h2 class="title">Mensajes de Dueños</h2>
+                    <h2 class="title">Mensajes de Dueños</h2>
                 </div>
                 <div class="bandeja-entrada aesthetic">
                     <?php foreach ($bandeja as $inbox) { ?>
@@ -45,15 +47,6 @@
             <?php require_once(VIEWS_PATH . "DashboardGuardian/MenuDash.php"); ?>
         </aside>
     </div>
-
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero es un producto de Batti's System CO & Cuyo SA.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
-
 </body>
 
 </html>

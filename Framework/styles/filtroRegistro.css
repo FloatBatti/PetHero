@@ -1,5 +1,6 @@
 body{
-    background-image: url(../assets/img/patio\ mujer\ hijo\ perro.jpeg);
+    /*background-image: url(../assets/img/patio\ mujer\ hijo\ perro.jpeg);*/
+    background-image: url(../assets/img/BackReg.png);
     background-repeat:no-repeat;
     background-size: 100%;
     color:white;
@@ -28,10 +29,10 @@ body{
     color: black;
     font-size: larger;
     border-radius: 5px;
-    background-color: lightgray;
+    background-color: #d3d3d3;
     width: 30%;
     max-width: 30%;
-    box-shadow: 20px 20px 10px black;
+    box-shadow: 10px 10px 10px rgb(122, 122, 122);
     display: flex;
     flex-direction: column;
 
@@ -39,11 +40,10 @@ body{
 }
 
 .contenedora-titulo{
-    padding-top:20px;
+    padding-top:5px;
     position: relative;
-    height: 20%;
-    max-height: 30%;
     place-items: center;
+    margin-bottom: 15px;	
     display:flex;
     justify-content: center;
    
@@ -51,8 +51,7 @@ body{
 
 .contenedora-texto{
     
-    height: 60%;
-    max-height:60%;
+    margin-bottom: 20px;
     place-items: center;
     justify-content: center;
     
@@ -63,15 +62,14 @@ body{
     place-items: center;
     display:flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
 }
 
 .texto{
     text-align: center; 
-    margin:10px;
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .contenedora-boton{
@@ -98,4 +96,10 @@ html{
 a:hover{
     cursor:url(../assets/img/cursorPawhover.png),
     auto;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+    padding-left: 85%;
 }

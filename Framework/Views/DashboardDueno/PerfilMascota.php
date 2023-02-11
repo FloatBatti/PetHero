@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/perfilMascota.css" rel="stylesheet">
 
@@ -16,7 +18,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -32,10 +34,10 @@
                 </div>
                 
                 <div class="cont3">
-                    <div class="vacunacion">Libreta de Vacunacion</div>
+                    <div class="vacunacion">Libreta de Vacunación</div>
                     <div><figure><img class="libreta" src="../assets/Mascotas/PlanesVacunacion/<?php echo $mascota->getPlanVacURL();?>"></figure></div>
                 </div>
-                <div class="cont4 video">Pincha acá para ver el video de<a href="<?php echo $mascota->getVideoURL();?>"> <?php echo $mascota->getNombre();?></a></div>
+                <div class="cont4 video">Pincha acá para ver el video de<a style="margin-left: 5px;" href="<?php echo $mascota->getVideoURL();?>"> <?php echo $mascota->getNombre();?></a></div>
             </div>
                 
         </div>
@@ -43,13 +45,6 @@
         <?php require_once(VIEWS_PATH. "dashboardDueno/MenuDash.php");?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

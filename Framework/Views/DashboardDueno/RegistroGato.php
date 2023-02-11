@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrar Mascota</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/registroMascota.css" rel="stylesheet">
 
@@ -18,7 +20,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -28,7 +30,7 @@
                 <form action="<?php echo FRONT_ROOT ?>Mascotas/AddGato" method="post" enctype="multipart/form-data">
                     <div class="contenedora-inputs">
                         <div class="dato-registro">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">Nombre de la mascota</label>
                             <input type="text" name="nombre" class="" required><br>
                         </div>
                         <div class="dato-registro">
@@ -51,15 +53,15 @@
                             <label for="G"><input type="radio" id="G" name="tamano" value="Grande" class="radio">Grande</label>
                         </div>
                         <div class="dato-registro">
-                            <label for="fotoPerro">Foto de la Mascota</label>
+                            <label style="margin-top: 15px;" for="fotoPerro">Foto de la Mascota</label>
                             <input type="file" name="fotoGato" class="" required><br>
                         </div>
                         <div class="dato-registro">
-                            <label for="fotoPlan">Foto del Plan de Vacunacion</label>
+                            <label style="margin-top: 15px;" for="fotoPlan">Foto del Plan de Vacunacion</label>
                             <input type="file" name="fotoPlan" class="" required><br>
                         </div>
                         <div class="dato-registro">
-                            <label for="video">Video opcional (YouTube)</label>
+                            <label style="margin-top: 15px;" for="video">Video opcional (YouTube)</label>
                             <input type="url" name="videoUrl" class=""><br>
                         </div>
                         <div class="boton">
@@ -75,13 +77,6 @@
             <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

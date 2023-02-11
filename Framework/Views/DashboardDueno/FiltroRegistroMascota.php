@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Elegir Mascota</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/filtromascotas.css" rel="stylesheet">
     <link href="../styles/alert.css" rel="stylesheet">
@@ -17,7 +19,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -26,12 +28,12 @@
             <div class="contenedora-gral">
 
                 <div class="contenedora-eleccion perro">
-                  <div><h2>Perro</h2></div> 
+                  <div class="titulo"><h2>Perro</h2></div> 
                   <div><a href="../Mascotas/VerRegistroPerro"><img src="../assets/img/perrofiltro.png"></a></div>
                 </div>
 
                 <div class="contenedora-eleccion gato">
-                  <div><h2>Gato</h2></div>
+                  <div class="titulo"><h2>Gato</h2></div>
                   <div><a href="../Mascotas/VerRegistroGato"><img src="../assets/img/gatofiltro.png"></a></div>
                 </div>
             </div>
@@ -43,14 +45,6 @@
             <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
-
 </body>
 
 </html>

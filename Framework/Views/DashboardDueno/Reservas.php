@@ -20,7 +20,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -31,9 +31,9 @@
                 </form>
                 <div class="row encabezado-row">
                     <div class="col ">Guardian</div>
-                    <div class="col ">Fecha petición</div>
-                    <div class="col ">Fecha inicio</div>
-                    <div class="col ">Fecha fin</div>
+                    <div class="col ">Petición</div>
+                    <div class="col ">Inicio</div>
+                    <div class="col ">Fin</div>
                     <div class="col ">Mascota</div>
                     <div class="col ">Costo Total</div>
                     <div class="col ">Estado</div>
@@ -60,11 +60,11 @@
                             <div class="col"><?php echo "$".$reserva->getCosto(); ?></div>
                             <div class="col"><?php echo $reserva->getEstado(); ?></div>
 
-                            <div class="col"><a href="../Reservas/CancelarSolicitud?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/remove.png" height="45"></a></div>
+                            <div class="col"><a href="../Reservas/CancelarSolicitud?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/remove.png" height="35"></a></div>
 
-                            <div class="col"><a href="../Reservas/VerAuthPago?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="45"></a></div>
+                            <div class="col"><a href="../Reservas/VerAuthPago?idReserva=<?php echo $reserva->getId();?>"><img src="../assets/img/pay.png" height="35"></a></div>
 
-                            <div class="col"><a href="../Reservas/VistaGenerarReview?idReserva=<?php echo $reserva->getId()?>"><img src="../assets/img/reviews.png" height="45"></a></div>
+                            <div class="col"><a href="../Reservas/VistaGenerarReview?idReserva=<?php echo $reserva->getId()?>"><img src="../assets/img/reviews.png" height="35"></a></div>
                         </div>
 
                     <?php } ?>
@@ -81,12 +81,6 @@
     </aside>
     </div>
 
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

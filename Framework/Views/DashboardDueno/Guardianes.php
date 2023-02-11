@@ -20,7 +20,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -35,16 +35,15 @@
                         <div><input type="date" name="fechaMin" value="" min="<?php echo date('Y-m-d');?>"></div>
                         <div>Fecha Fin</div>
                         <div><input type="date" name="fechaMax" value="" min="<?php echo date('Y-m-d');?>"></div>
-                        <div>Por Guardian</div>
-                        <div><input type="text" placeholder="guardian" value="" name="nombreGuardian"></div>
+                        <div><input type="text" placeholder="Buscar Guardián" value="" name="nombreGuardian"></div>
                         <div><button type="submit" id ="filtrado" class="lupa"></div>
                     </div>  
                 </form>
                 </div>
                     <div class="row encabezado-row">
-                        <div class="col ">Nombre</div>
+                        <div class="col ">Nombre Guardián</div>
                         <div class="col ">Tipo mascota admitido</div>
-                        <div class="col ">Descripcion espacio</div>
+                        <div class="col ">Descripción espacio</div>
                         <div class="col ">Ver Perfil</div>
                         <div class="col ">Agregar Favorito</div>
 
@@ -69,9 +68,9 @@
 
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
 
-                        <div class="col perfil-ex"><a href="../Duenos/VerPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
+                        <div class="col perfil-ex"><a style="margin-left: 15px;" href="../Duenos/VerPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="40"></a></div>
                         
-                            <div class="col favoritos-ex"><a href="../Duenos/AgregarFavorito?id=<?php echo $guardian->getId();?>"><img src="../assets/img/estrella_fav.png" height="50"></a></div>
+                            <div class="col favoritos-ex"><a style="margin-left: 15px;" href="../Duenos/AgregarFavorito?id=<?php echo $guardian->getId();?>"><img src="../assets/img/estrella_fav.png" height="50"></a></div>
                         </div>
 
                     <?php } ?>
@@ -80,7 +79,7 @@
                 </div>
 
                 <?php if (isset($alert)) { ?>
-                     <div class="alert-<?php echo $alert->getType()?>"><?php echo $alert->getMessage()?></div>
+                     <div class="alert-2"><?php echo $alert->getMessage()?></div>
                  <?php } ?>
             </div>
 
@@ -89,13 +88,6 @@
         <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

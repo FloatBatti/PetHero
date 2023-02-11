@@ -19,7 +19,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
@@ -41,7 +41,7 @@
                             <div class="col nombre"><?php echo $review->getDueño() ?></div>
                             <div class="col fecha"><?php echo $review->getFecha() ?></div>
                             <div class="col comentario"><?php echo $review->getComentario() ?></div>
-                            <div class="col"><a href=""><img src="../assets/img/<?php echo $review->getCalificacion() ?>_stars.png"></a></div>
+                            <div class="col"><a href=""><img src="../assets/img/<?php echo $review->getCalificacion() ?>_stars.png" width="190px"></a></div>
                         </div>
 
                     <?php } ?>
@@ -59,13 +59,6 @@
             <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

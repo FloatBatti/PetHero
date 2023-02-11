@@ -11,7 +11,7 @@
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/verFavoritos.css" rel="stylesheet">
     <link href="../styles/alert.css" rel="stylesheet">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -19,26 +19,26 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="conteiner-list">
-            <div class="row encabezado-row">
-                        <div class="col ">Nombre</div>
-                        <div class="col ">Tipo mascota admitido</div>
-                        <div class="col ">Descripcion espacio</div>
-                        <div class="col ">Ver Perfil</div>
-                        <div class="col ">Borrar</div>
+                <div class="row encabezado-row">
+                    <div class="col">Nombre Guardián</div>
+                    <div class="col">Tipo mascota admitido</div>
+                    <div class="col">Descripcion espacio</div>
+                    <div class="col">Ver Perfil</div>
+                    <div class="col">Borrar Favorito</div>
 
-                    </div>
+                </div>
                 <div class="scrolleable">
                     <?php foreach ($listaGuardianes as $guardian) { ?>
 
                         <div class="row guardian-row">
-                            
+
                             <div class="col nombre-ex"><?php echo $guardian->getUsername() ?></div>
                             <div class="col tipo-ex"><?php
 
@@ -49,8 +49,8 @@
 
                                                         ?></div>
                             <div class="col descripcion-ex"><?php echo $guardian->getDescripcion() ?></div>
-                            <div class="col perfil-ex"><a href="../Duenos/VerPerfilGuardian?id=<?php echo $guardian->getId();?>"><img src="../assets/img/verperfil.png" height="50"></a></div>
-                            <div class="col favoritos-ex"><a href="../Duenos/BorrarFavorito?idGuardian=<?php echo $guardian->getId();?> "><img src="../assets/img/delete.png" height="50"></a></div>
+                            <div class="col perfil-ex"><a style="margin-left: 4px;" href="../Duenos/VerPerfilGuardian?id=<?php echo $guardian->getId(); ?>"><img src="../assets/img/verperfil.png" height="40"></a></div>
+                            <div class="col favoritos-ex"><a style="margin-left: 25px;" href="../Duenos/BorrarFavorito?idGuardian=<?php echo $guardian->getId(); ?> "><img src="../assets/img/delete.png" height="40"></a></div>
                         </div>
 
                     <?php } ?>
@@ -59,22 +59,15 @@
                 </div>
 
                 <?php if (isset($alert)) { ?>
-                     <div class="alert-<?php echo $alert->getType()?>"><?php echo $alert->getMessage()?></div>
-                 <?php } ?>
+                    <div  style="margin-top: 2px;" class="alert-<?php echo $alert->getType() ?>"><?php echo $alert->getMessage() ?></div>
+                <?php } ?>
             </div>
 
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
+            <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
 
 </body>
 

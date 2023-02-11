@@ -1,33 +1,34 @@
-.contendora-chat{
+.contendora-chat {
     width: 70%;
-    height:90%;
+    height: 90%;
     background-color: lightgray;
     border-radius: 5px;
     margin-left: 20px;
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.76);
     margin: 0 auto;
     margin-top: 2%;
-     
+
 }
 
-.lista-mensajes{
+.lista-mensajes {
     display: flex;
     flex-direction: column;
-    height:60%;
+    height: 60%;
     margin: 0 auto auto 20px;
     overflow-y: scroll;
-    background-image: url(../assets/img/fondo-mascotas-chat.jpg);
 }
-.contenedora-mensaje{
+
+.contenedora-mensaje {
     border-radius: 7px;
     height: 200px;
     display: flex;
     flex-direction: row;
-    margin-top:20px;
-    
+    margin-top: 20px;
+
 }
-.mensaje{
-    border:1px solid gray;
+
+.mensaje {
+    border: 1px solid gray;
     height: 100px;
     width: 400px;
     background-color: antiquewhite;
@@ -36,45 +37,49 @@
     padding: 10px;
 }
 
-.derecha{
+.derecha {
     justify-content: end;
-    
-}
-.izquierda{
-    justify-content: start;
-    
+
 }
 
-.autor-mensaje{
+.izquierda {
+    justify-content: start;
+
+}
+
+.autor-mensaje {
     border-radius: 5px;
     background-color: rgb(230, 166, 47);
-    height:fit-content;
+    height: fit-content;
     border: 1px solid gray;
-    padding:5px;
-    margin:15px;
+    padding: 5px;
+    margin: 15px;
 }
-.contenedora-reply{
+
+.contenedora-reply {
     width: auto;
     height: 150px;
-    display:flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    
-   
+
+
 }
-.reply{
-    
+
+.reply {
+
     background-color: white;
     border-radius: 7px;
-    height:60% ;
+    height: 60%;
     width: 70%;
-   
+
 }
-.Go{
-    height:60%;
-    width:150px;
-    border:1px solid gainsboro;
+
+.Go {
+    height: 60%;
+    width: 150px;
+    border: 1px solid gainsboro;
     border-radius: 7px;
     margin-left: 0;
     display: flex;
@@ -82,20 +87,24 @@
     justify-content: center;
     margin-left: 10px;
     box-shadow: 5px 5px 5px gray;
-    
+
 }
-input{
-    border:none;
+
+input {
+    border: none;
     background-color: lightgray;
-    
+
 }
-.send{
+
+.send {
     cursor: pointer;
 }
-.fecha{
+
+.fecha {
     font-size: 14px;
-    color:rgb(75, 45, 185);
+    color: rgb(75, 45, 185);
 }
-.destinatario{
-    width:10px
+
+.destinatario {
+    width: 10px
 }

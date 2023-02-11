@@ -273,17 +273,16 @@ class GuardianDAO implements InterfaceDAO
 
     }
 
-    public function grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$fotoUrl,$descripcion){ //CHECKED
+    public function grabarDisponibilidad($fechaInicio,$fechaFin,$sizes,$costo,$descripcion){ //CHECKED
 
         $resultado=null;
 
         $queryUpdate = "UPDATE guardianes g
-        set g.dia_inicio = :fechaInicio, g.dia_fin=:fechaFin, g.costo_diario=:costo,g.foto_espacio=:fotoUrl, g.descripcion=:descripcion WHERE g.id_usuario=:buscado";
+        set g.dia_inicio = :fechaInicio, g.dia_fin=:fechaFin, g.costo_diario=:costo, g.descripcion=:descripcion WHERE g.id_usuario=:buscado";
 
         $parameters["fechaInicio"] = $fechaInicio;
         $parameters["fechaFin"] = $fechaFin;
         $parameters["costo"] = $costo;
-        $parameters["fotoUrl"] = $fotoUrl;
         $parameters["descripcion"] = $descripcion;
         $parameters["buscado"] = ($_SESSION["UserId"]);
 

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <link href="../styles/dashboardDueño.css" rel="stylesheet">
     <link href="../styles/mensajes.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +17,7 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="100"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
         <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
     </div>
@@ -45,7 +47,7 @@
                 
                 <form class="contenedora-reply" action="../Mensaje/Add" method="post">
                     <input type="number" name="id" class="destinatario" value="<?php echo($usuario->getId());?>" readonly>
-                    <textarea name="chat" class="reply" maxlength="150" placeholder="max 150 caracteres" size="50" required></textarea> 
+                    <textarea name="chat" class="reply" maxlength="150" placeholder="Máximo 150 caracteres." size="50" required></textarea> 
                     <div class="Go send"><input type="submit" class="send"></div>
                 </form>
             <hr>
@@ -56,14 +58,6 @@
             <?php require_once(VIEWS_PATH."DashboardDueno/MenuDash.php");?>
         </aside>
     </div>
-
-    <div class="footer-separador"></div>
-    <footer>
-        <div>Copyright &#169 2022 Pet Hero S.A. es una empresa del grupo Batti's System CO.</div>
-        <div><a href="">Terminos y Condiciones</a></div>
-        <div><a href="">Aviso de privacidad</a></div>
-    </footer>
-
 </body>
 
 </html>
