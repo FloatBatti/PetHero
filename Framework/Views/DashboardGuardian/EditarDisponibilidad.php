@@ -30,8 +30,8 @@
 
                     <h3 class="title">Seleccione su nueva disponiblidad</h3>
                     <div class="disponibilidad">
-                        <div>Fecha inicio<input type="date" name="fechaInicio" min="<?php echo date("Y-m-d"); ?>"></div>
-                        <div>Fecha Fin<input type="date" name="fechaFin" min="<?php echo date("Y-m-d"); ?>"></div>
+                        <div>Fecha inicio<input type="date" value="<?php echo date($guardian->getFechaInicio()); ?>" name="fechaInicio" min="<?php echo date("Y-m-d"); ?>"></div>
+                        <div>Fecha Fin<input type="date" value="<?php echo date($guardian->getFechaFin()); ?>" name="fechaFin" min="<?php echo date("Y-m-d"); ?>"></div>
                     </div>
 
                     <div class="ultimos">

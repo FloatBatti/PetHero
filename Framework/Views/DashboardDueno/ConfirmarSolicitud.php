@@ -19,52 +19,52 @@
 
 <body>
     <div class="cabecera">
-        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut"?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
+        <div class="logo"><a href='<?php echo FRONT_ROOT . "Home/LogOut" ?>'><img src="../assets/img/PetHeroLogo.png" height="50"></a>
         </div>
-        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut"?>">LOG OUT</a></div>
+        <div><a href="<?php echo FRONT_ROOT . "Home/LogOut" ?>">LOG OUT</a></div>
     </div>
     <div class="contenedora-general">
         <div class="contenedora-section">
             <div class="contenedora-solicitud">
-                
+
                 <div class="contenedora-datos">
 
                     <div class="contendora-confirmacion">
 
-                    <p class="cabecera-dato">Guardian</p>   
-                            <div class="dato-confirmacion">
-                                <?php echo $guardian->getUsername();?>
-                            </div>
-                            <p class="cabecera-dato">Fecha inicio</p>
-                            <div class="dato-confirmacion">   
-                                <?php echo $reserva->getFechaInicio(); ?>
-                            </div>
-                            <p class="cabecera-dato">Fecha Fin</p>
-                            <div class="dato-confirmacion">                           
-                                <?php echo $reserva->getFechaFin(); ?>
-                            </div>
-                            <p class="cabecera-dato">Mascota</p>
-                            <div class="dato-confirmacion">
-                                <?php 
-                                    echo $mascota->getNombre();
-                                ?>
-                            </div>
-                            <p class="cabecera-dato">Costo</p>
-                            <div class="dato-confirmacion">                                
-                                <?php echo $reserva->getCosto(); ?>
-                            </div>
-                            
-                            <div class="boton">
-                                <button type="submit" class="submit"><a href="<?php echo FRONT_ROOT?>Reservas/Add"><img src="../assets/img/dogboneEnviar.png"></a></button>
-                            </div>
-                        
+                        <p class="cabecera-dato">Guardian</p>
+                        <div class="dato-confirmacion">
+                            <?php echo $guardian->getUsername(); ?>
+                        </div>
+                        <p class="cabecera-dato">Fecha inicio</p>
+                        <div class="dato-confirmacion">
+                            <?php echo $reserva->getFechaInicio(); ?>
+                        </div>
+                        <p class="cabecera-dato">Fecha Fin</p>
+                        <div class="dato-confirmacion">
+                            <?php echo $reserva->getFechaFin(); ?>
+                        </div>
+                        <p class="cabecera-dato">Mascota</p>
+                        <div class="dato-confirmacion">
+                            <?php
+                            echo $mascota->getNombre();
+                            ?>
+                        </div>
+                        <p class="cabecera-dato">Costo</p>
+                        <div class="dato-confirmacion">
+                            <?php echo $reserva->getCosto(); ?>
+                        </div>
+
+                        <div class="boton">
+                            <button type="submit" class="submit"><a href="<?php echo FRONT_ROOT ?>Reservas/Add"><img src="../assets/img/dogboneEnviar.png"></a></button>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <aside>
-        <?php require_once(VIEWS_PATH. "dashboardDueno/MenuDash.php");?>
+            <?php require_once(VIEWS_PATH . "dashboardDueno/MenuDash.php"); ?>
         </aside>
     </div>
 

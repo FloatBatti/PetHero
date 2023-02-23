@@ -238,6 +238,7 @@ insert into razas(nombre_raza, id_especie) values ("Angora turco", 2);
 insert into razas(nombre_raza, id_especie) values ("Siberiano", 2);
 insert into razas(nombre_raza, id_especie) values ("Maine Coon", 2);
 insert into razas(nombre_raza, id_especie) values ("Bengalí", 2);
+insert into razas(nombre_raza, id_especie) values ("Mestizo", 2);
 
 
 DELIMITER //

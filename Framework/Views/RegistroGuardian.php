@@ -37,7 +37,7 @@
                                 <input type="text" placeholder="Documento" name="dni" class="" required><br>
                         </div>
                         <div class="datoregistro">
-                                <input type="email" placeholder="Correo Electrónico"" name="mail" class="" required><br>
+                                <input type="email" placeholder="Correo Electrónico"" name=" mail" class="" required><br>
                         </div>
                         <div class="datoregistro">
                                 <input type="text" placeholder="Teléfono (sin guiones)" name="telefono" class="" required><br>

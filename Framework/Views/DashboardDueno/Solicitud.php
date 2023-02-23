@@ -35,11 +35,11 @@
                         <div class="contenedora-inputs">
                             <div class="cont">
                                 <div><label for="fechaIn">Fecha Inicio</label></div>
-                                <div></div><input type="date" name="fechaIn" min="<?php echo date($guardian->getFechaInicio()); ?>" max="<?php echo date($guardian->getFechaFin()); ?>">
+                                <div></div><input type="date" name="fechaIn" value="<?php echo date($guardian->getFechaInicio()); ?>" min="<?php echo date($guardian->getFechaInicio()); ?>" max="<?php echo date($guardian->getFechaFin()); ?>">
                             </div>
                             <div class="cont">
                                 <div><label for="fechaOut">Fecha Fin</label></div>
-                                <div><input type="date" name="fechaOut" min="<?php echo date($guardian->getFechaInicio()); ?>" max="<?php echo date($guardian->getFechaFin()); ?>"></div>
+                                <div><input type="date" name="fechaOut" value="<?php echo date($guardian->getFechaFin()); ?>" min="<?php echo date($guardian->getFechaInicio()); ?>" max="<?php echo date($guardian->getFechaFin()); ?>"></div>
                             </div>
                             <div class="cont">
 
